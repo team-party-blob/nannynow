@@ -1,5 +1,5 @@
 /* eslint-env node */
-//const CleanPlugin = require('clean-webpack-plugin');
+// const CleanPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -14,8 +14,11 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    port: 3000,
-    historyApiFallback: true
+    port: 6969,
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:7891'
+    }
   },
   plugins: [
     // add plugins
@@ -58,6 +61,7 @@ module.exports = {
               sourceMap: true,
               plugins: [
                 require('autoprefixer')(),
+                require('postcss-import')(),
                 require('postcss-nested')(),
                 require('postcss-simple-vars')()
               ]
@@ -71,8 +75,8 @@ module.exports = {
         test: /\.(jpg|png|svg)$/,
         use: {
           loader: 'url-loader',
-          options: { limit: 1000 },
-        },
+          options: { limit: 1000 }
+        }
       }
     ]
   }

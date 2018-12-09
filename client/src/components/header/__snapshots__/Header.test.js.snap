@@ -2,10 +2,24 @@
 
 exports[`Header component renders a Header component 1`] = `
 <header>
-  <h1>
-    N:N
-  </h1>
-  <nav>
+  <img
+    src="https://www.graphicsprings.com/filestorage/stencils/8ca848b9be9e7d7fc9ddb96c6efb6c41.png?width=500&height=500"
+  />
+  <label
+    id="hamburgerLabel"
+  >
+    This is the hamburger input.
+  </label>
+  <input
+    id="hamburgerInput"
+    type="checkbox"
+  />
+  <span
+    id="hamburgerSpan"
+  />
+  <nav
+    id="nav"
+  >
     <Link
       className="link"
       replace={false}

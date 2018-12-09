@@ -1,13 +1,13 @@
 {
-  "name": "hay-poll",
+  "name": "nanny-now",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose --runInBand",
     "test:watch": "npm run test -- --watch",
     "build": "babel src -d lib -s true",
-    "start": "node lib/index.js",
+    "start": "node src/index.js",
     "start:watch": "nodemon src/index.js --exec babel-node"
   },
   "jest": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MackenzieBerliner-Glasser/hay-poll.git"
+    "url": ""
   },
   "keywords": [],
   "author": "",
@@ -45,9 +45,5 @@
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.14",
     "morgan": "^1.9.1"
-  },
-  "bugs": {
-    "url": "https://github.com/MackenzieBerliner-Glasser/hay-poll/issues"
-  },
-  "homepage": "https://github.com/MackenzieBerliner-Glasser/hay-poll#readme"
+  }
 }

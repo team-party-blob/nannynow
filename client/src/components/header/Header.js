@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ROUTES from '../../routes/routes';
+import { ROUTES } from '../../routes/routes';
 import styles from './Header.css';
+import { logo } from '../assets/imageUrl';
 
 export default function Header() {
   return (
     <header>
-      <img src='https://www.graphicsprings.com/filestorage/stencils/8ca848b9be9e7d7fc9ddb96c6efb6c41.png?width=500&height=500'/>
+      <img src={logo}/>
 
 
       <label id={styles.hamburgerLabel}>This is the hamburger input.</label>

@@ -1,7 +1,7 @@
 import Home from '../components/home/Home';
 import { Route } from 'react-router-dom';
 import React from 'react';
-import Signup from '../components/auth/Auth';
+import { Signup, Signin } from '../containers/AuthContainer';
 
 export const ROUTES = {
   HOME: {
@@ -13,6 +13,11 @@ export const ROUTES = {
     path: '/signup',
     Component: Signup,
     linkTo: () => '/signup'
+  },
+  SIGNIN: {
+    path: '/signin',
+    Component: Signin,
+    linkTo: () => '/signin'
   }
 };
 

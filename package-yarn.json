@@ -1,0 +1,22 @@
+{
+  "name": "nannynow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "yarn run install:client && yarn run install:server",
+    "install:client": "cd client && yarn",
+    "install:server": "cd server && yarn",
+    "test": "yarn test:client && yarn test:server",
+    "test:client": "cd client && yarn test",
+    "test:server": "cd server && yarn test",
+    "build": "yarn build:client && yarn build:server",
+    "build:client": "cd client && yarn build",
+    "build:server": "cd server && yarn build",
+    "prestart": "yarn build",
+    "start": "cd server && yarn start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

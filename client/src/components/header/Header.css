@@ -108,10 +108,13 @@ img {
 }
 
 /* Desktop Header */
-@media (min-width: 651px)
-{
+@media (min-width: 651px) {
   header {
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
     #hamburgerLabel {
       display: none;
     }
@@ -120,10 +123,7 @@ img {
       display: none;
     }
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+
     nav {
       .link {
         padding: 10px;

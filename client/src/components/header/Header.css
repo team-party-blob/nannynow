@@ -11,6 +11,10 @@ img {
     justify-content: space-between;
     align-items: center;
 
+    img {
+      display: none;
+    }
+
     #hamburgerLabel {
       position: absolute;
       opacity: 0;
@@ -83,11 +87,12 @@ img {
       opacity: 0;
       margin: 10px 0px 0px 10px;
       position: fixed;
-      top: 0;
+      top: 2em;
       z-index: 999999;
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
       transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
 
       .link {
         text-align: center;
@@ -106,6 +111,15 @@ img {
 @media (min-width: 651px)
 {
   header {
+
+    #hamburgerLabel {
+      display: none;
+    }
+
+    #hamburgerInput {
+      display: none;
+    }
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;

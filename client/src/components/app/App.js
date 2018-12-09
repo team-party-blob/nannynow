@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ROUTES, routerRoutes } from '../../routes/routes';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { routerRoutes } from '../../routes/routes';
 import Header from '../header/Header';
 
 export default function App() {
@@ -10,7 +10,6 @@ export default function App() {
         <Header />
         <Switch>
           {routerRoutes()}
-          {/* <Route path={ROUTES.HOME.path} component={ROUTES.HOME.component} /> */}
         </Switch>
       </Fragment>
     </Router>

@@ -1,0 +1,124 @@
+img {
+  width: 5em;
+}
+
+
+/*Mobile Header */
+@media (max-width: 650px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    #hamburgerLabel {
+      position: absolute;
+      opacity: 0;
+    }
+
+    #hamburgerInput {
+      width: 40px;
+      height: 32px;
+      position: absolute;
+      cursor: pointer;
+      top: -7px;
+      left: -5px;
+      opacity: 0;
+      z-index: 9999999;
+    }
+
+    #hamburgerSpan {
+      background: lightgrey;
+      width: 33px;
+      min-height: 4px;
+      height: 4px;
+      display: block;
+      border-radius: 2px;
+      margin-top: 7px;
+      margin-left: 2px;
+      transition: 0.5s;
+      position: absolute;
+      left: 0px;
+      &::before, &::after {
+        transition: 0.5s;
+        border-radius: 2px;
+        display: block;
+        height: 4px;
+        background: lightgrey;
+        content: '';
+        display: block;
+        position: relative;
+      }
+      &:before {
+          top:-8px;
+      }
+      &:after {
+          top: 4px;
+      }
+    }
+
+    input:checked ~ #hamburgerSpan::before {
+      transform: rotate(45deg) translate(0px, -1px);
+      top: 3px;
+    }
+
+    input:checked ~ #hamburgerSpan::after {
+      transform: rotate(-45deg) translate(0px, -1px);
+      top: -1px;
+    }
+
+    input:checked ~ #hamburgerSpan {
+      background: rgba(0,0,0,0)
+    }
+
+    input:checked ~ #nav {
+      transform: none;
+      opacity: 1;
+    }
+
+    #nav {
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      margin: 10px 0px 0px 10px;
+      position: fixed;
+      top: 0;
+      z-index: 999999;
+      transform-origin: 0% 0%;
+      transform: translate(-100%, 0);
+      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
+      .link {
+        text-align: center;
+        padding: 10px;
+        margin: 5px;
+        background-color: red;
+        color: black;
+        border-radius: 15px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/* Desktop Header */
+@media (min-width: 651px)
+{
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    nav {
+      .link {
+        padding: 10px;
+        margin: 20px;
+        background-color: lightblue;
+        color: red;
+        border-radius: 15px;
+        text-decoration: none;
+      }
+    }
+  }
+}

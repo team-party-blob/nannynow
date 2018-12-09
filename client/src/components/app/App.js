@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ROUTES from '../../routes/routes';
+import { ROUTES, routerRoutes } from '../../routes/routes';
 import Header from '../header/Header';
 
 export default function App() {
@@ -9,7 +9,8 @@ export default function App() {
       <Fragment>
         <Header />
         <Switch>
-          <Route path={ROUTES.HOME.path} component={ROUTES.HOME.component} />
+          {routerRoutes()}
+          {/* <Route path={ROUTES.HOME.path} component={ROUTES.HOME.component} /> */}
         </Switch>
       </Fragment>
     </Router>

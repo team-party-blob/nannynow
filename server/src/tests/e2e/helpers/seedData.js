@@ -22,7 +22,7 @@ const agencies = [
     state: 'OR',
     zip: 97035,
     phone: 5032455288,
-    email: 'info@nwnannies.net',
+    businessEmail: 'info@nwnannies.net',
     website: 'https://nwnannies.net/',
     hourlyFee: 3.50
   }

@@ -5,16 +5,13 @@ import Header from '../header/Header';
 
 export default function App() {
   return (
-    <Fragment>
-      <h1>Hello World!</h1>
-      <Router>
-        <Fragment>
-          <Header />
-          <Switch>
-            <Route path={ROUTES.HOME.path} component={ROUTES.HOME.component} />
-          </Switch>
-        </Fragment>
-      </Router>
-    </Fragment>
+    <Router>
+      <Fragment>
+        <Header />
+        <Switch>
+          <Route path={ROUTES.HOME.path} component={ROUTES.HOME.component} />
+        </Switch>
+      </Fragment>
+    </Router>
   );
 }

@@ -63,8 +63,7 @@ module.exports = {
                 require('autoprefixer')(),
                 require('postcss-import')(),
                 require('postcss-nested')(),
-                require('postcss-simple-vars')(),
-                require('postcss-custom-media')()
+                require('postcss-simple-vars')()
               ]
             }
           }

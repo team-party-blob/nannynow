@@ -54,16 +54,16 @@ describe('users routes', () => {
       });
   });
 
-  // it('updates an agency by id', () => {
-  //   const createdUsers = getUsers();
+  it('updates a user by id', () => {
+    const createdUsers = getUsers();
 
-  //   return request(app)
-  //     .put(`/api/users/${createdUsers[0]._id}`)
-  //     .send({
-  //       contactName: 'Mike'
-  //     })
-  //     .then(res => {
-  //       expect(res.body.contactName).toEqual('Mike');
-  //     });
-  // });
+    return request(app)
+      .put(`/api/users/${createdUsers[0]._id}`)
+      .send({
+        role: 'nanny'
+      })
+      .then(res => {
+        expect(res.body.role).toEqual('nanny');
+      });
+  });
 });

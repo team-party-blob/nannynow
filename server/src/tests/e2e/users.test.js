@@ -5,6 +5,12 @@ import User from '../../models/User';
 import { compare } from '../../utils/auth';
 const { getUsers, usersSeedData, getAgencies } = require('./helpers/seedData');
 
+const checkStatus = statusCode => res => {
+  expect(res.status).toEqual(statusCode);
+};
+
+const checkOk = res => checkStatus(200)(res);
+
 describe('users routes', () => {
   it('signs a user up (with seed data helper)', () => {
     const createdUsers = getUsers();
@@ -48,6 +54,16 @@ describe('users routes', () => {
       expect(createdUser.compare(user.password)).toBeTruthy();
       expect(createdUser.compare('failing')).toBeFalsy();
     });
+  });
+
+  it('signs in a user', () => {
+    return request(app)
+      .post('/api/users/signin')
+      .send({ email: 'admin@test.com', password: '123' })
+      .then(res => {
+        checkOk(res);
+        expect(res.body.token).toEqual(expect.any(String));
+      });
   });
 
   it('gets a list of all users', () => {

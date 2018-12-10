@@ -47,8 +47,8 @@ userSchema.methods.compare = function(password) {
 };
 
 userSchema.methods.authToken = function() {
-  const jsonUser = this.toJSON();
-  return tokenize(jsonUser);
+  console.log('tokenize this', tokenize(this))
+  return tokenize(this);
 };
 
 userSchema.statics.findByToken = function(token) {

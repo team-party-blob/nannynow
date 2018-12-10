@@ -57,4 +57,46 @@ export default Router()
       .findByIdAndDelete(id)
       .then(results => res.json({ removed: !!results }))
       .catch(next);
+  })
+  .put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const {
+      user,
+      agency,
+      name,
+      photo,
+      streetAddress1,
+      city,
+      state,
+      zip,
+      phone,
+      description,
+      age,
+      pricePerHour,
+      createdDate
+    } = req.body;
+
+    NannyProfile
+      .findByIdAndUpdate(
+        id,
+        {
+          user,
+          agency,
+          name,
+          photo,
+          streetAddress1,
+          city,
+          state,
+          zip,
+          phone,
+          description,
+          age,
+          pricePerHour,
+          createdDate
+        },
+        { new: true }
+      )
+      .lean()
+      .then(nanny => res.json(nanny))
+      .catch(next);
   });

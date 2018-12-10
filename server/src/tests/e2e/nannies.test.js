@@ -49,7 +49,7 @@ describe('nanny routes', () => {
     const createdNannies = getNannies();
 
     return request(app)
-      .put(`api/agencies${createdNannies[0]._id}`)
+      .put(`/api/nannies/${createdNannies[0]._id}`)
       .send({
         pricePerHour: 7.77
       })

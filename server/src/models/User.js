@@ -26,8 +26,10 @@ const userSchema = new mongoose.Schema(
   },
   {
     toJSON: {
-      transform: function(doc, ret) {
+      transform: (doc, ret) => {
+        delete ret.passwordHash;
         delete ret.__v;
+        return ret;
       }
     }
   }
@@ -47,19 +49,11 @@ userSchema.methods.compare = function(password) {
 };
 
 userSchema.methods.authToken = function() {
-  const jsonUser = this.toJSON();
-  return tokenize(jsonUser);
+  return tokenize(this);
 };
 
 userSchema.statics.findByToken = function(token) {
-  try {
-    const user = untokenize(token);
-    return Promise.resolve(user);
-  } catch(e) {
-    return Promise.resolve(null);
-  }
+  return Promise.resolve(untokenize(token));
 };
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+export default mongoose.model('User', userSchema);

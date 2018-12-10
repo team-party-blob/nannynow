@@ -18,16 +18,18 @@ describe('users routes', () => {
     });
   });
 
-  // it('gets a list of all users', () => {
-  //   const createdUsers = getUsers();
+  it('gets a list of all users', () => {
+    const createdUsers = getUsers();
 
-  //   return request(app)
-  //     .get('/api/users')
-  //     .then(res => {
-  //       expect(res.body.length).toEqual(1);
-  //       expect(res.body).toContainEqual(createdUsers[0]);
-  //     });
-  // });
+    return request(app)
+      .get('/api/users')
+      .then(res => {
+        expect(res.body.length).toEqual(3);
+        expect(res.body).toContainEqual(createdUsers[0]);
+        expect(res.body).toContainEqual(createdUsers[1]);
+        expect(res.body).toContainEqual(createdUsers[2]);
+      });
+  });
 
   // it('gets a agency by id', () => {
   //   const createdUsers = getUsers();

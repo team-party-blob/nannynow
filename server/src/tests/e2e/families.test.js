@@ -15,12 +15,10 @@ describe('families routes', () => {
     const families = familiesSeedData();
 
     expect(createdFamilies[0]).toEqual({
-      agency: families[0].agency,
-      email: families[0].email,
-      role: families[0].role,
+      ...families[0],
       _id: expect.any(String),
-      createdDate: expect.anything(),
-      passwordHash: expect.any(String)
+      __v: 0,
+      createdDate: expect.anything()
     });
   });
 

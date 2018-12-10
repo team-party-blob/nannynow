@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 import { getStates } from './helpers/listHelpers';
 
 const familyProfileSchema = new mongoose.Schema({
@@ -35,12 +35,12 @@ const familyProfileSchema = new mongoose.Schema({
     required: [true, 'Email is required']
   },
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
   agency: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Agency',
     required: [true, 'Agency is required']
   },
@@ -64,4 +64,4 @@ const familyProfileSchema = new mongoose.Schema({
   ]
 });
 
-export default model('FamilyProfile', familyProfileSchema);
+export default mongoose.model('FamilyProfile', familyProfileSchema);

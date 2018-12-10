@@ -47,4 +47,14 @@ export default Router()
     Agency.findById(id)
       .then(agency => res.json(agency))
       .catch(next);
+  })
+
+  .delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    Agency.findByIdAndDelete(id)
+      .then(results => res.json({ removed: !!results }))
+      .catch(next);
   });
+
+

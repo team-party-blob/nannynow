@@ -2,7 +2,7 @@ import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
 import User from '../../models/User';
-import bcrypt from 'bcrypt';
+import { compare } from '../../utils/auth';
 const { getUsers, usersSeedData, getAgencies } = require('./helpers/seedData');
 
 describe('users routes', () => {
@@ -21,14 +21,16 @@ describe('users routes', () => {
   });
 
   it('hashes a user\'s password', () => {
-    const getAgencies = getAgencies;
+    const createdAgencies = getAgencies();
 
     return User.create({
       email: 'test@test.com',
-      password: 'test'
+      password: 'test',
+      agency: createdAgencies[0]._id,
+      role: 'family'
     }).then(user => {
       expect(user.passwordHash).not.toEqual('test');
-      expect(bcrypt.compareSync('test', user.passwordHash));
+      expect(compare('test', user.passwordHash));
     });
   });
 

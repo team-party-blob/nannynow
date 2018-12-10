@@ -1,4 +1,4 @@
-const handler = (err, req, res, next) => {
+const handler = (err, req, res) => {
   let code = 500;
   let error = 'Internal Server Error';
 

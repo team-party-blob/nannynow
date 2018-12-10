@@ -26,4 +26,14 @@ describe('agencies routes', () => {
         expect(res.body).toContainEqual(createdAgencies[0]);
       });
   });
+
+  it('gets a agency by id', () => {
+    const createdAgencies = getAgencies();
+
+    return request(app)
+      .get(`/api/agencies/${createdAgencies[1]._id}`)
+      .then(res => {
+        expect(res.body).toEqual({ ...createdAgencies[1] });
+      });
+  });
 });

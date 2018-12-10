@@ -33,6 +33,7 @@ export default Router()
       .then(agency => res.json(agency))
       .catch(next);
   })
+  
   .get('/', (req, res, next) => {
     Agency.find()
       .lean()

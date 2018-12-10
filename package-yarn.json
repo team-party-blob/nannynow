@@ -21,7 +21,7 @@
     "yarnclean": "yarn rmpackagelock && yarn rmnodemodules && yarn rmyarnlock",
     "cleanserver": "cd server && yarn yarnclean",
     "cleanclient": "cd client && yarn yarnclean",
-    "clean": "yarn clean && yarn cleanserver && yarn cleanclient",
+    "clean": "yarn yarnclean && yarn cleanserver && yarn cleanclient",
     "switchtonpm": "cp package-npm.json package.json"
   },
   "keywords": [],

@@ -2,13 +2,17 @@ import { Router } from 'express';
 import User from '../../models/User';
 import { HttpError } from '../../middleware/error';
 import requireAuth from '../../middleware/requireAuth';
+import Agency from '../../models/Agency';
 
 export default Router()
-  .post('/signup', (req, res, next) => {
-    const { email, password, role, agency } = req.body;
-    User.create({ email, password, role, agency })
-      .then(user => res.json(user))
-      .catch(next);
+  .post('/:agencyAlias/signup/', (req, res, next) => {
+    const { email, password, role } = req.body;
+    const { agencyAlias } = req.params;
+    Agency.findOne({ agencyAlias: agencyAlias }).then(agency => {
+      User.create({ email, password, role, agency: agency._id })
+        .then(user => res.json(user))
+        .catch(next);
+    });
   })
 
   .post('/signin', (req, res, next) => {

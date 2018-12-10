@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "preinstall": "yarn run install:client && yarn run install:server",
+    "preinstall": "yarn clean && yarn run install:client && yarn run install:server",
     "install:client": "cd client && yarn",
     "install:server": "cd server && yarn",
     "test": "yarn test:client && yarn test:server",
@@ -14,7 +14,15 @@
     "build:client": "cd client && yarn build",
     "build:server": "cd server && yarn build",
     "prestart": "yarn build",
-    "start": "cd server && yarn start"
+    "start": "cd server && yarn start",
+    "rmpackagelock": "rm -rf package-lock.json",
+    "rmnodemodules": "rm -rf node_modules",
+    "rmyarnlock": "rm -rf yarn.lock",
+    "yarnclean": "yarn rmpackagelock && yarn rmnodemodules && yarn rmyarnlock",
+    "cleanserver": "cd server && yarn yarnclean",
+    "cleanclient": "cd client && yarn yarnclean",
+    "clean": "yarn yarnclean && yarn cleanserver && yarn cleanclient",
+    "switchtonpm": "cp package-npm.json package.json"
   },
   "keywords": [],
   "author": "",

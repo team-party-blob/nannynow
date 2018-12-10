@@ -7,7 +7,11 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --hot --mode development"
+    "start": "webpack-dev-server --hot --mode development",
+    "rmpackagelock": "rm -rf package-lock.json",
+    "rmnodemodules": "rm -rf node_modules",
+    "rmyarnlock": "rm -rf yarn.lock",
+    "yarnclean": "yarn rmpackagelock && yarn rmnodemodules && yarn rmyarnlock"
   },
   "keywords": [],
   "author": "",

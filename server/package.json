@@ -8,7 +8,11 @@
     "test:watch": "npm run test -- --watch",
     "build": "babel src -d lib -s true",
     "start": "node lib/index.js",
-    "start:watch": "nodemon src/index.js --exec babel-node"
+    "start:watch": "nodemon src/index.js --exec babel-node",
+    "rmpackagelock": "rm -rf package-lock.json",
+    "rmnodemodules": "rm -rf node_modules",
+    "rmyarnlock": "rm -rf yarn.lock",
+    "yarnclean": "yarn rmpackagelock && yarn rmnodemodules && yarn rmyarnlock"
   },
   "jest": {
     "testEnvironment": "node"
@@ -23,12 +27,12 @@
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
+    "babel-core": "^7.0.0-bridge.0",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
-    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "chance": "^1.0.18",

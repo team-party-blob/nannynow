@@ -6,12 +6,12 @@ beforeEach(() => {
   return dropCollection('agencies');
 });
 
-// beforeEach(() => {
-//   return dropCollection('users');
-// });
+beforeEach(() => {
+  return dropCollection('users');
+});
 
 let createdAgencies;
-// let createdUsers;
+let createdUsers;
 
 const agencies = [
   {
@@ -28,23 +28,23 @@ const agencies = [
   }
 ];
 
-// const users = [
-//   {
-//     email: 'family@test.com',
-//     password: '123',
-//     role: 'family'
-//   },
-//   {
-//     email: 'nanny@test.com',
-//     password: '123',
-//     role: 'nanny'
-//   },
-//   {
-//     email: 'admin@test.com',
-//     password: '123',
-//     role: 'admin'
-//   }
-// ];
+const users = [
+  {
+    email: 'family@test.com',
+    password: '123',
+    role: 'family'
+  },
+  {
+    email: 'nanny@test.com',
+    password: '123',
+    role: 'nanny'
+  },
+  {
+    email: 'admin@test.com',
+    password: '123',
+    role: 'admin'
+  }
+];
 
 const createAgency = agency => {
   return request(app)
@@ -52,12 +52,13 @@ const createAgency = agency => {
     .send(agency)
     .then(res => res.body);
 };
-// const createUser = user => {
-//   return request(app)
-//     .post('/api/users')
-//     .send(user)
-//     .then(res => res.body);
-// };
+
+const createUser = user => {
+  return request(app)
+    .post('/api/users/signup')
+    .send(user)
+    .then(res => res.body);
+};
 
 beforeEach(() => {
   return Promise.all(agencies.map(createAgency)).then(agenciesRes => {
@@ -65,25 +66,25 @@ beforeEach(() => {
   });
 });
 
-// beforeEach(() => {
-//   users[0].agency = createdAgencies[0]._id;
-//   users[1].agency = createdAgencies[0]._id;
-//   users[2].agency = createdAgencies[0]._id;
+beforeEach(() => {
+  users[0].agency = createdAgencies[0]._id;
+  users[1].agency = createdAgencies[0]._id;
+  users[2].agency = createdAgencies[0]._id;
 
-//   return Promise.all(users.map(createUser)).then(usersRes => {
-//     createdUsers = usersRes;
-//   });
-// });
+  return Promise.all(users.map(createUser)).then(usersRes => {
+    createdUsers = usersRes;
+  });
+});
 
 const getAgencies = () => createdAgencies;
 const agenciesSeedData = () => agencies;
 
-// const getUsers = () => createdUsers;
-// const usersSeedData = () => users;
+const getUsers = () => createdUsers;
+const usersSeedData = () => users;
 
 module.exports = {
   getAgencies,
-  // getUsers,
+  getUsers,
   agenciesSeedData,
-  // usersSeedData
+  usersSeedData
 };

@@ -55,7 +55,7 @@ const createAgency = agency => {
 
 const createUser = user => {
   return request(app)
-    .post('/api/users')
+    .post('/api/users/signup')
     .send(user)
     .then(res => res.body);
 };

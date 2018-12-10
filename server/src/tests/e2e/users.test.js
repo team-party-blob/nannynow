@@ -13,7 +13,6 @@ describe('users routes', () => {
       email: users[0].email,
       role: users[0].role,
       _id: expect.any(String),
-      __v: 0,
       createdDate: expect.anything(),
       passwordHash: expect.any(String)
     });

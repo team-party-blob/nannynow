@@ -43,5 +43,20 @@ describe('agencies routes', () => {
     return request(app)
       .delete(`/api/agencies/${createdAgencies[0]._id}`)
       .then(({ body }) => expect(body).toEqual({ removed: true }));
-  });  
+  });
+
+  it('updates an agency by id', () => {
+    const createdAgencies = getAgencies();
+
+    return request(app)
+      .put(`/api/agencies/${createdAgencies[0]._id}`)
+      .send({
+        contactName: 'Mike'
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...createdAgencies[0]
+        });
+      });
+  });
 });

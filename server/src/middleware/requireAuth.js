@@ -1,26 +1,32 @@
 import User from '../models/User';
 import { HttpError } from './error';
 
-export default (req, res, next) => {
-  const authHeader = req.get('Authorization');
-  if(!authHeader) {
-    return next(new HttpError({ code: 401, message: 'Missing token' }));
-  }
-
-  const token = authHeader.replace(/bearer /i, '');
+const requireAuth = (req, res, next) => {
+  console.log('req token', req.token);
+  const token = req.token;
   if(!token) {
-    return next(new HttpError({ code: 401, message: 'Invalid blank token' }));
+    next(
+      new HttpError({
+        code: 401,
+        message: 'Missing token'
+      })
+    );
+    return;
   }
 
-
-  try {
-    User.findByToken(token)
-      .then(user => {
-        req.user = user;
-        next();
-      });
-  } catch(e) {
-    return next(new HttpError({ code: 401, message: 'Invalid token' }));
-  }
-
+  User.findByToken(token).then(user => {
+    if(user) {
+      req.user = user;
+      next();
+    } else {
+      next(
+        new HttpError({
+          code: 401,
+          message: 'Invalid token'
+        })
+      );
+    }
+  });
 };
+
+export default requireAuth;

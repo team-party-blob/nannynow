@@ -52,7 +52,7 @@ export default Router()
     User.findOne({ email })
       .then(user => {
         const correctPassword = user && user.compare(password);
-        
+
         if(correctPassword) {
           const token = user.authToken();
           res.json({ token });
@@ -66,4 +66,9 @@ export default Router()
         }
       })
       .catch(next);
+  })
+
+  .get('/verify', requireAuth, (req, res) => {
+    console.log('req', req);
+    res.json(req.user);
   });

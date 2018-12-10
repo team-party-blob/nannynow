@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import User from '../../models/User';
-import { handler, HttpError } from '../../middleware/error';
+import { HttpError } from '../../middleware/error';
 import requireAuth from '../../middleware/requireAuth';
 
 export default Router()

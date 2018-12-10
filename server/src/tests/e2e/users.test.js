@@ -66,6 +66,13 @@ describe('users routes', () => {
       });
   });
 
+  it('rejects a sign in with a bad password', () => {
+    return request(app)
+      .post('/api/users/signin')
+      .send({ email: 'admin@test.com', password: 'badpassword' })
+      .then(checkStatus(401));
+  });
+
   it('gets a list of all users', () => {
     const createdUsers = getUsers();
 

@@ -47,7 +47,6 @@ userSchema.methods.compare = function(password) {
 };
 
 userSchema.methods.authToken = function() {
-  console.log('tokenize this', tokenize(this))
   return tokenize(this);
 };
 

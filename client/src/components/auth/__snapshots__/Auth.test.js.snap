@@ -66,7 +66,7 @@ exports[`Auth component matches snapshot 1`] = `
       Already Have an Account?
     </h3>
     <button
-      onClick={[MockFunction]}
+      onClick={[Function]}
     >
       Click Here to Sign In
     </button>

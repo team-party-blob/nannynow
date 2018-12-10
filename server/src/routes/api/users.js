@@ -9,4 +9,11 @@ export default Router()
     User.create({ email, password, role, agency })
       .then(user => res.json(user))
       .catch(next);
+  })
+  .get('/', (req, res, next) => {
+    User.find()
+      .select({ __v: false })
+      .lean()
+      .then(users => res.json(users))
+      .catch(next);
   });

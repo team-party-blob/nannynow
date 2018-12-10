@@ -24,9 +24,9 @@ const request = (url, method, body) => {
       return [headers, json];
     })
     .then(([headers, json]) => {
-      const headerToken = headers.get('X-AUTH-TOKEN');
-      if(headerToken && headerToken !== token) setToken(headerToken);
-      return json;
+      // const headerToken = headers.get('X-AUTH-TOKEN');
+      // // if(headerToken && headerToken !== token) setToken(headerToken);
+      // return json;
     });
 };
 

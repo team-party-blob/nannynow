@@ -11,4 +11,4 @@ export const signIn = () => {
 
 export const verifySession = () => {
   return Promise.resolve(Object.values(fakeToken));
-}
+};

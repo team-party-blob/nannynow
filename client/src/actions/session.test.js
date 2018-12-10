@@ -14,7 +14,7 @@ jest.mock('../services/authApi.js');
 describe('session/auth actions', () => {
 
   it('signUp action starts, loads, and calls a promise as a payload', () => {
-    const user = { email: 'test@test.com', passoword: 'test123' };
+    const user = { email: 'test@test.com', password: 'test123' };
     const action = signUp(user);
 
     expect(action.type).toEqual(SESSION_CREATE);

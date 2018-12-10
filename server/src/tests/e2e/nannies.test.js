@@ -44,4 +44,17 @@ describe('nanny routes', () => {
       .delete(`/api/nannies/${createdNannies[0]._id}`)
       .then(({ body }) => expect(body).toEqual({ removed: true }));
   });
+
+  it('updates information about a nanny profile', () => {
+    const createdNannies = getNannies();
+
+    return request(app)
+      .put(`api/agencies${createdNannies[0]._id}`)
+      .send({
+        pricePerHour: 7.77
+      })
+      .then(res => {
+        expect(res.body.pricePerHour).toEqual(7.77);
+      });
+  });
 });

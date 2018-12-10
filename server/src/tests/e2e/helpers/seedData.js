@@ -135,20 +135,12 @@ beforeEach(() => {
   });
 });
 
-const getAgencies = () => createdAgencies;
-const agenciesSeedData = () => agencies;
+export const getAgencies = () => createdAgencies;
+export const agenciesSeedData = () => agencies;
 
-const getUsers = () => createdUsers;
-const usersSeedData = () => users;
+export const getUsers = () => createdUsers;
+export const usersSeedData = () => users;
 
-const getNannies = () => createdNannies;
-const nanniesSeedData = () => nannies;
+export const getNannies = () => createdNannies;
+export const nanniesSeedData = () => nannies;
 
-module.exports = {
-  getAgencies,
-  getUsers,
-  getNannies,
-  agenciesSeedData,
-  usersSeedData,
-  nanniesSeedData
-};

@@ -1,12 +1,12 @@
 import mongoose, { Schema, model } from 'mongoose';
 
 const nannyProfileSchema = new mongoose.Schema({
-  userId: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  agencyId: {
+  agency: {
     type: Schema.Types.ObjectId,
     ref: 'Agency',
     required: true
@@ -23,10 +23,10 @@ const nannyProfileSchema = new mongoose.Schema({
     type: String
   },
   age: {
-    type: String
+    type: Number
   },
   pricePerHour: {
-    type: String
+    type: Number
   },
   createdDate: {
     type: Date,

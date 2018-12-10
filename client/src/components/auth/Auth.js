@@ -6,6 +6,7 @@ export default class Login extends PureComponent {
 
   static propTypes = {
     loginType: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired
   };
 
   state = {
@@ -30,8 +31,8 @@ export default class Login extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { email, password } = this.state;
-    this.props.onSubmit({ email, password });
+    const { email, password, userType } = this.state;
+    this.props.onSubmit({ email, password, userType });
   };
 
   render() {
@@ -76,7 +77,7 @@ export default class Login extends PureComponent {
     return (
       <div>
         <h1>Welcome to Nanny Now!</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor='email'>Email</label>
           <input
             type='email'

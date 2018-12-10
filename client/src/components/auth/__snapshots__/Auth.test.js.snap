@@ -5,7 +5,9 @@ exports[`Auth component matches snapshot 1`] = `
   <h1>
     Welcome to Nanny Now!
   </h1>
-  <form>
+  <form
+    onSubmit={[Function]}
+  >
     <label
       htmlFor="email"
     >

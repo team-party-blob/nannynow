@@ -24,6 +24,8 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, loading: false };
     case SESSION_TOKEN:
       return { ...state, token: payload };
+    case SESSION_ERROR:
+      return { ...state, error: payload };
     default:
       return state;
   }

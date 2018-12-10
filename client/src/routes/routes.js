@@ -2,6 +2,8 @@ import Home from '../components/home/Home';
 import { Route } from 'react-router-dom';
 import React from 'react';
 import { Signup, Signin } from '../containers/AuthContainer';
+import { withSession } from '../components/auth/withSession';
+import NannyProfile from '../components/profile/NannyProfile';
 
 export const ROUTES = {
   HOME: {
@@ -18,6 +20,11 @@ export const ROUTES = {
     path: '/signin',
     Component: Signin,
     linkTo: () => '/signin'
+  },
+  NANNY_PROFILE: {
+    path: '/nanny-profile',
+    Component: NannyProfile,
+    linkTo: () => `/nanny-profile`
   }
 };
 

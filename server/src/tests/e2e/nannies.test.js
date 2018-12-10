@@ -36,4 +36,12 @@ describe('nanny routes', () => {
         expect(res.body).toEqual({ ...createdNannies[0] });
       });
   });
+
+  it('deletes a nanny by id', () => {
+    const createdNannies = getNannies();
+
+    return request(app)
+      .delete(`api/agencies/${createdNannies[0]._id}`)
+      .then(({ body }) => expect(body).toEqual({ removed: true }));
+  });
 });

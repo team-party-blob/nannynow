@@ -34,6 +34,22 @@ describe('users routes', () => {
     });
   });
 
+  it('compares passwords', () => {
+    const createdAgencies = getAgencies();
+
+    const user = {
+      email: 'test@test.com',
+      password: 'test',
+      agency: createdAgencies[0]._id,
+      role: 'family'
+    };
+
+    User.create(user).then(createdUser => {
+      expect(createdUser.compare(user.password)).toBeTruthy();
+      expect(createdUser.compare('failing')).toBeFalsy();
+    });
+  });
+
   it('gets a list of all users', () => {
     const createdUsers = getUsers();
 

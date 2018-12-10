@@ -64,7 +64,11 @@ const users = [
 const nannies = [
   {
     name: 'Mrs. Doubtfire',
-    address: '1315 Fabricator ln',
+    streetAddress1: '3 Monroe Parkway Suite P#129',
+    city: 'Lake Oswego',
+    state: 'OR',
+    zip: 97035,
+    phone: 5105010844,
     description: 'I am a nanny in disguise to spy on children for my own personal gain',
     age: 42,
     pricePerHour: 8.25,
@@ -72,7 +76,11 @@ const nannies = [
   },
   {
     name: 'Mary Poppins',
-    address: '6558 Umbrella Ave',
+    streetAddress1: '3 Monroe Parkway Suite P#129',
+    city: 'Portland',
+    state: 'OR',
+    zip: 97208,
+    phone: 9251112222,
     description: 'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
     age: 42,
     pricePerHour: 5.75,
@@ -122,8 +130,8 @@ beforeEach(() => {
   nannies[0].agency = createdAgencies[0]._id;
   nannies[1].agency = createdAgencies[0]._id;
 
-  nannies[0].user = users[1]._id;
-  nannies[1].user = users[2]._id;
+  nannies[0].user = createdUsers[1]._id;
+  nannies[1].user = createdUsers[2]._id;
 
 
   return Promise.all(nannies.map(createNanny)).then(nanniesRes => {
@@ -138,7 +146,7 @@ const getUsers = () => createdUsers;
 const usersSeedData = () => users;
 
 const getNannies = () => createdNannies;
-const nanniesSeedData = () => users;
+const nanniesSeedData = () => nannies;
 
 module.exports = {
   getAgencies,

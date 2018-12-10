@@ -90,6 +90,20 @@ describe('users routes', () => {
       );
   });
 
+  it('verifies a signed in user', () => {
+    return request(app)
+      .post('/api/users/signin')
+      .send({ email: 'admin@test.com', password: '123' })
+      .then(res => {
+        return request(app)
+          .get('/api/users/verify')
+          .set('Authorization', `Bearer ${res.body.token}`)
+          .then(res => {
+            expect(res.body).toEqual({ success: true });
+          });
+      });
+  });
+
   it('gets a list of all users', () => {
     const createdUsers = getUsers();
 

@@ -41,13 +41,18 @@ describe('users routes', () => {
       });
   });
 
-  // it('deletes an agency by id', () => {
-  //   const createdUsers = getUsers();
+  it('deletes a user by id', () => {
+    const createdUsers = getUsers();
 
-  //   return request(app)
-  //     .delete(`/api/users/${createdUsers[0]._id}`)
-  //     .then(({ body }) => expect(body).toEqual({ removed: true }));
-  // });
+    return request(app)
+      .delete(`/api/users/${createdUsers[1]._id}`)
+      .then(() => request(app).get('/api/users'))
+      .then(res => {
+        expect(res.body).not.toContainEqual(createdUsers[1]);
+        expect(res.body).toContainEqual(createdUsers[0]);
+        expect(res.body).toContainEqual(createdUsers[2]);
+      });
+  });
 
   // it('updates an agency by id', () => {
   //   const createdUsers = getUsers();

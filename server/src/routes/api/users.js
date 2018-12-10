@@ -26,4 +26,11 @@ export default Router()
       .lean()
       .then(user => res.json(user))
       .catch(next);
+  })
+
+  .delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+    User.findByIdAndDelete(id)
+      .then(user => res.json({ removed: !!user }))
+      .catch(next);
   });

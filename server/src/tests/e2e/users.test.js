@@ -1,10 +1,12 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-const { getUsers, usersSeedData } = require('./helpers/seedData');
+import User from '../../models/User';
+import bcrypt from 'bcrypt';
+const { getUsers, usersSeedData, getAgencies } = require('./helpers/seedData');
 
 describe('users routes', () => {
-  it('creates an agency with seed data helper', () => {
+  it('signs a user up (with seed data helper)', () => {
     const createdUsers = getUsers();
     const users = usersSeedData();
 
@@ -15,6 +17,18 @@ describe('users routes', () => {
       _id: expect.any(String),
       createdDate: expect.anything(),
       passwordHash: expect.any(String)
+    });
+  });
+
+  it('hashes a user\'s password', () => {
+    const getAgencies = getAgencies;
+
+    return User.create({
+      email: 'test@test.com',
+      password: 'test'
+    }).then(user => {
+      expect(user.passwordHash).not.toEqual('test');
+      expect(bcrypt.compareSync('test', user.passwordHash));
     });
   });
 

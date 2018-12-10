@@ -36,4 +36,10 @@ describe('session reducer', () => {
     const updatedState = reducer(initialState, action);
     expect(updatedState).toEqual({ ...initialState, loading: false });
   });
+
+  it('sets token on SESSION_TOKEN', () => {
+    const action = { type: SESSION_TOKEN, payload: '1234' };
+    const updatedState = reducer(initialState, action);
+    expect(updatedState).toEqual({ ...initialState, token: '1234' });
+  })
 });

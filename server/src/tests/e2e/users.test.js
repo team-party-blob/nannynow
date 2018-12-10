@@ -31,15 +31,15 @@ describe('users routes', () => {
       });
   });
 
-  // it('gets a agency by id', () => {
-  //   const createdUsers = getUsers();
+  it('gets a user by id', () => {
+    const createdUsers = getUsers();
 
-  //   return request(app)
-  //     .get(`/api/users/${createdUsers[0]._id}`)
-  //     .then(res => {
-  //       expect(res.body).toEqual({ ...createdUsers[0] });
-  //     });
-  // });
+    return request(app)
+      .get(`/api/users/${createdUsers[1]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdUsers[1]);
+      });
+  });
 
   // it('deletes an agency by id', () => {
   //   const createdUsers = getUsers();

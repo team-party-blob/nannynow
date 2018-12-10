@@ -19,6 +19,10 @@ export default Router()
       .catch(next);
   })
 
+  .get('/verify', requireAuth, (req, res) => {
+    res.json({ success: !!req.user });
+  })
+
   .get('/:id', (req, res, next) => {
     const { id } = req.params;
     User.findById(id)
@@ -66,9 +70,4 @@ export default Router()
         }
       })
       .catch(next);
-  })
-
-  .get('/verify', requireAuth, (req, res) => {
-    console.log('req', req);
-    res.json(req.user);
   });

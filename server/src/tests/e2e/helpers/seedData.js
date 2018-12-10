@@ -19,9 +19,14 @@ beforeEach(() => {
   return dropCollection('nannies');
 });
 
+beforeEach(() => {
+  return dropCollection('families');
+});
+
 let createdAgencies;
 let createdUsers;
 let createdNannies;
+let createdFamilies;
 
 const agencies = [
   {
@@ -79,6 +84,10 @@ const nannies = [
     createdDate: Date.now()
   }
 ];
+
+const families = {
+  
+}
 
 const createAgency = agency => {
   return request(app)

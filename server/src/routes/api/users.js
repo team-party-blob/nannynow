@@ -33,4 +33,19 @@ export default Router()
     User.findByIdAndDelete(id)
       .then(user => res.json({ removed: !!user }))
       .catch(next);
+  })
+
+  .put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const { email, password, role, agency } = req.body;
+
+    User.findByIdAndUpdate(
+      id,
+      { email, password, role, agency },
+      { new: true }
+    )
+      .select({ __v: false })
+      .lean()
+      .then(user => res.json(user))
+      .catch(next);
   });

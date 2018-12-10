@@ -59,12 +59,34 @@ export default Router()
 
   .put('/:id', (req, res, next) => {
     const { id } = req.params;
-    const { contactName } = req.body;
+    const {
+      businessName,
+      contactName,
+      streetAddress1,
+      streetAddress2,
+      city,
+      state,
+      zip,
+      phone,
+      businessEmail,
+      website,
+      hourlyFee
+    } = req.body;
 
     Agency.findByIdAndUpdate(
       id,
       {
-        contactName
+        businessName,
+        contactName,
+        streetAddress1,
+        streetAddress2,
+        city,
+        state,
+        zip,
+        phone,
+        businessEmail,
+        website,
+        hourlyFee
       },
       { new: true }
     )

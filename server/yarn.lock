@@ -4513,9 +4513,9 @@ psl@^1.1.24, psl@^1.1.28:
   integrity sha512-AeUmQ0oLN02flVHXWh9sSJF7mcdFq0ppid/JkErufc3hGIV/AMa8Fo9VgDo/cT2jFdOWoFvHp90qqBH54W+gjQ==
 
 pstree.remy@^1.1.2:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/pstree.remy/-/pstree.remy-1.1.3.tgz#0a557a6b2ab647cd782bc9f3e2b9e7ad71a9e36c"
-  integrity sha512-tGkOSvpMp0j7hskA4izvP0onujJSEAYO0SViHtjJX5a+4cqxVXiq32opahQO4HkA7bnHsRk9xgrf6LVvG/Q9UA==
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/pstree.remy/-/pstree.remy-1.1.4.tgz#a03d5dbc06ba639fb6dd4874644c4bad9882ec21"
+  integrity sha512-3kSyTN/iTJMxtL87idnFgTyOp2vQ6B/49QcHUO26kh2M2qahlUivFI1zWJ9FRFPoB+KgcP820JMOuIhkBJAP3Q==
 
 punycode@^1.4.1:
   version "1.4.1"

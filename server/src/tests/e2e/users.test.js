@@ -6,6 +6,7 @@ import { compare } from '../../utils/auth';
 const { getUsers, usersSeedData, getAgencies } = require('./helpers/seedData');
 
 const checkStatus = statusCode => res => {
+  console.log('error', res.body.error)
   expect(res.status).toEqual(statusCode);
 };
 
@@ -110,10 +111,11 @@ describe('users routes', () => {
     return request(app)
       .get('/api/users')
       .then(res => {
-        expect(res.body.length).toEqual(3);
+        expect(res.body.length).toEqual(4);
         expect(res.body).toContainEqual(createdUsers[0]);
         expect(res.body).toContainEqual(createdUsers[1]);
         expect(res.body).toContainEqual(createdUsers[2]);
+        expect(res.body).toContainEqual(createdUsers[3]);
       });
   });
 

@@ -96,7 +96,7 @@ const createUser = user => {
 
 const createNanny = nanny => {
   return request(app)
-    .post('api/nannies')
+    .post('/api/nannies')
     .send(nanny)
     .then(res => res.body);
 };
@@ -111,6 +111,7 @@ beforeEach(() => {
   users[0].agency = createdAgencies[0]._id;
   users[1].agency = createdAgencies[0]._id;
   users[2].agency = createdAgencies[0]._id;
+  users[3].agency = createdAgencies[0]._id;
 
   return Promise.all(users.map(createUser)).then(usersRes => {
     createdUsers = usersRes;

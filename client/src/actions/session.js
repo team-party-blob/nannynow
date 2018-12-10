@@ -1,6 +1,7 @@
 import {
   signUp as signUpService,
-  signIn as signInService
+  signIn as signInService,
+  verifySession
 } from '../services/authApi';
 
 export const SESSION_CREATE = 'SESSION_CREATE';
@@ -23,4 +24,18 @@ export const signIn = ({ email, password }) => ({
   loadEnd: SESSION_LOAD_END,
   errorType: SESSION_ERROR,
   payload: signInService({ email, password })
+});
+
+export const refreshSession = () => ({
+  type: SESSION_CREATE,
+  loadStart: SESSION_LOAD_START,
+  loadEnd: SESSION_LOAD_END,
+  errorType: SESSION_ERROR,
+  payload: verifySession()
+});
+
+export const SESSION_TOKEN = 'SESSION_TOKEN';
+export const updateSessionToken = token => ({
+  type: SESSION_TOKEN,
+  payload: token
 });

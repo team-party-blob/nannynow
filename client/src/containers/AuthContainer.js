@@ -8,7 +8,7 @@ export const Signup = connect(
     loginType: 'Sign Up'
   }),
   dispatch => ({
-    onSubmit: ({ email, password }) => dispatch(signUp({ email, password }))
+    onSubmit: ({ email, password, userType }) => dispatch(signUp({ email, password, userType }))
   })
 )(Auth);
 
@@ -17,6 +17,6 @@ export const Signin = connect(
     loginType: 'Sign In'
   }),
   dispatch => ({
-    onSubmit: ({ email, password }) => dispatch(signIn({ email, password }))
+    onSubmit: ({ email, password, userType }) => dispatch(signIn({ email, password, userType }))
   })
 )(Auth);

@@ -20,9 +20,20 @@ describe('session reducer', () => {
   };
 
   it('creates a new user in session on SESSION_CREATE', () => {
-
     const action = { type: SESSION_CREATE, payload: fakeUser };
     const updatedState = reducer(initialState, action);
     expect(updatedState).toEqual({ ...initialState, user: fakeUser });
+  });
+
+  it('starts loading on session on SESSION_LOAD_START', () => {
+    const action = { type: SESSION_LOAD_START };
+    const updatedState = reducer(initialState, action);
+    expect(updatedState).toEqual({ ...initialState, loading: true });
+  });
+
+  it('stops loading on session on SESSION_LOAD_END', () => {
+    const action = { type: SESSION_LOAD_END };
+    const updatedState = reducer(initialState, action);
+    expect(updatedState).toEqual({ ...initialState, loading: false });
   });
 });

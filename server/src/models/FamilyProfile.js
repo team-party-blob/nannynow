@@ -1,12 +1,8 @@
 import mongoose from 'mongoose';
 import { getStates } from './helpers/listHelpers';
 
-const agencySchema = new mongoose.Schema({
-  businessName: {
-    type: String,
-    required: [true, 'Business name is required.']
-  },
-  contactName: {
+const familyProfileSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: [true, 'Contact name is required.']
   },
@@ -34,23 +30,38 @@ const agencySchema = new mongoose.Schema({
     type: Number,
     required: [true, 'State is required.']
   },
-  businessEmail: {
+  email: {
     type: String,
     required: [true, 'Email is required']
   },
-  website: String,
-  hourlyFee: {
-    type: Number,
-    required: [true, 'Hourly fee is required']
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  agency: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Agency',
+    required: [true, 'Agency is required']
+  },
+  description: {
+    type: String,
+    required: [true, 'Description is required']
   },
   createdDate: {
     type: Date,
     default: Date.now()
   },
-  agencyAlias: {
-    type: String,
-    default: 'nwnannies'
-  }
+  numOfChildren: {
+    type: Number,
+    required: [true, 'Number of children is required.']
+  },
+  birthdays: [
+    {
+      type: String,
+      required: [true, 'children\'s birthdays are required.']
+    }
+  ]
 });
 
-export default mongoose.model('Agency', agencySchema);
+export default mongoose.model('FamilyProfile', familyProfileSchema);

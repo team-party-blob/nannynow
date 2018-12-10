@@ -15,8 +15,13 @@ beforeEach(() => {
   return dropCollection('users');
 });
 
+beforeEach(() => {
+  return dropCollection('nannies');
+});
+
 let createdAgencies;
 let createdUsers;
+let createdNannies;
 
 const agencies = [
   {
@@ -45,9 +50,33 @@ const users = [
     role: 'nanny'
   },
   {
+    email: 'nanny1@test.com',
+    password: '123',
+    role: 'nanny'
+  },
+  {
     email: 'admin@test.com',
     password: '123',
     role: 'admin'
+  }
+];
+
+const nannies = [
+  {
+    name: 'Mrs. Doubtfire',
+    address: '1315 Fabricator ln',
+    description: 'I am a nanny in disguise to spy on children for my own personal gain',
+    age: 42,
+    pricePerHour: 8.25,
+    createdDate: Date.now()
+  },
+  {
+    name: 'Mary Poppins',
+    address: '6558 Umbrella Ave',
+    description: 'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
+    age: 42,
+    pricePerHour: 5.75,
+    createdDate: Date.now()
   }
 ];
 
@@ -62,6 +91,13 @@ const createUser = user => {
   return request(app)
     .post('/api/users/signup')
     .send(user)
+    .then(res => res.body);
+};
+
+const createNanny = nanny => {
+  return request(app)
+    .post('api/nannies')
+    .send(nanny)
     .then(res => res.body);
 };
 
@@ -81,15 +117,33 @@ beforeEach(() => {
   });
 });
 
+beforeEach(() => {
+  nannies[0].agency = createdAgencies[0]._id;
+  nannies[1].agency = createdAgencies[0]._id;
+
+  nannies[0].user = users[1]._id;
+  nannies[1].user = users[2]._id;
+
+
+  return Promise.all(nannies.map(createNanny)).then(nanniesRes => {
+    createdNannies = nanniesRes;
+  });
+});
+
 const getAgencies = () => createdAgencies;
 const agenciesSeedData = () => agencies;
 
 const getUsers = () => createdUsers;
 const usersSeedData = () => users;
 
+const getNannies = () => createdNannies;
+const nanniesSeedData = () => users;
+
 module.exports = {
   getAgencies,
   getUsers,
+  getNannies,
   agenciesSeedData,
-  usersSeedData
+  usersSeedData,
+  nanniesSeedData
 };

@@ -25,7 +25,7 @@ beforeEach(() => {
 let createdAgencies;
 let createdUsers;
 // let createdNannies;
-// let createdFamilies;
+let createdFamilies;
 
 const agencies = [
   {
@@ -87,18 +87,20 @@ const users = [
 //   }
 // ];
 
-// const families = {
-//   name: 'Von Trap',
-//   streetAddress1: '201 Eidelweiss Way',
-//   city: 'Portland',
-//   state: 'OR',
-//   zip: 97210,
-//   phone: 5032222222,
-//   email: 'vontrap@test.com',
-//   description: 'Family of singers',
-//   numOfChildren: 2,
-//   birthdays: ['06/19/15', '06/13/13']
-// };
+const families = [
+  {
+    name: 'Von Trap',
+    streetAddress1: '201 Eidelweiss Way',
+    city: 'Portland',
+    state: 'OR',
+    zip: 97210,
+    phone: 5032222222,
+    email: 'vontrap@test.com',
+    description: 'Family of singers',
+    numOfChildren: 2,
+    birthdays: ['06/19/15', '06/13/13']
+  }
+];
 
 const createAgency = agency => {
   return request(app)
@@ -121,12 +123,12 @@ const createUser = user => {
 //     .then(res => res.body);
 // };
 
-// const createFamily = family => {
-//   return request(app)
-//     .post('/api/families')
-//     .send(family)
-//     .then(res => res.body);
-// };
+const createFamily = family => {
+  return request(app)
+    .post('/api/families')
+    .send(family)
+    .then(res => res.body);
+};
 
 beforeEach(() => {
   return Promise.all(agencies.map(createAgency)).then(agenciesRes => {
@@ -157,15 +159,15 @@ beforeEach(() => {
 //   });
 // });
 
-// beforeEach(() => {
-//   families[0].agency = createdAgencies[0]._id;
+beforeEach(() => {
+  families[0].agency = createdAgencies[0]._id;
 
-//   families[0].user = createdUsers[0]._id;
+  families[0].user = createdUsers[0]._id;
 
-//   return Promise.all(families.map(createFamily)).then(familiesRes => {
-//     createdFamilies = familiesRes;
-//   });
-// });
+  return Promise.all(families.map(createFamily)).then(familiesRes => {
+    createdFamilies = familiesRes;
+  });
+});
 
 export const getAgencies = () => createdAgencies;
 export const agenciesSeedData = () => agencies;
@@ -176,5 +178,5 @@ export const usersSeedData = () => users;
 // const getNannies = () => createdNannies;
 // const nanniesSeedData = () => nannies;
 
-// const getFamilies = () => createdFamilies;
-// const familiesSeedData = () => families;
+export const getFamilies = () => createdFamilies;
+export const familiesSeedData = () => families;

@@ -44,6 +44,9 @@ export default Router()
       .catch(next);
   })
   .get('/:id', (req, res, next) => {
+    const { id } = req.params;
     NannyProfile
-    
+      .findById(id)
+      .then(nannies => res.json(nannies))
+      .catch(next);
   });

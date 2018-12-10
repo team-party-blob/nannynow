@@ -33,10 +33,18 @@ export default Router()
       .then(agency => res.json(agency))
       .catch(next);
   })
-  
+
   .get('/', (req, res, next) => {
     Agency.find()
       .lean()
       .then(agencys => res.json(agencys))
+      .catch(next);
+  })
+
+  .get('/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    Agency.findById(id)
+      .then(agency => res.json(agency))
       .catch(next);
   });

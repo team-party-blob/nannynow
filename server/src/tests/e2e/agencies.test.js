@@ -31,9 +31,9 @@ describe('agencies routes', () => {
     const createdAgencies = getAgencies();
 
     return request(app)
-      .get(`/api/agencies/${createdAgencies[1]._id}`)
+      .get(`/api/agencies/${createdAgencies[0]._id}`)
       .then(res => {
-        expect(res.body).toEqual({ ...createdAgencies[1] });
+        expect(res.body).toEqual({ ...createdAgencies[0] });
       });
   });
 });

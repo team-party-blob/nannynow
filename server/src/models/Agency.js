@@ -46,6 +46,10 @@ const agencySchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     default: Date.now()
+  },
+  agencyAlias: {
+    type: String,
+    default: 'nwnannies'
   }
 });
 

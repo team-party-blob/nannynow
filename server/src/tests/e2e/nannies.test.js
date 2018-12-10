@@ -26,4 +26,14 @@ describe('nanny routes', () => {
         expect(res.body).toContainEqual(createdNannies[1]);
       });
   });
+
+  it('gets a nanny by id', () => {
+    const createdNannies = getNannies();
+
+    return request(app)
+      .get(`/api/nannies/${createdNannies[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual({ ...createdNannies[0] });
+      });
+  });
 });

@@ -42,4 +42,8 @@ export default Router()
       .lean()
       .then(nannies => res.json(nannies))
       .catch(next);
+  })
+  .get('/:id', (req, res, next) => {
+    NannyProfile
+    
   });

@@ -1,13 +1,13 @@
 import { post, get } from './request';
 
-export const signUp = ({ email, password }) => {
-  return post('/api/auth/signUp', { email, password });
+export const signUp = ({ email, password, role, agency }) => {
+  return post(`/api/users/${agency}/signup`, { email, password, role, agency });
 };
 
 export const signIn = ({ email, password }) => {
-  return post('/api/auth/signIn', { email, password });
+  return post('/api/users/signin', { email, password });
 };
 
 export const verifySession = () => {
-  return get('/api/auth/verify');
+  return get('/api/users/verify');
 };

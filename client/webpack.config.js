@@ -14,7 +14,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    port: 6969,
+    port: 3000,
     historyApiFallback: true,
     proxy: {
       '/api': 'http://localhost:7891'

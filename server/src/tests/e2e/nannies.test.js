@@ -14,4 +14,16 @@ describe('nanny routes', () => {
       createdDate: expect.anything()
     });
   });
+
+  it('gets all nannies from database', () => {
+    const createdNannies = getNannies();
+
+    return request(app)
+      .get('/api/nannies')
+      .then(res => {
+        expect(res.body.length).toEqual(2);
+        expect(res.body).toContainEqual(createdNannies[0]);
+        expect(res.body).toContainEqual(createdNannies[1]);
+      });
+  });
 });

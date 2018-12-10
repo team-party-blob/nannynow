@@ -16,7 +16,7 @@ beforeEach(() => {
 });
 
 beforeEach(() => {
-  return dropCollection('nannies');
+  return dropCollection('nannyprofiles');
 });
 
 let createdAgencies;

@@ -35,4 +35,11 @@ export default Router()
     })
       .then(nanny => res.json(nanny))
       .catch(next);
+  })
+  .get('/', (req, res, next) => {
+    NannyProfile
+      .find()
+      .lean()
+      .then(nannies => res.json(nannies))
+      .catch(next);
   });

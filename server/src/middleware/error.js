@@ -1,4 +1,5 @@
-const handler = (err, req, res) => {
+/* eslint-disable-next-line */
+export const handler = (err, req, res, next) => {
   let code = 500;
   let error = 'Internal Server Error';
 
@@ -18,15 +19,10 @@ const handler = (err, req, res) => {
   res.status(code).send({ error });
 };
 
-class HttpError extends Error {
+export class HttpError extends Error {
   constructor({ code, message }) {
     super(message);
     this.code = code;
     this.name = 'HttpError';
   }
 }
-
-module.exports = {
-  handler,
-  HttpError
-};

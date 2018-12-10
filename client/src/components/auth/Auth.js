@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { ROUTES } from '../../routes/routes';
 
 export default class Login extends PureComponent {
 
   static propTypes = {
     loginType: PropTypes.string.isRequired,
-    updateLoginType: PropTypes.func.isRequired
   };
 
   state = {
@@ -22,6 +22,12 @@ export default class Login extends PureComponent {
     this.setState({ userType: target.value });
   };
 
+  changeLoginType = () => {
+    const { loginType } = this.props;
+    if(loginType === 'Sign Up') this.props.history.push(ROUTES.SIGNIN.linkTo());
+    if(loginType === 'Sign In') this.props.history.push(ROUTES.SIGNUP.linkTo());
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
@@ -29,8 +35,9 @@ export default class Login extends PureComponent {
   };
 
   render() {
+
     const { email, password, userType } = this.state;
-    const { loginType, updateLoginType } = this.props;
+    const { loginType } = this.props;
 
     const nannyOrFamilyInput = () => {
       return (
@@ -52,7 +59,7 @@ export default class Login extends PureComponent {
       return (
         <div>
           <h3>Already Have an Account?</h3>
-          <button onClick={updateLoginType}>Click Here to Sign In</button>
+          <button onClick={this.changeLoginType}>Click Here to Sign In</button>
         </div>
       );
     };
@@ -61,7 +68,7 @@ export default class Login extends PureComponent {
       return (
         <div>
           <h3>New to Nanny Now?</h3>
-          <button>Click Here to Sign Up</button>
+          <button onClick={this.changeLoginType}>Click Here to Sign Up</button>
         </div>
       );
     };

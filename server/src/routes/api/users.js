@@ -11,6 +11,28 @@ export default Router()
       .catch(next);
   })
 
+  .post('/signin', (req, res, next) => {
+    const { email, password } = req.body;
+
+    User.findOne({ email })
+      .then(user => {
+        const correctPassword = user && user.compare(password);
+
+        if(correctPassword) {
+          const token = user.authToken();
+          res.json({ token });
+        } else {
+          next(
+            new HttpError({
+              code: 401,
+              message: 'Bad email or password'
+            })
+          );
+        }
+      })
+      .catch(next);
+  })
+
   .get('/', (req, res, next) => {
     User.find()
       .select({ __v: false })
@@ -47,27 +69,5 @@ export default Router()
       .select({ __v: false })
       .lean()
       .then(user => res.json(user))
-      .catch(next);
-  })
-
-  .post('/signin', (req, res, next) => {
-    const { email, password } = req.body;
-
-    User.findOne({ email })
-      .then(user => {
-        const correctPassword = user && user.compare(password);
-
-        if(correctPassword) {
-          const token = user.authToken();
-          res.json({ token });
-        } else {
-          next(
-            new HttpError({
-              code: 401,
-              message: 'Bad email or password'
-            })
-          );
-        }
-      })
       .catch(next);
   });

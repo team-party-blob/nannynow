@@ -11,7 +11,7 @@ const checkStatus = statusCode => res => {
 
 const checkOk = res => checkStatus(200)(res);
 
-describe.skip('users routes', () => {
+describe('users routes', () => {
   it('signs a user up (with seed data helper)', () => {
     const createdUsers = getUsers();
     const users = usersSeedData();

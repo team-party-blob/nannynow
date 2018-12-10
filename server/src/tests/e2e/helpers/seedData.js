@@ -2,8 +2,13 @@ import { dropCollection } from './db';
 import request from 'supertest';
 import app from '../../../routes/app';
 
+
 beforeEach(() => {
   return dropCollection('agencies');
+});
+
+afterAll(() => {
+  return dropCollection('users');
 });
 
 beforeEach(() => {

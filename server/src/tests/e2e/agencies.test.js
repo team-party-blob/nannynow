@@ -36,4 +36,12 @@ describe('agencies routes', () => {
         expect(res.body).toEqual({ ...createdAgencies[0] });
       });
   });
+
+  it('deletes an agency by id', () => {
+    const createdAgencies = getAgencies();
+
+    return request(app)
+      .delete(`/api/agencies/${createdAgencies[0]._id}`)
+      .then(({ body }) => expect(body).toEqual({ removed: true }));
+  });  
 });

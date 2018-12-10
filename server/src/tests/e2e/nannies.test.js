@@ -41,7 +41,7 @@ describe('nanny routes', () => {
     const createdNannies = getNannies();
 
     return request(app)
-      .delete(`api/agencies/${createdNannies[0]._id}`)
+      .delete(`/api/nannies/${createdNannies[0]._id}`)
       .then(({ body }) => expect(body).toEqual({ removed: true }));
   });
 });

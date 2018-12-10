@@ -7,10 +7,6 @@ beforeEach(() => {
   return dropCollection('agencies');
 });
 
-afterAll(() => {
-  return dropCollection('users');
-});
-
 beforeEach(() => {
   return dropCollection('users');
 });

@@ -49,4 +49,12 @@ export default Router()
       .findById(id)
       .then(nannies => res.json(nannies))
       .catch(next);
+  })
+  .delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    NannyProfile
+      .findByIdAndDelete(id)
+      .then(results => res.json({ removed: !!results }))
+      .catch(next);
   });

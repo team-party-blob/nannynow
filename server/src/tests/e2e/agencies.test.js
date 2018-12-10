@@ -54,9 +54,7 @@ describe('agencies routes', () => {
         contactName: 'Mike'
       })
       .then(res => {
-        expect(res.body).toEqual({
-          ...createdAgencies[0]
-        });
+        expect(res.body.contactName).toEqual('Mike');
       });
   });
 });

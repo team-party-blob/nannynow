@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './Header.css';
-import { logo } from '../assets/imageUrl';
+import { logo } from '../../assets/imageUrl';
 
 export default function Header() {
   return (
@@ -17,8 +17,8 @@ export default function Header() {
       <nav id={styles.nav}>
         <Link className={styles.link} to={ROUTES.HOME.linkTo()}>Dashboard</Link>
         <Link className={styles.link} to={ROUTES.HOME.linkTo()}>Edit Profile</Link>
-        <Link className={styles.link} to={ROUTES.HOME.linkTo()}>Log In</Link>
-        <Link className={styles.link} to={ROUTES.HOME.linkTo()}>Log Out</Link>
+        <Link className={styles.link} to={ROUTES.SIGNIN.linkTo()}>Log In</Link>
+        <Link className={styles.link} to={ROUTES.SIGNUP.linkTo()}>Log Out</Link>
       </nav>
     </header>
   );

@@ -10,10 +10,20 @@ export default Router()
       .then(user => res.json(user))
       .catch(next);
   })
+
   .get('/', (req, res, next) => {
     User.find()
       .select({ __v: false })
       .lean()
       .then(users => res.json(users))
+      .catch(next);
+  })
+
+  .get('/:id', (req, res, next) => {
+    const { id } = req.params;
+    User.findById(id)
+      .select({ __v: false })
+      .lean()
+      .then(user => res.json(user))
       .catch(next);
   });

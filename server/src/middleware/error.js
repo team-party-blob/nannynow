@@ -10,9 +10,9 @@ const handler = (err, req, res) => {
     error = err.message;
   } else if(process.env.NODE_ENV !== 'production') {
     error = err.message;
-    console.log(err);
+    console.log('handler error 1', err);
   } else {
-    console.log(err);
+    console.log('handler error 2', err);
   }
 
   res.status(code).send({ error });

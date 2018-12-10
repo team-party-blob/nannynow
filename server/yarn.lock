@@ -1289,9 +1289,9 @@ camelcase@^4.0.0, camelcase@^4.1.0:
   integrity sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
 
 caniuse-lite@^1.0.30000912:
-  version "1.0.30000917"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000917.tgz#200bd1c3f518016e7fe900d3b261bff28704a112"
-  integrity sha512-j27ZOs81aF3yqPSSWcUT/0rk5ntnqyZdXYN5M0C7WX+8wSNHjioKPYrjDAJgL9ldL83RSSh+fIhyUa4np/5m6g==
+  version "1.0.30000918"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000918.tgz#6288f79da3c5c8b45e502f47ad8f3eb91f1379a9"
+  integrity sha512-CAZ9QXGViBvhHnmIHhsTPSWFBujDaelKnUj7wwImbyQRxmXynYqKGi3UaZTSz9MoVh+1EVxOS/DFIkrJYgR3aw==
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -3729,9 +3729,9 @@ mem@^1.1.0:
     mimic-fn "^1.0.0"
 
 memory-pager@^1.0.2:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/memory-pager/-/memory-pager-1.2.0.tgz#02298c7045419aa02f9a8bb2143c522eec8aa5ac"
-  integrity sha512-Xhn92T9hAzhAiK57oII2ypipea+7Cd6Ja3iEmcdH2z4ETKJ5HVGZ2zzJwVEmRFq776ZQJdpCf6xKBq4aeR5rnw==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/memory-pager/-/memory-pager-1.3.0.tgz#1e231e454c784c3bdfbcc45d076a0f9edb950e51"
+  integrity sha512-cupNZIJCFYJc0mzmhrjmMoudbu9lcJSAZBZsGIjduo/x2IMDgB88hjo8FbG96xLiqs1qsVFKHPfRTi98KXwQSQ==
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -4040,9 +4040,9 @@ node-pre-gyp@^0.10.0:
     tar "^4"
 
 node-releases@^1.0.5:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.0.tgz#be7464fa8d877808237520fd49436d5e79191c3d"
-  integrity sha512-+qV91QMDBvARuPxUEfI/mRF/BY+UAkTIn3pvmvM2iOLIRvv6RNYklFXBgrkky6P1wXUqQW1P3qKlWxxy4JZbfg==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.1.tgz#8fff8aea1cfcad1fb4205f805149054fbf73cafd"
+  integrity sha512-2UXrBr6gvaebo5TNF84C66qyJJ6r0kxBObgZIDX3D3/mt1ADKiHux3NJPWisq0wxvJJdkjECH+9IIKYViKj71Q==
   dependencies:
     semver "^5.3.0"
 
@@ -4513,9 +4513,9 @@ psl@^1.1.24, psl@^1.1.28:
   integrity sha512-AeUmQ0oLN02flVHXWh9sSJF7mcdFq0ppid/JkErufc3hGIV/AMa8Fo9VgDo/cT2jFdOWoFvHp90qqBH54W+gjQ==
 
 pstree.remy@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/pstree.remy/-/pstree.remy-1.1.2.tgz#4448bbeb4b2af1fed242afc8dc7416a6f504951a"
-  integrity sha512-vL6NLxNHzkNTjGJUpMm5PLC+94/0tTlC1vkP9bdU0pOHih+EujMjgMTwfZopZvHWRFbqJ5Y73OMoau50PewDDA==
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/pstree.remy/-/pstree.remy-1.1.3.tgz#0a557a6b2ab647cd782bc9f3e2b9e7ad71a9e36c"
+  integrity sha512-tGkOSvpMp0j7hskA4izvP0onujJSEAYO0SViHtjJX5a+4cqxVXiq32opahQO4HkA7bnHsRk9xgrf6LVvG/Q9UA==
 
 punycode@^1.4.1:
   version "1.4.1"

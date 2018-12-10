@@ -73,6 +73,23 @@ describe('users routes', () => {
       .then(checkStatus(401));
   });
 
+  it('rejects a sign in with a token but bad password', () => {
+    let token;
+    return request(app)
+      .post('/api/users/signin')
+      .send({ email: 'admin@test.com', password: '123' })
+      .then(res => {
+        token = res.body.token;
+      })
+      .then(
+        request(app)
+          .post('/api/users/signin')
+          .set('Authorization', `Bearer ${token}`)
+          .send({ email: 'dfir@gmail.com', password: 'dfir12345' })
+          .then(checkStatus(401))
+      );
+  });
+
   it('gets a list of all users', () => {
     const createdUsers = getUsers();
 

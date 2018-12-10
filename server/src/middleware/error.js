@@ -1,29 +1,6 @@
-// export const errorHandler = (err, req, res) => {
-//   let status = 500;
-//   let message = 'Server error';
-
-//   console.log('ERROR', err)
-
-//   if(err instanceof HttpError) {
-//     status = err.code;
-//     message = err.message;
-//   }
-
-//   res.status(status).json({ error: message });
-// };
-
-// export class HttpError extends Error {
-//   constructor({ code, message }) {
-//     super(message);
-//     this.code = code;
-//     this.message = message;
-//   }
-// }
-
-/* eslint-disable no-console */
-//eslint-disable-next-line
-const handler = (err, req, res, next) => {
-  let code = 500;
+/* eslint-disable-next-line */
+export const handler = (err, req, res, next) => {
+  let code = 503;
   let error = 'Internal Server Error';
 
   if(err instanceof HttpError) {
@@ -42,15 +19,10 @@ const handler = (err, req, res, next) => {
   res.status(code).send({ error });
 };
 
-class HttpError extends Error {
+export class HttpError extends Error {
   constructor({ code, message }) {
     super(message);
     this.code = code;
     this.name = 'HttpError';
   }
 }
-
-module.exports = {
-  handler,
-  HttpError
-};

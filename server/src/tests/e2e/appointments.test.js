@@ -26,4 +26,49 @@ describe(' appointments routes', () => {
       createdDate: expect.anything()
     });
   });
+
+  it('gets a list of all Appointments', () => {
+    const createdAppointments = getAppointments();
+
+    return request(app)
+      .get('/api/appointments')
+      .then(res => {
+        expect(res.body.length).toEqual(1);
+        expect(res.body).toContainEqual(createdAppointments[0]);
+      });
+  });
+
+  // it('gets a Appointment by id', () => {
+  //   const createdAppointments = getAppointments();
+
+  //   return request(app)
+  //     .get(`/api/requests/${createdAppointments[0]._id}`)
+  //     .then(res => {
+  //       expect(res.body).toEqual(createdAppointments[0]);
+  //     });
+  // });
+
+  // it('deletes a Appointment by id', () => {
+  //   const createdAppointments = getAppointments();
+
+  //   return request(app)
+  //     .delete(`/api/requests/${createdAppointments[0]._id}`)
+  //     .then(() => request(app).get('/api/requests'))
+  //     .then(res => {
+  //       expect(res.body).not.toContainEqual(createdAppointments[0]);
+  //     });
+  // });
+
+  // it('updates a Appointment by id', () => {
+  //   const createdAppointments = getAppointments();
+
+  //   return request(app)
+  //     .put(`/api/requests/${createdAppointments[0]._id}`)
+  //     .send({
+  //       appointmentComments: 'Test'
+  //     })
+  //     .then(res => {
+  //       expect(res.body.appointmentComments).toEqual('Test');
+  //     });
+  // });
 });

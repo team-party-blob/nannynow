@@ -48,4 +48,36 @@ export default Router()
     Appointment.findByIdAndDelete(id)
       .then(request => res.json({ removed: !!request }))
       .catch(next);
+  })
+
+  .put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const {
+      arrivalTime,
+      departureTime,
+      family,
+      agency,
+      nanny,
+      request,
+      agencyFeePerHour,
+      nannyPricePerHour
+    } = req.body;
+
+    Appointment.findByIdAndUpdate(
+      id,
+      {
+        arrivalTime,
+        departureTime,
+        family,
+        agency,
+        nanny,
+        request,
+        agencyFeePerHour,
+        nannyPricePerHour
+      },
+      { new: true }
+    )
+      .lean()
+      .then(request => res.json(request))
+      .catch(next);
   });

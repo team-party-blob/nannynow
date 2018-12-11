@@ -44,9 +44,11 @@ describe('agencies routes', () => {
 
   it('deletes an agency by id', () => {
     const createdAgencies = getAgencies();
+    const token = getAdminToken();
 
     return request(app)
       .delete(`/api/agencies/${createdAgencies[0]._id}`)
+      .set('Authorization', `Bearer ${token}`)
       .then(({ body }) => expect(body).toEqual({ removed: true }));
   });
 

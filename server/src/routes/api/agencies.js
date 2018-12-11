@@ -51,7 +51,7 @@ export default Router()
       .catch(next);
   })
 
-  .delete('/:id', (req, res, next) => {
+  .delete('/:id', requireAuth(['admin']), (req, res, next) => {
     const { id } = req.params;
 
     Agency.findByIdAndDelete(id)

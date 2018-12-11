@@ -33,3 +33,5 @@ const request = (url, method, body) => {
 export const get = url => request(url, 'GET');
 
 export const post = (url, body) => request(url, 'POST', body);
+
+export const put = (url, body) => request(url, 'PUT', body);

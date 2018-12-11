@@ -5,49 +5,44 @@ exports[`Header component renders a Header component 1`] = `
   <img
     src="https://www.graphicsprings.com/filestorage/stencils/8ca848b9be9e7d7fc9ddb96c6efb6c41.png?width=500&height=500"
   />
-  <label
-    id="hamburgerLabel"
-  >
-    This is the hamburger input.
-  </label>
-  <input
-    id="hamburgerInput"
-    type="checkbox"
-  />
-  <span
-    id="hamburgerSpan"
-  />
-  <nav
-    id="nav"
-  >
-    <Link
-      className="link"
-      replace={false}
-      to="/"
+  <div>
+    <label
+      id="hamburgerLabel"
     >
-      Dashboard
-    </Link>
-    <Link
-      className="link"
-      replace={false}
-      to="/"
+      This is the hamburger input.
+    </label>
+    <input
+      id="hamburgerInput"
+      type="checkbox"
+    />
+    <span
+      id="hamburgerSpan"
+    />
+    <nav
+      id="nav"
     >
-      Edit Profile
-    </Link>
-    <Link
-      className="link"
-      replace={false}
-      to="/signin"
-    >
-      Log In
-    </Link>
-    <Link
-      className="link"
-      replace={false}
-      to="/signup"
-    >
-      Log Out
-    </Link>
-  </nav>
+      <Link
+        className="link"
+        replace={false}
+        to="/"
+      >
+        Dashboard
+      </Link>
+      <Link
+        className="link"
+        replace={false}
+        to="/"
+      >
+        Edit Profile
+      </Link>
+      <Link
+        className="link"
+        replace={false}
+        to="/signin"
+      >
+        Log In
+      </Link>
+    </nav>
+  </div>
 </header>
 `;

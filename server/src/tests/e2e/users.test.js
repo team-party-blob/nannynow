@@ -3,7 +3,9 @@ import request from 'supertest';
 import app from '../../routes/app';
 import User from '../../models/User';
 import { compare } from '../../utils/auth';
-const { getUsers, usersSeedData, getAgencies } = require('./helpers/seedData');
+import { getFamilyToken } from './helpers/seedData';
+
+const { getUsers, usersSeedData, getAgencies, getFamilies } = require('./helpers/seedData');
 
 const checkStatus = statusCode => res => {
   expect(res.status).toEqual(statusCode);
@@ -59,10 +61,12 @@ describe('users routes', () => {
   it('signs in a user', () => {
     return request(app)
       .post('/api/users/signin')
-      .send({ email: 'admin@test.com', password: '123' })
+      .send({ email: 'family@test.com', password: '123' })
       .then(res => {
         checkOk(res);
-        expect(res.body.token).toEqual(expect.any(String));
+        expect(res.body.user).toEqual(getUsers()[0]);
+        expect(res.body.profile).toEqual(getFamilies()[0]);
+        expect(res.get('X-AUTH-TOKEN')).toEqual(expect.any(String));
       });
   });
 
@@ -91,16 +95,12 @@ describe('users routes', () => {
   });
 
   it('verifies a signed in user', () => {
+    const token = getFamilyToken();
     return request(app)
-      .post('/api/users/signin')
-      .send({ email: 'admin@test.com', password: '123' })
+      .get('/api/users/verify')
+      .set('Authorization', `Bearer ${token}`)
       .then(res => {
-        return request(app)
-          .get('/api/users/verify')
-          .set('Authorization', `Bearer ${res.body.token}`)
-          .then(res => {
-            expect(res.body).toEqual({ success: true });
-          });
+        expect(res.body.user).toEqual(getUsers()[0]);
       });
   });
 

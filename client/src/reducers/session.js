@@ -11,7 +11,7 @@ const initialState = {
   user: null,
   token: '',
   loading: false,
-  error: SESSION_ERROR
+  error: null
 };
 
 export default function reducer(state = initialState, { type, payload }) {

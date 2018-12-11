@@ -1,5 +1,5 @@
 {
   "_id": "5c0861b0e1c9a14e25baedc3",
   "email": "test@test.com",
-  "userType": "nanny"
+  "role": "nanny"
 }

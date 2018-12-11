@@ -6,10 +6,6 @@ beforeEach(() => {
   return dropCollection('agencies');
 });
 
-afterAll(() => {
-  return dropCollection('users');
-});
-
 beforeEach(() => {
   return dropCollection('users');
 });
@@ -24,7 +20,7 @@ beforeEach(() => {
 
 let createdAgencies;
 let createdUsers;
-// let createdNannies;
+let createdNannies;
 let createdFamilies;
 
 const agencies = [
@@ -34,8 +30,8 @@ const agencies = [
     streetAddress1: '3 Monroe Parkway Suite P#129',
     city: 'Lake Oswego',
     state: 'OR',
-    zip: 97035,
-    phone: 5032455288,
+    zip: '97035',
+    phone: '5032455288',
     businessEmail: 'info@nwnannies.net',
     website: 'https://nwnannies.net/',
     hourlyFee: 3.5,
@@ -66,26 +62,32 @@ const users = [
   }
 ];
 
-// const nannies = [
-//   {
-//     name: 'Mrs. Doubtfire',
-//     address: '1315 Fabricator ln',
-//     description:
-//       'I am a nanny in disguise to spy on children for my own personal gain',
-//     age: 42,
-//     pricePerHour: 8.25,
-//     createdDate: Date.now()
-//   },
-//   {
-//     name: 'Mary Poppins',
-//     address: '6558 Umbrella Ave',
-//     description:
-//       'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
-//     age: 42,
-//     pricePerHour: 5.75,
-//     createdDate: Date.now()
-//   }
-// ];
+const nannies = [
+  {
+    name: 'Mrs. Doubtfire',
+    streetAddress1: '3 Monroe Parkway Suite P#129',
+    city: 'Lake Oswego',
+    state: 'OR',
+    zip: '97035',
+    phone: '5105010844',
+    description: 'I am a nanny in disguise to spy on children for my own personal gain',
+    age: 42,
+    pricePerHour: 8.25,
+    createdDate: Date.now()
+  },
+  {
+    name: 'Mary Poppins',
+    streetAddress1: '3 Monroe Parkway Suite P#129',
+    city: 'Portland',
+    state: 'OR',
+    zip: '97208',
+    phone: '9251112222',
+    description: 'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
+    age: 42,
+    pricePerHour: 5.75,
+    createdDate: Date.now()
+  }
+];
 
 const families = [
   {
@@ -93,8 +95,8 @@ const families = [
     streetAddress1: '201 Eidelweiss Way',
     city: 'Portland',
     state: 'OR',
-    zip: 97210,
-    phone: 5032222222,
+    zip: '97210',
+    phone: '5032222222',
     email: 'vontrap@test.com',
     description: 'Family of singers',
     numOfChildren: 2,
@@ -116,12 +118,12 @@ const createUser = user => {
     .then(res => res.body);
 };
 
-// const createNanny = nanny => {
-//   return request(app)
-//     .post('/api/nannies')
-//     .send(nanny)
-//     .then(res => res.body);
-// };
+const createNanny = nanny => {
+  return request(app)
+    .post('/api/nannies')
+    .send(nanny)
+    .then(res => res.body);
+};
 
 const createFamily = family => {
   return request(app)
@@ -147,17 +149,17 @@ beforeEach(() => {
   });
 });
 
-// beforeEach(() => {
-//   nannies[0].agency = createdAgencies[0]._id;
-//   nannies[1].agency = createdAgencies[0]._id;
+beforeEach(() => {
+  nannies[0].agency = createdAgencies[0]._id;
+  nannies[1].agency = createdAgencies[0]._id;
 
-//   nannies[0].user = createdUsers[1]._id;
-//   nannies[1].user = createdUsers[2]._id;
+  nannies[0].user = createdUsers[1]._id;
+  nannies[1].user = createdUsers[2]._id;
 
-//   return Promise.all(nannies.map(createNanny)).then(nanniesRes => {
-//     createdNannies = nanniesRes;
-//   });
-// });
+  return Promise.all(nannies.map(createNanny)).then(nanniesRes => {
+    createdNannies = nanniesRes;
+  });
+});
 
 beforeEach(() => {
   families[0].agency = createdAgencies[0]._id;
@@ -175,8 +177,8 @@ export const agenciesSeedData = () => agencies;
 export const getUsers = () => createdUsers;
 export const usersSeedData = () => users;
 
-// const getNannies = () => createdNannies;
-// const nanniesSeedData = () => nannies;
+export const getNannies = () => createdNannies;
+export const nanniesSeedData = () => nannies;
 
 export const getFamilies = () => createdFamilies;
 export const familiesSeedData = () => families;

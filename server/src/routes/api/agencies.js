@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import Agency from '../../models/Agency';
+import requireAuth from '../../middleware/requireAuth';
 
 export default Router()
-  .post('/', (req, res, next) => {
+  .post('/', requireAuth(['admin']), (req, res, next) => {
     const {
       businessName,
       contactName,
@@ -34,14 +35,15 @@ export default Router()
       .catch(next);
   })
 
-  .get('/', (req, res, next) => {
+  .get('/', requireAuth(['admin']), (req, res, next) => {
+    console.log('get', res.body);
     Agency.find()
       .lean()
       .then(agencys => res.json(agencys))
       .catch(next);
   })
 
-  .get('/:id', (req, res, next) => {
+  .get('/:id', requireAuth(['admin']), (req, res, next) => {
     const { id } = req.params;
 
     Agency.findById(id)
@@ -49,7 +51,7 @@ export default Router()
       .catch(next);
   })
 
-  .delete('/:id', (req, res, next) => {
+  .delete('/:id', requireAuth(['admin']), (req, res, next) => {
     const { id } = req.params;
 
     Agency.findByIdAndDelete(id)
@@ -57,7 +59,7 @@ export default Router()
       .catch(next);
   })
 
-  .put('/:id', (req, res, next) => {
+  .put('/:id', requireAuth(['admin']), (req, res, next) => {
     const { id } = req.params;
     const {
       businessName,

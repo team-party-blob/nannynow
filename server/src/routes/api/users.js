@@ -5,7 +5,7 @@ import requireAuth from '../../middleware/requireAuth';
 import Agency from '../../models/Agency';
 
 export default Router()
-  .post('/:agencyAlias/signup/', (req, res, next) => {
+  .post('/:agencyAlias/signup', (req, res, next) => {
     const { email, password, role } = req.body;
     const { agencyAlias } = req.params;
     Agency.findOne({ agencyAlias: agencyAlias }).then(agency => {
@@ -45,7 +45,7 @@ export default Router()
       .catch(next);
   })
 
-  .get('/verify', requireAuth, (req, res) => {
+  .get('/verify', requireAuth(['admin', 'family', 'nanny', 'owner']), (req, res) => {
     res.json({ success: !!req.user });
   })
 

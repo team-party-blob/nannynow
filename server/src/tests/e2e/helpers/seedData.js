@@ -1,6 +1,7 @@
 import { dropCollection } from './db';
 import request from 'supertest';
 import app from '../../../routes/app';
+import User from '../../../models/User';
 
 beforeEach(() => {
   return dropCollection('agencies');
@@ -104,9 +105,14 @@ const families = [
   }
 ];
 
+let adminToken = '';
+let nannyToken = '';
+let familyToken = '';
+
 const createAgency = agency => {
   return request(app)
     .post('/api/agencies')
+    .set('Authorization', `Bearer ${adminToken}`)
     .send(agency)
     .then(res => res.body);
 };
@@ -121,6 +127,7 @@ const createUser = user => {
 const createNanny = nanny => {
   return request(app)
     .post('/api/nannies')
+    .set('Authorization', `Bearer ${nannyToken}`)
     .send(nanny)
     .then(res => res.body);
 };
@@ -128,9 +135,39 @@ const createNanny = nanny => {
 const createFamily = family => {
   return request(app)
     .post('/api/families')
+    .set('Authorization', `Bearer ${familyToken}`)
     .send(family)
     .then(res => res.body);
 };
+
+beforeEach(() => {
+  return User.create({
+    email: 'usertest@test.com',
+    password: '123',
+    role: 'admin'
+  });
+});
+
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/signin')
+    .send({ email: 'usertest@test.com', password: '123' })
+    .then(res => adminToken = res.body.token);
+});
+
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/signin')
+    .send({ email: 'nanny@test.com', password: '123' })
+    .then(res => nannyToken = res.body.token);
+});
+
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/signin')
+    .send({ email: 'family@test.com', password: '123' })
+    .then(res => familyToken = res.body.token);
+});
 
 beforeEach(() => {
   return Promise.all(agencies.map(createAgency)).then(agenciesRes => {
@@ -170,15 +207,17 @@ beforeEach(() => {
     createdFamilies = familiesRes;
   });
 });
-
+export const getAdminToken = () => adminToken;
 export const getAgencies = () => createdAgencies;
 export const agenciesSeedData = () => agencies;
 
 export const getUsers = () => createdUsers;
 export const usersSeedData = () => users;
 
+export const getNannyToken = () => nannyToken;
 export const getNannies = () => createdNannies;
 export const nanniesSeedData = () => nannies;
 
+export const getFamilyToken = () => familyToken;
 export const getFamilies = () => createdFamilies;
 export const familiesSeedData = () => families;

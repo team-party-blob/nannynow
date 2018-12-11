@@ -110,11 +110,12 @@ describe('users routes', () => {
     return request(app)
       .get('/api/users')
       .then(res => {
-        expect(res.body.length).toEqual(5);
+        expect(res.body.length).toEqual(6);
         expect(res.body).toContainEqual(createdUsers[0]);
         expect(res.body).toContainEqual(createdUsers[1]);
         expect(res.body).toContainEqual(createdUsers[2]);
         expect(res.body).toContainEqual(createdUsers[3]);
+        expect(res.body).toContainEqual(createdUsers[4]);
       });
   });
 

@@ -30,25 +30,24 @@ describe('requested available times routes', () => {
       });
   });
 
-  //   it('gets an AvailableTime by id', () => {
-  //     const createdAvailableTimes = getAvailableTimes();
+  it('gets an AvailableTime by id', () => {
+    const createdAvailableTimes = getAvailableTimes();
 
-  //     return request(app)
-  //       .get(`/api/availableTimes/${createdAvailableTimes[0]._id}`)
-  //       .then(res => {
-  //         expect(res.body).toEqual(createdAvailableTimes[0]);
-  //       });
-  //   });
+    return request(app)
+      .get(`/api/availability/${createdAvailableTimes[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdAvailableTimes[0]);
+      });
+  });
 
-  //   it('deletes a AvailableTime by id', () => {
-  //     const createdAvailableTimes = getAvailableTimes();
+  it('deletes a AvailableTime by id', () => {
+    const createdAvailableTimes = getAvailableTimes();
 
-  //     return request(app)
-  //       .delete(`/api/availableTimes/${createdAvailableTimes[0]._id}`)
-  //       .then(() => request(app).get('/api/availability'))
-  //       .then(res => {
-  //         expect(res.body).not.toContainEqual(createdAvailableTimes[0]);
-  //       });
-  //   });
-  // });
+    return request(app)
+      .delete(`/api/availability/${createdAvailableTimes[0]._id}`)
+      .then(() => request(app).get('/api/availability'))
+      .then(res => {
+        expect(res.body).not.toContainEqual(createdAvailableTimes[0]);
+      });
+  });
 });

@@ -17,7 +17,7 @@ jest.mock('../../routes/routes.js', () => ({
 describe('Auth component', () => {
 
   const onSubmit = jest.fn();
-  
+
   it('matches snapshot', () => {
     const wrapper = shallow(<Auth loginType='Sign Up' onSubmit={onSubmit} />);
     expect(wrapper).toMatchSnapshot();

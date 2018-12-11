@@ -8,15 +8,16 @@ import {
 
 import {
   PROFILE_UPDATE,
-  PROFILE_UPDATE_LOAD_START,
-  PROFILE_UPDATE_LOAD_END,
-  PROFILE_UPDATE_ERROR
+  // need to figure out how to handle profile update loading
+  // PROFILE_UPDATE_LOAD_START,
+  // PROFILE_UPDATE_LOAD_END,
+  // PROFILE_UPDATE_ERROR
 } from '../actions/profile';
-import { stat } from 'fs';
 
 
 const initialState = {
   user: null,
+  profile: null,
   token: '',
   loading: false,
   error: null
@@ -35,7 +36,7 @@ export default function reducer(state = initialState, { type, payload }) {
     case SESSION_ERROR:
       return { ...state, error: payload };
     case PROFILE_UPDATE:
-      return { ...state, [state.user]: payload };
+      return { ...state, profile: payload, error: null };
     default:
       return state;
   }

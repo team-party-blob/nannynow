@@ -1,13 +1,21 @@
 import reducer from './session';
 import { fakeUser } from './fixtures/fakeUser';
+import { fakeProfile } from './fixtures/fakeProfile';
 import {
   SESSION_LOAD_START,
   SESSION_LOAD_END,
   SESSION_CREATE,
   SESSION_TOKEN
 } from '../actions/session';
+import {
+  PROFILE_UPDATE,
+  // PROFILE_UPDATE_LOAD_END,
+  // PROFILE_UPDATE_LOAD_START,
+  // updateProfile,
+} from '../actions/profile';
 
 jest.mock('../services/authApi.js');
+jest.mock('../services/profileApi.js');
 
 describe('session reducer', () => {
 
@@ -41,4 +49,22 @@ describe('session reducer', () => {
     const updatedState = reducer(initialState, action);
     expect(updatedState).toEqual({ ...initialState, token: '1234' });
   });
+
+  it('updates a user profile on PROFILE_UPDATE', () => {
+    const action = { type: PROFILE_UPDATE, payload: fakeProfile };
+    const updatedState = reducer(initialState, action);
+    expect(updatedState).toEqual({ ...initialState, profile: fakeProfile });
+  });
+
+  // it('starts loading on session on PROFILE_UPDATE_LOAD_START', () => {
+  //   const action = { type: PROFILE_UPDATE_LOAD_START };
+  //   const updatedState = reducer(initialState, action);
+  //   expect(updatedState).toEqual({ ...initialState, loading: true });
+  // });
+
+  // it('stops loading on profile on PROFILE_UPDATE_LOAD_END', () => {
+  //   const action = { type: PROFILE_UPDATE_LOAD_END };
+  //   const updatedState = reducer(initialState, action);
+  //   expect(updatedState).toEqual({ ...initialState, loading: false });
+  // });
 });

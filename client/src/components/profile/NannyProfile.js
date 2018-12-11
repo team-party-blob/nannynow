@@ -6,7 +6,8 @@ export default class NannyProfile extends PureComponent {
 
   static propTypes = {
     session: PropTypes.object.isRequired,
-    // onSubmit: PropTypes.func.isRequired
+    createProfile: PropTypes.func,
+    updateProfile: PropTypes.func
   };
 
   state = {
@@ -32,9 +33,12 @@ export default class NannyProfile extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { session } = this.props;
+
     const id = this.props.match.url;
     //get id off of this.props.match;
-    this.props.onSubmit(id, this.state);
+    {session.profile && this.props.updateProfile(id, this.state);}
+    {!session.profile && this.props.createProfile(this.state);}
   };
 
   handleSubmit = event => {

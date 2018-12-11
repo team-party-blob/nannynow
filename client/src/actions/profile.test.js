@@ -16,4 +16,5 @@ describe('profile actions', () => {
     expect(action.loadStart).toEqual(PROFILE_UPDATE_LOAD_START);
     expect(action.loadEnd).toEqual(PROFILE_UPDATE_LOAD_END);
     expect(typeof action.payload.then).toBe('function');  })
-})
+});
+

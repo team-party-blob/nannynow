@@ -15,7 +15,8 @@ export default Router()
       phone,
       businessEmail,
       website,
-      hourlyFee
+      hourlyFee,
+      agencyAlias
     } = req.body;
 
     Agency.create({
@@ -29,7 +30,8 @@ export default Router()
       phone,
       businessEmail,
       website,
-      hourlyFee
+      hourlyFee,
+      agencyAlias
     })
       .then(agency => res.json(agency))
       .catch(next);

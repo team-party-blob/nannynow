@@ -24,7 +24,8 @@ export default Router()
 
         if(correctPassword) {
           const token = user.authToken();
-          res.json({ token });
+          res.set('X-AUTH-TOKEN', token);
+          res.json(user);
         } else {
           next(
             new HttpError({

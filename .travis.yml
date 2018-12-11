@@ -1,0 +1,10 @@
+language: node_js
+node_js: '10'
+services: mongodb
+deploy:
+  provider: heroku
+  app:
+    master: nanny-now-production
+    dev: nanny-now-staging
+  api_key:
+    secure: VCqdh6/Iwo7VFFjfrzGvLcAIu6+2gVLC9TBJqMPRNy+PYF9ZROvUuFP9uQEL3BtgIzzGTx5NpIcl15X8PGtvaOPao/PaL7PpFin1d9c/sIoEdlJnIcqpwZlqcuNZxfPMY0pET2lGKzsE2z3TggNhZtCoJqm3xP3uJ2S7ZUCUK2jRo51lpSDYxZeKDjX7n7ewPlqxjzofmeVzUDxY4xS2EAogHMuwXEtm4um4jadOJtER42CIR0WCAs5TUkY0POCVkrWGJTDztQgsKcVUkz+yi2uZiaytWykf/Ffns/9jG+WbPHZdTGOVDRcZHCw3GuQ9aAX6E9QKcjfRC2h2j0VkjvXvNKAxrFCNKmrAbItjUK2Tr39IBk2wZT/p5pwJyNWVFSHjzcV2vd5Ll+0+mBZbe8xdO1wB4EncTQiOiXvKNe5iXwGvodaj+oajCmagZgGnlcLQ8CprHBG+slPJfqhdliTdgD1imPv3OCmX1Jr4hS+vSdD0/h8OSYVFfEITQedPyYrHSyevL4sihH6X2fV4pnd3bU8fvYv3YK0fNdm2Jcddx2ys4040IjZYnpcCcUDAUxIGht01qM2h3/Co+xFGcNZsExEUaSwmPGvEjTR7Nvn/X+BzhTZOhR/MsZhSSNz16d3YV4JCddF4RB5eqLfoIZOv9mTASJFUbnC0qS0cGBM=

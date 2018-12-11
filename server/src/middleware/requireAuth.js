@@ -7,13 +7,16 @@ export const findAuthToken = req => {
   return null;
 };
 
-export default (req, res, next) => {
+export default roles => (req, res, next) => {
   const token = findAuthToken(req);
   if(!token)
     return next(new HttpError({ code: 401, message: 'Token required' }));
 
   try {
     const user = untokenize(token);
+    if(!roles.some(role => user.role === role)) {
+      return next(new HttpError({ code: 403, message: `Invaild ${user.role} required ${roles}` }));
+    }
     req.user = user;
     next();
   } catch(e) {

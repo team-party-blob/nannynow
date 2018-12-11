@@ -47,16 +47,16 @@ describe(' appointments routes', () => {
       });
   });
 
-  // it('deletes a Appointment by id', () => {
-  //   const createdAppointments = getAppointments();
+  it('deletes a Appointment by id', () => {
+    const createdAppointments = getAppointments();
 
-  //   return request(app)
-  //     .delete(`/api/appointments/${createdAppointments[0]._id}`)
-  //     .then(() => request(app).get('/api/appointments'))
-  //     .then(res => {
-  //       expect(res.body).not.toContainEqual(createdAppointments[0]);
-  //     });
-  // });
+    return request(app)
+      .delete(`/api/appointments/${createdAppointments[0]._id}`)
+      .then(() => request(app).get('/api/appointments'))
+      .then(res => {
+        expect(res.body).not.toContainEqual(createdAppointments[0]);
+      });
+  });
 
   // it('updates a Appointment by id', () => {
   //   const createdAppointments = getAppointments();

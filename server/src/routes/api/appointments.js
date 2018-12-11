@@ -41,4 +41,11 @@ export default Router()
       .lean()
       .then(request => res.json(request))
       .catch(next);
+  })
+
+  .delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+    Appointment.findByIdAndDelete(id)
+      .then(request => res.json({ removed: !!request }))
+      .catch(next);
   });

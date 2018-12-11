@@ -34,4 +34,22 @@ export default Router()
     AvailableTime.findByIdAndDelete(id)
       .then(request => res.json({ removed: !!request }))
       .catch(next);
+  })
+
+  .put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const { availableStartTime, availableEndTime, nanny } = req.body;
+
+    AvailableTime.findByIdAndUpdate(
+      id,
+      {
+        availableStartTime,
+        availableEndTime,
+        nanny
+      },
+      { new: true }
+    )
+      .lean()
+      .then(request => res.json(request))
+      .catch(next);
   });

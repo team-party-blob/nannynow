@@ -50,4 +50,19 @@ describe('requested available times routes', () => {
         expect(res.body).not.toContainEqual(createdAvailableTimes[0]);
       });
   });
+
+  it('updates available time by id', () => {
+    const createdAvailableTimes = getAvailableTimes();
+
+    return request(app)
+      .put(`/api/availability/${createdAvailableTimes[0]._id}`)
+      .send({
+        availableEndTime: '2018-12-20T02:00:00.000Z'
+      })
+      .then(res => {
+        expect(res.body.availableEndTime).toEqual(
+          '2018-12-20T02:00:00.000Z'
+        );
+      });
+  });
 });

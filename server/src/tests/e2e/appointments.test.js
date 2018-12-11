@@ -1,10 +1,7 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-import {
-  getAppointments,
-  appointmentsSeedData
-} from './helpers/seedData';
+import { getAppointments, appointmentsSeedData } from './helpers/seedData';
 
 describe(' appointments routes', () => {
   it('creates an appointment (with seed data helper)', () => {
@@ -19,7 +16,7 @@ describe(' appointments routes', () => {
       nanny: appointments[0].nanny,
       request: appointments[0].request,
       agencyFeePerHour: appointments[0].agencyFeePerHour,
-      nannyPricePerHour: appointments[0].nannyPricePerHour,      
+      nannyPricePerHour: appointments[0].nannyPricePerHour,
       _id: expect.any(String),
       __v: 0,
       createdDate: expect.anything()
@@ -58,16 +55,18 @@ describe(' appointments routes', () => {
       });
   });
 
-  // it('updates a Appointment by id', () => {
-  //   const createdAppointments = getAppointments();
+  it('updates a Appointment by id', () => {
+    const createdAppointments = getAppointments();
 
-  //   return request(app)
-  //     .put(`/api/appointments/${createdAppointments[0]._id}`)
-  //     .send({
-  //       appointmentComments: 'Test'
-  //     })
-  //     .then(res => {
-  //       expect(res.body.appointmentComments).toEqual('Test');
-  //     });
-  // });
+    return request(app)
+      .put(`/api/appointments/${createdAppointments[0]._id}`)
+      .send({
+        arrivalTime: '2018-12-20T02:00:00.000Z'
+      })
+      .then(res => {
+        expect(res.body.arrivalTime).toEqual(
+          '2018-12-20T02:00:00.000Z'
+        );
+      });
+  });
 });

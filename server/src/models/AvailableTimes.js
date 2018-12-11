@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
-const AvailabilitySchema = new mongoose.Schema({
-  availabilityStartTime: {
+const AvailableTimeSchema = new mongoose.Schema({
+  availableStartTime: {
     type: Date,
     required: [true, 'Start date and time are required.']
   },
-  availabilityEndTime: {
+  availableEndTime: {
     type: Date,
     required: [true, 'End date and time are required.']
   },
@@ -20,4 +20,4 @@ const AvailabilitySchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model('Availability', AvailabilitySchema);
+export default mongoose.model('AvailableTime', AvailableTimeSchema);

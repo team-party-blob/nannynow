@@ -31,9 +31,11 @@ describe('requested appointments routes', () => {
     return request(app)
       .get('/api/requests')
       .then(res => {
-        expect(res.body.length).toEqual(3);
+        expect(res.body.length).toEqual(4);
         expect(res.body).toContainEqual(createdRequestedAppointments[0]);
         expect(res.body).toContainEqual(createdRequestedAppointments[1]);
+        expect(res.body).toContainEqual(createdRequestedAppointments[2]);
+        expect(res.body).toContainEqual(createdRequestedAppointments[3]);
       });
   });
 

@@ -17,10 +17,6 @@ const requestedAppointmentSchema = new mongoose.Schema({
     }
   ],
   appointmentComments: String,
-  description: {
-    type: String,
-    required: [true, 'Description is required']
-  },
   family: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'FamilyProfile',
@@ -41,11 +37,6 @@ const requestedAppointmentSchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     default: Date.now()
-  },
-  numOfChildren: {
-    type: Number,
-    min: 1,
-    required: [true, 'Number of children is required.']
   }
 });
 

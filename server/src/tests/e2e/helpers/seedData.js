@@ -38,7 +38,6 @@ let birthday2 = new Date('2013-10-22');
 let birthday3 = new Date('2018-01-05');
 let birthday4 = new Date('2008-04-13');
 
-
 const agencies = [
   {
     businessName: 'NWNannies LLC',
@@ -144,18 +143,14 @@ const requestedAppointments = [
     startDateTime: startTime1,
     endDateTime: endTime1,
     birthdays: [birthday1, birthday2],
-    appointmentComments: 'Working from home during appointment',
-    description: 'Family of singers',
-    numOfChildren: 2
+    appointmentComments: 'Working from home during appointment'
   },
   {
     startDateTime: startTime2,
     endDateTime: endTime2,
     birthdays: [birthday3, birthday4],
-    appointmentComments: 'Might be up to one hour late returning',
-    description: 'A very special family',
-    numOfChildren: 2
-  },
+    appointmentComments: 'Might be up to one hour late returning'
+  }
 ];
 
 const createAgency = agency => {
@@ -241,10 +236,18 @@ beforeEach(() => {
   requestedAppointments[0].family = createdFamilies[0]._id;
   requestedAppointments[1].family = createdFamilies[1]._id;
 
-  requestedAppointments[0].requestedNannies = [createdNannies[0]._id, createdNannies[1]._id];
-  requestedAppointments[1].requestedNannies = [createdNannies[0]._id, createdNannies[1]._id];
+  requestedAppointments[0].requestedNannies = [
+    createdNannies[0]._id,
+    createdNannies[1]._id
+  ];
+  requestedAppointments[1].requestedNannies = [
+    createdNannies[0]._id,
+    createdNannies[1]._id
+  ];
 
-  return Promise.all(requestedAppointments.map(createRequestedAppointment)).then(requestedAppointmentsRes => {
+  return Promise.all(
+    requestedAppointments.map(createRequestedAppointment)
+  ).then(requestedAppointmentsRes => {
     createdRequestedAppointments = requestedAppointmentsRes;
   });
 });

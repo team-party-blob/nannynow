@@ -1,7 +1,10 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-const { getRequestedAppointments, requestedAppointmentsSeedData } = require('./helpers/seedData');
+const {
+  getRequestedAppointments,
+  requestedAppointmentsSeedData
+} = require('./helpers/seedData');
 
 describe('requested appointments routes', () => {
   it('creates a requested appointment (with seed data helper)', () => {
@@ -9,56 +12,63 @@ describe('requested appointments routes', () => {
     const requestedAppointments = requestedAppointmentsSeedData();
 
     expect(createdRequestedAppointments[0]).toEqual({
-      ...requestedAppointments[0],
+      startDateTime: expect.anything(),
+      endDateTime: expect.anything(),
+      birthdays: expect.any(Array),
+      appointmentComments: requestedAppointments[0].appointmentComments,
+      description: requestedAppointments[0].description,
+      family: requestedAppointments[0].family,
+      agency: requestedAppointments[0].agency,
+      requestedNannies: requestedAppointments[0].requestedNannies,
       _id: expect.any(String),
       __v: 0,
       createdDate: expect.anything()
     });
   });
 
-//   it('gets a list of all requestedAppointments', () => {
-//     const createdRequestedAppointments = getRequestedAppointments();
+  //   it('gets a list of all requestedAppointments', () => {
+  //     const createdRequestedAppointments = getRequestedAppointments();
 
-//     return requestedAppointment(app)
-//       .get('/api/requestedAppointments')
-//       .then(res => {
-//         expect(res.body.length).toEqual(2);
-//         expect(res.body).toContainEqual(createdRequestedAppointments[0]);
-//         expect(res.body).toContainEqual(createdRequestedAppointments[1]);
-//       });
-//   });
+  //     return requestedAppointment(app)
+  //       .get('/api/requestedAppointments')
+  //       .then(res => {
+  //         expect(res.body.length).toEqual(2);
+  //         expect(res.body).toContainEqual(createdRequestedAppointments[0]);
+  //         expect(res.body).toContainEqual(createdRequestedAppointments[1]);
+  //       });
+  //   });
 
-//   it('gets a requestedAppointment by id', () => {
-//     const createdRequestedAppointments = getRequestedAppointments();
+  //   it('gets a requestedAppointment by id', () => {
+  //     const createdRequestedAppointments = getRequestedAppointments();
 
-//     return requestedAppointment(app)
-//       .get(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
-//       .then(res => {
-//         expect(res.body).toEqual(createdRequestedAppointments[0]);
-//       });
-//   });
+  //     return requestedAppointment(app)
+  //       .get(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
+  //       .then(res => {
+  //         expect(res.body).toEqual(createdRequestedAppointments[0]);
+  //       });
+  //   });
 
-//   it('deletes a requestedAppointment by id', () => {
-//     const createdRequestedAppointments = getRequestedAppointments();
+  //   it('deletes a requestedAppointment by id', () => {
+  //     const createdRequestedAppointments = getRequestedAppointments();
 
-//     return requestedAppointment(app)
-//       .delete(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
-//       .then(() => requestedAppointment(app).get('/api/requestedAppointments'))
-//       .then(res => {
-//         expect(res.body).not.toContainEqual(createdRequestedAppointments[0]);
-//       });
-//   });
+  //     return requestedAppointment(app)
+  //       .delete(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
+  //       .then(() => requestedAppointment(app).get('/api/requestedAppointments'))
+  //       .then(res => {
+  //         expect(res.body).not.toContainEqual(createdRequestedAppointments[0]);
+  //       });
+  //   });
 
-//   it('updates a requestedAppointment by id', () => {
-//     const createdRequestedAppointments = getRequestedAppointments();
+  //   it('updates a requestedAppointment by id', () => {
+  //     const createdRequestedAppointments = getRequestedAppointments();
 
-//     return requestedAppointment(app)
-//       .put(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
-//       .send({
-//         name: 'Jim'
-//       })
-//       .then(res => {
-//         expect(res.body.name).toEqual('Jim');
-//       });
-//   });
+  //     return requestedAppointment(app)
+  //       .put(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
+  //       .send({
+  //         name: 'Jim'
+  //       })
+  //       .then(res => {
+  //         expect(res.body.name).toEqual('Jim');
+  //       });
+  //   });
 });

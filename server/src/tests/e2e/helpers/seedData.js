@@ -18,10 +18,26 @@ beforeEach(() => {
   return dropCollection('familyprofiles');
 });
 
+beforeEach(() => {
+  return dropCollection('requestedappointments');
+});
+
 let createdAgencies;
 let createdUsers;
 let createdNannies;
 let createdFamilies;
+let createdRequestedAppointments;
+
+let startTime1 = new Date('2018-12-15T16:00:00.000Z');
+let endTime1 = new Date('2018-12-15T21:00:00.000Z');
+let startTime2 = new Date('2018-12-16T20:00:00.000Z');
+let endTime2 = new Date('2018-12-17T02:00:00.000Z');
+
+let birthday1 = new Date('2016-06-06');
+let birthday2 = new Date('2013-10-22');
+let birthday3 = new Date('2018-01-05');
+let birthday4 = new Date('2008-04-13');
+
 
 const agencies = [
   {
@@ -70,7 +86,8 @@ const nannies = [
     state: 'OR',
     zip: '97035',
     phone: '5105010844',
-    description: 'I am a nanny in disguise to spy on children for my own personal gain',
+    description:
+      'I am a nanny in disguise to spy on children for my own personal gain',
     age: 42,
     pricePerHour: 8.25,
     createdDate: Date.now()
@@ -82,7 +99,8 @@ const nannies = [
     state: 'OR',
     zip: '97208',
     phone: '9251112222',
-    description: 'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
+    description:
+      'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
     age: 42,
     pricePerHour: 5.75,
     createdDate: Date.now()
@@ -100,8 +118,39 @@ const families = [
     email: 'vontrap@test.com',
     description: 'Family of singers',
     numOfChildren: 2,
-    birthdays: ['06/19/15', '06/13/13']
+    birthdays: [birthday1, birthday2]
+  },
+  {
+    name: 'MacManus',
+    streetAddress1: '10 Old Time St',
+    city: 'Portland',
+    state: 'OR',
+    zip: '97211',
+    phone: '503333333',
+    email: 'brady@test.com',
+    description: 'A very special family',
+    numOfChildren: 2,
+    birthdays: [birthday3, birthday4]
   }
+];
+
+const requestedAppointments = [
+  {
+    startDateTime: startTime1,
+    endDateTime: endTime1,
+    birthdays: [birthday1, birthday2],
+    appointmentComments: 'Working from home during appointment',
+    description: 'Family of singers',
+    numOfChildren: 2
+  },
+  {
+    startDateTime: startTime2,
+    endDateTime: endTime2,
+    birthdays: [birthday3, birthday4],
+    appointmentComments: 'Might be up to one hour late returning',
+    description: 'A very special family',
+    numOfChildren: 2
+  },
 ];
 
 const createAgency = agency => {
@@ -129,6 +178,13 @@ const createFamily = family => {
   return request(app)
     .post('/api/families')
     .send(family)
+    .then(res => res.body);
+};
+
+const createRequestedAppointment = requestedAppointment => {
+  return request(app)
+    .post('/api/requests')
+    .send(requestedAppointment)
     .then(res => res.body);
 };
 
@@ -171,6 +227,21 @@ beforeEach(() => {
   });
 });
 
+beforeEach(() => {
+  requestedAppointments[0].agency = createdAgencies[0]._id;
+  requestedAppointments[1].agency = createdAgencies[0]._id;
+
+  requestedAppointments[0].family = createdFamilies[0]._id;
+  requestedAppointments[1].family = createdFamilies[1]._id;
+
+  requestedAppointments[0].requestedNannies = [createdNannies[0]._id, createdNannies[1]._id];
+  requestedAppointments[1].requestedNannies = [createdNannies[0]._id, createdNannies[1]._id];
+
+  return Promise.all(requestedAppointments.map(createRequestedAppointment)).then(requestedAppointmentsRes => {
+    createdRequestedAppointments = requestedAppointmentsRes;
+  });
+});
+
 export const getAgencies = () => createdAgencies;
 export const agenciesSeedData = () => agencies;
 
@@ -182,3 +253,25 @@ export const nanniesSeedData = () => nannies;
 
 export const getFamilies = () => createdFamilies;
 export const familiesSeedData = () => families;
+
+export const getRequestedAppointments = () => createdRequestedAppointments;
+export const requestedAppointmentsSeedData = () => requestedAppointments;
+
+
+family: {
+  type: mongoose.Schema.Types.ObjectId,
+    ref: 'FamilyProfile',
+      required: [true, 'Family is required']
+},
+agency: {
+  type: mongoose.Schema.Types.ObjectId,
+    ref: 'Agency',
+      required: [true, 'Agency is required']
+},
+requestedNannies: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'NannyProfile',
+    required: [true, 'At least one requested nanny is required']
+  }
+],

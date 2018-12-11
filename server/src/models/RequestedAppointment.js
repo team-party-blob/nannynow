@@ -46,8 +46,7 @@ const requestedAppointmentSchema = new mongoose.Schema({
     type: Number,
     min: 1,
     required: [true, 'Number of children is required.']
-  },
-
+  }
 });
 
 export default mongoose.model(

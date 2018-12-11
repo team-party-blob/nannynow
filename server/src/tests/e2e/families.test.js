@@ -22,8 +22,9 @@ describe('families routes', () => {
     return request(app)
       .get('/api/families')
       .then(res => {
-        expect(res.body.length).toEqual(1);
+        expect(res.body.length).toEqual(2);
         expect(res.body).toContainEqual(createdFamilies[0]);
+        expect(res.body).toContainEqual(createdFamilies[1]);
       });
   });
 

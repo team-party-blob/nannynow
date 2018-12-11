@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       required: [true, 'Role must be admin, nanny, or family'],
-      enum: ['admin', 'nanny', 'family']
+      enum: ['admin', 'nanny', 'family', 'developer']
     },
     createdDate: {
       type: Date,
@@ -19,8 +19,7 @@ const userSchema = new mongoose.Schema(
     },
     agency: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Agency',
-      required: true
+      ref: 'Agency'
     },
     passwordHash: String
   },

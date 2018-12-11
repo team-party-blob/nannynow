@@ -22,16 +22,25 @@ beforeEach(() => {
   return dropCollection('requestedappointments');
 });
 
+beforeEach(() => {
+  return dropCollection('appointments');
+});
+
 let createdAgencies;
 let createdUsers;
 let createdNannies;
 let createdFamilies;
 let createdRequestedAppointments;
+let createdAppointments;
 
 let startTime1 = new Date('2018-12-15T16:00:00.000Z');
 let endTime1 = new Date('2018-12-15T21:00:00.000Z');
 let startTime2 = new Date('2018-12-16T20:00:00.000Z');
 let endTime2 = new Date('2018-12-17T02:00:00.000Z');
+let startTime3 = new Date('2018-12-10T04:00:00.000Z');
+let arrivalTime3 = new Date('2018-12-10T03:55:00.000Z');
+let endTime3 = new Date('2018-12-10T08:00:00.000Z');
+let departureTime3 = new Date('2018-12-10T08:15:00.000Z');
 
 let birthday1 = new Date('2016-06-06');
 let birthday2 = new Date('2013-10-22');
@@ -150,8 +159,21 @@ const requestedAppointments = [
     endDateTime: endTime2,
     birthdays: [birthday3, birthday4],
     appointmentComments: 'Might be up to one hour late returning'
+  },
+  {
+    startDateTime: startTime3,
+    endDateTime: endTime3,
+    birthdays: [birthday1, birthday4],
+    appointmentComments: 'No sweets'
   }
 ];
+
+const appointments = {
+  arrivalTime: arrivalTime3,
+  departureTime: departureTime3,
+  agencyFeePerHour: 3.5,
+  nannyPricePerHour: 17
+};
 
 const createAgency = agency => {
   return request(app)
@@ -185,6 +207,12 @@ const createRequestedAppointment = requestedAppointment => {
   return request(app)
     .post('/api/requests')
     .send(requestedAppointment)
+    .then(res => res.body);
+};
+const createAppointment = appointment => {
+  return request(app)
+    .post('/api/appointments')
+    .send(appointment)
     .then(res => res.body);
 };
 
@@ -252,6 +280,26 @@ beforeEach(() => {
   });
 });
 
+beforeEach(() => {
+  appointments[0].agency = createdAgencies[0]._id;
+
+  appointments[0].family = createdFamilies[0]._id;
+
+  appointments[0].nanny = [
+    createdNannies[0]._id,
+    createdNannies[1]._id
+  ];
+  appointments[0].request = [
+    createdAppointments[0]._id
+  ];
+
+  return Promise.all(
+    appointments.map(createAppointment)
+  ).then(appointmentsRes => {
+    createdAppointments = appointmentsRes;
+  });
+});
+
 export const getAgencies = () => createdAgencies;
 export const agenciesSeedData = () => agencies;
 
@@ -266,3 +314,6 @@ export const familiesSeedData = () => families;
 
 export const getRequestedAppointments = () => createdRequestedAppointments;
 export const requestedAppointmentsSeedData = () => requestedAppointments;
+
+export const getAppointments = () => createdAppointments;
+export const AppointmentsSeedData = () => appointments;

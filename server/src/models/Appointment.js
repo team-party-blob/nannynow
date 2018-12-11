@@ -3,11 +3,9 @@ import mongoose from 'mongoose';
 const AppointmentSchema = new mongoose.Schema({
   arrivalTime: {
     type: Date,
-    required: [true, 'Start date and time are required.']
   },
   departureTime: {
     type: Date,
-    required: [true, 'End date and time are required.']
   },
   family: {
     type: mongoose.Schema.Types.ObjectId,

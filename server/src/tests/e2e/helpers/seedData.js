@@ -169,12 +169,14 @@ const requestedAppointments = [
   }
 ];
 
-const appointments = {
-  arrivalTime: arrivalTime3,
-  departureTime: departureTime3,
-  agencyFeePerHour: 3.5,
-  nannyPricePerHour: 17
-};
+const appointments = [
+  {
+    arrivalTime: arrivalTime3,
+    departureTime: departureTime3,
+    agencyFeePerHour: 3.5,
+    nannyPricePerHour: 17
+  }
+];
 
 let adminToken = '';
 let nannyToken = '';
@@ -236,21 +238,21 @@ beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'usertest@test.com', password: '123' })
-    .then(res => adminToken = res.body.token);
+    .then(res => (adminToken = res.body.token));
 });
 
 beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'nanny@test.com', password: '123' })
-    .then(res => nannyToken = res.body.token);
+    .then(res => (nannyToken = res.body.token));
 });
 
 beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'family@test.com', password: '123' })
-    .then(res => familyToken = res.body.token);
+    .then(res => (familyToken = res.body.token));
 });
 
 beforeEach(() => {
@@ -322,19 +324,14 @@ beforeEach(() => {
 
   appointments[0].family = createdFamilies[0]._id;
 
-  appointments[0].nanny = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
-  ];
-  appointments[0].request = [
-    createdAppointments[0]._id
-  ];
+  appointments[0].nanny = [createdNannies[0]._id, createdNannies[1]._id];
+  appointments[0].request = [createdRequestedAppointments[0]._id];
 
-  return Promise.all(
-    appointments.map(createAppointment)
-  ).then(appointmentsRes => {
-    createdAppointments = appointmentsRes;
-  });
+  return Promise.all(appointments.map(createAppointment)).then(
+    appointmentsRes => {
+      createdAppointments = appointmentsRes;
+    }
+  );
 });
 
 export const getAdminToken = () => adminToken;
@@ -356,4 +353,4 @@ export const getRequestedAppointments = () => createdRequestedAppointments;
 export const requestedAppointmentsSeedData = () => requestedAppointments;
 
 export const getAppointments = () => createdAppointments;
-export const AppointmentsSeedData = () => appointments;
+export const appointmentsSeedData = () => appointments;

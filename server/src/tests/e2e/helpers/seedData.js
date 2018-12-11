@@ -256,22 +256,3 @@ export const familiesSeedData = () => families;
 
 export const getRequestedAppointments = () => createdRequestedAppointments;
 export const requestedAppointmentsSeedData = () => requestedAppointments;
-
-
-family: {
-  type: mongoose.Schema.Types.ObjectId,
-    ref: 'FamilyProfile',
-      required: [true, 'Family is required']
-},
-agency: {
-  type: mongoose.Schema.Types.ObjectId,
-    ref: 'Agency',
-      required: [true, 'Agency is required']
-},
-requestedNannies: [
-  {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'NannyProfile',
-    required: [true, 'At least one requested nanny is required']
-  }
-],

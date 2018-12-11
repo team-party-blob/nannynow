@@ -48,16 +48,16 @@ describe('families routes', () => {
       });
   });
 
-  // it('updates a family by id', () => {
-  //   const createdFamilies = getFamilies();
+  it('updates a family by id', () => {
+    const createdFamilies = getFamilies();
 
-  //   return request(app)
-  //     .put(`/api/families/${createdFamilies[0]._id}`)
-  //     .send({
-  //       role: 'nanny'
-  //     })
-  //     .then(res => {
-  //       expect(res.body.role).toEqual('nanny');
-  //     });
-  // });
+    return request(app)
+      .put(`/api/families/${createdFamilies[0]._id}`)
+      .send({
+        name: 'Jim'
+      })
+      .then(res => {
+        expect(res.body.role).toEqual('Jim');
+      });
+  });
 });

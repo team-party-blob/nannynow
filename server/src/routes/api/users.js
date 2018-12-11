@@ -10,21 +10,24 @@ export default Router()
     const { agencyAlias } = req.params;
     Agency.findOne({ agencyAlias: agencyAlias }).then(agency => {
       User.create({ email, password, role, agency: agency._id })
-        .then(user => res.json(user))
+        .then(user => {
+          res.setHeader('X-AUTH-TOKEN', user.authToken());
+          res.json(user);
+        })
         .catch(next);
     });
   })
-
   .post('/signin', (req, res, next) => {
     const { email, password } = req.body;
-
     User.findOne({ email })
       .then(user => {
         const correctPassword = user && user.compare(password);
-
         if(correctPassword) {
-          const token = user.authToken();
-          res.json({ token });
+          res.setHeader('X-AUTH-TOKEN', user.authToken());
+          user.getProfile()
+            .then(profile => {
+              res.json({ user, profile });
+            });
         } else {
           next(
             new HttpError({
@@ -46,7 +49,9 @@ export default Router()
   })
 
   .get('/verify', requireAuth(['admin', 'family', 'nanny', 'owner']), (req, res) => {
-    res.json({ success: !!req.user });
+    User.findById(req.user._id)
+      .then(user => user.getProfile())
+      .then(profile => res.json({ user: req.user, profile }));
   })
 
   .get('/:id', (req, res, next) => {

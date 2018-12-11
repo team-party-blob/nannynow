@@ -63,7 +63,6 @@ export default class Login extends PureComponent {
         </Fragment>
       );
     };
-    
     const alreadyUser = () => {
       return (
         <div id={styles.switchUserType}>

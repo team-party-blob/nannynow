@@ -59,7 +59,7 @@ export default Router()
       .catch(next);
   })
 
-  .put('/:id', (req, res, next) => {
+  .put('/:id', requireAuth(['admin']), (req, res, next) => {
     const { id } = req.params;
     const {
       businessName,

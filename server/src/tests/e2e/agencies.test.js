@@ -54,9 +54,11 @@ describe('agencies routes', () => {
 
   it('updates an agency by id', () => {
     const createdAgencies = getAgencies();
+    const token = getAdminToken();
 
     return request(app)
       .put(`/api/agencies/${createdAgencies[0]._id}`)
+      .set('Authorization', `Bearer ${token}`)
       .send({
         contactName: 'Mike'
       })

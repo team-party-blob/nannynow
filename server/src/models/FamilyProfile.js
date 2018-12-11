@@ -58,7 +58,8 @@ const familyProfileSchema = new mongoose.Schema({
   birthdays: [
     {
       type: String,
-      required: [true, 'children\'s birthdays are required.']
+      required: [true, 'children\'s birthdays are required.'],
+      max: 18
     }
   ]
 });

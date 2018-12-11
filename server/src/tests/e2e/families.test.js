@@ -3,12 +3,6 @@ import request from 'supertest';
 import app from '../../routes/app';
 const { getFamilies, familiesSeedData } = require('./helpers/seedData');
 
-const checkStatus = statusCode => res => {
-  expect(res.status).toEqual(statusCode);
-};
-
-const checkOk = res => checkStatus(200)(res);
-
 describe('families routes', () => {
   it('creates a family profile (with seed data helper)', () => {
     const createdFamilies = getFamilies();
@@ -33,15 +27,15 @@ describe('families routes', () => {
       });
   });
 
-  // it('gets a family by id', () => {
-  //   const createdFamilys = getFamilys();
+  it('gets a family by id', () => {
+    const createdFamilies = getFamilies();
 
-  //   return request(app)
-  //     .get(`/api/familys/${createdFamilys[1]._id}`)
-  //     .then(res => {
-  //       expect(res.body).toEqual(createdFamilys[1]);
-  //     });
-  // });
+    return request(app)
+      .get(`/api/families/${createdFamilies[1]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdFamilies[1]);
+      });
+  });
 
   // it('deletes a family by id', () => {
   //   const createdFamilys = getFamilys();

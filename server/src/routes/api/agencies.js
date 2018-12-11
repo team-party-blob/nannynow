@@ -43,7 +43,7 @@ export default Router()
       .catch(next);
   })
 
-  .get('/:id', (req, res, next) => {
+  .get('/:id', requireAuth(['admin']), (req, res, next) => {
     const { id } = req.params;
 
     Agency.findById(id)

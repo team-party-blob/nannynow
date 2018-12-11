@@ -32,9 +32,11 @@ describe('agencies routes', () => {
 
   it('gets a agency by id', () => {
     const createdAgencies = getAgencies();
+    const token = getAdminToken();
 
     return request(app)
       .get(`/api/agencies/${createdAgencies[0]._id}`)
+      .set('Authorization', `Bearer ${token}`)
       .then(res => {
         expect(res.body).toEqual({ ...createdAgencies[0] });
       });

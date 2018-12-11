@@ -4,7 +4,6 @@ import {
   SESSION_LOAD_START,
   SESSION_LOAD_END,
   SESSION_CREATE,
-  SESSION_ERROR,
   SESSION_TOKEN
 } from '../actions/session';
 

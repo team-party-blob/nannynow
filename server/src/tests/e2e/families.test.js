@@ -9,7 +9,18 @@ describe('families routes', () => {
     const families = familiesSeedData();
 
     expect(createdFamilies[0]).toEqual({
-      ...families[0],
+      name: families[0].name,
+      agency: families[0].agency,
+      numOfChildren: families[0].numOfChildren,
+      birthdays: expect.any(Array),
+      streetAddress1: families[0].streetAddress1,
+      city: families[0].city,
+      state: families[0].state,
+      zip: families[0].zip,
+      phone: families[0].phone,
+      email: families[0].email,
+      description: families[0].description,
+      user: expect.any(String),
       _id: expect.any(String),
       __v: 0,
       createdDate: expect.anything()

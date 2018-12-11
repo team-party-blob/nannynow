@@ -62,6 +62,11 @@ const users = [
     role: 'family'
   },
   {
+    email: 'family1@test.com',
+    password: '123',
+    role: 'family'
+  },
+  {
     email: 'nanny@test.com',
     password: '123',
     role: 'nanny'
@@ -219,8 +224,10 @@ beforeEach(() => {
 
 beforeEach(() => {
   families[0].agency = createdAgencies[0]._id;
+  families[1].agency = createdAgencies[0]._id;
 
   families[0].user = createdUsers[0]._id;
+  families[1].user = createdUsers[1]._id;
 
   return Promise.all(families.map(createFamily)).then(familiesRes => {
     createdFamilies = familiesRes;

@@ -29,7 +29,7 @@ exports[`Auth component matches snapshot 1`] = `
       value=""
     />
     <div
-      id="userType"
+      id="role"
     >
       <label>
         Are You a Nanny or a Family?

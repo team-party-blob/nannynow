@@ -1,10 +1,10 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-const {
+import {
   getRequestedAppointments,
   requestedAppointmentsSeedData
-} = require('./helpers/seedData');
+} from './helpers/seedData';
 
 describe('requested appointments routes', () => {
   it('creates a requested appointment (with seed data helper)', () => {

@@ -27,12 +27,17 @@ beforeEach(() => {
   return dropCollection('appointments');
 });
 
+beforeEach(() => {
+  return dropCollection('availabletimes');
+});
+
 let createdAgencies;
 let createdUsers;
 let createdNannies;
 let createdFamilies;
 let createdRequestedAppointments;
 let createdAppointments;
+let createdAvailableTimes;
 
 let startTime1 = new Date('2018-12-15T16:00:00.000Z');
 let endTime1 = new Date('2018-12-15T21:00:00.000Z');
@@ -42,6 +47,10 @@ let startTime3 = new Date('2018-12-10T04:00:00.000Z');
 let arrivalTime3 = new Date('2018-12-10T03:55:00.000Z');
 let endTime3 = new Date('2018-12-10T08:00:00.000Z');
 let departureTime3 = new Date('2018-12-10T08:15:00.000Z');
+let startTime4 = new Date('2018-12-10T02:00:00.000Z');
+let endTime4 = new Date('2018-12-17T05:00:00.000Z');
+let startTime5 = new Date('2018-12-19T04:00:00.000Z');
+let endTime5 = new Date('2018-12-20T02:00:00.000Z');
 
 let birthday1 = new Date('2016-06-06');
 let birthday2 = new Date('2013-10-22');
@@ -166,6 +175,12 @@ const requestedAppointments = [
     endDateTime: endTime3,
     birthdays: [birthday1, birthday4],
     appointmentComments: 'No sweets'
+  },
+  {
+    startDateTime: startTime5,
+    endDateTime: endTime5,
+    birthdays: [birthday2, birthday3],
+    appointmentComments: 'n/a'
   }
 ];
 
@@ -175,6 +190,17 @@ const appointments = [
     departureTime: departureTime3,
     agencyFeePerHour: 3.5,
     nannyPricePerHour: 17
+  }
+];
+
+const availableTimes = [
+  {
+    availableStartTime: startTime4,
+    availableEndTime: endTime4
+  },
+  {
+    availableStartTime: startTime4,
+    availableEndTime: endTime4
   }
 ];
 
@@ -219,10 +245,18 @@ const createRequestedAppointment = requestedAppointment => {
     .send(requestedAppointment)
     .then(res => res.body);
 };
+
 const createAppointment = appointment => {
   return request(app)
     .post('/api/appointments')
     .send(appointment)
+    .then(res => res.body);
+};
+
+const createAvailableTime = availableTime => {
+  return request(app)
+    .post('/api/availability')
+    .send(availableTime)
     .then(res => res.body);
 };
 
@@ -301,22 +335,28 @@ beforeEach(() => {
   requestedAppointments[0].agency = createdAgencies[0]._id;
   requestedAppointments[1].agency = createdAgencies[0]._id;
   requestedAppointments[2].agency = createdAgencies[0]._id;
+  requestedAppointments[3].agency = createdAgencies[0]._id;
 
   requestedAppointments[0].family = createdFamilies[0]._id;
   requestedAppointments[1].family = createdFamilies[1]._id;
   requestedAppointments[2].family = createdFamilies[0]._id;
+  requestedAppointments[3].family = createdFamilies[0]._id;
 
   requestedAppointments[0].requestedNannies = [
     createdNannies[0]._id,
     createdNannies[1]._id
   ];
-
   requestedAppointments[1].requestedNannies = [
     createdNannies[0]._id,
     createdNannies[1]._id
   ];
 
   requestedAppointments[2].requestedNannies = [
+    createdNannies[0]._id,
+    createdNannies[1]._id
+  ];
+
+  requestedAppointments[3].requestedNannies = [
     createdNannies[0]._id,
     createdNannies[1]._id
   ];
@@ -330,14 +370,24 @@ beforeEach(() => {
 
 beforeEach(() => {
   appointments[0].agency = createdAgencies[0]._id;
-
   appointments[0].family = createdFamilies[0]._id;
-
   appointments[0].nanny = createdNannies[0]._id;
   appointments[0].request = createdRequestedAppointments[1]._id;
+
   return Promise.all(appointments.map(createAppointment)).then(
     appointmentsRes => {
       createdAppointments = appointmentsRes;
+    }
+  );
+});
+
+beforeEach(() => {
+  availableTimes[0].nanny = createdNannies[0]._id;
+  availableTimes[1].nanny = createdNannies[1]._id;
+
+  return Promise.all(availableTimes.map(createAvailableTime)).then(
+    availableTimesRes => {
+      createdAvailableTimes = availableTimesRes;
     }
   );
 });
@@ -362,3 +412,6 @@ export const requestedAppointmentsSeedData = () => requestedAppointments;
 
 export const getAppointments = () => createdAppointments;
 export const appointmentsSeedData = () => appointments;
+
+export const getAvailableTimes = () => createdAvailableTimes;
+export const availableTimesSeedData = () => availableTimes;

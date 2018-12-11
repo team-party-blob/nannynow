@@ -208,22 +208,9 @@ beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'usertest@test.com', password: '123' })
-    .then(res => adminToken = res.body.token);
+    .then(res => adminToken = res.get('X-AUTH-TOKEN'));
 });
 
-beforeEach(() => {
-  return request(app)
-    .post('/api/users/signin')
-    .send({ email: 'nanny@test.com', password: '123' })
-    .then(res => nannyToken = res.body.token);
-});
-
-beforeEach(() => {
-  return request(app)
-    .post('/api/users/signin')
-    .send({ email: 'family@test.com', password: '123' })
-    .then(res => familyToken = res.body.token);
-});
 
 beforeEach(() => {
   return Promise.all(agencies.map(createAgency)).then(agenciesRes => {
@@ -240,6 +227,20 @@ beforeEach(() => {
   return Promise.all(users.map(createUser)).then(usersRes => {
     createdUsers = usersRes;
   });
+});
+
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/signin')
+    .send({ email: 'nanny@test.com', password: '123' })
+    .then(res => nannyToken = res.get('X-AUTH-TOKEN'));
+});
+
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/signin')
+    .send({ email: 'family@test.com', password: '123' })
+    .then(res => familyToken = res.get('X-AUTH-TOKEN'));
 });
 
 beforeEach(() => {

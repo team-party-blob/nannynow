@@ -1,6 +1,7 @@
 import { dropCollection } from './db';
 import request from 'supertest';
 import app from '../../../routes/app';
+import User from '../../../models/User';
 
 beforeEach(() => {
   return dropCollection('agencies');
@@ -104,9 +105,11 @@ const families = [
   }
 ];
 
+let token = '';
 const createAgency = agency => {
   return request(app)
     .post('/api/agencies')
+    .set('Authorization', `Bearer ${token}`)
     .send(agency)
     .then(res => res.body);
 };
@@ -131,6 +134,21 @@ const createFamily = family => {
     .send(family)
     .then(res => res.body);
 };
+
+beforeEach(() => {
+  return User.create({
+    email: 'usertest@test.com',
+    password: '123',
+    role: 'admin'
+  });
+});
+
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/signin')
+    .send({ email: 'usertest@test.com', password: '123' })
+    .then(res => token = res.body.token);
+});
 
 beforeEach(() => {
   return Promise.all(agencies.map(createAgency)).then(agenciesRes => {

@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import Agency from '../../models/Agency';
+import requireAuth from '../../middleware/requireAuth';
 
 export default Router()
-  .post('/', (req, res, next) => {
+  .post('/', requireAuth(['admin']), (req, res, next) => {
     const {
       businessName,
       contactName,

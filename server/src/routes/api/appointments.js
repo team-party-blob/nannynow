@@ -33,4 +33,12 @@ export default Router()
       .lean()
       .then(request => res.json(request))
       .catch(next);
+  })
+
+  .get('/:id', (req, res, next) => {
+    const { id } = req.params;
+    Appointment.findById(id)
+      .lean()
+      .then(request => res.json(request))
+      .catch(next);
   });

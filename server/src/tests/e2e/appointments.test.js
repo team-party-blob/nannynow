@@ -10,7 +10,6 @@ describe(' appointments routes', () => {
   it('creates an appointment (with seed data helper)', () => {
     const createdAppointments = getAppointments();
     const appointments = appointmentsSeedData();
-    console.log('created appts', createdAppointments);
 
     expect(createdAppointments[0]).toEqual({
       arrivalTime: expect.anything(),
@@ -38,22 +37,22 @@ describe(' appointments routes', () => {
       });
   });
 
-  // it('gets a Appointment by id', () => {
-  //   const createdAppointments = getAppointments();
+  it('gets an Appointment by id', () => {
+    const createdAppointments = getAppointments();
 
-  //   return request(app)
-  //     .get(`/api/requests/${createdAppointments[0]._id}`)
-  //     .then(res => {
-  //       expect(res.body).toEqual(createdAppointments[0]);
-  //     });
-  // });
+    return request(app)
+      .get(`/api/appointments/${createdAppointments[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdAppointments[0]);
+      });
+  });
 
   // it('deletes a Appointment by id', () => {
   //   const createdAppointments = getAppointments();
 
   //   return request(app)
-  //     .delete(`/api/requests/${createdAppointments[0]._id}`)
-  //     .then(() => request(app).get('/api/requests'))
+  //     .delete(`/api/appointments/${createdAppointments[0]._id}`)
+  //     .then(() => request(app).get('/api/appointments'))
   //     .then(res => {
   //       expect(res.body).not.toContainEqual(createdAppointments[0]);
   //     });
@@ -63,7 +62,7 @@ describe(' appointments routes', () => {
   //   const createdAppointments = getAppointments();
 
   //   return request(app)
-  //     .put(`/api/requests/${createdAppointments[0]._id}`)
+  //     .put(`/api/appointments/${createdAppointments[0]._id}`)
   //     .send({
   //       appointmentComments: 'Test'
   //     })

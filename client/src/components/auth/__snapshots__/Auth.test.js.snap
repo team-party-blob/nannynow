@@ -1,11 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Auth component matches snapshot 1`] = `
-<div>
+<div
+  id="auth"
+>
   <h1>
-    Welcome to Nanny Now!
+    Nanny Now!
   </h1>
   <form
+    id="authForm"
     onSubmit={[Function]}
   >
     <label
@@ -28,42 +31,42 @@ exports[`Auth component matches snapshot 1`] = `
       type="password"
       value=""
     />
-    <div
+    <label
       id="role"
     >
-      <label>
-        Are You a Nanny or a Family?
-      </label>
-      <select
-        name=""
-        onChange={[Function]}
+      Are You a Nanny or a Family?
+    </label>
+    <select
+      name=""
+      onChange={[Function]}
+    >
+      <option
+        value=""
       >
-        <option
-          value=""
-        >
-          Select
-        </option>
-        <option
-          key="nanny"
-          name=""
-          value="nanny"
-        >
-          Nanny
-        </option>
-        <option
-          key="family"
-          name=""
-          value="family"
-        >
-          Family
-        </option>
-      </select>
-    </div>
+        Select
+      </option>
+      <option
+        key="nanny"
+        name=""
+        value="nanny"
+      >
+        Nanny
+      </option>
+      <option
+        key="family"
+        name=""
+        value="family"
+      >
+        Family
+      </option>
+    </select>
     <button>
       Sign Up
     </button>
   </form>
-  <div>
+  <div
+    id="switchUserType"
+  >
     <h3>
       Already Have an Account?
     </h3>

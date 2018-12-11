@@ -1,0 +1,33 @@
+{
+  "name": "nannynow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npm run clean && npm run install:client && npm run install:server",
+    "install:client": "cd client && npm i",
+    "install:server": "cd server && npm i",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "cd client && npm run test",
+    "test:server": "cd server && npm run test",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "prestart": "npm run build",
+    "start": "cd server && npm start",
+    "rmpackagelock": "rm -rf package-lock.json",
+    "rmnodemodules": "rm -rf node_modules",
+    "rmyarnlock": "rm -rf yarn.lock",
+    "cleanserver1": "cd server && npm run rmpackagelock",
+    "cleanserver2": "cd server && npm run rmnodemodules",
+    "cleanserver3": "cd server && npm run rmyarnlock",
+    "cleanclient1": "cd client && npm run rmpackagelock",
+    "cleanclient2": "cd client && npm run rmnodemodules",
+    "cleanclient3": "cd client && npm run rmyarnlock",
+    "clean": "npm run rmpackagelock && npm run rmnodemodules && npm run rmyarnlock && npm run cleanserver1 && npm run cleanserver2 && npm run cleanserver3 && npm run cleanclient1 && npm run cleanclient2 && npm run cleanclient3",
+    "switchtoyarn": "cp package-yarn.json package.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

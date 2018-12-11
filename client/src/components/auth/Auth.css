@@ -1,0 +1,96 @@
+#auth {
+  padding-top: 5vh;
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/8vV2rpe/pastel-blue-background-1080p_x1kgy93b__F0000.png');
+  background-size: cover;
+  background-color: #eaf5ff;
+
+  h1 {
+    font-family: 'Noto Serif TC', serif;
+    text-align: center;
+    font-size: 40px;
+  }
+
+  #authForm {
+    background-color: white;
+    border: 3px solid grey;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+    padding: 1em;
+
+    label {
+      padding-top: 2em;
+      padding-bottom: 0.5em;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+    }
+
+    input {
+      height: 5vh;
+      border-radius: 8px;
+      border: 2px solid grey;
+
+    }
+
+    #role {
+      text-align: center;
+    }
+
+    select {
+      height: 5vh;
+      border: 2px solid grey;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+    }
+
+    button {
+      margin-top: 2em;
+      margin-bottom: 2em;
+      padding: 1em;
+      border-radius: 8px;
+      border: 2px solid grey;
+      font-size: 18px;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+      &:hover {
+        background-color: #f96a54;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #switchUserType {
+    text-align: center;
+
+    h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+    }
+    button {
+      height: 5vh;
+      padding-bottom: 2em;
+      padding-top: 2em;
+      margin-bottom: 2em;
+      font-size: 18px;
+      background-color: #f96a54;
+      border: 2px solid grey;
+      border-radius: 8px;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+    }
+  }
+}
+
+@media (min-width: 651px) {
+  #auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    #authForm {
+      align-self: center;
+      width: 500px;
+    }
+  }
+}

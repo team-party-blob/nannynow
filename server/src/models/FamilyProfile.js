@@ -21,13 +21,11 @@ const familyProfileSchema = new mongoose.Schema({
     enum: getStates()
   },
   zip: {
-    type: Number,
-    min: 501,
-    max: 99950,
+    type: String,
     required: [true, 'ZIP code is required.']
   },
   phone: {
-    type: Number,
+    type: String,
     required: [true, 'State is required.']
   },
   email: {
@@ -54,6 +52,7 @@ const familyProfileSchema = new mongoose.Schema({
   },
   numOfChildren: {
     type: Number,
+    min: 1,
     required: [true, 'Number of children is required.']
   },
   birthdays: [

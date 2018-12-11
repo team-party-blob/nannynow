@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       required: [true, 'Role must be admin, nanny, or family'],
-      enum: ['admin', 'nanny', 'family', 'owner']
+      enum: ['admin', 'nanny', 'family', 'developer']
     },
     createdDate: {
       type: Date,

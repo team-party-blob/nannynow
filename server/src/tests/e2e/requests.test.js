@@ -26,23 +26,23 @@ describe('requested appointments routes', () => {
     });
   });
 
-  //   it('gets a list of all requestedAppointments', () => {
-  //     const createdRequestedAppointments = getRequestedAppointments();
+  it('gets a list of all requestedAppointments', () => {
+    const createdRequestedAppointments = getRequestedAppointments();
 
-  //     return requestedAppointment(app)
-  //       .get('/api/requestedAppointments')
-  //       .then(res => {
-  //         expect(res.body.length).toEqual(2);
-  //         expect(res.body).toContainEqual(createdRequestedAppointments[0]);
-  //         expect(res.body).toContainEqual(createdRequestedAppointments[1]);
-  //       });
-  //   });
+    return request(app)
+      .get('/api/requests')
+      .then(res => {
+        expect(res.body.length).toEqual(2);
+        expect(res.body).toContainEqual(createdRequestedAppointments[0]);
+        expect(res.body).toContainEqual(createdRequestedAppointments[1]);
+      });
+  });
 
   //   it('gets a requestedAppointment by id', () => {
   //     const createdRequestedAppointments = getRequestedAppointments();
 
-  //     return requestedAppointment(app)
-  //       .get(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
+  //     return request(app)
+  //       .get(`/api/requests/${createdRequestedAppointments[0]._id}`)
   //       .then(res => {
   //         expect(res.body).toEqual(createdRequestedAppointments[0]);
   //       });
@@ -51,9 +51,9 @@ describe('requested appointments routes', () => {
   //   it('deletes a requestedAppointment by id', () => {
   //     const createdRequestedAppointments = getRequestedAppointments();
 
-  //     return requestedAppointment(app)
-  //       .delete(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
-  //       .then(() => requestedAppointment(app).get('/api/requestedAppointments'))
+  //     return request(app)
+  //       .delete(`/api/requests/${createdRequestedAppointments[0]._id}`)
+  //       .then(() => request(app).get('/api/requests'))
   //       .then(res => {
   //         expect(res.body).not.toContainEqual(createdRequestedAppointments[0]);
   //       });
@@ -62,8 +62,8 @@ describe('requested appointments routes', () => {
   //   it('updates a requestedAppointment by id', () => {
   //     const createdRequestedAppointments = getRequestedAppointments();
 
-  //     return requestedAppointment(app)
-  //       .put(`/api/requestedAppointments/${createdRequestedAppointments[0]._id}`)
+  //     return request(app)
+  //       .put(`/api/requests/${createdRequestedAppointments[0]._id}`)
   //       .send({
   //         name: 'Jim'
   //       })

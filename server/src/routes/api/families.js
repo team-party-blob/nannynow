@@ -43,4 +43,12 @@ export default Router()
       .lean()
       .then(families => res.json(families))
       .catch(next);
+  })
+
+  .get('/:id', (req, res, next) => {
+    const { id } = req.params;
+    FamilyProfile.findById(id)
+      .lean()
+      .then(family => res.json(family))
+      .catch(next);
   });

@@ -31,9 +31,9 @@ describe('families routes', () => {
     const createdFamilies = getFamilies();
 
     return request(app)
-      .get(`/api/families/${createdFamilies[1]._id}`)
+      .get(`/api/families/${createdFamilies[0]._id}`)
       .then(res => {
-        expect(res.body).toEqual(createdFamilies[1]);
+        expect(res.body).toEqual(createdFamilies[0]);
       });
   });
 

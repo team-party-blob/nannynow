@@ -57,7 +57,7 @@ describe('families routes', () => {
         name: 'Jim'
       })
       .then(res => {
-        expect(res.body.role).toEqual('Jim');
+        expect(res.body.name).toEqual('Jim');
       });
   });
 });

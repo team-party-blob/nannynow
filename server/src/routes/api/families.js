@@ -58,4 +58,46 @@ export default Router()
     FamilyProfile.findByIdAndDelete(id)
       .then(family => res.json({ removed: !!family }))
       .catch(next);
+  })
+
+  .put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const {
+      name,
+      streetAddress1,
+      streetAddress2,
+      city,
+      state,
+      zip,
+      phone,
+      email,
+      user,
+      agency,
+      description,
+      numOfChildren,
+      birthdays
+    } = req.body;
+
+    FamilyProfile.findByIdAndUpdate(
+      id,
+      {
+        name,
+        streetAddress1,
+        streetAddress2,
+        city,
+        state,
+        zip,
+        phone,
+        email,
+        user,
+        agency,
+        description,
+        numOfChildren,
+        birthdays
+      },
+      { new: true }
+    )
+      .lean()
+      .then(family => res.json(family))
+      .catch(next);
   });

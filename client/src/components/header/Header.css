@@ -2,7 +2,6 @@ img {
   width: 5em;
 }
 
-
 /*Mobile Header */
 @media (max-width: 650px) {
   header {
@@ -23,32 +22,33 @@ img {
     #hamburgerInput {
       width: 40px;
       height: 32px;
-      position: absolute;
-      cursor: pointer;
-      top: -7px;
-      left: -5px;
+      position: fixed;
+      top: 5px;
+      left: 5px;
       opacity: 0;
       z-index: 9999999;
+      &:hover {
+        cursor: pointer;
+      }
     }
-
     #hamburgerSpan {
-      background: lightgrey;
+      background: darkgrey;
       width: 33px;
       min-height: 4px;
       height: 4px;
       display: block;
       border-radius: 2px;
-      margin-top: 7px;
-      margin-left: 2px;
+      margin-top: 20px;
+      margin-left: 10px;
       transition: 0.5s;
-      position: absolute;
+      position: fixed;
       left: 0px;
       &::before, &::after {
         transition: 0.5s;
         border-radius: 2px;
         display: block;
         height: 4px;
-        background: lightgrey;
+        background: darkgrey;
         content: '';
         display: block;
         position: relative;
@@ -113,14 +113,20 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
     align-items: center;
-    
+    // background-image: url('https://wallpaper-house.com/data/out/10/wallpaper2you_463114.jpg');
+
     #hamburgerLabel {
       display: none;
     }
 
     #hamburgerInput {
       display: none;
+    }
+
+    img {
+      padding-left: 5vw;
     }
 
 

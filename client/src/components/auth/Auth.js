@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
+import styles from './Auth.css';
+import { logo } from '../../assets/imageUrl';
 
 export default class Login extends PureComponent {
-
   static propTypes = {
     loginType: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired
@@ -26,8 +27,10 @@ export default class Login extends PureComponent {
 
   changeLoginType = () => {
     const { loginType } = this.props;
-    if(loginType === 'Sign Up') this.props.history.push(ROUTES.SIGNIN.linkTo());
-    if(loginType === 'Sign In') this.props.history.push(ROUTES.SIGNUP.linkTo());
+    if (loginType === 'Sign Up')
+      this.props.history.push(ROUTES.SIGNIN.linkTo());
+    if (loginType === 'Sign In')
+      this.props.history.push(ROUTES.SIGNUP.linkTo());
   };
 
   handleSubmit = event => {
@@ -37,14 +40,13 @@ export default class Login extends PureComponent {
   };
 
   render() {
-
     const { email, password, role } = this.state;
     const { loginType } = this.props;
 
     const nannyOrFamilyInput = () => {
       return (
-        <div id='role'>
-          <label>Are You a Nanny or a Family?</label>
+        <Fragment>
+          <label id={styles.role}>Are You a Nanny or a Family?</label>
           <select name={role} onChange={this.handleRoleChange}>
             <option value=''>Select</option>
             <option name={role} key='nanny' value='nanny'>
@@ -54,12 +56,12 @@ export default class Login extends PureComponent {
               Family
             </option>
           </select>
-        </div>
+        </Fragment>
       );
     };
     const alreadyUser = () => {
       return (
-        <div>
+        <div id={styles.switchUserType}>
           <h3>Already Have an Account?</h3>
           <button onClick={this.changeLoginType}>Click Here to Sign In</button>
         </div>
@@ -68,7 +70,7 @@ export default class Login extends PureComponent {
 
     const newUser = () => {
       return (
-        <div>
+        <div id={styles.switchUserType}>
           <h3>New to Nanny Now?</h3>
           <button onClick={this.changeLoginType}>Click Here to Sign Up</button>
         </div>
@@ -76,9 +78,11 @@ export default class Login extends PureComponent {
     };
 
     return (
-      <div>
-        <h1>Welcome to Nanny Now!</h1>
-        <form onSubmit={this.handleSubmit}>
+      <div id={styles.auth}>
+
+        <h1>Nanny Now!</h1>
+
+        <form id={styles.authForm} onSubmit={this.handleSubmit}>
           <label htmlFor='email'>Email</label>
           <input
             type='email'
@@ -86,6 +90,7 @@ export default class Login extends PureComponent {
             value={email}
             onChange={this.handleChange}
           />
+
           <label>Password</label>
           <input
             type='password'

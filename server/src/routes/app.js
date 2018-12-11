@@ -7,6 +7,7 @@ import usersRoutes from './api/users';
 import nanniesRoutes from './api/nannies';
 import familiesRoutes from './api/families';
 import requestedAppointmentRoutes from './api/requests';
+
 const app = express();
 
 app.use(morgan('dev'));

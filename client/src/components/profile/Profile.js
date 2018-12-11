@@ -32,7 +32,6 @@ export default class Profile extends PureComponent {
       description
     } = this.state;
 
-    console.log(this.state);
     return (
       <Fragment>
         <h1>Create Your Profile</h1>

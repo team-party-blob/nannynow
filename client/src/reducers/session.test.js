@@ -16,7 +16,7 @@ describe('session reducer', () => {
     user: null,
     token: '',
     loading: false,
-    error: SESSION_ERROR
+    error: null
   };
 
   it('creates a new user in session on SESSION_CREATE', () => {

@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
 import styles from './Auth.css';
@@ -7,7 +8,8 @@ import styles from './Auth.css';
 export default class Login extends PureComponent {
   static propTypes = {
     loginType: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    session: PropTypes.object
   };
 
   state = {
@@ -41,7 +43,9 @@ export default class Login extends PureComponent {
 
   render() {
     const { email, password, role } = this.state;
-    const { loginType } = this.props;
+    const { loginType, session } = this.props;
+
+    {session && <Redirect to={ROUTES.DASHBOARD.linkTo(session.user._id)} />;}
 
     const nannyOrFamilyInput = () => {
       return (
@@ -59,6 +63,7 @@ export default class Login extends PureComponent {
         </Fragment>
       );
     };
+    
     const alreadyUser = () => {
       return (
         <div id={styles.switchUserType}>

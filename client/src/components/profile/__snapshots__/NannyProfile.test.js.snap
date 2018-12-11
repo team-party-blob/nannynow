@@ -5,7 +5,9 @@ exports[`Profile component renders a component 1`] = `
   <h1>
     Create Your Profile
   </h1>
-  <form>
+  <form
+    onSubmit={[Function]}
+  >
     <label
       htmlFor="name"
     >
@@ -34,7 +36,6 @@ exports[`Profile component renders a component 1`] = `
       Age:
     </label>
     <input
-      min={18}
       name="age"
       onChange={[Function]}
       type="number"
@@ -112,9 +113,43 @@ exports[`Profile component renders a component 1`] = `
       type="text"
       value=""
     />
+    <button>
+      Submit Profile
+    </button>
   </form>
   <div
     id="profileView"
-  />
+  >
+    <img
+      src=""
+    />
+    <h1>
+      Name: 
+    </h1>
+    <h3>
+      Age: 
+    </h3>
+    <h3>
+      Street Address:
+    </h3>
+    <h3>
+      Address (continued): 
+    </h3>
+    <h3>
+      City: 
+    </h3>
+    <h3>
+      Zip Code: 
+    </h3>
+    <h3>
+      Phone Number: 
+    </h3>
+    <h3>
+      Hourly Rate: 
+    </h3>
+    <h3>
+      Description: 
+    </h3>
+  </div>
 </Fragment>
 `;

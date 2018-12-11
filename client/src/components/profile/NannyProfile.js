@@ -1,7 +1,14 @@
 import React, { PureComponent, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import styles from './NannyProfile.css';
 
-export default class Profile extends PureComponent {
+export default class NannyProfile extends PureComponent {
+
+  static propTypes = {
+    session: PropTypes.object.isRequired,
+    // onSubmit: PropTypes.func.isRequired
+  };
+
   state = {
     photo: '',
     name: '',
@@ -15,11 +22,30 @@ export default class Profile extends PureComponent {
     description: ''
   };
 
+  componentDidMount() {
+    //Set session.profile to state here
+  }
+
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const id = this.props.match.url;
+    //get id off of this.props.match;
+    this.props.onSubmit(id, this.state);
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const { email, password, role, agency } = this.state;
+    this.props.onSubmit({ email, password, role, agency });
+  };
+
   render() {
+
+    console.log(this.props)
     const {
       photo,
       name,
@@ -36,7 +62,7 @@ export default class Profile extends PureComponent {
     return (
       <Fragment>
         <h1>Create Your Profile</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor='name'>Full Name:</label>
           <input
             type='text'
@@ -55,7 +81,6 @@ export default class Profile extends PureComponent {
           <input
             type='number'
             name='age'
-            min={18}
             value={age}
             onChange={this.handleChange}
           />
@@ -107,9 +132,19 @@ export default class Profile extends PureComponent {
             value={description}
             onChange={this.handleChange}
           />
+          <button>Submit Profile</button>
         </form>
         <div id={styles.profileView}>
-
+          <img src={photo} />
+          <h1>Name: {name}</h1>
+          <h3>Age: {age}</h3>
+          <h3>Street Address:{streetAddress1}</h3>
+          <h3>Address (continued): {streetAddress2}</h3>
+          <h3>City: {city}</h3>
+          <h3>Zip Code: {zip}</h3>
+          <h3>Phone Number: {phoneNumber}</h3>
+          <h3>Hourly Rate: {pricePerHour}</h3>
+          <h3>Description: {description}</h3>
         </div>
       </Fragment>
     );

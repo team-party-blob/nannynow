@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Profile from './NannyProfile';
+import NannyProfile from './NannyProfile';
 
 describe('Profile component', () => {
   it('renders a component', () => {
-    const wrapper = shallow(<Profile />);
+    const wrapper = shallow(<NannyProfile />);
     expect(wrapper).toMatchSnapshot();
   });
+
 
 
 });

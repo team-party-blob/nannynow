@@ -4,7 +4,7 @@ import {
   verifySession
 } from '../services/authApi';
 
-export const SESSION_CREATE = 'SESSION_CREATE';
+export const SESSION_CREATE = 'SESSION_CREATE';  //This will be the only action needed to get 
 export const SESSION_LOAD_START = 'SESSION_LOAD_START';
 export const SESSION_LOAD_END = 'SESSION_LOAD_END';
 export const SESSION_ERROR = 'SESSION_ERROR';

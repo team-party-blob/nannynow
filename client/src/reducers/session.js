@@ -6,6 +6,14 @@ import {
   SESSION_TOKEN
 } from '../actions/session';
 
+import {
+  PROFILE_UPDATE,
+  PROFILE_UPDATE_LOAD_START,
+  PROFILE_UPDATE_LOAD_END,
+  PROFILE_UPDATE_ERROR
+} from '../actions/profile';
+import { stat } from 'fs';
+
 
 const initialState = {
   user: null,
@@ -26,6 +34,8 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, token: payload };
     case SESSION_ERROR:
       return { ...state, error: payload };
+    case PROFILE_UPDATE:
+      return { ...state, [state.user]: payload };
     default:
       return state;
   }

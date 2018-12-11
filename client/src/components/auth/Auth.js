@@ -1,13 +1,15 @@
 import React, { PureComponent, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
 import styles from './Auth.css';
-import { logo } from '../../assets/imageUrl';
+// import { logo } from '../../assets/imageUrl';
 
 export default class Login extends PureComponent {
   static propTypes = {
     loginType: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    session: PropTypes.object
   };
 
   state = {
@@ -27,9 +29,9 @@ export default class Login extends PureComponent {
 
   changeLoginType = () => {
     const { loginType } = this.props;
-    if (loginType === 'Sign Up')
+    if(loginType === 'Sign Up')
       this.props.history.push(ROUTES.SIGNIN.linkTo());
-    if (loginType === 'Sign In')
+    if(loginType === 'Sign In')
       this.props.history.push(ROUTES.SIGNUP.linkTo());
   };
 
@@ -41,7 +43,9 @@ export default class Login extends PureComponent {
 
   render() {
     const { email, password, role } = this.state;
-    const { loginType } = this.props;
+    const { loginType, session } = this.props;
+
+    {session && <Redirect to={ROUTES.DASHBOARD.linkTo(session.user._id)} />;}
 
     const nannyOrFamilyInput = () => {
       return (

@@ -3,11 +3,12 @@ import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import store from './store';
 import App from './components/app/App';
+import styles from './main.css';
 
 
 render(
   <Provider store={store}>
-    <App />
+    <App id={styles.main}/>
   </Provider>,
   document.getElementById('root')
 );

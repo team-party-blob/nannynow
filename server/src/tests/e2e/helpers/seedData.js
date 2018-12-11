@@ -2,26 +2,26 @@ import { dropCollection } from './db';
 import request from 'supertest';
 import app from '../../../routes/app';
 
-
 beforeEach(() => {
   return dropCollection('agencies');
 });
 
-afterAll(() => {
-  return dropCollection('users');
-});
-
 beforeEach(() => {
   return dropCollection('users');
 });
 
 beforeEach(() => {
-  return dropCollection('nannies');
+  return dropCollection('nannyprofiles');
+});
+
+beforeEach(() => {
+  return dropCollection('familyprofiles');
 });
 
 let createdAgencies;
 let createdUsers;
 let createdNannies;
+let createdFamilies;
 
 const agencies = [
   {
@@ -30,11 +30,12 @@ const agencies = [
     streetAddress1: '3 Monroe Parkway Suite P#129',
     city: 'Lake Oswego',
     state: 'OR',
-    zip: 97035,
-    phone: 5032455288,
+    zip: '97035',
+    phone: '5032455288',
     businessEmail: 'info@nwnannies.net',
     website: 'https://nwnannies.net/',
-    hourlyFee: 3.50
+    hourlyFee: 3.5,
+    agencyAlias: 'nwnannies'
   }
 ];
 
@@ -64,7 +65,11 @@ const users = [
 const nannies = [
   {
     name: 'Mrs. Doubtfire',
-    address: '1315 Fabricator ln',
+    streetAddress1: '3 Monroe Parkway Suite P#129',
+    city: 'Lake Oswego',
+    state: 'OR',
+    zip: '97035',
+    phone: '5105010844',
     description: 'I am a nanny in disguise to spy on children for my own personal gain',
     age: 42,
     pricePerHour: 8.25,
@@ -72,11 +77,30 @@ const nannies = [
   },
   {
     name: 'Mary Poppins',
-    address: '6558 Umbrella Ave',
+    streetAddress1: '3 Monroe Parkway Suite P#129',
+    city: 'Portland',
+    state: 'OR',
+    zip: '97208',
+    phone: '9251112222',
     description: 'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
     age: 42,
     pricePerHour: 5.75,
     createdDate: Date.now()
+  }
+];
+
+const families = [
+  {
+    name: 'Von Trap',
+    streetAddress1: '201 Eidelweiss Way',
+    city: 'Portland',
+    state: 'OR',
+    zip: '97210',
+    phone: '5032222222',
+    email: 'vontrap@test.com',
+    description: 'Family of singers',
+    numOfChildren: 2,
+    birthdays: ['06/19/15', '06/13/13']
   }
 ];
 
@@ -89,7 +113,7 @@ const createAgency = agency => {
 
 const createUser = user => {
   return request(app)
-    .post('/api/users/signup')
+    .post('/api/users/nwnannies/signup')
     .send(user)
     .then(res => res.body);
 };
@@ -98,6 +122,13 @@ const createNanny = nanny => {
   return request(app)
     .post('/api/nannies')
     .send(nanny)
+    .then(res => res.body);
+};
+
+const createFamily = family => {
+  return request(app)
+    .post('/api/families')
+    .send(family)
     .then(res => res.body);
 };
 
@@ -122,29 +153,32 @@ beforeEach(() => {
   nannies[0].agency = createdAgencies[0]._id;
   nannies[1].agency = createdAgencies[0]._id;
 
-  nannies[0].user = users[1]._id;
-  nannies[1].user = users[2]._id;
-
+  nannies[0].user = createdUsers[1]._id;
+  nannies[1].user = createdUsers[2]._id;
 
   return Promise.all(nannies.map(createNanny)).then(nanniesRes => {
     createdNannies = nanniesRes;
   });
 });
 
-const getAgencies = () => createdAgencies;
-const agenciesSeedData = () => agencies;
+beforeEach(() => {
+  families[0].agency = createdAgencies[0]._id;
 
-const getUsers = () => createdUsers;
-const usersSeedData = () => users;
+  families[0].user = createdUsers[0]._id;
 
-const getNannies = () => createdNannies;
-const nanniesSeedData = () => users;
+  return Promise.all(families.map(createFamily)).then(familiesRes => {
+    createdFamilies = familiesRes;
+  });
+});
 
-module.exports = {
-  getAgencies,
-  getUsers,
-  getNannies,
-  agenciesSeedData,
-  usersSeedData,
-  nanniesSeedData
-};
+export const getAgencies = () => createdAgencies;
+export const agenciesSeedData = () => agencies;
+
+export const getUsers = () => createdUsers;
+export const usersSeedData = () => users;
+
+export const getNannies = () => createdNannies;
+export const nanniesSeedData = () => nannies;
+
+export const getFamilies = () => createdFamilies;
+export const familiesSeedData = () => families;

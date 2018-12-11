@@ -1,13 +1,14 @@
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
+import { getStates } from './helpers/listHelpers';
 
 const nannyProfileSchema = new mongoose.Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
   agency: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Agency',
     required: true
   },
@@ -15,9 +16,30 @@ const nannyProfileSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  address: {
+  photo: {
+    type: String
+  },
+  streetAddress1: {
     type: String,
-    required: true
+    required: [true, 'Street address is required.']
+  },
+  streetAddress2: String,
+  city: {
+    type: String,
+    required: [true, 'City is required.']
+  },
+  state: {
+    type: String,
+    required: [true, 'State is required.'],
+    enum: getStates()
+  },
+  zip: {
+    type: String,
+    required: [true, 'ZIP code is required.']
+  },
+  phone: {
+    type: String,
+    required: [true, 'State is required.']
   },
   description: {
     type: String
@@ -34,4 +56,4 @@ const nannyProfileSchema = new mongoose.Schema({
   }
 });
 
-export default model('NannyProfile', nannyProfileSchema);
+export default mongoose.model('NannyProfile', nannyProfileSchema);

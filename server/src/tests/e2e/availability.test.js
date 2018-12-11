@@ -1,10 +1,7 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-import {
-  getAvailableTimes,
-  availableTimesSeedData
-} from './helpers/seedData';
+import { getAvailableTimes, availableTimesSeedData } from './helpers/seedData';
 
 describe('requested available times routes', () => {
   it('creates a requested available time (with seed data helper)', () => {
@@ -20,4 +17,38 @@ describe('requested available times routes', () => {
       createdDate: expect.anything()
     });
   });
+
+  it('gets a list of all available times for all available for all nannies', () => {
+    const createdAvailableTimes = getAvailableTimes();
+
+    return request(app)
+      .get('/api/availability')
+      .then(res => {
+        expect(res.body.length).toEqual(2);
+        expect(res.body).toContainEqual(createdAvailableTimes[0]);
+        expect(res.body).toContainEqual(createdAvailableTimes[1]);
+      });
+  });
+
+  //   it('gets an AvailableTime by id', () => {
+  //     const createdAvailableTimes = getAvailableTimes();
+
+  //     return request(app)
+  //       .get(`/api/availableTimes/${createdAvailableTimes[0]._id}`)
+  //       .then(res => {
+  //         expect(res.body).toEqual(createdAvailableTimes[0]);
+  //       });
+  //   });
+
+  //   it('deletes a AvailableTime by id', () => {
+  //     const createdAvailableTimes = getAvailableTimes();
+
+  //     return request(app)
+  //       .delete(`/api/availableTimes/${createdAvailableTimes[0]._id}`)
+  //       .then(() => request(app).get('/api/availability'))
+  //       .then(res => {
+  //         expect(res.body).not.toContainEqual(createdAvailableTimes[0]);
+  //       });
+  //   });
+  // });
 });

@@ -27,6 +27,10 @@ beforeEach(() => {
   return dropCollection('appointments');
 });
 
+beforeEach(() => {
+  return dropCollection('availabletimes');
+});
+
 let createdAgencies;
 let createdUsers;
 let createdNannies;

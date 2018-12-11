@@ -35,7 +35,8 @@ export default Router()
       .catch(next);
   })
 
-  .get('/', (req, res, next) => {
+  .get('/', requireAuth(['admin']), (req, res, next) => {
+    console.log('get', res.body);
     Agency.find()
       .lean()
       .then(agencys => res.json(agencys))

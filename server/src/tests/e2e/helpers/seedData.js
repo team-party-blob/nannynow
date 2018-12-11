@@ -105,11 +105,11 @@ const families = [
   }
 ];
 
-let token = '';
+let adminToken = '';
 const createAgency = agency => {
   return request(app)
     .post('/api/agencies')
-    .set('Authorization', `Bearer ${token}`)
+    .set('Authorization', `Bearer ${adminToken}`)
     .send(agency)
     .then(res => res.body);
 };
@@ -147,7 +147,7 @@ beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'usertest@test.com', password: '123' })
-    .then(res => token = res.body.token);
+    .then(res => adminToken = res.body.token);
 });
 
 beforeEach(() => {
@@ -188,7 +188,7 @@ beforeEach(() => {
     createdFamilies = familiesRes;
   });
 });
-
+export const getAdminToken = () => adminToken;
 export const getAgencies = () => createdAgencies;
 export const agenciesSeedData = () => agencies;
 

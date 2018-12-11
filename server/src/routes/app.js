@@ -8,6 +8,7 @@ import nanniesRoutes from './api/nannies';
 import familiesRoutes from './api/families';
 import requestedAppointmentRoutes from './api/requests';
 import appointmentsRoutes from './api/appointments';
+import availabilityRoutes from './api/availability';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/api/nannies', nanniesRoutes);
 app.use('/api/families', familiesRoutes);
 app.use('/api/requests', requestedAppointmentRoutes);
 app.use('/api/appointments', appointmentsRoutes);
+app.use('/api/availability', availabilityRoutes);
 
 app.use(express.static('../client/dist'));
 app.use('*', spa('../client/dist/index.html'));

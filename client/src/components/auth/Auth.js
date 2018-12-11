@@ -12,15 +12,16 @@ export default class Login extends PureComponent {
   state = {
     email: '',
     password: '',
-    userType: ''
-  };
+    role: '',
+    agency: 'nwnannies'
+  }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
 
-  handleUserTypeChange = ({ target }) => {
-    this.setState({ userType: target.value });
+  handleRoleChange = ({ target }) => {
+    this.setState({ role: target.value });
   };
 
   changeLoginType = () => {
@@ -31,25 +32,25 @@ export default class Login extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { email, password, userType } = this.state;
-    this.props.onSubmit({ email, password, userType });
+    const { email, password, role, agency } = this.state;
+    this.props.onSubmit({ email, password, role, agency });
   };
 
   render() {
 
-    const { email, password, userType } = this.state;
+    const { email, password, role } = this.state;
     const { loginType } = this.props;
 
     const nannyOrFamilyInput = () => {
       return (
-        <div id='userType'>
+        <div id='role'>
           <label>Are You a Nanny or a Family?</label>
-          <select name={userType} onChange={this.handleUserTypeChange}>
+          <select name={role} onChange={this.handleRoleChange}>
             <option value=''>Select</option>
-            <option name={userType} key='nanny' value='nanny'>
+            <option name={role} key='nanny' value='nanny'>
               Nanny
             </option>
-            <option name={userType} key='family' value='family'>
+            <option name={role} key='family' value='family'>
               Family
             </option>
           </select>

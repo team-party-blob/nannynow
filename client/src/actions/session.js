@@ -9,21 +9,21 @@ export const SESSION_LOAD_START = 'SESSION_LOAD_START';
 export const SESSION_LOAD_END = 'SESSION_LOAD_END';
 export const SESSION_ERROR = 'SESSION_ERROR';
 
-export const signUp = ({ email, password }) => ({
+export const signUp = ({ email, password, role, agency }) => ({
   type: SESSION_CREATE,
   loadStart: SESSION_LOAD_START,
   loadEnd: SESSION_LOAD_END,
   errorType: SESSION_ERROR,
-  payload: signUpService({ email, password })
+  payload: signUpService({ email, password, role, agency })
 });
 
 
-export const signIn = ({ email, password }) => ({
+export const signIn = ({ email, password, role, agency }) => ({
   type: SESSION_CREATE,
   loadStart: SESSION_LOAD_START,
   loadEnd: SESSION_LOAD_END,
   errorType: SESSION_ERROR,
-  payload: signInService({ email, password })
+  payload: signInService({ email, password, role, agency })
 });
 
 export const refreshSession = () => ({

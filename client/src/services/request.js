@@ -18,7 +18,10 @@ const request = (url, method, body) => {
     },
     body: JSON.stringify(body)
   })
-    .then(res => [res.ok, res.headers, res.json()])
+    .then(res => {
+      console.log(res);
+      [res.ok, res.headers, res.json()];
+    })
     .then(([ok, headers, json]) => {
       if(!ok) throw json;
       return [headers, json];

@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { routerRoutes } from '../../routes/routes';
-import Header from '../header/Header';
+import HeaderContainer from '../../containers/HeaderContainer';
 
 export default function App() {
   return (
     <Router>
       <Fragment>
-        <Header />
+        <HeaderContainer />
         <Switch>
           {routerRoutes()}
         </Switch>

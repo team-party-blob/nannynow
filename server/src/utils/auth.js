@@ -4,7 +4,7 @@ import { compareSync, hashSync } from 'bcryptjs';
 
 config();
 
-const APP_SECRET = process.env.APP_SECRET;
+const APP_SECRET = 'some_password';
 const EXPIRE_IN = '24h';
 
 

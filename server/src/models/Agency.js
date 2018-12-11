@@ -25,13 +25,11 @@ const agencySchema = new mongoose.Schema({
     enum: getStates()
   },
   zip: {
-    type: Number,
-    min: 501,
-    max: 99950,
+    type: String,
     required: [true, 'ZIP code is required.']
   },
   phone: {
-    type: Number,
+    type: String,
     required: [true, 'State is required.']
   },
   businessEmail: {
@@ -46,6 +44,10 @@ const agencySchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     default: Date.now()
+  },
+  agencyAlias: {
+    type: String,
+    default: 'nwnannies'
   }
 });
 

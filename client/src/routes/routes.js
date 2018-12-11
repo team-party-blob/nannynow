@@ -1,7 +1,10 @@
 import Home from '../components/home/Home';
 import { Route } from 'react-router-dom';
 import React from 'react';
-import Signup from '../components/auth/Auth';
+import { Signup, Signin } from '../containers/AuthContainer';
+import { withSession } from '../components/auth/withSession';
+import NannyProfile from '../components/profile/NannyProfile';
+import Dashboard from '../components/dashboard/Dashboard';
 
 export const ROUTES = {
   HOME: {
@@ -13,6 +16,25 @@ export const ROUTES = {
     path: '/signup',
     Component: Signup,
     linkTo: () => '/signup'
+  },
+  SIGNIN: {
+    path: '/signin',
+    Component: Signin,
+    linkTo: () => '/signin'
+  },
+  NANNY_PROFILE: {
+    // path: '/nanny-profile/:id',
+    path: '/nanny-profile',
+    // Component: withSession(NannyProfile),
+    Component: NannyProfile,
+    // linkTo: id => `/nanny-profile/${id}`
+    linkTo: () => '/nanny-profile'
+
+  },
+  DASHBOARD: {
+    path: '/dashboard/:id',
+    Component: withSession(Dashboard),
+    linkTo: id => `/dashboard/${id}`
   }
 };
 

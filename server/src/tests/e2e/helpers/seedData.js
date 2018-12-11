@@ -345,7 +345,6 @@ beforeEach(() => {
     createdNannies[0]._id,
     createdNannies[1]._id
   ];
-
   requestedAppointments[1].requestedNannies = [
     createdNannies[0]._id,
     createdNannies[1]._id

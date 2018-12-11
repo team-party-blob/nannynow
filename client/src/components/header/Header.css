@@ -113,9 +113,9 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
     position: fixed;
     align-items: center;
-    // background-image: url('https://wallpaper-house.com/data/out/10/wallpaper2you_463114.jpg');
 
     #hamburgerLabel {
       display: none;
@@ -134,10 +134,15 @@ img {
       .link {
         padding: 10px;
         margin: 20px;
-        background-color: lightblue;
+        background-color: white;
+        opacity: 0.8;
         color: red;
         border-radius: 15px;
         text-decoration: none;
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
       }
     }
   }

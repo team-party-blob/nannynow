@@ -37,24 +37,22 @@ describe('families routes', () => {
       });
   });
 
-  // it('deletes a family by id', () => {
-  //   const createdFamilys = getFamilys();
+  it('deletes a family by id', () => {
+    const createdFamilies = getFamilies();
 
-  //   return request(app)
-  //     .delete(`/api/familys/${createdFamilys[1]._id}`)
-  //     .then(() => request(app).get('/api/familys'))
-  //     .then(res => {
-  //       expect(res.body).not.toContainEqual(createdFamilys[1]);
-  //       expect(res.body).toContainEqual(createdFamilys[0]);
-  //       expect(res.body).toContainEqual(createdFamilys[2]);
-  //     });
-  // });
+    return request(app)
+      .delete(`/api/families/${createdFamilies[0]._id}`)
+      .then(() => request(app).get('/api/families'))
+      .then(res => {
+        expect(res.body).not.toContainEqual(createdFamilies[0]);
+      });
+  });
 
   // it('updates a family by id', () => {
-  //   const createdFamilys = getFamilys();
+  //   const createdFamilies = getFamilies();
 
   //   return request(app)
-  //     .put(`/api/familys/${createdFamilys[0]._id}`)
+  //     .put(`/api/families/${createdFamilies[0]._id}`)
   //     .send({
   //       role: 'nanny'
   //     })

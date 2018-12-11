@@ -20,7 +20,7 @@ export const withSession = Component => {
 
     render() {
       if(this.props.loading) return <h1>LOADING SESSION</h1>;
-      if(!this.props.session) return <Redirect to={ROUTES.LOGIN.linkTo()} />;
+      if(!this.props.session) return <Redirect to={ROUTES.SIGNIN.linkTo()} />;
 
       return <Component {...this.props} />;
     }

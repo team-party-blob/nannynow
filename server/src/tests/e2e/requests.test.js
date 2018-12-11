@@ -48,16 +48,16 @@ describe('requested appointments routes', () => {
       });
   });
 
-  //   it('deletes a requestedAppointment by id', () => {
-  //     const createdRequestedAppointments = getRequestedAppointments();
+  it('deletes a requestedAppointment by id', () => {
+    const createdRequestedAppointments = getRequestedAppointments();
 
-  //     return request(app)
-  //       .delete(`/api/requests/${createdRequestedAppointments[0]._id}`)
-  //       .then(() => request(app).get('/api/requests'))
-  //       .then(res => {
-  //         expect(res.body).not.toContainEqual(createdRequestedAppointments[0]);
-  //       });
-  //   });
+    return request(app)
+      .delete(`/api/requests/${createdRequestedAppointments[0]._id}`)
+      .then(() => request(app).get('/api/requests'))
+      .then(res => {
+        expect(res.body).not.toContainEqual(createdRequestedAppointments[0]);
+      });
+  });
 
   //   it('updates a requestedAppointment by id', () => {
   //     const createdRequestedAppointments = getRequestedAppointments();

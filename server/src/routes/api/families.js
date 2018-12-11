@@ -51,4 +51,11 @@ export default Router()
       .lean()
       .then(family => res.json(family))
       .catch(next);
+  })
+
+  .delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+    FamilyProfile.findByIdAndDelete(id)
+      .then(family => res.json({ removed: !!family }))
+      .catch(next);
   });

@@ -20,12 +20,12 @@ const AppointmentSchema = new mongoose.Schema({
   nanny: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'NannyProfile',
-    required: [true, 'At least one  nanny is required']
+    required: [true, 'At least one nanny is required']
   },
   request: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'NannyProfile',
-    required: [true, 'At least one  nanny is required']
+    required: [true, 'At least one nanny is required']
   },
   createdDate: {
     type: Date,

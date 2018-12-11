@@ -299,15 +299,23 @@ beforeEach(() => {
 beforeEach(() => {
   requestedAppointments[0].agency = createdAgencies[0]._id;
   requestedAppointments[1].agency = createdAgencies[0]._id;
+  requestedAppointments[2].agency = createdAgencies[0]._id;
 
   requestedAppointments[0].family = createdFamilies[0]._id;
   requestedAppointments[1].family = createdFamilies[1]._id;
+  requestedAppointments[2].family = createdFamilies[0]._id;
 
   requestedAppointments[0].requestedNannies = [
     createdNannies[0]._id,
     createdNannies[1]._id
   ];
+
   requestedAppointments[1].requestedNannies = [
+    createdNannies[0]._id,
+    createdNannies[1]._id
+  ];
+
+  requestedAppointments[2].requestedNannies = [
     createdNannies[0]._id,
     createdNannies[1]._id
   ];
@@ -320,13 +328,14 @@ beforeEach(() => {
 });
 
 beforeEach(() => {
+  console.log('created nannies', createdNannies[0]._id)
   appointments[0].agency = createdAgencies[0]._id;
 
   appointments[0].family = createdFamilies[0]._id;
 
-  appointments[0].nanny = [createdNannies[0]._id, createdNannies[1]._id];
-  appointments[0].request = [createdRequestedAppointments[0]._id];
-
+  appointments[0].nanny = createdNannies[0]._id;
+  appointments[0].request = createdRequestedAppointments[1]._id;
+  console.log('appts', appointments)
   return Promise.all(appointments.map(createAppointment)).then(
     appointmentsRes => {
       createdAppointments = appointmentsRes;

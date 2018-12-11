@@ -10,9 +10,17 @@ describe(' appointments routes', () => {
   it('creates an appointment (with seed data helper)', () => {
     const createdAppointments = getAppointments();
     const appointments = appointmentsSeedData();
+    console.log('created appts', createdAppointments);
 
     expect(createdAppointments[0]).toEqual({
-      ...appointments[0],
+      arrivalTime: expect.anything(),
+      departureTime: expect.anything(),
+      family: appointments[0].family,
+      agency: appointments[0].agency,
+      nanny: appointments[0].nanny,
+      request: appointments[0].request,
+      agencyFeePerHour: appointments[0].agencyFeePerHour,
+      nannyPricePerHour: appointments[0].nannyPricePerHour,      
       _id: expect.any(String),
       __v: 0,
       createdDate: expect.anything()

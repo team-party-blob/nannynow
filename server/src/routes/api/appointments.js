@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import RequestedAppointment from '../../models/RequestedAppointment';
+import Appointment from '../../models/Appointment';
 
 export default Router().post('/', (req, res, next) => {
   const {
@@ -13,7 +13,7 @@ export default Router().post('/', (req, res, next) => {
     nannyPricePerHour
   } = req.body;
 
-  RequestedAppointment.create({
+  Appointment.create({
     arrivalTime,
     departureTime,
     family,

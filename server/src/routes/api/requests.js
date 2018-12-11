@@ -8,11 +8,9 @@ export default Router()
       endDateTime,
       birthdays,
       appointmentComments,
-      description,
       family,
       agency,
-      requestedNannies,
-      createdDate
+      requestedNannies
     } = req.body;
 
     RequestedAppointment.create({
@@ -20,11 +18,9 @@ export default Router()
       endDateTime,
       birthdays,
       appointmentComments,
-      description,
       family,
       agency,
-      requestedNannies,
-      createdDate
+      requestedNannies
     })
       .then(request => res.json(request))
       .catch(next);
@@ -49,5 +45,35 @@ export default Router()
     const { id } = req.params;
     RequestedAppointment.findByIdAndDelete(id)
       .then(request => res.json({ removed: !!request }))
+      .catch(next);
+  })
+
+  .put('/:id', (req, res, next) => {
+    const { id } = req.params;
+    const {
+      startDateTime,
+      endDateTime,
+      birthdays,
+      appointmentComments,
+      family,
+      agency,
+      requestedNannies
+    } = req.body;
+
+    RequestedAppointment.findByIdAndUpdate(
+      id,
+      {
+        startDateTime,
+        endDateTime,
+        birthdays,
+        appointmentComments,
+        family,
+        agency,
+        requestedNannies,
+      },
+      { new: true }
+    )
+      .lean()
+      .then(request => res.json(request))
       .catch(next);
   });

@@ -16,7 +16,6 @@ describe('requested appointments routes', () => {
       endDateTime: expect.anything(),
       birthdays: expect.any(Array),
       appointmentComments: requestedAppointments[0].appointmentComments,
-      description: requestedAppointments[0].description,
       family: requestedAppointments[0].family,
       agency: requestedAppointments[0].agency,
       requestedNannies: requestedAppointments[0].requestedNannies,
@@ -59,16 +58,16 @@ describe('requested appointments routes', () => {
       });
   });
 
-  //   it('updates a requestedAppointment by id', () => {
-  //     const createdRequestedAppointments = getRequestedAppointments();
+  it('updates a requestedAppointment by id', () => {
+    const createdRequestedAppointments = getRequestedAppointments();
 
-  //     return request(app)
-  //       .put(`/api/requests/${createdRequestedAppointments[0]._id}`)
-  //       .send({
-  //         name: 'Jim'
-  //       })
-  //       .then(res => {
-  //         expect(res.body.name).toEqual('Jim');
-  //       });
-  //   });
+    return request(app)
+      .put(`/api/requests/${createdRequestedAppointments[0]._id}`)
+      .send({
+        appointmentComments: 'Test'
+      })
+      .then(res => {
+        expect(res.body.appointmentComments).toEqual('Test');
+      });
+  });
 });

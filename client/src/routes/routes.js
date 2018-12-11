@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import React from 'react';
 import { Signup, Signin } from '../containers/AuthContainer';
 import { withSession } from '../components/auth/withSession';
-import NannyProfile from '../components/profile/NannyProfile';
+import Profile from '../components/profile/Profile';
 
 export const ROUTES = {
   HOME: {
@@ -21,10 +21,10 @@ export const ROUTES = {
     Component: Signin,
     linkTo: () => '/signin'
   },
-  NANNY_PROFILE: {
-    path: '/nanny-profile',
-    Component: NannyProfile,
-    linkTo: () => `/nanny-profile`
+  PROFILE: {
+    path: '/profile',
+    Component: Profile,
+    linkTo: () => '/profile'
   }
 };
 

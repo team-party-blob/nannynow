@@ -14,7 +14,7 @@ export default class Login extends PureComponent {
     password: '',
     role: '',
     agency: 'nwnannies'
-  }
+  };
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });

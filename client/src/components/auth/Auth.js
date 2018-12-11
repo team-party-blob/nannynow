@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
 import styles from './Auth.css';
-import { logo } from '../../assets/imageUrl';
+// import { logo } from '../../assets/imageUrl';
 
 export default class Login extends PureComponent {
   static propTypes = {
@@ -27,9 +27,9 @@ export default class Login extends PureComponent {
 
   changeLoginType = () => {
     const { loginType } = this.props;
-    if (loginType === 'Sign Up')
+    if(loginType === 'Sign Up')
       this.props.history.push(ROUTES.SIGNIN.linkTo());
-    if (loginType === 'Sign In')
+    if(loginType === 'Sign In')
       this.props.history.push(ROUTES.SIGNUP.linkTo());
   };
 

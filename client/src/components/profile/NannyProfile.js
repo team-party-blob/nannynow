@@ -1,16 +1,17 @@
 import React, { PureComponent, Fragment } from 'react';
+import styles from './NannyProfile.css';
 
 export default class Profile extends PureComponent {
   state = {
     photo: '',
     name: '',
-    age: 18,
+    age: '',
     streetAddress1: '',
     streetAddress2: '',
     city: '',
     zip: '',
     phoneNumber: '',
-    pricePerHour: 16,
+    pricePerHour: '',
     description: ''
   };
 
@@ -107,6 +108,9 @@ export default class Profile extends PureComponent {
             onChange={this.handleChange}
           />
         </form>
+        <div id={styles.profileView}>
+
+        </div>
       </Fragment>
     );
   }

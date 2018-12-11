@@ -16,7 +16,8 @@ export default Router()
       description,
       age,
       pricePerHour,
-      createdDate } = req.body;
+      createdDate
+    } = req.body;
 
     NannyProfile.create({
       user,
@@ -37,24 +38,21 @@ export default Router()
       .catch(next);
   })
   .get('/', (req, res, next) => {
-    NannyProfile
-      .find()
+    NannyProfile.find()
       .lean()
       .then(nannies => res.json(nannies))
       .catch(next);
   })
   .get('/:id', (req, res, next) => {
     const { id } = req.params;
-    NannyProfile
-      .findById(id)
+    NannyProfile.findById(id)
       .then(nannies => res.json(nannies))
       .catch(next);
   })
   .delete('/:id', (req, res, next) => {
     const { id } = req.params;
 
-    NannyProfile
-      .findByIdAndDelete(id)
+    NannyProfile.findByIdAndDelete(id)
       .then(results => res.json({ removed: !!results }))
       .catch(next);
   })
@@ -76,26 +74,25 @@ export default Router()
       createdDate
     } = req.body;
 
-    NannyProfile
-      .findByIdAndUpdate(
-        id,
-        {
-          user,
-          agency,
-          name,
-          photo,
-          streetAddress1,
-          city,
-          state,
-          zip,
-          phone,
-          description,
-          age,
-          pricePerHour,
-          createdDate
-        },
-        { new: true }
-      )
+    NannyProfile.findByIdAndUpdate(
+      id,
+      {
+        user,
+        agency,
+        name,
+        photo,
+        streetAddress1,
+        city,
+        state,
+        zip,
+        phone,
+        description,
+        age,
+        pricePerHour,
+        createdDate
+      },
+      { new: true }
+    )
       .lean()
       .then(nanny => res.json(nanny))
       .catch(next);

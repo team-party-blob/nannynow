@@ -50,21 +50,23 @@ export default class NannyScheduler extends PureComponent {
     console.log(this.state);
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="startDate">Start Date</label>
-          <input type="date" name="startDate" value={startDate} onChange={this.handleChange}/>
-          <label htmlFor="startTime">Start Time</label>
-          <input type="time" name="startTime" value={startTime} onChange={this.handleChange}/>
-        </div>
-        <div>
-          <label htmlFor="endDate">End Date</label>
-          <input type="date" name="endDate" value={endDate} onChange={this.handleChange}/>
-          <label htmlFor="endTime">End Time</label>
-          <input type="time" name="endTime" value={endTime} onChange={this.handleChange}/>
-        </div>
-        <button>Submit</button>
-      </form>
+
+      <DatePicker />
+      // <form onSubmit={this.handleSubmit}>
+      //   <div>
+      //     <label htmlFor="startDate">Start Date</label>
+      //     <input type="date" name="startDate" value={startDate} onChange={this.handleChange}/>
+      //     <label htmlFor="startTime">Start Time</label>
+      //     <input type="time" name="startTime" value={startTime} onChange={this.handleChange}/>
+      //   </div>
+      //   <div>
+      //     <label htmlFor="endDate">End Date</label>
+      //     <input type="date" name="endDate" value={endDate} onChange={this.handleChange}/>
+      //     <label htmlFor="endTime">End Time</label>
+      //     <input type="time" name="endTime" value={endTime} onChange={this.handleChange}/>
+      //   </div>
+      //   <button>Submit</button>
+      // </form>
     );
   }
 }

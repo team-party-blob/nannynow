@@ -8,5 +8,7 @@ export const updateProfile = (id, profileInfo) => {
 };
 
 export const createProfile = profileInfo => {
-  return post('/api/nannies', profileInfo);
+  const isFamily = profileInfo.birthdays;
+  if(isFamily) return post('/api/families', profileInfo);
+  if(!isFamily) return post('/api/nannies', profileInfo);
 };

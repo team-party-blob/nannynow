@@ -20,6 +20,7 @@ export default class FamilyProfile extends PureComponent {
     state: '',
     zip: '',
     phone: '',
+    email: 'iamemail@email.com',
     description: '',
     birthday: '',
     birthdays: [],

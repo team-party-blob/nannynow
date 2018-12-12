@@ -18,17 +18,17 @@ describe('requested available times routes', () => {
   //   });
   // });
 
-  it('gets a list of all available times for all available for all nannies', () => {
-    const createdAvailableTimes = getAvailableTimes();
+  // it('gets a list of all available times for all available for all nannies', () => {
+  //   const createdAvailableTimes = getAvailableTimes();
 
-    return request(app)
-      .get('/api/availability')
-      .then(res => {
-        expect(res.body.length).toEqual(2);
-        expect(res.body).toContainEqual(createdAvailableTimes[0]);
-        expect(res.body).toContainEqual(createdAvailableTimes[1]);
-      });
-  });
+  //   return request(app)
+  //     .get('/api/availability')
+  //     .then(res => {
+  //       expect(res.body.length).toEqual(2);
+  //       expect(res.body).toContainEqual(createdAvailableTimes[0]);
+  //       expect(res.body).toContainEqual(createdAvailableTimes[1]);
+  //     });
+  // });
 
   it('gets an AvailableTime by id', () => {
     const createdAvailableTimes = getAvailableTimes();

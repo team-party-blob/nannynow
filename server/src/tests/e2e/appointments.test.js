@@ -1,7 +1,7 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-import { getAppointments, appointmentsSeedData } from './helpers/seedData';
+import { getAppointments, appointmentsSeedData, getUsers } from './helpers/seedData';
 
 describe(' appointments routes', () => {
   it('creates an appointment (with seed data helper)', () => {
@@ -39,6 +39,17 @@ describe(' appointments routes', () => {
 
     return request(app)
       .get(`/api/appointments/${createdAppointments[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdAppointments[0]);
+      });
+  });
+
+  it('gets a list of all appointments by for a particular user id', () => {
+    const createdAppointments = getAppointments();
+    const createdUsers = getUsers();
+
+    return request(app)
+      .get(`/api/appointments/user/${createdUsers[0]._id}`)
       .then(res => {
         expect(res.body).toEqual(createdAppointments[0]);
       });

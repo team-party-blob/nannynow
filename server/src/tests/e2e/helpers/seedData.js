@@ -1,34 +1,40 @@
-import { dropCollection } from './db';
+// import { dropCollection } from './db';
 import request from 'supertest';
 import app from '../../../routes/app';
 import User from '../../../models/User';
+import Agency from '../../../models/Agency';
+import NannyProfile from '../../../models/NannyProfile';
+import FamilyProfile from '../../../models/FamilyProfile';
+import RequestedAppointment from '../../../models/RequestedAppointment';
+import Appointment from '../../../models/Appointment';
+import AvailableTime from '../../../models/AvailableTime';
 
 beforeEach(() => {
-  return dropCollection('agencies');
+  return Agency.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('users');
+  return User.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('nannyprofiles');
+  return NannyProfile.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('familyprofiles');
+  return FamilyProfile.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('requestedappointments');
+  return RequestedAppointment.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('appointments');
+  return Appointment.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('availabletimes');
+  return AvailableTime.deleteMany({});
 });
 
 let createdAgencies;

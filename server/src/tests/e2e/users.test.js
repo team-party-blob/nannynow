@@ -5,7 +5,12 @@ import User from '../../models/User';
 import { compare } from '../../utils/auth';
 import { getFamilyToken } from './helpers/seedData';
 
-const { getUsers, usersSeedData, getAgencies, getFamilies } = require('./helpers/seedData');
+const {
+  getUsers,
+  usersSeedData,
+  getAgencies,
+  getFamilies
+} = require('./helpers/seedData');
 
 const checkStatus = statusCode => res => {
   expect(res.status).toEqual(statusCode);
@@ -52,7 +57,7 @@ describe('users routes', () => {
       role: 'family'
     };
 
-    User.create(user).then(createdUser => {
+    return User.create(user).then(createdUser => {
       expect(createdUser.compare(user.password)).toBeTruthy();
       expect(createdUser.compare('failing')).toBeFalsy();
     });
@@ -85,13 +90,13 @@ describe('users routes', () => {
       .then(res => {
         token = res.body.token;
       })
-      .then(
-        request(app)
+      .then(() => {
+        return request(app)
           .post('/api/users/signin')
           .set('Authorization', `Bearer ${token}`)
           .send({ email: 'nanny@test.com', password: 'badpassword' })
-          .then(checkStatus(401))
-      );
+          .then(checkStatus(401));
+      });
   });
 
   it('verifies a signed in user', () => {

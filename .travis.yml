@@ -1,6 +1,9 @@
 language: node_js
 node_js: '10'
 services: mongodb
+env:
+  matrix:
+  - MONGODB_URI=mongodb://localhost:27017/test
 deploy:
   provider: heroku
   app:

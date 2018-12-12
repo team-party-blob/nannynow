@@ -71,7 +71,11 @@ export default Router()
       description,
       age,
       pricePerHour,
-      createdDate
+      createdDate,
+      projectedNannyPayment,
+      projectedAgencyPayment,
+      finalNannyPayment,
+      finalAgencyPayment
     } = req.body;
 
     NannyProfile.findByIdAndUpdate(
@@ -89,7 +93,11 @@ export default Router()
         description,
         age,
         pricePerHour,
-        createdDate
+        createdDate,
+        projectedNannyPayment,
+        projectedAgencyPayment,
+        finalNannyPayment,
+        finalAgencyPayment
       },
       { new: true }
     )

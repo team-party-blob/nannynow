@@ -310,8 +310,8 @@ beforeEach(() => {
   nannies[0].agency = createdAgencies[0]._id;
   nannies[1].agency = createdAgencies[0]._id;
 
-  nannies[0].user = createdUsers[1]._id;
-  nannies[1].user = createdUsers[2]._id;
+  nannies[0].user = createdUsers[2]._id;
+  nannies[1].user = createdUsers[3]._id;
 
   return Promise.all(nannies.map(createNanny)).then(nanniesRes => {
     createdNannies = nanniesRes;
@@ -343,36 +343,36 @@ beforeEach(() => {
 
   requestedAppointments[0].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
   requestedAppointments[1].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
 
   requestedAppointments[2].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
 
   requestedAppointments[3].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
 
@@ -386,7 +386,7 @@ beforeEach(() => {
 beforeEach(() => {
   appointments[0].agency = createdAgencies[0]._id;
   appointments[0].family = createdUsers[0]._id;
-  appointments[0].nanny = createdUsers[1]._id;
+  appointments[0].nanny = createdUsers[2]._id;
   appointments[0].request = createdRequestedAppointments[1]._id;
 
   return Promise.all(appointments.map(createAppointment)).then(
@@ -397,8 +397,8 @@ beforeEach(() => {
 });
 
 beforeEach(() => {
-  availableTimes[0].nanny = createdUsers[1]._id;
-  availableTimes[1].nanny = createdUsers[2]._id;
+  availableTimes[0].nanny = createdUsers[2]._id;
+  availableTimes[1].nanny = createdUsers[3]._id;
 
   return Promise.all(availableTimes.map(createAvailableTime)).then(
     availableTimesRes => {

@@ -69,7 +69,7 @@ export default class FamilyProfile extends PureComponent {
     };
 
     {
-      profile && updateProfile(session._id, profileInfo);
+      profile && updateProfile(profile._id, profileInfo);
     }
     {
       !profile && createProfile(profileInfo);

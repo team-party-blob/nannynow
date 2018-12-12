@@ -68,7 +68,11 @@ export default Router()
       nanny,
       request,
       agencyFeePerHour,
-      nannyPricePerHour
+      nannyPricePerHour,
+      projectedNannyPayment,
+      projectedAgencyPayment,
+      finalNannyPayment,
+      finalAgencyPayment
     } = req.body;
 
     Appointment.findByIdAndUpdate(
@@ -81,7 +85,11 @@ export default Router()
         nanny,
         request,
         agencyFeePerHour,
-        nannyPricePerHour
+        nannyPricePerHour,
+        projectedNannyPayment,
+        projectedAgencyPayment,
+        finalNannyPayment,
+        finalAgencyPayment
       },
       { new: true }
     )

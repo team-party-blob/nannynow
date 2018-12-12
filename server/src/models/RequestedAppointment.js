@@ -19,7 +19,7 @@ const requestedAppointmentSchema = new mongoose.Schema({
   appointmentComments: String,
   family: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'FamilyProfile',
+    ref: 'User',
     required: [true, 'Family is required']
   },
   agency: {
@@ -30,7 +30,7 @@ const requestedAppointmentSchema = new mongoose.Schema({
   requestedNannies: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'NannyProfile',
+      ref: 'User',
       required: [true, 'At least one requested nanny is required']
     }
   ],

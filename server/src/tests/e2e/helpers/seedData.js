@@ -337,28 +337,28 @@ beforeEach(() => {
   requestedAppointments[2].agency = createdAgencies[0]._id;
   requestedAppointments[3].agency = createdAgencies[0]._id;
 
-  requestedAppointments[0].family = createdFamilies[0]._id;
-  requestedAppointments[1].family = createdFamilies[1]._id;
-  requestedAppointments[2].family = createdFamilies[0]._id;
-  requestedAppointments[3].family = createdFamilies[0]._id;
+  requestedAppointments[0].family = createdUsers[0]._id;
+  requestedAppointments[1].family = createdUsers[1]._id;
+  requestedAppointments[2].family = createdUsers[0]._id;
+  requestedAppointments[3].family = createdUsers[0]._id;
 
   requestedAppointments[0].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    createdUsers[1]._id,
+    createdUsers[2]._id
   ];
   requestedAppointments[1].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    createdUsers[1]._id,
+    createdUsers[2]._id
   ];
 
   requestedAppointments[2].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    createdUsers[1]._id,
+    createdUsers[2]._id
   ];
 
   requestedAppointments[3].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    createdUsers[1]._id,
+    createdUsers[2]._id
   ];
 
   return Promise.all(

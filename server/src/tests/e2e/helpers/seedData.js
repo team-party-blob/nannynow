@@ -385,8 +385,8 @@ beforeEach(() => {
 
 beforeEach(() => {
   appointments[0].agency = createdAgencies[0]._id;
-  appointments[0].family = createdFamilies[0]._id;
-  appointments[0].nanny = createdNannies[0]._id;
+  appointments[0].family = createdUsers[0]._id;
+  appointments[0].nanny = createdUsers[1]._id;
   appointments[0].request = createdRequestedAppointments[1]._id;
 
   return Promise.all(appointments.map(createAppointment)).then(

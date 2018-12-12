@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styles from './profile.css';
-import { ROUTES } from '../../routes/routes';
+// import { ROUTES } from '../../routes/routes';
 import { statesArray } from './helpers/statesArray';
 
 

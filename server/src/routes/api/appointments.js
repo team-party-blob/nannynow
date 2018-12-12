@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import Appointment from '../../models/Appointment';
+import FamilyProfile from '../../models/FamilyProfile';
+import User from '../../models/User';
 
 export default Router()
   .post('/', (req, res, next) => {
@@ -41,6 +43,17 @@ export default Router()
       .lean()
       .then(request => res.json(request))
       .catch(next);
+  })
+
+  .get('/user/:userId', (req, res, next) => {
+    const { userId } = req.params;
+    User.findById(userId)
+      .then(user => user.getProfile())
+      .then(profile => {
+        Appointment.find({ user: profile._id })
+      })
+
+    
   })
 
   .delete('/:id', (req, res, next) => {

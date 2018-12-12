@@ -48,8 +48,6 @@ export default class NannyProfile extends PureComponent {
   };
 
   render() {
-
-    console.log(this.props)
     const {
       photo,
       name,

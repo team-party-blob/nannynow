@@ -2,7 +2,11 @@ import {
   updateProfile,
   PROFILE_UPDATE,
   PROFILE_UPDATE_LOAD_START,
-  PROFILE_UPDATE_LOAD_END
+  PROFILE_UPDATE_LOAD_END,
+  createProfile,
+  PROFILE_CREATE,
+  PROFILE_CREATE_LOAD_START,
+  PROFILE_CREATE_LOAD_END,
 } from './profile';
 import { fakeProfile } from './fixtures/fakeProfile';
 
@@ -15,6 +19,14 @@ describe('profile actions', () => {
     expect(action.type).toEqual(PROFILE_UPDATE);
     expect(action.loadStart).toEqual(PROFILE_UPDATE_LOAD_START);
     expect(action.loadEnd).toEqual(PROFILE_UPDATE_LOAD_END);
-    expect(typeof action.payload.then).toBe('function');  })
-});
+    expect(typeof action.payload.then).toBe('function');
+  });
 
+  it('creates a profile', () => {
+    const action = createProfile('1234', fakeProfile);
+    expect(action.type).toEqual(PROFILE_CREATE);
+    expect(action.loadStart).toEqual(PROFILE_CREATE_LOAD_START);
+    expect(action.loadEnd).toEqual(PROFILE_CREATE_LOAD_END);
+    expect(typeof action.payload.then).toBe('function');
+  });
+});

@@ -9,6 +9,7 @@ import {
 
 import {
   PROFILE_UPDATE,
+  PROFILE_CREATE
   // need to figure out how to handle profile update loading
   // PROFILE_UPDATE_LOAD_START,
   // PROFILE_UPDATE_LOAD_END,
@@ -29,7 +30,8 @@ export default function reducer(state = initialState, { type, payload }) {
     case SESSION_CREATE:
       return { ...state, user: payload.user, profile: payload.profile, error: null };
     case SESSION_END:
-      return { ...state, user: null, profile: null };
+      window.localStorage.removeItem('token');
+      return { ...initialState };
     case SESSION_LOAD_START:
       return { ...state, loading: true };
     case SESSION_LOAD_END:
@@ -39,6 +41,8 @@ export default function reducer(state = initialState, { type, payload }) {
     case SESSION_ERROR:
       return { ...state, error: payload };
     case PROFILE_UPDATE:
+      return { ...state, profile: payload, error: null };
+    case PROFILE_CREATE:
       return { ...state, profile: payload, error: null };
     default:
       return state;

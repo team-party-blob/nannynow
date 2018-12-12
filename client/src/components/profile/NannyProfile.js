@@ -2,13 +2,14 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styles from './profile.css';
 import { ROUTES } from '../../routes/routes';
+import { statesArray } from './helpers/statesArray';
 
 
 export default class NannyProfile extends PureComponent {
 
   static propTypes = {
     session: PropTypes.object.isRequired,
-    profile: PropTypes.object.isRequired,
+    profile: PropTypes.object,
     createProfile: PropTypes.func.isRequired,
     updateProfile: PropTypes.func.isRequired
   };
@@ -20,6 +21,7 @@ export default class NannyProfile extends PureComponent {
     streetAddress1: '',
     streetAddress2: '',
     city: '',
+    state: '',
     zip: '',
     phone: '',
     pricePerHour: 16,
@@ -53,12 +55,17 @@ export default class NannyProfile extends PureComponent {
       age,
       streetAddress1,
       streetAddress2,
+      state,
       city,
       zip,
       phone,
       pricePerHour,
       description
     } = this.state;
+
+    const statesList = statesArray.map(stateItem => {
+      return <option key={stateItem}  value={stateItem}>{stateItem}</option>;
+    });
 
     return (
       <Fragment>
@@ -106,6 +113,10 @@ export default class NannyProfile extends PureComponent {
               value={city}
               onChange={this.handleChange}
             />
+            <label htmlFor='state'>State</label>
+            <select name='state' value={state} onChange={this.handleChange}>
+              {statesList}
+            </select>
             <label htmlFor='zip'>Zip</label>
             <input
               type='text'
@@ -143,6 +154,7 @@ export default class NannyProfile extends PureComponent {
             <h3>Street Address:{streetAddress1}</h3>
             <h3>Address (continued): {streetAddress2}</h3>
             <h3>City: {city}</h3>
+            <h3>State: {state}</h3>
             <h3>Zip Code: {zip}</h3>
             <h3>Phone Number: {phone}</h3>
             <h3>Hourly Rate: {pricePerHour}</h3>

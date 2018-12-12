@@ -397,8 +397,8 @@ beforeEach(() => {
 });
 
 beforeEach(() => {
-  availableTimes[0].nanny = createdNannies[0]._id;
-  availableTimes[1].nanny = createdNannies[1]._id;
+  availableTimes[0].nanny = createdUsers[1]._id;
+  availableTimes[1].nanny = createdUsers[2]._id;
 
   return Promise.all(availableTimes.map(createAvailableTime)).then(
     availableTimesRes => {

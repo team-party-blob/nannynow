@@ -28,7 +28,7 @@ describe('users routes', () => {
       email: users[0].email,
       role: users[0].role,
       _id: expect.any(String),
-      createdDate: expect.anything(),
+      createdDate: expect.anything()
     });
   });
 
@@ -63,12 +63,20 @@ describe('users routes', () => {
   });
 
   it('signs in a user', () => {
+    const users = usersSeedData();
+
     return request(app)
       .post('/api/users/signin')
       .send({ email: 'family@test.com', password: '123' })
       .then(res => {
         checkOk(res);
-        expect(res.body.user).toEqual(getUsers()[0]);
+        expect(res.body.user).toEqual({
+          agency: users[0].agency,
+          email: users[0].email,
+          role: users[0].role,
+          _id: expect.any(String),
+          createdDate: expect.anything()
+        });
         expect(res.body.profile).toEqual(getFamilies()[0]);
         expect(res.get('X-AUTH-TOKEN')).toEqual(expect.any(String));
       });
@@ -95,8 +103,7 @@ describe('users routes', () => {
           .set('Authorization', `Bearer ${token}`)
           .send({ email: 'nanny@test.com', password: 'badpassword' })
           .then(checkStatus(401));
-      }
-      );
+      });
   });
 
   it('verifies a signed in user', () => {
@@ -139,7 +146,9 @@ describe('users routes', () => {
 
     return request(app)
       .delete(`/api/users/${createdUsers[1]._id}`)
-      .then(() => request(app).get('/api/users'))
+      .then(() => {
+        return request(app).get('/api/users');
+      })
       .then(res => {
         expect(res.body).not.toContainEqual(createdUsers[1]);
         expect(res.body).toContainEqual(createdUsers[0]);

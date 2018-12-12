@@ -4,7 +4,7 @@ import app from '../../routes/app';
 import { getAvailableTimes, availableTimesSeedData } from './helpers/seedData';
 
 describe('requested available times routes', () => {
-  it('creates a requested available time (with seed data helper)', () => {
+  it('creates an available time (with seed data helper)', () => {
     const createdAvailableTimes = getAvailableTimes();
     const availableTimes = availableTimesSeedData();
 
@@ -45,7 +45,9 @@ describe('requested available times routes', () => {
 
     return request(app)
       .delete(`/api/availability/${createdAvailableTimes[0]._id}`)
-      .then(() => request(app).get('/api/availability'))
+      .then(() => {
+        return request(app).get('/api/availability');
+      })
       .then(res => {
         expect(res.body).not.toContainEqual(createdAvailableTimes[0]);
       });
@@ -60,9 +62,7 @@ describe('requested available times routes', () => {
         availableEndTime: '2018-12-20T02:00:00.000Z'
       })
       .then(res => {
-        expect(res.body.availableEndTime).toEqual(
-          '2018-12-20T02:00:00.000Z'
-        );
+        expect(res.body.availableEndTime).toEqual('2018-12-20T02:00:00.000Z');
       });
   });
 });

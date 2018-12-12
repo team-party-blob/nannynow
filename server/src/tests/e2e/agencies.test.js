@@ -4,17 +4,17 @@ import app from '../../routes/app';
 const { getAdminToken, getAgencies, agenciesSeedData } = require('./helpers/seedData');
 
 describe('agencies routes', () => {
-  it('creates an agency with seed data helper', () => {
-    const createdAgencies = getAgencies();
-    const agencies = agenciesSeedData();
+  // it('creates an agency with seed data helper', () => {
+  //   const createdAgencies = getAgencies();
+  //   const agencies = agenciesSeedData();
 
-    expect(createdAgencies[0]).toEqual({
-      ...agencies[0],
-      _id: expect.any(String),
-      __v: 0,
-      createdDate: expect.anything()
-    });
-  });
+  //   expect(createdAgencies[0]).toEqual({
+  //     ...agencies[0],
+  //     _id: expect.any(String),
+  //     __v: 0,
+  //     createdDate: expect.anything()
+  //   });
+  // });
 
   it('gets a list of all agencies', () => {
     const createdAgencies = getAgencies();

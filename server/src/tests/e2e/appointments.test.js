@@ -67,6 +67,52 @@ describe(' appointments routes', () => {
       });
   });
 
+  it('gets a list of all appointments by for a nanny user id', () => {
+    const createdUsers = getUsers();
+    const appointments = getAppointments();
+
+    return request(app)
+      .get(`/api/appointments/user/${createdUsers[2]._id}`)
+      .then(res => {
+        expect(res.body).toEqual([{
+          arrivalTime: expect.anything(),
+          departureTime: expect.anything(),
+          family: appointments[0].family,
+          agency: appointments[0].agency,
+          nanny: appointments[0].nanny,
+          request: appointments[0].request,
+          agencyFeePerHour: appointments[0].agencyFeePerHour,
+          nannyPricePerHour: appointments[0].nannyPricePerHour,
+          _id: expect.any(String),
+          __v: 0,
+          createdDate: expect.anything()
+        }]);
+      });
+  });
+
+  it('gets a list of all appointments by for a admin user id', () => {
+    const createdUsers = getUsers();
+    const appointments = getAppointments();
+
+    return request(app)
+      .get(`/api/appointments/user/${createdUsers[4]._id}`)
+      .then(res => {
+        expect(res.body).toEqual([{
+          arrivalTime: expect.anything(),
+          departureTime: expect.anything(),
+          family: appointments[0].family,
+          agency: appointments[0].agency,
+          nanny: appointments[0].nanny,
+          request: appointments[0].request,
+          agencyFeePerHour: appointments[0].agencyFeePerHour,
+          nannyPricePerHour: appointments[0].nannyPricePerHour,
+          _id: expect.any(String),
+          __v: 0,
+          createdDate: expect.anything()
+        }]);
+      });
+  });
+
   it('deletes a Appointment by id', () => {
     const createdAppointments = getAppointments();
 

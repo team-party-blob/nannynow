@@ -1,4 +1,4 @@
-import { getAppointments as getAppointmentsService } from '../services/profileApi';
+import { getAppointments as getAppointmentsService } from '../services/appointmentApi';
 
 export const GET_APPOINTMENTS = 'GET_APPOINTMENTS';
 export const GET_APPOINTMENTS_LOAD_START = 'GET_APPOINTMENTS_LOAD_START';

@@ -78,6 +78,8 @@ export default Router()
       birthdays
     } = req.body;
 
+    console.log(req.body);
+
     FamilyProfile.findByIdAndUpdate(
       id,
       {

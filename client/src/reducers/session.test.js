@@ -29,7 +29,7 @@ describe('session reducer', () => {
   it('creates a new user in session on SESSION_CREATE', () => {
     const action = { type: SESSION_CREATE, payload: fakeUser };
     const updatedState = reducer(initialState, action);
-    expect(updatedState).toEqual({ ...initialState, user: fakeUser });
+    expect(updatedState).toEqual({ ...initialState, user: fakeUser.user, profile: fakeUser.profile });
   });
 
   it('starts loading on session on SESSION_LOAD_START', () => {

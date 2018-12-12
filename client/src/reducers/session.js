@@ -3,7 +3,8 @@ import {
   SESSION_LOAD_END,
   SESSION_CREATE,
   SESSION_ERROR,
-  SESSION_TOKEN
+  SESSION_TOKEN,
+  SESSION_END
 } from '../actions/session';
 
 import {
@@ -26,7 +27,9 @@ const initialState = {
 export default function reducer(state = initialState, { type, payload }) {
   switch(type) {
     case SESSION_CREATE:
-      return { ...state, user: payload, error: null };
+      return { ...state, user: payload.user, profile: payload.profile, error: null };
+    case SESSION_END:
+      return { ...state, user: null, profile: null };
     case SESSION_LOAD_START:
       return { ...state, loading: true };
     case SESSION_LOAD_END:

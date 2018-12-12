@@ -1,5 +1,8 @@
 export const fakeUser = {
-  _id: '1234',
-  email: 'test@test.com',
-  role: 'nanny'
+  user: {
+    _id: '1234',
+    email: 'test@test.com',
+    role: 'nanny'
+  },
+  profile: {}
 };

@@ -29,11 +29,22 @@ const requestedAppointmentSchema = new mongoose.Schema({
   },
   requestedNannies: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: [true, 'At least one requested nanny is required']
+      nanny: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'At least one requested nanny is required']
+      },
+      status: {
+        type: String,
+        enum: ['no response', 'accepted', 'declined'],
+        default: 'no response'
+      }
     }
   ],
+  closed: {
+    type: Boolean,
+    default: false
+  },
   createdDate: {
     type: Date,
     default: Date.now()

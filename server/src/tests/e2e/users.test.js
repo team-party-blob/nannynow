@@ -89,7 +89,7 @@ describe('users routes', () => {
           .post('/api/users/signin')
           .set('Authorization', `Bearer ${token}`)
           .send({ email: 'nanny@test.com', password: 'badpassword' })
-          .then(checkStatus(401))
+          .then(checkStatus(401));
       }
       );
   });

@@ -7,35 +7,35 @@ import {
 } from './helpers/seedData';
 
 describe('requested appointments routes', () => {
-  // it('creates a requested appointment (with seed data helper)', () => {
-  //   const createdRequestedAppointments = getRequestedAppointments();
-  //   const requestedAppointments = requestedAppointmentsSeedData();
+  it('creates a requested appointment (with seed data helper)', () => {
+    const createdRequestedAppointments = getRequestedAppointments();
+    const requestedAppointments = requestedAppointmentsSeedData();
 
-  //   expect(createdRequestedAppointments[0]).toEqual({
-  //     startDateTime: expect.anything(),
-  //     endDateTime: expect.anything(),
-  //     birthdays: expect.any(Array),
-  //     appointmentComments: requestedAppointments[0].appointmentComments,
-  //     family: requestedAppointments[0].family,
-  //     agency: requestedAppointments[0].agency,
-  //     requestedNannies: [
-  //       {
-  //         _id: expect.any(String),
-  //         nanny: requestedAppointments[0].requestedNannies[0].nanny,
-  //         status: 'no response'
-  //       },
-  //       {
-  //         _id: expect.any(String),
-  //         nanny: requestedAppointments[0].requestedNannies[1].nanny,
-  //         status: 'no response'
-  //       }
-  //     ],
-  //     closed: expect.any(Boolean),
-  //     _id: expect.any(String),
-  //     __v: 0,
-  //     createdDate: expect.anything()
-  //   });
-  // });
+    expect(createdRequestedAppointments[0]).toEqual({
+      startDateTime: expect.anything(),
+      endDateTime: expect.anything(),
+      birthdays: expect.any(Array),
+      appointmentComments: requestedAppointments[0].appointmentComments,
+      family: requestedAppointments[0].family,
+      agency: requestedAppointments[0].agency,
+      requestedNannies: [
+        {
+          _id: expect.any(String),
+          nanny: requestedAppointments[0].requestedNannies[0].nanny,
+          status: 'no response'
+        },
+        {
+          _id: expect.any(String),
+          nanny: requestedAppointments[0].requestedNannies[1].nanny,
+          status: 'no response'
+        }
+      ],
+      closed: expect.any(Boolean),
+      _id: expect.any(String),
+      __v: 0,
+      createdDate: expect.anything()
+    });
+  });
 
   it('gets a list of all requestedAppointments', () => {
     const createdRequestedAppointments = getRequestedAppointments();

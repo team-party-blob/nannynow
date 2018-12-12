@@ -19,18 +19,18 @@ const checkStatus = statusCode => res => {
 const checkOk = res => checkStatus(200)(res);
 
 describe('users routes', () => {
-  // it('signs a user up (with seed data helper)', () => {
-  //   const createdUsers = getUsers();
-  //   const users = usersSeedData();
+  it('signs a user up (with seed data helper)', () => {
+    const createdUsers = getUsers();
+    const users = usersSeedData();
 
-  //   expect(createdUsers[0]).toEqual({
-  //     agency: users[0].agency,
-  //     email: users[0].email,
-  //     role: users[0].role,
-  //     _id: expect.any(String),
-  //     createdDate: expect.anything()
-  //   });
-  // });
+    expect(createdUsers[0]).toEqual({
+      agency: users[0].agency,
+      email: users[0].email,
+      role: users[0].role,
+      _id: expect.any(String),
+      createdDate: expect.anything()
+    });
+  });
 
   it('hashes a user\'s password', () => {
     const createdAgencies = getAgencies();

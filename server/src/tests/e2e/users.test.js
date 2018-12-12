@@ -95,7 +95,8 @@ describe('users routes', () => {
           .set('Authorization', `Bearer ${token}`)
           .send({ email: 'nanny@test.com', password: 'badpassword' })
           .then(checkStatus(401));
-      });
+      }
+      );
   });
 
   it('verifies a signed in user', () => {

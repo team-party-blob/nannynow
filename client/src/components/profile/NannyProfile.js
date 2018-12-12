@@ -4,9 +4,7 @@ import styles from './profile.css';
 // import { ROUTES } from '../../routes/routes';
 import { statesArray } from './helpers/statesArray';
 
-
 export default class NannyProfile extends PureComponent {
-
   static propTypes = {
     session: PropTypes.object.isRequired,
     profile: PropTypes.object,
@@ -43,10 +41,13 @@ export default class NannyProfile extends PureComponent {
     const { _id, agency } = session;
     const profileInfo = { ...this.state, user: _id, agency };
 
-    {profile && updateProfile(profile._id, this.state);}
-    {!profile && createProfile(profileInfo);}
+    {
+      profile && updateProfile(profile._id, this.state);
+    }
+    {
+      !profile && createProfile(profileInfo);
+    }
   };
-
 
   render() {
     const {
@@ -64,7 +65,11 @@ export default class NannyProfile extends PureComponent {
     } = this.state;
 
     const statesList = statesArray.map(stateItem => {
-      return <option key={stateItem}  value={stateItem}>{stateItem}</option>;
+      return (
+        <option key={stateItem} value={stateItem}>
+          {stateItem}
+        </option>
+      );
     });
 
     return (
@@ -78,6 +83,7 @@ export default class NannyProfile extends PureComponent {
               name='name'
               value={name}
               onChange={this.handleChange}
+              required
             />
             <label htmlFor='photo'>Upload A Photo:</label>
             <input
@@ -99,6 +105,7 @@ export default class NannyProfile extends PureComponent {
               name='streetAddress1'
               value={streetAddress1}
               onChange={this.handleChange}
+              required
             />
             <input
               type='text'
@@ -112,9 +119,16 @@ export default class NannyProfile extends PureComponent {
               name='city'
               value={city}
               onChange={this.handleChange}
+              required
             />
             <label htmlFor='state'>State</label>
-            <select name='state' value={state} onChange={this.handleChange}>
+            <select
+              name='state'
+              value={state}
+              onChange={this.handleChange}
+              required
+            >
+              <option value=''>--</option>
               {statesList}
             </select>
             <label htmlFor='zip'>Zip</label>
@@ -123,6 +137,7 @@ export default class NannyProfile extends PureComponent {
               name='zip'
               value={zip}
               onChange={this.handleChange}
+              required
             />
             <label htmlFor='phone'>Phone Number</label>
             <input
@@ -130,6 +145,7 @@ export default class NannyProfile extends PureComponent {
               name='phone'
               value={phone}
               onChange={this.handleChange}
+              required
             />
             <label htmlFor='pricePerHour'>Your Hourly Rate:</label>
             <input

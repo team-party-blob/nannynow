@@ -24,7 +24,8 @@ export default class FamilyProfile extends PureComponent {
     description: '',
     birthday: '',
     birthdays: [],
-    numOfChildren: 0
+    numOfChildren: 0,
+    errorMessage: false
   };
 
   componentDidMount() {
@@ -124,7 +125,11 @@ export default class FamilyProfile extends PureComponent {
     });
 
     const statesList = statesArray.map(stateItem => {
-      return <option key={stateItem}  value={stateItem}>{stateItem}</option>;
+      return (
+        <option key={stateItem} value={stateItem}>
+          {stateItem}
+        </option>
+      );
     });
 
     return (
@@ -138,6 +143,7 @@ export default class FamilyProfile extends PureComponent {
               name='name'
               value={name}
               onChange={this.handleChange}
+              required
             />
             <label htmlFor='streetAddress1'>Street Address:</label>
             <input
@@ -145,6 +151,7 @@ export default class FamilyProfile extends PureComponent {
               name='streetAddress1'
               value={streetAddress1}
               onChange={this.handleChange}
+              required
             />
             <input
               type='text'
@@ -158,9 +165,16 @@ export default class FamilyProfile extends PureComponent {
               name='city'
               value={city}
               onChange={this.handleChange}
+              required
             />
             <label htmlFor='state'>State</label>
-            <select name='state' value={state} onChange={this.handleChange}>
+            <select
+              name='state'
+              value={state}
+              onChange={this.handleChange}
+              required
+            >
+              <option value=''>--</option>
               {statesList}
             </select>
             <label htmlFor='zip'>Zip</label>
@@ -169,6 +183,7 @@ export default class FamilyProfile extends PureComponent {
               name='zip'
               value={zip}
               onChange={this.handleChange}
+              required
             />
             <label htmlFor='phone'>Phone Number</label>
             <input
@@ -185,6 +200,7 @@ export default class FamilyProfile extends PureComponent {
               name='birthday'
               value={birthday}
               onChange={this.handleChange}
+              required
             />
             <button type='button' onClick={this.addChild}>
               Add Child
@@ -198,6 +214,7 @@ export default class FamilyProfile extends PureComponent {
               name='description'
               value={description}
               onChange={this.handleChange}
+              required
             />
             <button>Submit Profile</button>
           </form>

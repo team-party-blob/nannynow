@@ -24,13 +24,6 @@ exports[`Header component renders a Header component 1`] = `
       <Link
         className="link"
         replace={false}
-        to="/"
-      >
-        Dashboard
-      </Link>
-      <Link
-        className="link"
-        replace={false}
         to="/signin"
       >
         Log In

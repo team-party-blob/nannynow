@@ -6,6 +6,8 @@ import { withSession } from '../components/auth/withSession';
 import ProfileContainer from '../containers/ProfileContainer';
 import DashBoardContainer from '../containers/DashBoardContainer';
 
+
+
 export const ROUTES = {
   HOME: {
     path: '/',

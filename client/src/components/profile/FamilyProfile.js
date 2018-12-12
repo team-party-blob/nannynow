@@ -200,7 +200,6 @@ export default class FamilyProfile extends PureComponent {
               name='birthday'
               value={birthday}
               onChange={this.handleChange}
-              required
             />
             <button type='button' onClick={this.addChild}>
               Add Child

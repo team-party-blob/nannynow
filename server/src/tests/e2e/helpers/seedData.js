@@ -272,9 +272,8 @@ beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'usertest@test.com', password: '123' })
-    .then(res => adminToken = res.get('X-AUTH-TOKEN'));
+    .then(res => (adminToken = res.get('X-AUTH-TOKEN')));
 });
-
 
 beforeEach(() => {
   return Promise.all(agencies.map(createAgency)).then(agenciesRes => {
@@ -297,14 +296,14 @@ beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'nanny@test.com', password: '123' })
-    .then(res => nannyToken = res.get('X-AUTH-TOKEN'));
+    .then(res => (nannyToken = res.get('X-AUTH-TOKEN')));
 });
 
 beforeEach(() => {
   return request(app)
     .post('/api/users/signin')
     .send({ email: 'family@test.com', password: '123' })
-    .then(res => familyToken = res.get('X-AUTH-TOKEN'));
+    .then(res => (familyToken = res.get('X-AUTH-TOKEN')));
 });
 
 beforeEach(() => {
@@ -337,28 +336,44 @@ beforeEach(() => {
   requestedAppointments[2].agency = createdAgencies[0]._id;
   requestedAppointments[3].agency = createdAgencies[0]._id;
 
-  requestedAppointments[0].family = createdFamilies[0]._id;
-  requestedAppointments[1].family = createdFamilies[1]._id;
-  requestedAppointments[2].family = createdFamilies[0]._id;
-  requestedAppointments[3].family = createdFamilies[0]._id;
+  requestedAppointments[0].family = createdUsers[0]._id;
+  requestedAppointments[1].family = createdUsers[1]._id;
+  requestedAppointments[2].family = createdUsers[0]._id;
+  requestedAppointments[3].family = createdUsers[0]._id;
 
   requestedAppointments[0].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    {
+      nanny: createdUsers[1]._id
+    },
+    {
+      nanny: createdUsers[2]._id
+    }
   ];
   requestedAppointments[1].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    {
+      nanny: createdUsers[1]._id
+    },
+    {
+      nanny: createdUsers[2]._id
+    }
   ];
 
   requestedAppointments[2].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    {
+      nanny: createdUsers[1]._id
+    },
+    {
+      nanny: createdUsers[2]._id
+    }
   ];
 
   requestedAppointments[3].requestedNannies = [
-    createdNannies[0]._id,
-    createdNannies[1]._id
+    {
+      nanny: createdUsers[1]._id
+    },
+    {
+      nanny: createdUsers[2]._id
+    }
   ];
 
   return Promise.all(

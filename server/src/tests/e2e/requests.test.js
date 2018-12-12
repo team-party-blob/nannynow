@@ -18,7 +18,19 @@ describe('requested appointments routes', () => {
       appointmentComments: requestedAppointments[0].appointmentComments,
       family: requestedAppointments[0].family,
       agency: requestedAppointments[0].agency,
-      requestedNannies: requestedAppointments[0].requestedNannies,
+      requestedNannies: [
+        {
+          _id: expect.any(String),
+          nanny: requestedAppointments[0].requestedNannies[0].nanny,
+          status: 'no response'
+        },
+        {
+          _id: expect.any(String),
+          nanny: requestedAppointments[0].requestedNannies[1].nanny,
+          status: 'no response'
+        }
+      ],
+      closed: expect.any(Boolean),
       _id: expect.any(String),
       __v: 0,
       createdDate: expect.anything()

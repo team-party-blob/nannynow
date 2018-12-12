@@ -5,7 +5,8 @@ import { Signup, Signin } from '../containers/AuthContainer';
 import { withSession } from '../components/auth/withSession';
 import NannyProfile from '../components/profile/NannyProfile';
 import Dashboard from '../components/dashboard/Dashboard';
-import NannyProfileContainer from '../containers/NannyProfileContainer';
+// import NannyProfileContainer from '../containers/NannyProfileContainer';
+import ProfileContainer from '../containers/ProfileContainer';
 
 export const ROUTES = {
   HOME: {
@@ -25,7 +26,7 @@ export const ROUTES = {
   },
   PROFILE: {
     path: '/profile/:id',
-    Component: withSession(NannyProfileContainer),
+    Component: withSession(ProfileContainer),
     linkTo: id => `/profile/${id}`
 
   },

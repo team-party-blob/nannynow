@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './NannyProfile.css';
 
 
-export default class NannyProfile extends PureComponent {
+export default class FamilyProfile extends PureComponent {
 
   static propTypes = {
     session: PropTypes.object.isRequired,
@@ -12,17 +12,16 @@ export default class NannyProfile extends PureComponent {
     updateProfile: PropTypes.func.isRequired
   };
 
+  //Why would email be a required field if we are getting it at login. should take out of Family Profile
   state = {
-    photo: '',
     name: '',
-    age: 0,
     streetAddress1: '',
     streetAddress2: '',
     city: '',
     zip: '',
     phone: '',
-    pricePerHour: 16,
-    description: ''
+    description: '',
+    birthdays: []
   };
 
   componentDidMount() {
@@ -46,41 +45,25 @@ export default class NannyProfile extends PureComponent {
 
   render() {
     const {
-      photo,
       name,
-      age,
       streetAddress1,
       streetAddress2,
       city,
       zip,
       phone,
-      pricePerHour,
-      description
+      description,
+      birthdays
     } = this.state;
 
     return (
       <Fragment>
-        <h1>Create Your Nanny Profile</h1>
+        <h1>Create Your Family Profile</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='name'>Full Name:</label>
           <input
             type='text'
             name='name'
             value={name}
-            onChange={this.handleChange}
-          />
-          <label htmlFor='photo'>Upload A Photo:</label>
-          <input
-            type='file'
-            name='photo'
-            value={photo}
-            onChange={this.handleChange}
-          />
-          <label htmlFor='age'>Age:</label>
-          <input
-            type='number'
-            name='age'
-            value={age}
             onChange={this.handleChange}
           />
           <label htmlFor='streetAddress1'>Street Address:</label>
@@ -117,13 +100,6 @@ export default class NannyProfile extends PureComponent {
             value={phone}
             onChange={this.handleChange}
           />
-          <label htmlFor='pricePerHour'>Your Hourly Rate:</label>
-          <input
-            type='number'
-            name='pricePerHour'
-            value={pricePerHour}
-            onChange={this.handleChange}
-          />
           <label htmlFor='description'>Tell Us About Yourself:</label>
           <input
             type='text'
@@ -134,15 +110,12 @@ export default class NannyProfile extends PureComponent {
           <button>Submit Profile</button>
         </form>
         <div id={styles.profileView}>
-          <img src={photo} />
           <h1>Name: {name}</h1>
-          <h3>Age: {age}</h3>
           <h3>Street Address:{streetAddress1}</h3>
           <h3>Address (continued): {streetAddress2}</h3>
           <h3>City: {city}</h3>
           <h3>Zip Code: {zip}</h3>
           <h3>Phone Number: {phone}</h3>
-          <h3>Hourly Rate: {pricePerHour}</h3>
           <h3>Description: {description}</h3>
         </div>
       </Fragment>

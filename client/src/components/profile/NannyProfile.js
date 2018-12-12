@@ -38,7 +38,6 @@ export default class NannyProfile extends PureComponent {
     event.preventDefault();
     const { session, profile, updateProfile, createProfile } = this.props;
     const { _id, agency } = session;
-
     const profileInfo = { ...this.state, user: _id, agency };
 
     {profile && updateProfile(session._id, this.state);}

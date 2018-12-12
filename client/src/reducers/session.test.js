@@ -8,7 +8,7 @@ import {
   SESSION_TOKEN
 } from '../actions/session';
 import {
-  PROFILE_UPDATE,
+  PROFILE_UPDATE, PROFILE_CREATE,
   // PROFILE_UPDATE_LOAD_END,
   // PROFILE_UPDATE_LOAD_START,
   // updateProfile,
@@ -56,15 +56,9 @@ describe('session reducer', () => {
     expect(updatedState).toEqual({ ...initialState, profile: fakeProfile });
   });
 
-  // it('starts loading on session on PROFILE_UPDATE_LOAD_START', () => {
-  //   const action = { type: PROFILE_UPDATE_LOAD_START };
-  //   const updatedState = reducer(initialState, action);
-  //   expect(updatedState).toEqual({ ...initialState, loading: true });
-  // });
-
-  // it('stops loading on profile on PROFILE_UPDATE_LOAD_END', () => {
-  //   const action = { type: PROFILE_UPDATE_LOAD_END };
-  //   const updatedState = reducer(initialState, action);
-  //   expect(updatedState).toEqual({ ...initialState, loading: false });
-  // });
+  it('creates a user profile on PROFILE_CREATE', () => {
+    const action = { type: PROFILE_CREATE, payload: fakeProfile };
+    const updatedState = reducer(initialState, action);
+    expect(updatedState).toEqual({ ...initialState, profile: fakeProfile });
+  });
 });

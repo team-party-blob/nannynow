@@ -39,7 +39,7 @@ exports[`Profile component renders a component 1`] = `
       name="age"
       onChange={[Function]}
       type="number"
-      value=""
+      value={0}
     />
     <label
       htmlFor="streetAddress1"
@@ -81,12 +81,12 @@ exports[`Profile component renders a component 1`] = `
       value=""
     />
     <label
-      htmlFor="phoneNumber"
+      htmlFor="phone"
     >
       Phone Number
     </label>
     <input
-      name="phoneNumber"
+      name="phone"
       onChange={[Function]}
       type="text"
       value=""
@@ -100,7 +100,7 @@ exports[`Profile component renders a component 1`] = `
       name="pricePerHour"
       onChange={[Function]}
       type="number"
-      value=""
+      value={16}
     />
     <label
       htmlFor="description"
@@ -128,6 +128,7 @@ exports[`Profile component renders a component 1`] = `
     </h1>
     <h3>
       Age: 
+      0
     </h3>
     <h3>
       Street Address:
@@ -146,6 +147,7 @@ exports[`Profile component renders a component 1`] = `
     </h3>
     <h3>
       Hourly Rate: 
+      16
     </h3>
     <h3>
       Description: 

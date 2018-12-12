@@ -3,10 +3,11 @@ import connect from '../../../utils/connect';
 import mongoose from 'mongoose';
 
 config();
-// connect();
+
 beforeEach(() => {
   return connect();
 });
+
 afterEach(() => {
   return mongoose.disconnect();
 });

@@ -9,7 +9,7 @@ const AppointmentSchema = new mongoose.Schema({
   },
   family: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'FamilyProfile',
+    ref: 'User',
     required: [true, 'Family is required']
   },
   agency: {
@@ -19,7 +19,7 @@ const AppointmentSchema = new mongoose.Schema({
   },
   nanny: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'NannyProfile',
+    ref: 'User',
     required: [true, 'At least one nanny is required']
   },
   request: {
@@ -38,7 +38,11 @@ const AppointmentSchema = new mongoose.Schema({
   nannyPricePerHour: {
     type: Number,
     required: [true, 'An hourly nanny price is required']
-  }
+  },
+  projectedNannyPayment: Number,
+  projectedAgencyPayment: Number,
+  finalNannyPayment: Number,
+  finalAgencyPayment: Number
 });
 
 export default mongoose.model('Appointment', AppointmentSchema);

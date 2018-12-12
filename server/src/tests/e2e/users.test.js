@@ -5,7 +5,12 @@ import User from '../../models/User';
 import { compare } from '../../utils/auth';
 import { getFamilyToken } from './helpers/seedData';
 
-const { getUsers, usersSeedData, getAgencies, getFamilies } = require('./helpers/seedData');
+const {
+  getUsers,
+  usersSeedData,
+  getAgencies,
+  getFamilies
+} = require('./helpers/seedData');
 
 const checkStatus = statusCode => res => {
   expect(res.status).toEqual(statusCode);

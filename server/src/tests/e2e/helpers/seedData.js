@@ -286,6 +286,7 @@ beforeEach(() => {
   users[1].agency = createdAgencies[0]._id;
   users[2].agency = createdAgencies[0]._id;
   users[3].agency = createdAgencies[0]._id;
+  users[4].agency = createdAgencies[0]._id;
 
   return Promise.all(users.map(createUser)).then(usersRes => {
     createdUsers = usersRes;

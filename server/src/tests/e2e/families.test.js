@@ -54,7 +54,9 @@ describe('families routes', () => {
 
     return request(app)
       .delete(`/api/families/${createdFamilies[0]._id}`)
-      .then(() => request(app).get('/api/families'))
+      .then(() => {
+        return request(app).get('/api/families');
+      })
       .then(res => {
         expect(res.body).not.toContainEqual(createdFamilies[0]);
       });

@@ -66,7 +66,9 @@ describe('requested appointments routes', () => {
 
     return request(app)
       .delete(`/api/requests/${createdRequestedAppointments[0]._id}`)
-      .then(() => request(app).get('/api/requests'))
+      .then(() => {
+        return request(app).get('/api/requests');
+      })
       .then(res => {
         expect(res.body).not.toContainEqual(createdRequestedAppointments[0]);
       });

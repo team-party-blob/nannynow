@@ -49,7 +49,9 @@ describe(' appointments routes', () => {
 
     return request(app)
       .delete(`/api/appointments/${createdAppointments[0]._id}`)
-      .then(() => request(app).get('/api/appointments'))
+      .then(() => {
+        return request(app).get('/api/appointments');
+      })
       .then(res => {
         expect(res.body).not.toContainEqual(createdAppointments[0]);
       });
@@ -64,9 +66,7 @@ describe(' appointments routes', () => {
         arrivalTime: '2018-12-20T02:00:00.000Z'
       })
       .then(res => {
-        expect(res.body.arrivalTime).toEqual(
-          '2018-12-20T02:00:00.000Z'
-        );
+        expect(res.body.arrivalTime).toEqual('2018-12-20T02:00:00.000Z');
       });
   });
 });

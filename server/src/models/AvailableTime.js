@@ -11,7 +11,7 @@ const AvailableTimeSchema = new mongoose.Schema({
   },
   nanny: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'NannyProfile',
+    ref: 'User',
     required: [true, 'At least one nanny is required']
   },
   createdDate: {

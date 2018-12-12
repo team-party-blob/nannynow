@@ -29,7 +29,6 @@ describe('users routes', () => {
       role: users[0].role,
       _id: expect.any(String),
       createdDate: expect.anything(),
-      passwordHash: expect.any(String)
     });
   });
 

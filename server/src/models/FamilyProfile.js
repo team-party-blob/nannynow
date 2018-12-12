@@ -26,7 +26,7 @@ const familyProfileSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: [true, 'State is required.']
+    required: [true, 'Phone is required.']
   },
   email: {
     type: String,

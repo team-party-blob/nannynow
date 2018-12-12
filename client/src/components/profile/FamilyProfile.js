@@ -1,10 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styles from './profile.css';
-// import { ROUTES } from '../../routes/routes';
 import { statesArray } from './helpers/statesArray';
 
-export default class NannyProfile extends PureComponent {
+export default class FamilyProfile extends PureComponent {
   static propTypes = {
     session: PropTypes.object.isRequired,
     profile: PropTypes.object,
@@ -12,18 +11,21 @@ export default class NannyProfile extends PureComponent {
     updateProfile: PropTypes.func.isRequired
   };
 
+  //Why would email be a required field if we are getting it at login. should take out of Family Profile
   state = {
-    photo: '',
     name: '',
-    age: 0,
     streetAddress1: '',
     streetAddress2: '',
     city: '',
     state: '',
     zip: '',
     phone: '',
-    pricePerHour: 16,
-    description: ''
+    email: 'iamemail@email.com',
+    description: '',
+    birthday: '',
+    birthdays: [],
+    numOfChildren: 0,
+    errorMessage: false
   };
 
   componentDidMount() {
@@ -39,7 +41,34 @@ export default class NannyProfile extends PureComponent {
     event.preventDefault();
     const { session, profile, updateProfile, createProfile } = this.props;
     const { _id, agency } = session;
-    const profileInfo = { ...this.state, user: _id, agency };
+    const {
+      name,
+      streetAddress1,
+      streetAddress2,
+      state,
+      city,
+      zip,
+      phone,
+      email,
+      description,
+      numOfChildren,
+      birthdays
+    } = this.state;
+    const profileInfo = {
+      name,
+      streetAddress1,
+      streetAddress2,
+      state,
+      city,
+      zip,
+      phone,
+      email,
+      description,
+      numOfChildren,
+      birthdays,
+      user: _id,
+      agency
+    };
 
     {
       profile && updateProfile(profile._id, profileInfo);
@@ -49,20 +78,51 @@ export default class NannyProfile extends PureComponent {
     }
   };
 
+  addChild = event => {
+    event.preventDefault();
+    const updatedBirthdays = this.state.birthdays.concat(this.state.birthday);
+    const updatedNumOfChildren = updatedBirthdays.length;
+    this.setState({
+      birthdays: updatedBirthdays,
+      numOfChildren: updatedNumOfChildren
+    });
+  };
+
+  removeChild = index => {
+    const { birthdays } = this.state;
+    const updatedBirthdays = [...birthdays];
+    updatedBirthdays.splice(index, 1);
+    this.setState({ birthdays: updatedBirthdays });
+  };
+
   render() {
     const {
-      photo,
       name,
-      age,
       streetAddress1,
       streetAddress2,
-      state,
       city,
       zip,
+      state,
       phone,
-      pricePerHour,
-      description
+      description,
+      birthdays,
+      birthday,
+      numOfChildren
     } = this.state;
+
+    const childList = birthdays.map((child, i) => {
+      const slicedChild = child.slice(0, 10);
+      return (
+        <div key={i}>
+          <li>
+            Child #{i + 1}: Born {slicedChild}
+          </li>
+          <button type='button' onClick={() => this.removeChild(i)}>
+            Remove Child
+          </button>
+        </div>
+      );
+    });
 
     const statesList = statesArray.map(stateItem => {
       return (
@@ -84,20 +144,6 @@ export default class NannyProfile extends PureComponent {
               value={name}
               onChange={this.handleChange}
               required
-            />
-            <label htmlFor='photo'>Upload A Photo:</label>
-            <input
-              type='file'
-              name='photo'
-              value={photo}
-              onChange={this.handleChange}
-            />
-            <label htmlFor='age'>Age:</label>
-            <input
-              type='number'
-              name='age'
-              value={age}
-              onChange={this.handleChange}
             />
             <label htmlFor='streetAddress1'>Street Address:</label>
             <input
@@ -145,36 +191,44 @@ export default class NannyProfile extends PureComponent {
               name='phone'
               value={phone}
               onChange={this.handleChange}
-              required
             />
-            <label htmlFor='pricePerHour'>Your Hourly Rate:</label>
+
+            <label htmlFor='birthday'>How Old Are Your Children?</label>
             <input
-              type='number'
-              name='pricePerHour'
-              value={pricePerHour}
+              type='date'
+              min='2002-12-12'
+              name='birthday'
+              value={birthday}
               onChange={this.handleChange}
             />
-            <label htmlFor='description'>Tell Us About Yourself:</label>
+            <button type='button' onClick={this.addChild}>
+              Add Child
+            </button>
+
+            <label htmlFor='description'>
+              Tell Us About Your Family. Any Special Needs?:
+            </label>
             <input
               type='text'
               name='description'
               value={description}
               onChange={this.handleChange}
+              required
             />
             <button>Submit Profile</button>
           </form>
           <div id={styles.profileView}>
-            <img src={photo} />
             <h1>Name: {name}</h1>
-            <h3>Age: {age}</h3>
             <h3>Street Address:{streetAddress1}</h3>
             <h3>Address (continued): {streetAddress2}</h3>
             <h3>City: {city}</h3>
             <h3>State: {state}</h3>
             <h3>Zip Code: {zip}</h3>
             <h3>Phone Number: {phone}</h3>
-            <h3>Hourly Rate: {pricePerHour}</h3>
-            <h3>Description: {description}</h3>
+            <h3>Number of Children: {numOfChildren}</h3>
+            <h3>Child Birthdays: </h3>
+            <ul>{childList}</ul>
+            <h3>Details: {description}</h3>
           </div>
         </div>
       </Fragment>

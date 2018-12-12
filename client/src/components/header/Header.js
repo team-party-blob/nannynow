@@ -4,7 +4,7 @@ import { ROUTES } from '../../routes/routes';
 import styles from './Header.css';
 import { logo } from '../../assets/imageUrl';
 
-export default function Header({ session }) {
+export default function Header({ session, signOut }) {
   return (
     <header>
       <img src={logo} />
@@ -14,19 +14,19 @@ export default function Header({ session }) {
         <span id={styles.hamburgerSpan} />
 
         <nav id={styles.nav}>
-          <Link className={styles.link} to={ROUTES.HOME.linkTo()}>
+          {session && <Link className={styles.link} to={ROUTES.DASHBOARD.linkTo(session._id)}>
             Dashboard
-          </Link>
-          <Link className={styles.link} to={ROUTES.HOME.linkTo()}>
+          </Link>}
+          {session && <Link className={styles.link} to={ROUTES.PROFILE.linkTo(session._id)}>
             Edit Profile
-          </Link>
+          </Link>}
           {!session && (
             <Link className={styles.link} to={ROUTES.SIGNIN.linkTo()}>
               Log In
             </Link>
           )}
           {session && (
-            <Link className={styles.link} to={ROUTES.SIGNUP.linkTo()}>
+            <Link className={styles.link} to={ROUTES.SIGNUP.linkTo()} onClick={signOut}>
               Log Out
             </Link>
           )}

@@ -1,0 +1,26 @@
+#profileHeader {
+  margin-top: 5vh;
+  text-align: center;
+}
+#profileBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+
+    label {
+      margin-top: 20px;
+    }
+
+    input {
+      height: 18px;
+      margin-bottom: 4px;
+      border: 2px solid gray;
+      border-radius: 8px;
+    }
+
+  }
+}

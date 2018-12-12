@@ -116,7 +116,7 @@ img {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    position: fixed;
+    // position: fixed;
     align-items: center;
 
     #hamburgerLabel {

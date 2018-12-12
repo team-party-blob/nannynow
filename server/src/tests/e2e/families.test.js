@@ -4,28 +4,28 @@ import app from '../../routes/app';
 const { getFamilies, familiesSeedData } = require('./helpers/seedData');
 
 describe('families routes', () => {
-  it('creates a family profile (with seed data helper)', () => {
-    const createdFamilies = getFamilies();
-    const families = familiesSeedData();
+  // it('creates a family profile (with seed data helper)', () => {
+  //   const createdFamilies = getFamilies();
+  //   const families = familiesSeedData();
 
-    expect(createdFamilies[0]).toEqual({
-      name: families[0].name,
-      agency: families[0].agency,
-      numOfChildren: families[0].numOfChildren,
-      birthdays: expect.any(Array),
-      streetAddress1: families[0].streetAddress1,
-      city: families[0].city,
-      state: families[0].state,
-      zip: families[0].zip,
-      phone: families[0].phone,
-      email: families[0].email,
-      description: families[0].description,
-      user: expect.any(String),
-      _id: expect.any(String),
-      __v: 0,
-      createdDate: expect.anything()
-    });
-  });
+  //   expect(createdFamilies[0]).toEqual({
+  //     name: families[0].name,
+  //     agency: families[0].agency,
+  //     numOfChildren: families[0].numOfChildren,
+  //     birthdays: expect.any(Array),
+  //     streetAddress1: families[0].streetAddress1,
+  //     city: families[0].city,
+  //     state: families[0].state,
+  //     zip: families[0].zip,
+  //     phone: families[0].phone,
+  //     email: families[0].email,
+  //     description: families[0].description,
+  //     user: expect.any(String),
+  //     _id: expect.any(String),
+  //     __v: 0,
+  //     createdDate: expect.anything()
+  //   });
+  // });
 
   it('gets a list of all families', () => {
     const createdFamilies = getFamilies();

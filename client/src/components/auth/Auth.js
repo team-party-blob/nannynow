@@ -19,6 +19,11 @@ export default class Login extends PureComponent {
     agency: 'nwnannies'
   };
 
+  componentDidUpdate() {
+    const { session } = this.props;
+    if(session) return this.props.history.push(`/dashboard/${session._id}`);
+  }
+
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
@@ -43,9 +48,7 @@ export default class Login extends PureComponent {
 
   render() {
     const { email, password, role } = this.state;
-    const { loginType, session } = this.props;
-
-    {session && <Redirect to={ROUTES.DASHBOARD.linkTo(session.user._id)} />;}
+    const { loginType } = this.props;
 
     const nannyOrFamilyInput = () => {
       return (

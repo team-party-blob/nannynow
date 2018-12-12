@@ -26,6 +26,11 @@ export const signIn = ({ email, password, role, agency }) => ({
   payload: signInService({ email, password, role, agency })
 });
 
+export const SESSION_END = 'SESSION_END';
+export const signOut = () => ({
+  type: SESSION_END
+});
+
 export const refreshSession = () => ({
   type: SESSION_CREATE,
   loadStart: SESSION_LOAD_START,

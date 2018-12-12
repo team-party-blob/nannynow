@@ -42,7 +42,7 @@ export default class NannyProfile extends PureComponent {
     const profileInfo = { ...this.state, user: _id, agency };
 
     {
-      profile && updateProfile(profile._id, this.state);
+      profile && updateProfile(profile._id, profileInfo);
     }
     {
       !profile && createProfile(profileInfo);

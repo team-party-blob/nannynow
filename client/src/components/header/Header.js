@@ -14,9 +14,9 @@ export default function Header({ session, signOut }) {
         <span id={styles.hamburgerSpan} />
 
         <nav id={styles.nav}>
-          <Link className={styles.link} to={ROUTES.HOME.linkTo()}>
+          {session && <Link className={styles.link} to={ROUTES.DASHBOARD.linkTo(session._id)}>
             Dashboard
-          </Link>
+          </Link>}
           {session && <Link className={styles.link} to={ROUTES.PROFILE.linkTo(session._id)}>
             Edit Profile
           </Link>}

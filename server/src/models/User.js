@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: [true, 'Email is required'],
+      required: [true, 'Unique email is required'],
       unique: true
     },
     role: {
@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema(
     toJSON: {
       transform: function(doc, ret) {
         delete ret.__v;
+        delete ret.passwordHash;
       }
     }
   }

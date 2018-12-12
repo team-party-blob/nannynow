@@ -21,6 +21,7 @@ exports[`Profile component renders a component 1`] = `
       <input
         name="name"
         onChange={[Function]}
+        required={true}
         type="text"
         value=""
       />
@@ -54,6 +55,7 @@ exports[`Profile component renders a component 1`] = `
       <input
         name="streetAddress1"
         onChange={[Function]}
+        required={true}
         type="text"
         value=""
       />
@@ -71,6 +73,7 @@ exports[`Profile component renders a component 1`] = `
       <input
         name="city"
         onChange={[Function]}
+        required={true}
         type="text"
         value=""
       />
@@ -82,8 +85,14 @@ exports[`Profile component renders a component 1`] = `
       <select
         name="state"
         onChange={[Function]}
+        required={true}
         value=""
       >
+        <option
+          value=""
+        >
+          --
+        </option>
         <option
           key="AL"
           value="AL"
@@ -447,6 +456,7 @@ exports[`Profile component renders a component 1`] = `
       <input
         name="zip"
         onChange={[Function]}
+        required={true}
         type="text"
         value=""
       />
@@ -458,6 +468,7 @@ exports[`Profile component renders a component 1`] = `
       <input
         name="phone"
         onChange={[Function]}
+        required={true}
         type="text"
         value=""
       />

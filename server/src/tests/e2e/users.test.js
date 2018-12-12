@@ -51,7 +51,7 @@ describe('users routes', () => {
       role: 'family'
     };
 
-    User.create(user).then(createdUser => {
+    return User.create(user).then(createdUser => {
       expect(createdUser.compare(user.password)).toBeTruthy();
       expect(createdUser.compare('failing')).toBeFalsy();
     });
@@ -84,12 +84,13 @@ describe('users routes', () => {
       .then(res => {
         token = res.body.token;
       })
-      .then(
-        request(app)
+      .then(() => {
+        return request(app)
           .post('/api/users/signin')
           .set('Authorization', `Bearer ${token}`)
           .send({ email: 'nanny@test.com', password: 'badpassword' })
-          .then(checkStatus(401))
+          .then(checkStatus(401));
+      }
       );
   });
 

@@ -43,7 +43,6 @@ export default Router()
   .get('/', (req, res, next) => {
     User.find()
       .select({ __v: false })
-      .lean()
       .then(users => res.json(users))
       .catch(next);
   })
@@ -58,7 +57,6 @@ export default Router()
     const { id } = req.params;
     User.findById(id)
       .select({ __v: false })
-      .lean()
       .then(user => res.json(user))
       .catch(next);
   })
@@ -75,8 +73,6 @@ export default Router()
     const { email, password, role, agency } = req.body;
 
     User.findByIdAndUpdate(id, { email, password, role, agency }, { new: true })
-      .select({ __v: false })
-      .lean()
       .then(user => res.json(user))
       .catch(next);
   });

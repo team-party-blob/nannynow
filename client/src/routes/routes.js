@@ -3,10 +3,8 @@ import { Route } from 'react-router-dom';
 import React from 'react';
 import { Signup, Signin } from '../containers/AuthContainer';
 import { withSession } from '../components/auth/withSession';
-import NannyProfile from '../components/profile/NannyProfile';
-import Dashboard from '../components/dashboard/Dashboard';
-// import NannyProfileContainer from '../containers/NannyProfileContainer';
 import ProfileContainer from '../containers/ProfileContainer';
+import DashBoardContainer from '../containers/DashBoardContainer';
 
 export const ROUTES = {
   HOME: {
@@ -32,7 +30,7 @@ export const ROUTES = {
   },
   DASHBOARD: {
     path: '/dashboard/:id',
-    Component: withSession(Dashboard),
+    Component: withSession(DashBoardContainer),
     linkTo: id => `/dashboard/${id}`
   }
 };

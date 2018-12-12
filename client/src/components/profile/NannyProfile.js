@@ -1,30 +1,33 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styles from './NannyProfile.css';
+// import { updateProfile, createProfile } from '../../actions/profile';
+
 
 export default class NannyProfile extends PureComponent {
 
   static propTypes = {
     session: PropTypes.object.isRequired,
-    createProfile: PropTypes.func,
-    updateProfile: PropTypes.func
+    createProfile: PropTypes.func.isRequired,
+    updateProfile: PropTypes.func.isRequired
   };
 
   state = {
     photo: '',
     name: '',
-    age: '',
+    age: 0,
     streetAddress1: '',
     streetAddress2: '',
     city: '',
     zip: '',
-    phoneNumber: '',
-    pricePerHour: '',
+    phone: '',
+    pricePerHour: 16,
     description: ''
   };
 
   componentDidMount() {
-    //Set session.profile to state here
+    const { profile } = this.props;
+    this.setState(profile);
   }
 
   handleChange = ({ target }) => {
@@ -33,23 +36,16 @@ export default class NannyProfile extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { session } = this.props;
+    const { session, profile, updateProfile, createProfile } = this.props;
+    const { _id, agency } = session;
 
-    const id = this.props.match.url;
-    //get id off of this.props.match;
-    {session.profile && this.props.updateProfile(id, this.state);}
-    {!session.profile && this.props.createProfile(this.state);}
-  };
+    const profileInfo = { ...this.state, user: _id, agency };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { email, password, role, agency } = this.state;
-    this.props.onSubmit({ email, password, role, agency });
+    {profile && updateProfile(session._id, this.state);}
+    {!profile && createProfile(profileInfo);}
   };
 
   render() {
-
-    console.log(this.props)
     const {
       photo,
       name,
@@ -58,7 +54,7 @@ export default class NannyProfile extends PureComponent {
       streetAddress2,
       city,
       zip,
-      phoneNumber,
+      phone,
       pricePerHour,
       description
     } = this.state;
@@ -115,11 +111,11 @@ export default class NannyProfile extends PureComponent {
             value={zip}
             onChange={this.handleChange}
           />
-          <label htmlFor='phoneNumber'>Phone Number</label>
+          <label htmlFor='phone'>Phone Number</label>
           <input
             type='text'
-            name='phoneNumber'
-            value={phoneNumber}
+            name='phone'
+            value={phone}
             onChange={this.handleChange}
           />
           <label htmlFor='pricePerHour'>Your Hourly Rate:</label>
@@ -146,7 +142,7 @@ export default class NannyProfile extends PureComponent {
           <h3>Address (continued): {streetAddress2}</h3>
           <h3>City: {city}</h3>
           <h3>Zip Code: {zip}</h3>
-          <h3>Phone Number: {phoneNumber}</h3>
+          <h3>Phone Number: {phone}</h3>
           <h3>Hourly Rate: {pricePerHour}</h3>
           <h3>Description: {description}</h3>
         </div>

@@ -11,7 +11,11 @@ export default Router()
       nanny,
       request,
       agencyFeePerHour,
-      nannyPricePerHour
+      nannyPricePerHour,
+      projectedNannyPayment,
+      projectedAgencyPayment,
+      finalNannyPayment,
+      finalAgencyPayment
     } = req.body;
 
     Appointment.create({
@@ -22,7 +26,11 @@ export default Router()
       nanny,
       request,
       agencyFeePerHour,
-      nannyPricePerHour
+      nannyPricePerHour,
+      projectedNannyPayment,
+      projectedAgencyPayment,
+      finalNannyPayment,
+      finalAgencyPayment
     })
       .then(appointment => res.json(appointment))
       .catch(next);
@@ -60,7 +68,11 @@ export default Router()
       nanny,
       request,
       agencyFeePerHour,
-      nannyPricePerHour
+      nannyPricePerHour,
+      projectedNannyPayment,
+      projectedAgencyPayment,
+      finalNannyPayment,
+      finalAgencyPayment
     } = req.body;
 
     Appointment.findByIdAndUpdate(
@@ -73,7 +85,11 @@ export default Router()
         nanny,
         request,
         agencyFeePerHour,
-        nannyPricePerHour
+        nannyPricePerHour,
+        projectedNannyPayment,
+        projectedAgencyPayment,
+        finalNannyPayment,
+        finalAgencyPayment
       },
       { new: true }
     )

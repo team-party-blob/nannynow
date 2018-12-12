@@ -30,6 +30,7 @@ describe('requested appointments routes', () => {
           status: 'no response'
         }
       ],
+      closed: expect.any(Boolean),
       _id: expect.any(String),
       __v: 0,
       createdDate: expect.anything()

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import Appointment from '../../models/Appointment';
+import User from '../../models/User';
 
 export default Router()
   .post('/', (req, res, next) => {
@@ -49,6 +50,26 @@ export default Router()
       .lean()
       .then(request => res.json(request))
       .catch(next);
+  })
+
+  .get('/user/:userId', (req, res, next) =>{ 
+    const { userId } = req.params;
+
+    User.findById(userId).then(user => {
+      if(user.role === 'nanny') {
+        Appointment.find({ nanny: user._id })
+          .then(response => res.json(response))
+          .catch(next);
+      } else if(user.role === 'family') {
+        Appointment.find({ family: user._id })
+          .then(response => res.json(response))
+          .catch(next);
+      } else if(user.role === 'admin' || user.role === 'developer') {
+        Appointment.find()
+          .then(response => res.json(response))
+          .catch(next);
+      }
+    });
   })
 
   .delete('/:id', (req, res, next) => {

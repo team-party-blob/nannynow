@@ -3,19 +3,14 @@ import connect from '../../../utils/connect';
 import mongoose from 'mongoose';
 
 config();
+connect();
 
-beforeEach(() => {
-  return connect();
-});
-
-afterEach(() => {
+afterAll(() => {
   return mongoose.disconnect();
 });
 
-module.exports = {
-  dropCollection(name) {
-    return mongoose.connection.dropCollection(name).catch(err => {
-      if(err.codeName !== 'NamespaceNotFound') throw err;
-    });
-  }
+export const dropCollection = name => {
+  return mongoose.connection.dropCollection(name).catch(err => {
+    if(err.codeName !== 'NamespaceNotFound') throw err;
+  });
 };

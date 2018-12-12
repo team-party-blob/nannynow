@@ -1,34 +1,40 @@
-import { dropCollection } from './db';
+// import { dropCollection } from './db';
 import request from 'supertest';
 import app from '../../../routes/app';
 import User from '../../../models/User';
+import Agency from '../../../models/Agency';
+import NannyProfile from '../../../models/NannyProfile';
+import FamilyProfile from '../../../models/FamilyProfile';
+import RequestedAppointment from '../../../models/RequestedAppointment';
+import Appointment from '../../../models/Appointment';
+import AvailableTime from '../../../models/AvailableTime';
 
 beforeEach(() => {
-  return dropCollection('agencies');
+  return Agency.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('users');
+  return User.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('nannyprofiles');
+  return NannyProfile.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('familyprofiles');
+  return FamilyProfile.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('requestedappointments');
+  return RequestedAppointment.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('appointments');
+  return Appointment.deleteMany({});
 });
 
 beforeEach(() => {
-  return dropCollection('availabletimes');
+  return AvailableTime.deleteMany({});
 });
 
 let createdAgencies;
@@ -286,6 +292,7 @@ beforeEach(() => {
   users[1].agency = createdAgencies[0]._id;
   users[2].agency = createdAgencies[0]._id;
   users[3].agency = createdAgencies[0]._id;
+  users[4].agency = createdAgencies[0]._id;
 
   return Promise.all(users.map(createUser)).then(usersRes => {
     createdUsers = usersRes;
@@ -310,8 +317,8 @@ beforeEach(() => {
   nannies[0].agency = createdAgencies[0]._id;
   nannies[1].agency = createdAgencies[0]._id;
 
-  nannies[0].user = createdUsers[1]._id;
-  nannies[1].user = createdUsers[2]._id;
+  nannies[0].user = createdUsers[2]._id;
+  nannies[1].user = createdUsers[3]._id;
 
   return Promise.all(nannies.map(createNanny)).then(nanniesRes => {
     createdNannies = nanniesRes;
@@ -343,36 +350,36 @@ beforeEach(() => {
 
   requestedAppointments[0].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
   requestedAppointments[1].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
 
   requestedAppointments[2].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
 
   requestedAppointments[3].requestedNannies = [
     {
-      nanny: createdUsers[1]._id
+      nanny: createdUsers[2]._id
     },
     {
-      nanny: createdUsers[2]._id
+      nanny: createdUsers[3]._id
     }
   ];
 
@@ -386,7 +393,7 @@ beforeEach(() => {
 beforeEach(() => {
   appointments[0].agency = createdAgencies[0]._id;
   appointments[0].family = createdUsers[0]._id;
-  appointments[0].nanny = createdUsers[1]._id;
+  appointments[0].nanny = createdUsers[2]._id;
   appointments[0].request = createdRequestedAppointments[1]._id;
 
   return Promise.all(appointments.map(createAppointment)).then(
@@ -397,8 +404,8 @@ beforeEach(() => {
 });
 
 beforeEach(() => {
-  availableTimes[0].nanny = createdNannies[0]._id;
-  availableTimes[1].nanny = createdNannies[1]._id;
+  availableTimes[0].nanny = createdUsers[2]._id;
+  availableTimes[1].nanny = createdUsers[3]._id;
 
   return Promise.all(availableTimes.map(createAvailableTime)).then(
     availableTimesRes => {

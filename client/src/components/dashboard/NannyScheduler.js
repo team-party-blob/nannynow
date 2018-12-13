@@ -11,8 +11,8 @@ export default class NannyScheduler extends PureComponent {
   };
 
   state = {
-    start: new Date(),
-    end: new Date()
+    start: null,
+    end: null
   };
 
   handleStartChange = date => {
@@ -27,7 +27,7 @@ export default class NannyScheduler extends PureComponent {
     event.preventDefault();
     const { start, end } = this.state;
     const { _id } = this.props.user;
-    this.props.updateAvailability(start.toLocaleString(), end.toLocaleString(), _id);
+    {start && end && this.props.updateAvailability(start.toISOString(), end.toISOString(), _id);}
   };
 
   render() {
@@ -42,7 +42,7 @@ export default class NannyScheduler extends PureComponent {
           end={end}
           id={styles.range}
         />
-        <button id={globalStyles.button}>Submit Availability</button>
+        <button id={globalStyles.button} className={styles.addAvailButton}>Submit Availability</button>
       </form>
     );
   }

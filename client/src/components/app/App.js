@@ -4,7 +4,6 @@ import { routerRoutes } from '../../routes/routes';
 import HeaderContainer from '../../containers/HeaderContainer';
 
 export default function App({ session }) {
-  console.log(session);
   return (
     <Router>
       <Fragment>

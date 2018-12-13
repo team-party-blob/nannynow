@@ -18,8 +18,8 @@ export default class FamilyRequest extends PureComponent {
     selectedChildren: [],
     searchQuery: {},
     closed: false,
-    startDateTime: '',
-    endDateTime: '',
+    startDateTime: new Date(),
+    endDateTime: new Date(),
     appointmentComments: '',
     requestedNannies: []
   };
@@ -62,6 +62,7 @@ export default class FamilyRequest extends PureComponent {
 
 
   render() {
+
     const { filteredNannies } = this.props;
     const {
       birthdays,

@@ -21,7 +21,7 @@ const initialState = {
 export default function reducer(state = initialState, { type, payload }) {
   switch(type) {
     case FETCH_APPOINTMENTS:
-      return { appointments: payload };
+      return { ...state, appointments: payload };
     case FETCH_APPOINTMENTS_LOAD_START:
       return { ...state, loading: true };
     case FETCH_APPOINTMENTS_LOAD_END:
@@ -29,7 +29,7 @@ export default function reducer(state = initialState, { type, payload }) {
     case FETCH_APPOINTMENTS_ERROR:
       return { ...state, error: payload };
     case FETCH_APPOINTMENT:
-      return { detail: payload };
+      return { ...state, detail: payload };
     case FETCH_APPOINTMENT_LOAD_START:
       return { ...state, loading: true };
     case FETCH_APPOINTMENT_LOAD_END:

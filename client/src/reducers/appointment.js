@@ -1,8 +1,8 @@
 import {
-  GET_APPOINTMENTS,
-  GET_APPOINTMENTS_LOAD_START,
-  GET_APPOINTMENTS_LOAD_END,
-  GET_APPOINTMENTS_ERROR
+  FETCH_APPOINTMENTS,
+  FETCH_APPOINTMENTS_LOAD_START,
+  FETCH_APPOINTMENTS_LOAD_END,
+  FETCH_APPOINTMENTS_ERROR
 } from '../actions/appointment';
 
 const initialState = {
@@ -13,13 +13,13 @@ const initialState = {
 
 export default function reducer(state = initialState, { type, payload }) {
   switch(type) {
-    case GET_APPOINTMENTS:
+    case FETCH_APPOINTMENTS:
       return { appointments: payload };
-    case GET_APPOINTMENTS_LOAD_START:
+    case FETCH_APPOINTMENTS_LOAD_START:
       return { ...state, loading: true };
-    case GET_APPOINTMENTS_LOAD_END:
+    case FETCH_APPOINTMENTS_LOAD_END:
       return { ...state, loading: false };
-    case GET_APPOINTMENTS_ERROR:
+    case FETCH_APPOINTMENTS_ERROR:
       return { ...state, error: payload };
     default:
       return state;

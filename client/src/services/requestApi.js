@@ -5,5 +5,5 @@ export const createFamilyRequest = request => {
 };
 
 export const fetchFilteredNannies = query => {
-  return get('/api/filteredNannies', query);
+  return get('/api/nannies/search', query);
 };

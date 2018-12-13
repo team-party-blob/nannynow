@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Appointments from './Appointments';
+import FamilyRequestContainer from '../../containers/FamilyRequestContainer';
+
+
 export default class FamilyDashboard extends Component {
   static propTypes = {
     appointments: PropTypes.array.isRequired,
@@ -13,6 +16,7 @@ export default class FamilyDashboard extends Component {
       <div>
         <h1>I am a family dashboard</h1>
         <Appointments  {...this.props }/>
+        <FamilyRequestContainer {...this.props} />
       </div>
     );
   }

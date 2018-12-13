@@ -29,6 +29,14 @@ export default Router()
       .catch(next);
   })
 
+  .get('/nanny/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    AvailableTime.find({ nanny: id })
+      .then(request => res.json(request))
+      .catch(next);
+  })
+
   .delete('/:id', (req, res, next) => {
     const { id } = req.params;
     AvailableTime.findByIdAndDelete(id)

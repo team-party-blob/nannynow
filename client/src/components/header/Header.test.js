@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header from './Header';
 
-// jest.mock('../../assets/palm_logo.png', () => 'palm-logo.png');
 describe('Header component', () => {
 
   it('renders a Header component', () => {
-    const wrapper = shallow(<Header />);
+    const session = { _id: '1234' };
+    const wrapper = shallow(<Header session={session}/>);
     expect(wrapper).toMatchSnapshot();
   });
 });

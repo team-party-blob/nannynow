@@ -12,7 +12,7 @@ export default class Dashboard extends PureComponent {
 
   render() {
     const { role } = this.props.user;
-
+    if(this.props.loading) return <h1>LoadING</h1>;
     return (
       <div>
         {role === 'nanny' && <NannyDashboard { ...this.props } />}

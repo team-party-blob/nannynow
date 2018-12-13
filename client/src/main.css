@@ -1,3 +1,39 @@
 body {
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/8vV2rpe/pastel-blue-background-1080p_x1kgy93b__F0000.png');
+  background-size: cover;
   margin: 0;
+
+}
+
+#error {
+  font-size: 20px;
+  color: red;
+  text-align: center;
+}
+
+#button {
+  border: 2px solid grey;
+  border-radius: 8px;
+}
+
+#input {
+  border: 2px solid grey;
+  border-radius: 8px;
+}
+
+#form {
+  background-color: white;
+  border: 3px solid grey;
+  border-radius: 8px;
+}
+
+#inputLabel {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 18px;
+}
+
+#header {
+  font-family: 'Noto Serif TC', serif;
+  text-align: center;
+  font-size: 40px;
 }

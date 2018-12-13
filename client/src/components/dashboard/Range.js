@@ -35,7 +35,7 @@ export default class Range extends PureComponent {
             timeCaption='time'
             id={globalStyles.input}
             className={styles.dateInput}
-            placeholderText={new Date()}
+            placeholderText={new Date().toDateString()}
           />
         </div>
         <div id={styles.selectLine}>
@@ -54,7 +54,7 @@ export default class Range extends PureComponent {
             timeCaption='time'
             id={globalStyles.input}
             className={styles.dateInput}
-            placeholderText={new Date()}
+            placeholderText={new Date().toDateString()}
           />
         </div>
       </div>

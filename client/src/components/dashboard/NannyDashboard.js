@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NannySchedulerContainer from '../../containers/NannySchedulerContainer';
-import globalStyles from '../../main.css'
+import globalStyles from '../../main.css';
 
 export default class NannyDashboard extends Component {
   render() {

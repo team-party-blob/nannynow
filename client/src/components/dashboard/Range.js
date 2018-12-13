@@ -24,8 +24,8 @@ export default class Range extends PureComponent {
             onChange={this.props.onStartChange}
             showTimeSelect
             selectsStart
-            startDate={start}
-            endDate={end}
+            // startDate={start}
+            // endDate={end}
             minDate={new Date()}
             maxDate={end}
             timeFormat='HH:mm'
@@ -45,8 +45,8 @@ export default class Range extends PureComponent {
             showTimeSelect
             selectsEnd
             minDate={start}
-            startDate={start}
-            endDate={end}
+            // startDate={start}
+            // endDate={end}
             timeFormat='HH:mm'
             timeIntervals={15}
             dateFormat='MMMM d, yyyy h:mm aa'

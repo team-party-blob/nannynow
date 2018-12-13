@@ -18,7 +18,9 @@ export default class AvailabilityDisplay extends PureComponent {
   }
 
   handleRemove = id => {
-    return () => this.props.removeAvailability(id);
+    const { _id } = this.props.user;
+    return () => this.props.removeAvailability(id)
+      .then(this.props.getAvailability(_id));
   };
 
   render() {
@@ -37,8 +39,8 @@ export default class AvailabilityDisplay extends PureComponent {
     });
     return (
       <div>
-        <div>Available From:</div>
-        <div>Available Until:</div>
+        {availability.length > 0 && <div>Available From:</div>}
+        {availability.length > 0 && <div>Available Until:</div>}
         {availabilityList}
       </div>
     );

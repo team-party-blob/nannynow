@@ -14,22 +14,23 @@ export default function Header({ session, signOut }) {
         <span id={styles.hamburgerSpan} />
 
         <nav id={styles.nav}>
-          {session && <Link className={styles.link} to={ROUTES.DASHBOARD.linkTo(session._id)}>
+          <Link
+            className={styles.link}
+            to={ROUTES.DASHBOARD.linkTo(session._id)}
+          >
             Dashboard
-          </Link>}
-          {session && <Link className={styles.link} to={ROUTES.PROFILE.linkTo(session._id)}>
+          </Link>
+          <Link className={styles.link} to={ROUTES.PROFILE.linkTo(session._id)}>
             Edit Profile
-          </Link>}
-          {!session && (
-            <Link className={styles.link} to={ROUTES.SIGNIN.linkTo()}>
-              Log In
-            </Link>
-          )}
-          {session && (
-            <Link className={styles.link} to={ROUTES.SIGNUP.linkTo()} onClick={signOut}>
-              Log Out
-            </Link>
-          )}
+          </Link>
+          <Link
+            className={styles.link}
+            to={ROUTES.SIGNUP.linkTo()}
+            onClick={signOut}
+          >
+            Log Out
+          </Link>
+
         </nav>
       </div>
     </header>

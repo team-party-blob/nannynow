@@ -120,7 +120,16 @@ export default Router()
       })
       .populate('family')
       .populate('nanny')
-      .then(response => res.json(response))
+      .then(appointment => {
+        return Promise.all([
+          Promise.resolve(appointment),
+          appointment.family.getProfile(),
+          appointment.nanny.getProfile()
+        ]);
+      })
+      .then(([appointment, familyProfile, nannyProfile]) => {
+        res.json({ ...appointment, familyProfile, nannyProfile });
+      })
       .catch(next);
   })
 

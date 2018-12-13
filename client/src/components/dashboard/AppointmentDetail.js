@@ -9,8 +9,7 @@ class AppointmentDetail extends PureComponent {
     match: PropTypes.object.isRequired,
     fetchNanny: PropTypes.func.isRequired,
     fetchFamily: PropTypes.func.isRequired,
-    nanny: PropTypes.object.isRequired,
-    family: PropTypes.object.isRequired
+ 
   };
 
   componentDidMount() {
@@ -26,6 +25,9 @@ class AppointmentDetail extends PureComponent {
   }
 
   render() {
+    const { detail } = this.props;
+    if(!detail) return null;
+    console.log('detail', detail)
     return (
       <Fragment>
         <h3>Appointment Detail</h3>

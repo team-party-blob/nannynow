@@ -37,6 +37,17 @@ describe('nanny routes', () => {
       });
   });
 
+  it.only('filters nannies based on availability', () => {
+    const createdNannies = getNannies();
+
+    return request(app)
+      .get('/api/nannies/search/')
+      .send({ startTime: new Date(), endTime: new Date() })
+      .then(result => {
+        expect(result).toEqual('');//created nannies less those who don't have the availability
+      });
+  });
+
   it('deletes a nanny by id', () => {
     const createdNannies = getNannies();
 

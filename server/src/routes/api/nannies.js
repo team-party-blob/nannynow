@@ -49,6 +49,11 @@ export default Router()
       .then(nannies => res.json(nannies))
       .catch(next);
   })
+
+  .get('/search', (req, res, next) => {
+    const { query } = req.params;
+    console.log(query);
+  })
   .delete('/:id', (req, res, next) => {
     const { id } = req.params;
 

@@ -1,6 +1,5 @@
 export const getSession = state => state.session.user;
 
-//WRITE TEST
 export const getSessionProfile = state => state.session.profile;
 
 export const getSessionLoading = state => state.session.loading;

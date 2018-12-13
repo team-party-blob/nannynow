@@ -18,7 +18,7 @@ export default class Range extends PureComponent {
     return (
       <div id={styles.container}>
         <div id={styles.selectLine}>
-          <label id={globalStyles.inputLabel}>Start Availability:</label>
+          <label id={globalStyles.inputLabel}>Start Time & Date:</label>
           <DatePicker
             selected={this.props.start}
             onChange={this.props.onStartChange}
@@ -38,7 +38,7 @@ export default class Range extends PureComponent {
           />
         </div>
         <div id={styles.selectLine}>
-          <label id={globalStyles.inputLabel}>End Availability:</label>
+          <label id={globalStyles.inputLabel}>End Time & Date:</label>
           <DatePicker
             selected={this.props.end}
             onChange={this.props.onEndChange}

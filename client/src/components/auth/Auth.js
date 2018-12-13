@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
 import styles from './Auth.css';
 import globalStyles from '../../main.css';
+import Loading from '../loading/Loading';
 
 export default class Login extends PureComponent {
   static propTypes = {
     loginType: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    user: PropTypes.object
+    user: PropTypes.object,
+    loading: PropTypes.bool.isRequired
   };
 
   state = {
@@ -82,9 +84,13 @@ export default class Login extends PureComponent {
         </div>
       );
     };
+    const { loading } = this.props;
 
+    if(loading) return <Loading />;
+    
     return (
       <div id={styles.auth}>
+
 
         <h1>Nanny Now!</h1>
         <form id={styles.authForm} onSubmit={this.handleSubmit}>

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import NannyDashboard from './NannyDashboard';
 import FamilyDashboard from './FamilyDashboard';
-import LoadingImage from '../loader/LoadingImage';
 
 export default class Dashboard extends PureComponent {
 

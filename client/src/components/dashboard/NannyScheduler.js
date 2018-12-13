@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import PropTypes from 'prop-types';
 import Range from './Range';
 import styles from './NannyScheduler.css';
 import globalStyles from '../../main.css';
-import AvailabilityDisplay from './AvailabilityDisplay';
+import AvailabilityDisplayContainer from '../../containers/AvailabilityDisplayContainer';
 
 export default class NannyScheduler extends PureComponent {
   static propTypes = {
@@ -34,7 +34,7 @@ export default class NannyScheduler extends PureComponent {
   render() {
     const { start, end } = this.state;
     return (
-      <div>
+      <Fragment >
         <form onSubmit={this.handleSubmit} id={globalStyles.form} className={styles.schedulerForm}>
           <Range
             onStartChange={this.handleStartChange}
@@ -44,9 +44,9 @@ export default class NannyScheduler extends PureComponent {
             id={styles.range}
           />
           <button id={globalStyles.button} className={styles.addAvailButton}>Submit Availability</button>
+          <AvailabilityDisplayContainer />
         </form>
-        <AvailabilityDisplay />
-      </div>
+      </Fragment>
     );
   }
 }

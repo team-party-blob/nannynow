@@ -14,7 +14,7 @@
 #selectLine {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 @media (max-width: 650px) {

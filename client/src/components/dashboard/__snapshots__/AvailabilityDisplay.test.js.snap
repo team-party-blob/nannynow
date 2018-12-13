@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvailabilityDisplay matches snapshot 1`] = `
+<div>
+  <tr>
+    <th>
+      Available From:
+    </th>
+    <th>
+      Available Until:
+    </th>
+  </tr>
+  <tr>
+    <div
+      key="0"
+    >
+      <td>
+        <Component />
+      </td>
+      <td>
+        <Component />
+      </td>
+    </div>
+    <div
+      key="1"
+    >
+      <td>
+        <Component />
+      </td>
+      <td>
+        <Component />
+      </td>
+    </div>
+  </tr>
+</div>
+`;

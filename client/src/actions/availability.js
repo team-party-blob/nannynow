@@ -1,5 +1,8 @@
-import { updateAvailability as postAvailability } from '../services/availabilityApi.js';
-import { getAvailability as fetchAvailability } from '../services/availabilityApi';
+import {
+  updateAvailability as postAvailability,
+  getAvailability as fetchAvailability,
+  deleteAvailability
+} from '../services/availabilityApi.js';
 import { LOAD_START, LOAD_END } from './fixtures/loadingActions.js';
 
 export const AVAILABILITY_UPDATE = 'AVAILABILITY_UPDATE';
@@ -22,4 +25,15 @@ export const getAvailability = userId => ({
   loadEnd: LOAD_END,
   errorType: AVAILABILITY_FETCH_ERROR,
   payload: fetchAvailability(userId)
+});
+
+export const AVAILABILITY_REMOVE = 'AVAILABILITY_REMOVE';
+export const AVAILABILITY_REMOVE_ERROR = 'AVAILABILITY_REMOVE_ERROR';
+
+export const removeAvailability = userId => ({
+  type: AVAILABILITY_REMOVE,
+  loadStart: LOAD_START,
+  loadEnd: LOAD_END,
+  errorType: AVAILABILITY_REMOVE_ERROR,
+  payload: deleteAvailability(userId)
 });

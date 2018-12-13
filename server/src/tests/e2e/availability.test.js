@@ -1,7 +1,7 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-import { getAvailableTimes, availableTimesSeedData } from './helpers/seedData';
+import { getAvailableTimes, availableTimesSeedData, getUsers } from './helpers/seedData';
 
 describe('requested available times routes', () => {
   it('creates an available time (with seed data helper)', () => {
@@ -30,7 +30,20 @@ describe('requested available times routes', () => {
       });
   });
 
-  it('gets an AvailableTime by id', () => {
+  it('gets a list of all available times for one nanny by user id', () => {
+    const createdAvailableTimes = getAvailableTimes();
+    const createdUsers = getUsers();
+
+    return request(app)
+      .get(`/api/availability/nanny/${createdUsers[2]._id}`)
+      .then(res => {
+        expect(res.body.length).toEqual(1);
+        expect(res.body).toContainEqual(createdAvailableTimes[0]);
+        expect(res.body).not.toContainEqual(createdAvailableTimes[1]);
+      });
+  });
+
+  it('gets an AvailableTime by available time id', () => {
     const createdAvailableTimes = getAvailableTimes();
 
     return request(app)

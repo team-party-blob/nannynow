@@ -51,7 +51,7 @@ export default class FamilyRequest extends PureComponent {
 
 
   render() {
-    console.log(this.state);
+    const { filteredNannies } = this.props;
     const {
       birthdays,
       startDateTime,
@@ -79,6 +79,7 @@ export default class FamilyRequest extends PureComponent {
             <label htmlFor='comments'>Appointment Comments:</label><br/>
             <textarea name="comments" value={appointmentComments} onChange={this.handleChange}></textarea>
           </form>
+          <FilteredNannies filteredNannies={filteredNannies}/>
         </div>
       </Fragment>
     );

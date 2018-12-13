@@ -30,7 +30,6 @@ export default function Header({ session, signOut }) {
           >
             Log Out
           </Link>
-
         </nav>
       </div>
     </header>

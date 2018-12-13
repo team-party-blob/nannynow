@@ -3,13 +3,13 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
 import styles from './Auth.css';
-// import { logo } from '../../assets/imageUrl';
+import globalStyles from '../../main.css';
 
 export default class Login extends PureComponent {
   static propTypes = {
     loginType: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    session: PropTypes.object
+    user: PropTypes.object
   };
 
   state = {
@@ -20,8 +20,8 @@ export default class Login extends PureComponent {
   };
 
   componentDidUpdate() {
-    const { session } = this.props;
-    if(session) return this.props.history.push(`/dashboard/${session._id}`);
+    const { user } = this.props;
+    if(user) return this.props.history.push(`/dashboard/${user._id}`);
   }
 
   handleChange = ({ target }) => {
@@ -48,8 +48,7 @@ export default class Login extends PureComponent {
 
   render() {
     const { email, password, role } = this.state;
-    const { loginType } = this.props;
-
+    const { loginType, error } = this.props;
     const nannyOrFamilyInput = () => {
       return (
         <Fragment>
@@ -88,8 +87,8 @@ export default class Login extends PureComponent {
       <div id={styles.auth}>
 
         <h1>Nanny Now!</h1>
-
         <form id={styles.authForm} onSubmit={this.handleSubmit}>
+          {error && <h4 id={globalStyles.error}>{error}</h4>}
           <label htmlFor='email'>Email</label>
           <input
             type='email'

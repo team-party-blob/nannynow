@@ -39,7 +39,7 @@ export default function reducer(state = initialState, { type, payload }) {
     case SESSION_TOKEN:
       return { ...state, token: payload };
     case SESSION_ERROR:
-      return { ...state, error: payload };
+      return { ...state, error: payload.error };
     case PROFILE_UPDATE:
       return { ...state, profile: payload, error: null };
     case PROFILE_CREATE:

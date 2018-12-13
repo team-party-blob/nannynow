@@ -3,6 +3,7 @@ import FamilyRequest from '../components/request/FamilyRequest';
 import { getFamilyQuery, getFilteredNanniesRequest } from '../selectors/requests/request';
 import { updateFamilySearchQuery, getFilteredNannies } from '../actions/requests/request';
 
+console.log(updateFamilySearchQuery);
 const mapStateToProps = state => ({
   searchQuery: getFamilyQuery(state),
   filteredNannies: getFilteredNanniesRequest(state)

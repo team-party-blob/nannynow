@@ -49,7 +49,7 @@ export default class FamilyRequest extends PureComponent {
       endDateTime,
       appointmentComments
     } = this.state;
-    const { updateSearchQuery } = this.props;
+    const { updateSearchQuery, fetchFilteredNannies } = this.props;
     const query =
      {
        birthdays,
@@ -58,12 +58,13 @@ export default class FamilyRequest extends PureComponent {
        appointmentComments
      };
     updateSearchQuery(query);
+    fetchFilteredNannies({ startDateTime, endDateTime });
   };
 
 
   render() {
     console.log(this.props);
-    const { filteredNannies } = this.props;
+    const { filteredNannies, searchQuery } = this.props;
     const {
       birthdays,
       startDateTime,
@@ -98,7 +99,7 @@ export default class FamilyRequest extends PureComponent {
             <textarea name="comments" value={appointmentComments} onChange={this.handleChange}></textarea><br/>
             <button type="submit">Get List of Availabilities</button>
           </form>
-          <FilteredNannies filteredNannies={filteredNannies}/>
+          <FilteredNannies filteredNannies={filteredNannies} searchQuery={searchQuery}/>
         </div>
       </Fragment>
     );

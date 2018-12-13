@@ -1,7 +1,11 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-import { getAppointments, appointmentsSeedData } from './helpers/seedData';
+import {
+  getAppointments,
+  appointmentsSeedData,
+  getUsers
+} from './helpers/seedData';
 
 describe(' appointments routes', () => {
   it('creates an appointment (with seed data helper)', () => {
@@ -41,6 +45,102 @@ describe(' appointments routes', () => {
       .get(`/api/appointments/${createdAppointments[0]._id}`)
       .then(res => {
         expect(res.body).toEqual(createdAppointments[0]);
+      });
+  });
+
+  it('gets a list of all appointments by for a family user id', () => {
+    const createdUsers = getUsers();
+    const appointments = getAppointments();
+
+    return request(app)
+      .get(`/api/appointments/user/${createdUsers[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual([
+          {
+            arrivalTime: expect.anything(),
+            departureTime: expect.anything(),
+            family: appointments[0].family,
+            agency: appointments[0].agency,
+            nanny: appointments[0].nanny,
+            agencyFeePerHour: appointments[0].agencyFeePerHour,
+            nannyPricePerHour: appointments[0].nannyPricePerHour,
+            request: {
+              startDateTime: expect.anything(),
+              endDateTime: expect.anything(),
+              appointmentComments: expect.any(String),
+              birthdays: expect.any(Array),
+              closed: expect.any(Boolean),
+              _id: expect.any(String)
+            },
+            _id: expect.any(String),
+            __v: 0,
+            createdDate: expect.anything()
+          }
+        ]);
+      });
+  });
+
+  it('gets a list of all appointments by for a nanny user id', () => {
+    const createdUsers = getUsers();
+    const appointments = getAppointments();
+
+    return request(app)
+      .get(`/api/appointments/user/${createdUsers[2]._id}`)
+      .then(res => {
+        expect(res.body).toEqual([
+          {
+            arrivalTime: expect.anything(),
+            departureTime: expect.anything(),
+            family: appointments[0].family,
+            agency: appointments[0].agency,
+            nanny: appointments[0].nanny,
+            agencyFeePerHour: appointments[0].agencyFeePerHour,
+            nannyPricePerHour: appointments[0].nannyPricePerHour,
+            request: {
+              startDateTime: expect.anything(),
+              endDateTime: expect.anything(),
+              appointmentComments: expect.any(String),
+              birthdays: expect.any(Array),
+              closed: expect.any(Boolean),
+              _id: expect.any(String)
+            },
+            _id: expect.any(String),
+            __v: 0,
+            createdDate: expect.anything()
+          }
+        ]);
+      });
+  });
+
+  it('gets a list of all appointments by for a admin user id', () => {
+    const createdUsers = getUsers();
+    const appointments = getAppointments();
+
+    return request(app)
+      .get(`/api/appointments/user/${createdUsers[4]._id}`)
+      .then(res => {
+        expect(res.body).toEqual([
+          {
+            arrivalTime: expect.anything(),
+            departureTime: expect.anything(),
+            family: appointments[0].family,
+            agency: appointments[0].agency,
+            nanny: appointments[0].nanny,
+            agencyFeePerHour: appointments[0].agencyFeePerHour,
+            nannyPricePerHour: appointments[0].nannyPricePerHour,
+            request: {
+              startDateTime: expect.anything(),
+              endDateTime: expect.anything(),
+              appointmentComments: expect.any(String),
+              birthdays: expect.any(Array),
+              closed: expect.any(Boolean),
+              _id: expect.any(String)
+            },
+            _id: expect.any(String),
+            __v: 0,
+            createdDate: expect.anything()
+          }
+        ]);
       });
   });
 

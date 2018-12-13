@@ -52,20 +52,52 @@ export default Router()
       .catch(next);
   })
 
-  .get('/user/:userId', (req, res, next) =>{ 
+  .get('/user/:userId', (req, res, next) => {
     const { userId } = req.params;
 
     User.findById(userId).then(user => {
       if(user.role === 'nanny') {
         Appointment.find({ nanny: user._id })
+          .populate({
+            path: 'request',
+            select: {
+              startDateTime: true,
+              endDateTime: true,
+              appointmentComments: true,
+              birthdays: true,
+              closed: true
+            }
+          })
+          .lean()
           .then(response => res.json(response))
           .catch(next);
       } else if(user.role === 'family') {
         Appointment.find({ family: user._id })
+          .populate({
+            path: 'request',
+            select: {
+              startDateTime: true,
+              endDateTime: true,
+              appointmentComments: true,
+              birthdays: true,
+              closed: true
+            }
+          })
+          .lean()
           .then(response => res.json(response))
           .catch(next);
       } else if(user.role === 'admin' || user.role === 'developer') {
         Appointment.find()
+          .populate({
+            path: 'request',
+            select: {
+              startDateTime: true,
+              endDateTime: true,
+              appointmentComments: true,
+              birthdays: true,
+              closed: true
+            }
+          })
           .then(response => res.json(response))
           .catch(next);
       }

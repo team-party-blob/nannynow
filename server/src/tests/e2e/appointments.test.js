@@ -1,7 +1,11 @@
 import './helpers/db';
 import request from 'supertest';
 import app from '../../routes/app';
-import { getAppointments, appointmentsSeedData, getUsers } from './helpers/seedData';
+import {
+  getAppointments,
+  appointmentsSeedData,
+  getUsers
+} from './helpers/seedData';
 
 describe(' appointments routes', () => {
   it('creates an appointment (with seed data helper)', () => {
@@ -51,19 +55,28 @@ describe(' appointments routes', () => {
     return request(app)
       .get(`/api/appointments/user/${createdUsers[0]._id}`)
       .then(res => {
-        expect(res.body).toEqual([{
-          arrivalTime: expect.anything(),
-          departureTime: expect.anything(),
-          family: appointments[0].family,
-          agency: appointments[0].agency,
-          nanny: appointments[0].nanny,
-          request: appointments[0].request,
-          agencyFeePerHour: appointments[0].agencyFeePerHour,
-          nannyPricePerHour: appointments[0].nannyPricePerHour,
-          _id: expect.any(String),
-          __v: 0,
-          createdDate: expect.anything()
-        }]);
+        expect(res.body).toEqual([
+          {
+            arrivalTime: expect.anything(),
+            departureTime: expect.anything(),
+            family: appointments[0].family,
+            agency: appointments[0].agency,
+            nanny: appointments[0].nanny,
+            agencyFeePerHour: appointments[0].agencyFeePerHour,
+            nannyPricePerHour: appointments[0].nannyPricePerHour,
+            request: {
+              startDateTime: expect.anything(),
+              endDateTime: expect.anything(),
+              appointmentComments: expect.any(String),
+              birthdays: expect.any(Array),
+              closed: expect.any(Boolean),
+              _id: expect.any(String)
+            },
+            _id: expect.any(String),
+            __v: 0,
+            createdDate: expect.anything()
+          }
+        ]);
       });
   });
 
@@ -74,19 +87,29 @@ describe(' appointments routes', () => {
     return request(app)
       .get(`/api/appointments/user/${createdUsers[2]._id}`)
       .then(res => {
-        expect(res.body).toEqual([{
-          arrivalTime: expect.anything(),
-          departureTime: expect.anything(),
-          family: appointments[0].family,
-          agency: appointments[0].agency,
-          nanny: appointments[0].nanny,
-          request: appointments[0].request,
-          agencyFeePerHour: appointments[0].agencyFeePerHour,
-          nannyPricePerHour: appointments[0].nannyPricePerHour,
-          _id: expect.any(String),
-          __v: 0,
-          createdDate: expect.anything()
-        }]);
+        expect(res.body).toEqual([
+          {
+            arrivalTime: expect.anything(),
+            departureTime: expect.anything(),
+            family: appointments[0].family,
+            agency: appointments[0].agency,
+            nanny: appointments[0].nanny,
+            agencyFeePerHour: appointments[0].agencyFeePerHour,
+            nannyPricePerHour: appointments[0].nannyPricePerHour,
+            request: {
+              startDateTime: expect.anything(),
+              endDateTime: expect.anything(),
+              appointmentComments: expect.any(String),
+              birthdays: expect.any(Array),
+              closed: expect.any(Boolean),
+              _id: expect.any(String),
+
+            },
+            _id: expect.any(String),
+            __v: 0,
+            createdDate: expect.anything()
+          }
+        ]);
       });
   });
 
@@ -97,19 +120,28 @@ describe(' appointments routes', () => {
     return request(app)
       .get(`/api/appointments/user/${createdUsers[4]._id}`)
       .then(res => {
-        expect(res.body).toEqual([{
-          arrivalTime: expect.anything(),
-          departureTime: expect.anything(),
-          family: appointments[0].family,
-          agency: appointments[0].agency,
-          nanny: appointments[0].nanny,
-          request: appointments[0].request,
-          agencyFeePerHour: appointments[0].agencyFeePerHour,
-          nannyPricePerHour: appointments[0].nannyPricePerHour,
-          _id: expect.any(String),
-          __v: 0,
-          createdDate: expect.anything()
-        }]);
+        expect(res.body).toEqual([
+          {
+            arrivalTime: expect.anything(),
+            departureTime: expect.anything(),
+            family: appointments[0].family,
+            agency: appointments[0].agency,
+            nanny: appointments[0].nanny,
+            agencyFeePerHour: appointments[0].agencyFeePerHour,
+            nannyPricePerHour: appointments[0].nannyPricePerHour,
+            request: {
+              startDateTime: expect.anything(),
+              endDateTime: expect.anything(),
+              appointmentComments: expect.any(String),
+              birthdays: expect.any(Array),
+              closed: expect.any(Boolean),
+              _id: expect.any(String)
+            },
+            _id: expect.any(String),
+            __v: 0,
+            createdDate: expect.anything()
+          }
+        ]);
       });
   });
 

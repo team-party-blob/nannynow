@@ -102,8 +102,7 @@ describe(' appointments routes', () => {
               appointmentComments: expect.any(String),
               birthdays: expect.any(Array),
               closed: expect.any(Boolean),
-              _id: expect.any(String),
-
+              _id: expect.any(String)
             },
             _id: expect.any(String),
             __v: 0,

@@ -7,3 +7,4 @@ export const getAppointments = userId => {
 export const getAppointment = (appointmentId, userId) => {
   return get(`/api/appointments/detail/${userId}/${appointmentId}`);
 };
+

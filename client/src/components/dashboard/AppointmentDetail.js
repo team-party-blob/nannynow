@@ -7,12 +7,22 @@ class AppointmentDetail extends PureComponent {
     detail: PropTypes.object,
     fetchAppointment: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
+    fetchNanny: PropTypes.func.isRequired,
+    fetchFamily: PropTypes.func.isRequired,
+    nanny: PropTypes.object.isRequired,
+    family: PropTypes.object.isRequired
   };
 
   componentDidMount() {
     const { fetchAppointment } = this.props;
     const { appointmentId, userId } = this.props.match.params;
-    fetchAppointment(appointmentId, userId);
+
+    fetchAppointment(appointmentId, userId).then(
+      Promise.all(() => {
+        const { fetchFamily, fetchNanny, detail } = this.props;
+        fetchNanny(detail.nanny._id), fetchFamily(detail.family._id);
+      })
+    );
   }
 
   render() {

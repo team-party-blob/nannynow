@@ -2,12 +2,11 @@ import {
   signIn,
   signUp,
   SESSION_CREATE,
-  SESSION_LOAD_START,
-  SESSION_LOAD_END,
   refreshSession,
   updateSessionToken,
   SESSION_TOKEN
 } from './session';
+import { LOAD_START, LOAD_END } from './fixtures/loadingActions';
 
 jest.mock('../services/authApi.js');
 
@@ -18,8 +17,8 @@ describe('session/auth actions', () => {
     const action = signUp(user);
 
     expect(action.type).toEqual(SESSION_CREATE);
-    expect(action.loadStart).toEqual(SESSION_LOAD_START);
-    expect(action.loadEnd).toEqual(SESSION_LOAD_END);
+    expect(action.loadStart).toEqual(LOAD_START);
+    expect(action.loadEnd).toEqual(LOAD_END);
     expect(typeof action.payload.then).toBe('function');
   });
 
@@ -28,8 +27,8 @@ describe('session/auth actions', () => {
     const action = signIn(user);
 
     expect(action.type).toEqual(SESSION_CREATE);
-    expect(action.loadStart).toEqual(SESSION_LOAD_START);
-    expect(action.loadEnd).toEqual(SESSION_LOAD_END);
+    expect(action.loadStart).toEqual(LOAD_START);
+    expect(action.loadEnd).toEqual(LOAD_END);
     expect(typeof action.payload.then).toBe('function');
   });
 
@@ -37,8 +36,8 @@ describe('session/auth actions', () => {
     const action = refreshSession();
 
     expect(action.type).toEqual(SESSION_CREATE);
-    expect(action.loadStart).toEqual(SESSION_LOAD_START);
-    expect(action.loadEnd).toEqual(SESSION_LOAD_END);
+    expect(action.loadStart).toEqual(LOAD_START);
+    expect(action.loadEnd).toEqual(LOAD_END);
     expect(typeof action.payload.then).toBe('function');
   });
 

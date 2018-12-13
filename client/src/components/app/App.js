@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { routerRoutes } from '../../routes/routes';
 import HeaderContainer from '../../containers/HeaderContainer';
 
-export default function App() {
+export default function App({ session }) {
   return (
     <Router>
       <Fragment>
-        <HeaderContainer />
+        {session && <HeaderContainer />}
         <Switch>
           {routerRoutes()}
         </Switch>

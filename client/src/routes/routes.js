@@ -20,6 +20,11 @@ export const ROUTES = {
     Component: Signup,
     linkTo: () => '/signup'
   },
+  DASHBOARD: {
+    path: '/dashboard/:id',
+    Component: withSession(DashBoardContainer),
+    linkTo: id => `/dashboard/${id}`
+  },
   SIGNIN: {
     path: '/signin',
     Component: Signin,
@@ -30,11 +35,6 @@ export const ROUTES = {
     Component: withSession(ProfileContainer),
     linkTo: id => `/profile/${id}`
 
-  },
-  DASHBOARD: {
-    path: '/dashboard/:id',
-    Component: withSession(DashBoardContainer),
-    linkTo: id => `/dashboard/${id}`
   }
 };
 

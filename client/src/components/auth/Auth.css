@@ -1,8 +1,5 @@
 #auth {
   padding-top: 5vh;
-  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/8vV2rpe/pastel-blue-background-1080p_x1kgy93b__F0000.png');
-  background-size: cover;
-  background-color: #eaf5ff;
 
   h1 {
     font-family: 'Noto Serif TC', serif;
@@ -27,10 +24,10 @@
     }
 
     input {
+      font-size: 25px;
       height: 5vh;
       border-radius: 8px;
       border: 2px solid grey;
-
     }
 
     #role {
@@ -52,9 +49,10 @@
       border: 2px solid grey;
       font-size: 18px;
       font-family: 'Noto Serif TC', serif;
+      background-color: #f96a54;
       font-weight: 900;
       &:hover {
-        background-color: #f96a54;
+        background-color: #7fbbe0;
         cursor: pointer;
       }
     }
@@ -68,16 +66,18 @@
       font-size: 18px;
     }
     button {
-      height: 5vh;
-      padding-bottom: 2em;
-      padding-top: 2em;
+      height: 10vh;
       margin-bottom: 2em;
       font-size: 18px;
-      background-color: #f96a54;
       border: 2px solid grey;
+      background-color: #7fbbe0;
       border-radius: 8px;
       font-family: 'Noto Serif TC', serif;
       font-weight: 900;
+      &:hover {
+        background-color: #f96a54;
+        cursor: pointer;
+      }
     }
   }
 }

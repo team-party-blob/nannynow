@@ -51,7 +51,6 @@ export default class FamilyRequest extends PureComponent {
 
 
   render() {
-    console.log(this.state);
     const {
       birthdays,
       startDateTime,

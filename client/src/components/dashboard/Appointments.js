@@ -10,19 +10,22 @@ export default class Appointments extends Component {
   };
 
   componentDidMount() {
-    const { fetchAppointments, appointments } = this.props;
+    const { fetchAppointments } = this.props;
     const userId = this.props.match.params.id;
-
-    if(!appointments) {
-      fetchAppointments(userId);
-    }
+    fetchAppointments(userId);
   }
 
   render() {
     const { appointments, user } = this.props;
 
     const appointmentComponents = appointments.map(appointment => {
-      return <Appointment key={appointment._id} appointment={appointment} user={user} />;
+      return (
+        <Appointment
+          key={appointment._id}
+          appointment={appointment}
+          user={user}
+        />
+      );
     });
 
     return (

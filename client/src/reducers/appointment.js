@@ -2,11 +2,16 @@ import {
   FETCH_APPOINTMENTS,
   FETCH_APPOINTMENTS_LOAD_START,
   FETCH_APPOINTMENTS_LOAD_END,
-  FETCH_APPOINTMENTS_ERROR
+  FETCH_APPOINTMENTS_ERROR,
+  FETCH_APPOINTMENT,
+  FETCH_APPOINTMENT_LOAD_START,
+  FETCH_APPOINTMENT_LOAD_END,
+  FETCH_APPOINTMENT_ERROR
 } from '../actions/appointment';
 
 const initialState = {
   appointments: [],
+  detail: null,
   loading: false,
   error: null
 };
@@ -20,6 +25,14 @@ export default function reducer(state = initialState, { type, payload }) {
     case FETCH_APPOINTMENTS_LOAD_END:
       return { ...state, loading: false };
     case FETCH_APPOINTMENTS_ERROR:
+      return { ...state, error: payload };
+    case FETCH_APPOINTMENT:
+      return { detail: payload };
+    case FETCH_APPOINTMENT_LOAD_START:
+      return { ...state, loading: true };
+    case FETCH_APPOINTMENT_LOAD_END:
+      return { ...state, loading: false };
+    case FETCH_APPOINTMENT_ERROR:
       return { ...state, error: payload };
     default:
       return state;

@@ -5,6 +5,7 @@ import { Signup, Signin } from '../containers/AuthContainer';
 import { withSession } from '../components/auth/withSession';
 import ProfileContainer from '../containers/ProfileContainer';
 import DashBoardContainer from '../containers/DashBoardContainer';
+import AppointmentDetail from '../containers/AppointmentDetail';
 
 
 
@@ -29,6 +30,11 @@ export const ROUTES = {
     Component: withSession(ProfileContainer),
     linkTo: id => `/profile/${id}`
 
+  },
+  APPOINTMENT_DETAIL: {
+    path: '/dashboard/:userId/:appointmentId',
+    Component: withSession(AppointmentDetail),
+    linkTo: (userId, appointmentId) => `/dashboard/${userId}/${appointmentId}`
   },
   DASHBOARD: {
     path: '/dashboard/:id',

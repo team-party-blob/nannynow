@@ -104,6 +104,25 @@ export default Router()
     });
   })
 
+  .get('/detail/:userId/:appointmentId', (req, res, next) => {
+    const { appointmentId, userId } = req.params;
+    Appointment.findById(appointmentId)
+      .populate({
+        path: 'request',
+        select: {
+          startDateTime: true,
+          endDateTime: true,
+          appointmentComments: true,
+          birthdays: true,
+          closed: true
+        }
+      })
+      .populate('family')
+      .populate('nanny')
+      .then(response => res.json(response))
+      .catch(next);
+  })
+
   .delete('/:id', (req, res, next) => {
     const { id } = req.params;
     Appointment.findByIdAndDelete(id)

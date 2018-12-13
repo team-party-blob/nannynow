@@ -1,15 +1,22 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import FilteredNannies from './FilteredNannies';
+import Range from '../dashboard/Range';
 
 export default class FamilyRequest extends PureComponent {
   static propTypes ={
     profile: PropTypes.object.isRequired,
-    createRequest: PropTypes.func.isRequired
+    createRequest: PropTypes.func.isRequired,
+    filteredNannies: PropTypes.array,
+    searchQuery: PropTypes.object.isRequired,
+    updateSearchQuery: PropTypes.func.isRequired,
+    fetchFilteredNannies: PropTypes.func.isRequired
   };
 
   state = {
     birthdays: [],
     selectedChildren: [],
+    searchQuery: {},
     closed: false,
     startDateTime: '',
     endDateTime: '',
@@ -18,35 +25,39 @@ export default class FamilyRequest extends PureComponent {
   };
 
   componentDidMount() {
-    const { profile } = this.props;
-    this.setState({ birthdays: profile.birthdays });
+    const { profile, fetchFilteredNannies, searchQuery } = this.props;
+    this.setState({ birthdays: profile.birthdays, searchQuery });
+
   }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
+  handleStartChange = date => {
+    this.setState({ startDateTime: date });
+  };
 
-  handleSubmit = event => {
+  handleEndChange = date => {
+    this.setState({ endDateTime: date });
+  };
+
+  handleUpdateSearchTerm = event => {
     event.preventDefault();
     const {
       birthdays,
-      closed,
       startDateTime,
       endDateTime,
-      appointmentComments,
-      requestedNannies
+      appointmentComments
     } = this.state;
-    const { createRequest } = this.props;
-    const request =
+    const { updateSearchQuery } = this.props;
+    const query =
      {
        birthdays,
-       closed,
        startDateTime,
        endDateTime,
-       appointmentComments,
-       requestedNannies
+       appointmentComments
      };
-    createRequest(request);
+    updateSearchQuery(query);
   };
 
 
@@ -57,7 +68,6 @@ export default class FamilyRequest extends PureComponent {
       startDateTime,
       endDateTime,
       appointmentComments,
-      requestedNannies
     } = this.state;
     const childBirthdays = birthdays.map((birthday, i) => {
       const slicedBirthday = birthday.slice(0, 10);
@@ -73,11 +83,19 @@ export default class FamilyRequest extends PureComponent {
       <Fragment>
         <h1>Request an Appointment</h1>
         <div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleUpdateSearchTerm}>
             <label htmlFor='birthdays'>Children:</label>
             {childBirthdays}
+            <Range
+              onStartChange={this.handleStartChange}
+              onEndChange={this.handleEndChange}
+              start={startDateTime}
+              end={endDateTime}
+            />
             <label htmlFor='comments'>Appointment Comments:</label><br/>
             <textarea name="comments" value={appointmentComments} onChange={this.handleChange}></textarea>
+          </form>
+          <form onSubmit={this.handleFormSubmit}>
           </form>
           <FilteredNannies filteredNannies={filteredNannies}/>
         </div>

@@ -7,12 +7,12 @@ export default class Range extends PureComponent {
   static propTypes = {
     onStartChange: PropTypes.func.isRequired,
     onEndChange: PropTypes.func.isRequired,
-    // start: PropTypes.dateFormat
-    //start and end proptypes
+    start: PropTypes.object.isRequired,
+    end: PropTypes.object.isRequired
   };
 
   render() {
-
+    const { start, end } = this.props;
     return (
       <Fragment>
         <div>
@@ -23,7 +23,6 @@ export default class Range extends PureComponent {
             showTimeSelect
             selectsStart
             start={start}
-            // end={end}
             minDate={new Date()}
             timeFormat='HH:mm'
             timeIntervals={15}
@@ -38,7 +37,6 @@ export default class Range extends PureComponent {
             onChange={this.props.onEndChange}
             showTimeSelect
             selectsEnd
-            // start={start}
             end={end}
             timeFormat='HH:mm'
             timeIntervals={15}

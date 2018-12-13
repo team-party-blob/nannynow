@@ -1,66 +1,83 @@
 import React, { PureComponent } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import PropTypes from 'prop-types';
+import Range from './Range';
+// import { updateAvailability } from '../../actions/availability';
 
 export default class NannyScheduler extends PureComponent {
-  state = {
-    startDate: new Date(),
-    endDate: new Date()
+  static propTypes = {
+    updateAvailability: PropTypes.func.isRequired
   };
 
-  handleChange = date => {
-    this.setState({ startDate: date });
+  state = {
+    start: new Date(),
+    end: new Date()
+  };
+
+  handleStartChange = date => {
+    this.setState({ start: date });
+  };
+
+  handleEndChange = date => {
+    this.setState({ end: date });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { startTime, startDate, endTime, endDate } = this.state;
-    const startDateTime = startDate + startTime;
-    console.log(startDateTime);
+    const { start, end } = this.state;
+    const { _id } = this.props.user;
+
+    this.props.updateAvailability(start.toISOString(), end.toISOString(), _id);
+    // {start && end && updateAvailability(start.toISOString(), end.toISOString(), _id);}
   };
 
   render() {
-    const { startDate, endDate} = this.state;
-    console.log(this.state);
-
+    const { start, end } = this.state;
+    console.log(this.props);
     return (
-      <div>
-        <label>Start Date</label>
-        <DatePicker
-          selected={startDate}
-          onChange={this.handleChange}
-          showTimeSelect
-          timeFormat='HH:mm'
-          timeIntervals={15}
-          dateFormat='MMMM d, yyyy h:mm aa'
-          timeCaption='time'
-        />
-        <DatePicker
-          selected={startDate}
-          onChange={this.handleChange}
-          showTimeSelect
-          timeFormat='HH:mm'
-          timeIntervals={15}
-          dateFormat='MMMM d, yyyy h:mm aa'
-          timeCaption='time'
-        />
-      </div>
 
-      // <form onSubmit={this.handleSubmit}>
-      //   <div>
-      //     <label htmlFor="startDate">Start Date</label>
-      //     <input type="date" name="startDate" value={startDate} onChange={this.handleChange}/>
-      //     <label htmlFor="startTime">Start Time</label>
-      //     <input type="time" name="startTime" value={startTime} onChange={this.handleChange}/>
-      //   </div>
-      //   <div>
-      //     <label htmlFor="endDate">End Date</label>
-      //     <input type="date" name="endDate" value={endDate} onChange={this.handleChange}/>
-      //     <label htmlFor="endTime">End Time</label>
-      //     <input type="time" name="endTime" value={endTime} onChange={this.handleChange}/>
-      //   </div>
-      //   <button>Submit</button>
-      // </form>
+      <form onSubmit={this.handleSubmit}>
+        {/* <Range
+          onStartChange={this.handleStartChange}
+          onEndChange={this.handleEndChange}
+          start={start}
+          end={end}
+        /> */}
+        <div>
+          <label>Start Date and Time:</label>
+          <DatePicker
+            selected={start}
+            onChange={this.handleStartChange}
+            showTimeSelect
+            selectsStart
+            start={start}
+            // end={end}
+            minDate={new Date()}
+            timeFormat='HH:mm'
+            timeIntervals={15}
+            dateFormat='MMMM d, yyyy h:mm aa'
+            timeCaption='time'
+          />
+        </div>
+        <div>
+          <label>End Date and Time:</label>
+          <DatePicker
+            selected={end}
+            onChange={this.handleEndChange}
+            showTimeSelect
+            selectsEnd
+            // start={start}
+            end={end}
+            timeFormat='HH:mm'
+            timeIntervals={15}
+            dateFormat='MMMM d, yyyy h:mm aa'
+            timeCaption='time'
+            minDate={new Date()}
+          />
+        </div>
+        <button>Submit Availability</button>
+      </form>
     );
   }
 }

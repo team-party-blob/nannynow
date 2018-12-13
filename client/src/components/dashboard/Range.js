@@ -2,6 +2,8 @@ import React, { Fragment, PureComponent } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import PropTypes from 'prop-types';
+import globalStyles from '../../main.css';
+import styles from './Range.css';
 
 export default class Range extends PureComponent {
   static propTypes = {
@@ -14,9 +16,9 @@ export default class Range extends PureComponent {
   render() {
     const { start, end } = this.props;
     return (
-      <Fragment>
-        <div>
-          <label>Start Date and Time:</label>
+      <div id={styles.container}>
+        <div id={styles.selectLine}>
+          <label id={globalStyles.inputLabel}>Start Availability:</label>
           <DatePicker
             selected={this.props.start}
             onChange={this.props.onStartChange}
@@ -28,10 +30,12 @@ export default class Range extends PureComponent {
             timeIntervals={15}
             dateFormat='MMMM d, yyyy h:mm aa'
             timeCaption='time'
+            id={globalStyles.input}
+            className={styles.dateInput}
           />
         </div>
-        <div>
-          <label>End Date and Time:</label>
+        <div id={styles.selectLine}>
+          <label id={globalStyles.inputLabel}>End Availability:</label>
           <DatePicker
             selected={this.props.end}
             onChange={this.props.onEndChange}
@@ -43,9 +47,11 @@ export default class Range extends PureComponent {
             dateFormat='MMMM d, yyyy h:mm aa'
             timeCaption='time'
             minDate={new Date()}
+            id={globalStyles.input}
+            className={styles.dateInput}
           />
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

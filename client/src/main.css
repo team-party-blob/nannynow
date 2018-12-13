@@ -10,3 +10,30 @@ body {
   color: red;
   text-align: center;
 }
+
+#button {
+  border: 2px solid grey;
+  border-radius: 8px;
+}
+
+#input {
+  border: 2px solid grey;
+  border-radius: 8px;
+}
+
+#form {
+  background-color: white;
+  border: 3px solid grey;
+  border-radius: 8px;
+}
+
+#inputLabel {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 18px;
+}
+
+#header {
+  font-family: 'Noto Serif TC', serif;
+  text-align: center;
+  font-size: 40px;
+}

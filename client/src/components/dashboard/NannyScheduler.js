@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import PropTypes from 'prop-types';
 import Range from './Range';
+import styles from './NannyScheduler.css';
+import globalStyles from '../../main.css';
 
 export default class NannyScheduler extends PureComponent {
   static propTypes = {
@@ -32,14 +34,15 @@ export default class NannyScheduler extends PureComponent {
     const { start, end } = this.state;
     return (
 
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} id={globalStyles.form} className={styles.schedulerForm}>
         <Range
           onStartChange={this.handleStartChange}
           onEndChange={this.handleEndChange}
           start={start}
           end={end}
+          id={styles.range}
         />
-        <button>Submit Availability</button>
+        <button id={globalStyles.button}>Submit Availability</button>
       </form>
     );
   }

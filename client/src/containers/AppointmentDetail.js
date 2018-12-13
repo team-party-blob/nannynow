@@ -1,21 +1,17 @@
 import { connect } from 'react-redux';
 import AppointmentDetail from '../components/dashboard/AppointmentDetail';
-import { getAppointment, getNanny, getFamily } from '../selectors/appointment';
+import { getAppointment } from '../selectors/appointment';
 import { fetchAppointment } from '../actions/appointment';
-import { fetchNanny } from '../actions/nanny';
-import { fetchFamily } from '../actions/family';
+import { getSession } from '../selectors/session';
 
 const mapStateToProps = state => ({
   detail: getAppointment(state),
-  nanny: getNanny(state),
-  family: getFamily(state)
+  session: getSession(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchAppointment: (appointmentId, userId) =>
-    dispatch(fetchAppointment(appointmentId, userId)),
-  fetchNanny: nanny => dispatch(fetchNanny(nanny)),
-  fetchFamily: family => dispatch(fetchFamily(family))
+    dispatch(fetchAppointment(appointmentId, userId))
 });
 
 export default connect(

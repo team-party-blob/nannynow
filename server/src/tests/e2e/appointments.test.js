@@ -144,17 +144,6 @@ describe(' appointments routes', () => {
       });
   });
 
-  it('returns appointment detail with all needed info', () => {
-    const createdAppointments = getAppointments;
-    const createdUsers = getUsers();
-
-    return request(app)
-      .get(`/detail/${createdUsers[0]}/${createdAppointments[0]}`)
-      .then(res => {
-        expect(res.body).toEqual({ createdDate: 'hi' });
-      })
-  });
-
   it('deletes a Appointment by id', () => {
     const createdAppointments = getAppointments();
 

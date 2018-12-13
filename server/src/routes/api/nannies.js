@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import NannyProfile from '../../models/NannyProfile';
+import AvailableTime from '../../models/AvailableTime';
+
 
 export default Router()
   .post('/', (req, res, next) => {
@@ -43,6 +45,20 @@ export default Router()
       .then(nannies => res.json(nannies))
       .catch(next);
   })
+  .get('/search', (req, res, next) => {
+    const { start, end } = req.query;
+    // let startDate = new Date(start).toISOString();
+    AvailableTime.find({
+      availableStartTime: {
+        $gte: start
+      }
+    })
+      .then(result => {
+        console.log(result);
+        res.json(result);
+      })
+      .catch(next);
+  })
   .get('/:id', (req, res, next) => {
     const { id } = req.params;
     NannyProfile.findById(id)
@@ -50,10 +66,6 @@ export default Router()
       .catch(next);
   })
 
-  .get('/search', (req, res, next) => {
-    const { query } = req.params;
-    console.log(query);
-  })
   .delete('/:id', (req, res, next) => {
     const { id } = req.params;
 

@@ -11,7 +11,7 @@ export default class Login extends PureComponent {
     loginType: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
     user: PropTypes.object,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool
   };
 
   state = {
@@ -87,7 +87,7 @@ export default class Login extends PureComponent {
     const { loading } = this.props;
 
     if(loading) return <Loading />;
-    
+
     return (
       <div id={styles.auth}>
 

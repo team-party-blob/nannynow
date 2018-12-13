@@ -12,7 +12,6 @@ export default class AvailabilityDisplay extends PureComponent {
 
   componentDidMount() {
     const { _id } = this.props.user;
-    console.log(this.props);
     // add in error guard clause
     if(!this.props.availability) return this.props.getAvailability(_id);
   }

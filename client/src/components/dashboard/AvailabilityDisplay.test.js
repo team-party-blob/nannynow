@@ -20,8 +20,11 @@ describe('AvailabilityDisplay', () => {
   ];
 
   it('matches snapshot', () => {
+    const user = { _id: '1234' };
+    const getAvailability = jest.fn();
+    const removeAvailability = jest.fn();
     const wrapper = shallow(
-      <AvailabilityDisplay availability={availability} />
+      <AvailabilityDisplay availability={availability} user={user} getAvailability={getAvailability} removeAvailability={removeAvailability} />
     );
     expect(wrapper).toMatchSnapshot();
   });

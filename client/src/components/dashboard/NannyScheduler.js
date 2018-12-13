@@ -1,18 +1,15 @@
 import React, { PureComponent } from 'react';
 import DatePicker from 'react-datepicker';
-
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 export default class NannyScheduler extends PureComponent {
-
   state = {
-    startTime: '',
-    startDate: '',
-    endTime: '',
-    endDate: ''
+    startDate: new Date(),
+    endDate: new Date()
   };
 
-  handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
+  handleChange = date => {
+    this.setState({ startDate: date });
   };
 
   handleSubmit = event => {
@@ -20,38 +17,35 @@ export default class NannyScheduler extends PureComponent {
     const { startTime, startDate, endTime, endDate } = this.state;
     const startDateTime = startDate + startTime;
     console.log(startDateTime);
-  }
-
+  };
 
   render() {
-    // const tomorrow = new Date();
-    // tomorrow.setDate(tomorrow.getDate() + 0);
-    // console.log(tomorrow)
-
-    // const weekBefore = [
-    //   tomorrow,
-    //   tomorrow,
-    //   tomorrow,
-    //   tomorrow,
-    //   tomorrow,
-    //   tomorrow,
-    //   tomorrow
-    // ];
-
-
-    // const weekAfter = weekBefore.map((day, i) => {
-    //   day.setDate(day.getDate() + i);
-    // });
-    // console.log(weekAfter);
-    // // console.log(weekAfter);
-
-    const { startDate, startTime, endDate, endTime } = this.state;
-
+    const { startDate, endDate} = this.state;
     console.log(this.state);
 
     return (
+      <div>
+        <label>Start Date</label>
+        <DatePicker
+          selected={startDate}
+          onChange={this.handleChange}
+          showTimeSelect
+          timeFormat='HH:mm'
+          timeIntervals={15}
+          dateFormat='MMMM d, yyyy h:mm aa'
+          timeCaption='time'
+        />
+        <DatePicker
+          selected={startDate}
+          onChange={this.handleChange}
+          showTimeSelect
+          timeFormat='HH:mm'
+          timeIntervals={15}
+          dateFormat='MMMM d, yyyy h:mm aa'
+          timeCaption='time'
+        />
+      </div>
 
-      <DatePicker />
       // <form onSubmit={this.handleSubmit}>
       //   <div>
       //     <label htmlFor="startDate">Start Date</label>

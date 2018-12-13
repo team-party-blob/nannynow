@@ -24,9 +24,23 @@ exports[`Header component renders a Header component 1`] = `
       <Link
         className="link"
         replace={false}
-        to="/signin"
+        to="/dashboard/1234"
       >
-        Log In
+        Dashboard
+      </Link>
+      <Link
+        className="link"
+        replace={false}
+        to="/profile/1234"
+      >
+        Edit Profile
+      </Link>
+      <Link
+        className="link"
+        replace={false}
+        to="/signup"
+      >
+        Log Out
       </Link>
     </nav>
   </div>

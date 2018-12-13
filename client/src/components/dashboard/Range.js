@@ -15,7 +15,6 @@ export default class Range extends PureComponent {
 
   render() {
     const { start, end } = this.props;
-    console.log(start);
     return (
       <div id={styles.container}>
         <div id={styles.selectLine}>

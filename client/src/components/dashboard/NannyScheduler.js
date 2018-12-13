@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Range from './Range';
 import styles from './NannyScheduler.css';
 import globalStyles from '../../main.css';
+import AvailabilityDisplay from './AvailabilityDisplay';
 
 export default class NannyScheduler extends PureComponent {
   static propTypes = {
@@ -33,17 +34,19 @@ export default class NannyScheduler extends PureComponent {
   render() {
     const { start, end } = this.state;
     return (
-
-      <form onSubmit={this.handleSubmit} id={globalStyles.form} className={styles.schedulerForm}>
-        <Range
-          onStartChange={this.handleStartChange}
-          onEndChange={this.handleEndChange}
-          start={start}
-          end={end}
-          id={styles.range}
-        />
-        <button id={globalStyles.button} className={styles.addAvailButton}>Submit Availability</button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit} id={globalStyles.form} className={styles.schedulerForm}>
+          <Range
+            onStartChange={this.handleStartChange}
+            onEndChange={this.handleEndChange}
+            start={start}
+            end={end}
+            id={styles.range}
+          />
+          <button id={globalStyles.button} className={styles.addAvailButton}>Submit Availability</button>
+        </form>
+        <AvailabilityDisplay />
+      </div>
     );
   }
 }

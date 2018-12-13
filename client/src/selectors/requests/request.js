@@ -4,4 +4,4 @@ export const getFamilyRequestLoading = state => state.request.loading;
 
 export const getFamilyQuery = state => state.request.search;
 
-export const getFilteredNannies = state => state.request.filteredNannies;
+export const getFilteredNanniesRequest = state => state.request.filteredNannies;

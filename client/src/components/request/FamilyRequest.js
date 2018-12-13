@@ -9,6 +9,7 @@ export default class FamilyRequest extends PureComponent {
 
   state = {
     birthdays: [],
+    selectedChildren: [],
     closed: false,
     startDateTime: '',
     endDateTime: '',
@@ -53,7 +54,6 @@ export default class FamilyRequest extends PureComponent {
     console.log(this.state);
     const {
       birthdays,
-      closed,
       startDateTime,
       endDateTime,
       appointmentComments,
@@ -63,6 +63,7 @@ export default class FamilyRequest extends PureComponent {
       const slicedBirthday = birthday.slice(0, 10);
       return (
         <p key={i}>
+          Child #{i + 1} <br/>
           <label>{slicedBirthday}</label>
           <input type="checkbox"/>
         </p>
@@ -75,6 +76,8 @@ export default class FamilyRequest extends PureComponent {
           <form onSubmit={this.handleSubmit}>
             <label htmlFor='birthdays'>Children:</label>
             {childBirthdays}
+            <label htmlFor='comments'>Appointment Comments:</label><br/>
+            <textarea name="comments" value={appointmentComments} onChange={this.handleChange}></textarea>
           </form>
         </div>
       </Fragment>

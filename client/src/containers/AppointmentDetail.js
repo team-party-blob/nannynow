@@ -6,7 +6,7 @@ import { fetchNanny } from '../actions/nanny';
 import { fetchFamily } from '../actions/family';
 
 const mapStateToProps = state => ({
-  appointment: getAppointment(state),
+  detail: getAppointment(state),
   nanny: getNanny(state),
   family: getFamily(state)
 });

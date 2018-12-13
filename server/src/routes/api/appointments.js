@@ -128,7 +128,7 @@ export default Router()
         ]);
       })
       .then(([appointment, familyProfile, nannyProfile]) => {
-        res.json({ ...appointment, familyProfile, nannyProfile });
+        res.json({ ...appointment.toJSON(), familyProfile, nannyProfile });
       })
       .catch(next);
   })

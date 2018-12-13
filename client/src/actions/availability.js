@@ -1,6 +1,6 @@
 import {
   updateAvailability as postAvailability,
-  getAvailability as fetchAvailability,
+  fetchAvailability,
   deleteAvailability
 } from '../services/availabilityApi.js';
 import { LOAD_START, LOAD_END } from './fixtures/loadingActions.js';

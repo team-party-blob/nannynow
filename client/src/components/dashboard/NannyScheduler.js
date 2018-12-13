@@ -29,6 +29,7 @@ export default class NannyScheduler extends PureComponent {
     const { start, end } = this.state;
     const { _id } = this.props.user;
     {start && end && this.props.updateAvailability(start.toISOString(), end.toISOString(), _id);}
+    this.props.getAvailability(_id);
   };
 
   render() {

@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const dispatchStateToProps = dispatch => ({
-  fetchAvailability: nannyId => dispatch(getAvailability(nannyId)),
+  getAvailability: nannyId => dispatch(getAvailability(nannyId)),
   removeAvailability: availabilityId =>
     dispatch(removeAvailability(availabilityId))
 });

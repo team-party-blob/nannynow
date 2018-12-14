@@ -27,7 +27,6 @@ export default class FamilyRequest extends PureComponent {
   componentDidMount() {
     const { profile, fetchFilteredNannies, searchQuery } = this.props;
     this.setState({ birthdays: profile.birthdays, searchQuery });
-
   }
 
   handleChange = ({ target }) => {
@@ -58,12 +57,13 @@ export default class FamilyRequest extends PureComponent {
        appointmentComments
      };
     updateSearchQuery(query);
-    fetchFilteredNannies(startDateTime.toISOString(), endDateTime.toISOString());
+    fetchFilteredNannies(startDateTime.toISOString(), endDateTime.toISOString())
   };
 
 
   render() {
     const { filteredNannies, searchQuery } = this.props;
+    console.log(filteredNannies);
     const {
       birthdays,
       startDateTime,

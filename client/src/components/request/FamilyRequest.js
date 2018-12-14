@@ -16,7 +16,6 @@ export default class FamilyRequest extends PureComponent {
   state = {
     birthdays: [],
     selectedChildren: [],
-    // searchQuery: {},
     closed: false,
     startDateTime: new Date(),
     endDateTime: new Date(),
@@ -63,8 +62,15 @@ export default class FamilyRequest extends PureComponent {
   };
 
   handleUpdateRequestedNannies = ({ target }) => {
-    //Need to deal with unchecking nannies
-    let newRequestedNannies = this.state.requestedNannies.concat({ nanny: target.value });
+    const { requestedNannies } = this.state;
+    console.log(requestedNannies);
+    if(requestedNannies.filter(e => e.nanny === target.value).length > 0)  {
+      const index = Object.values(requestedNannies.indexOf(target.value));
+      return console.log(index);
+    }
+    // const nannyAlreadyChecked = (requestedNannies.filter(e => e.nanny === target.value).length > 0);
+    const newRequestedNannies = this.state.requestedNannies.concat({ nanny: target.value });
+    // const removeNanny = requestedNannies.indexOf()
     this.setState({ requestedNannies: newRequestedNannies });
   };
 

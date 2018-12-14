@@ -40,7 +40,6 @@ export default class NannyProfile extends PureComponent {
     const { session, profile, updateProfile, createProfile } = this.props;
     const { _id, agency } = session;
     const profileInfo = { ...this.state, user: _id, agency };
-
     {
       profile && updateProfile(profile._id, profileInfo);
     }
@@ -88,7 +87,7 @@ export default class NannyProfile extends PureComponent {
             />
             <label htmlFor='photo'>Upload A Photo:</label>
             <input
-              type='file'
+              type='url'
               name='photo'
               value={photo}
               onChange={this.handleChange}

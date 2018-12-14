@@ -4,6 +4,7 @@ import { ROUTES } from '../../routes/routes';
 import styles from './Auth.css';
 import globalStyles from '../../main.css';
 import Loading from '../loading/Loading';
+import { parse } from 'querystring';
 
 export default class Login extends PureComponent {
   static propTypes = {
@@ -21,7 +22,11 @@ export default class Login extends PureComponent {
   };
 
   componentDidUpdate() {
+    const { redirectTo } = parse(this.props.location.search.slice(1));
     const { user } = this.props;
+    if(user && redirectTo) {
+      return this.props.history.push(redirectTo);
+    }
     if(user) return this.props.history.push(`/dashboard/${user._id}`);
   }
 

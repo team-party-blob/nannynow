@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import { getSession, getSessionLoading } from '../../selectors/session';
 import { refreshSession } from '../../actions/session';
+import { withRouter } from 'react-router-dom';
 
 export const withSession = Component => {
 
@@ -20,17 +21,19 @@ export const withSession = Component => {
 
     render() {
       if(this.props.loading) return <h1>LOADING SESSION</h1>;
-      if(!this.props.session) return <Redirect to={ROUTES.SIGNIN.linkTo()} />;
+      if(!this.props.session) {
+        return <Redirect to={ROUTES.SIGNIN.linkTo(this.props.location.pathname)} />;
+      }
 
       return <Component {...this.props} />;
     }
   }
 
-  return connect(
+  return withRouter(connect(
     state => ({
       session: getSession(state),
       loading: getSessionLoading(state)
     }),
     dispatch => ({ refreshSession: () => dispatch(refreshSession()) })
-  )(WithSessionComponent);
+  )(WithSessionComponent));
 };

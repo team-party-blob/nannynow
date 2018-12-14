@@ -10,8 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAppointment: (appointmentId, userId) =>
-    dispatch(fetchAppointment(appointmentId, userId))
+  fetchAppointment: (appointmentId) =>
+    dispatch(fetchAppointment(appointmentId))
 });
 
 export default connect(

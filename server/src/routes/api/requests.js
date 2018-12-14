@@ -52,7 +52,7 @@ export default Router()
           Promise.resolve(request),
           request.family.getProfile(),
           Promise.all(
-            request.requestedNannies.map(requestedNanny =>
+            request. requestedNannies.map(requestedNanny =>
               requestedNanny.nanny.getProfile()
             )
           )

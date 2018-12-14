@@ -17,9 +17,9 @@ class AppointmentDetail extends PureComponent {
 
   componentDidMount() {
     const { fetchAppointment } = this.props;
-    const { appointmentId, userId } = this.props.match.params;
+    const { appointmentId } = this.props.match.params;
 
-    fetchAppointment(appointmentId, userId);
+    fetchAppointment(appointmentId);
   }
 
   render() {

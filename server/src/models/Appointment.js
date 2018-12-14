@@ -24,7 +24,7 @@ const AppointmentSchema = new mongoose.Schema({
   },
   request: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'NannyProfile',
+    ref: 'RequestedAppointment',
     required: [true, 'At least one nanny is required']
   },
   createdDate: {

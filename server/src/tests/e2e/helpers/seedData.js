@@ -119,7 +119,9 @@ const nannies = [
       'I am a nanny in disguise to spy on children for my own personal gain',
     age: 42,
     pricePerHour: 8.25,
-    createdDate: Date.now()
+    createdDate: Date.now(),
+    photo:
+      'https://thumbs.mic.com/ZGZiODJmMGU5NyMveFJMR0dxQmo0S040QnA2WFJvdjc2eXdZN21vPS81MDB4NjoxNTcweDEwNzYvMjAweDIwMC9maWx0ZXJzOmZvcm1hdChqcGVnKTpxdWFsaXR5KDgwKS9odHRwczovL3MzLmFtYXpvbmF3cy5jb20vcG9saWN5bWljLWltYWdlcy9iM2QzNTQxN2I2YWEzNzdhZjdjMmJhYmJiNGZjMGIxYzNlMWNiZjNiOWRiMjQyOGQ2OGZkOWU4Mzc3N2IxYzNmLmpwZw.jpg'
   },
   {
     name: 'Mary Poppins',
@@ -132,7 +134,8 @@ const nannies = [
       'A magic umbrella with drop me at your house early in the morning and your children will be doing chores by 8am',
     age: 42,
     pricePerHour: 5.75,
-    createdDate: Date.now()
+    createdDate: Date.now(),
+    photo: 'https://openclipart.org/download/307249/1538041396.svg'
   }
 ];
 

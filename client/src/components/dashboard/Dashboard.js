@@ -6,9 +6,11 @@ import AdminDashBoard from './AdminDashBoard';
 
 export default class Dashboard extends PureComponent {
   static propTypes = {
-    appointments: PropTypes.array.isRequired,
-    fetchAppointments: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
+    appointments: PropTypes.array.isRequired,
+    profile: PropTypes.object.isRequired,
+    fetchAppointments: PropTypes.func.isRequired,
+    fetchRequests: PropTypes.func.isRequired
   };
 
   render() {

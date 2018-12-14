@@ -105,9 +105,9 @@ export default Router()
     });
   })
 
-  .get('/detail/:userId/:appointmentId', (req, res, next) => {
+  .get('/detail/:appointmentId', (req, res, next) => {
     /* eslint-disable-next-line */
-    const { appointmentId, userId } = req.params;
+    const { appointmentId } = req.params;
     Appointment.findById(appointmentId)
       .populate({
         path: 'request',

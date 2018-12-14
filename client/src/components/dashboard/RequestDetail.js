@@ -40,7 +40,7 @@ class RequestDetail extends PureComponent {
       (requestedNanny, i) => {
         return (
           <div key={i}>
-            <h1>Nanny Profile {i}:</h1>
+            <h1>Nanny Profile {i + 1}:</h1>
             <p><b>Name:</b> {requestedNanny.name}</p>
             <img src={requestedNanny.photo} alt='profile photo' />
             <p><b>Price per hour:</b> {requestedNanny.pricePerHour + 3.5}</p>

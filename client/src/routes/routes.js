@@ -7,14 +7,15 @@ import ProfileContainer from '../containers/ProfileContainer';
 import DashBoardContainer from '../containers/DashBoardContainer';
 import AppointmentDetail from '../containers/AppointmentDetail';
 import RequestDetail from '../containers/RequestDetail';
+import About from '../components/about/About';
 
 
 
 export const ROUTES = {
-  HOME: {
-    path: '/',
-    Component: Home,
-    linkTo: () => '/'
+  ABOUT: {
+    path: '/about',
+    Component: About,
+    linkTo: () => '/about'
   },
   SIGNUP: {
     path: '/signup',
@@ -46,6 +47,11 @@ export const ROUTES = {
     path: '/dashboard/:id',
     Component: withSession(DashBoardContainer),
     linkTo: id => `/dashboard/${id}`
+  },
+  HOME: {
+    path: '/',
+    Component: Signin,
+    linkTo: () => '/'
   }
 };
 

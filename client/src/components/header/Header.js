@@ -17,6 +17,12 @@ export default function Header({ session, signOut }) {
         <nav id={styles.nav}>
           <Link
             className={styles.link}
+            to={ROUTES.ABOUT.linkTo()}
+          >
+            About Us
+          </Link>
+          <Link
+            className={styles.link}
             to={ROUTES.DASHBOARD.linkTo(session._id)}
           >
             Dashboard

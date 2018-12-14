@@ -33,7 +33,7 @@ exports[`Profile component renders a component 1`] = `
       <input
         name="photo"
         onChange={[Function]}
-        type="file"
+        type="url"
         value=""
       />
       <label

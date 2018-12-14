@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Request from './Request';
 
-export default class Requests extends Component {
+export default class Requests extends PureComponent {
   static propTypes = {
     requests: PropTypes.array.isRequired,
     fetchRequests: PropTypes.func.isRequired,
@@ -20,13 +20,7 @@ export default class Requests extends Component {
     const { requests, user } = this.props;
 
     const requestComponents = requests.map(request => {
-      return (
-        <Request
-          key={request._id}
-          request={request}
-          user={user}
-        />
-      );
+      return <Request key={request._id} request={request} user={user} />;
     });
 
     return (

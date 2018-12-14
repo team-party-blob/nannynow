@@ -8,6 +8,10 @@ export const fetchFilteredNannies = query => {
   return get('/api/nannies/search', query);
 };
 
-export const fetchRequests = requestId => {
+export const getRequests = userId => {
+  return get(`/api/requests/user/${userId}`);
+};
+
+export const getRequest = requestId => {
   return get(`/api/requests/detail/${requestId}`);
 };

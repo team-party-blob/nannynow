@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import RequestedAppointment from '../../models/RequestedAppointment';
+import User from '../../models/User';
 
 export default Router()
   .post('/', (req, res, next) => {
@@ -41,6 +42,37 @@ export default Router()
       .catch(next);
   })
 
+  .get('/user/:userId', (req, res, next) => {
+    const { userId } = req.params;
+
+    User.findById(userId)
+      .then(user => {
+        if(user.role === 'family') {
+          RequestedAppointment.find({ family: user._id, closed: false })
+            .lean()
+            .sort()
+            .then(response => res.json(response))
+            .catch(next);
+        } else if(user.role === 'nanny') {
+          RequestedAppointment.find({
+            'requestedNannies.nanny': user._id,
+            closed: false
+          })
+            .lean()
+            .sort()
+            .then(response => res.json(response))
+            .catch(next);
+        } else if(user.role === 'admin' || user.role === 'developer') {
+          RequestedAppointment.find({})
+            .lean()
+            .sort()
+            .then(response => res.json(response))
+            .catch(next);
+        }
+      })
+      .catch(next);
+  })
+
   .get('/detail/:requestId', (req, res, next) => {
     /* eslint-disable-next-line */
     const { requestId } = req.params;
@@ -52,7 +84,7 @@ export default Router()
           Promise.resolve(request),
           request.family.getProfile(),
           Promise.all(
-            request. requestedNannies.map(requestedNanny =>
+            request.requestedNannies.map(requestedNanny =>
               requestedNanny.nanny.getProfile()
             )
           )

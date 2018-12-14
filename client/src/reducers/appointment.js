@@ -13,9 +13,7 @@ const initialState = {
   appointments: [],
   detail: null,
   loading: false,
-  error: null,
-  nanny: 'hi',
-  family: 'hey'
+  error: null
 };
 
 export default function reducer(state = initialState, { type, payload }) {

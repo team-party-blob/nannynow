@@ -5,7 +5,7 @@ import { getLocalDateTime } from '../helpers/time';
 import moment from 'moment';
 moment().format();
 
-export default function Request({ request, user }) {
+export default function Request({ user, request }) {
   return (
     <div>
       <Link to={ROUTES.REQUEST_DETAIL.linkTo(user._id, request._id)}>

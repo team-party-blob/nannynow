@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '../../routes/routes';
 import mikeImage from '../../assets/mike.png';
 import mackImage from '../../assets/mack.jpg';
+import sarahImage from '../../assets/sarah.jpg';
 
 
 const About = () => {
@@ -25,8 +24,8 @@ const About = () => {
       When he’s not rockin’ out in the code mines, you can find Mike hanging with his wife Luces and two lovebirds, Raymi and Condor.
       </p>
       <h4>Sarah Flynn</h4>
-      <img/>
-      <p>Something</p>
+      <img src={sarahImage}/>
+      <p>SSarah Flynn is a full stack software developer using the MERN stack, Vue (a favorite), and Plain JS. She is curious, hard-working, and deeply committed to the missions of organizations she works for. She started out as an astrophysics major in college, where she did research assistantships at Brookhaven National Laboratory and the National Radio Astronomy Observatory. She graduated summa cum laude with a BA in creative writing and also excelled in an MFA creative writing program. She has 10 years of experience working in Portland in advocate/manager/director roles for campaigns and nonprofits. When she isn't coding, she is probably sleeping or running errands, but she might also be rock climbing, hiking, playing the ukulele, or traveling.</p>
     </Fragment>
   );
 };

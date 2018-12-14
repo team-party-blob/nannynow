@@ -5,7 +5,6 @@ import { getLocalDateTime } from '../helpers/time';
 import moment from 'moment';
 import { ROUTES } from '../../routes/routes';
 import { Link } from 'react-router-dom';
-import Chance from 'chance';
 moment().format();
 
 class RequestDetail extends PureComponent {
@@ -27,9 +26,6 @@ class RequestDetail extends PureComponent {
     const { detail, session } = this.props;
     if(!detail) return null;
 
-    const chance = new Chance();
-    const img = chance.avatar({ fileExtension: 'jpg' });
-
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
       const age = moment([birthday]).fromNow(true);
       return (
@@ -45,7 +41,7 @@ class RequestDetail extends PureComponent {
           <div key={i}>
             <h4>Nanny Profile {i}:</h4>
             <p>Name: {requestedNanny.name}</p>
-            <img src={img} alt="profile photo" />
+            <img src={requestedNanny.photo} alt="profile photo" />
             <p>Price per hour: {requestedNanny.pricePerHour + 3.5}</p>
             <p>Phone: {requestedNanny.phone}</p>
             <p>Home ZIP code: {requestedNanny.zip}</p>
@@ -67,7 +63,7 @@ class RequestDetail extends PureComponent {
         </div>
         <div>
           <h4>Family Profile:</h4>
-          <img src={img} alt="profile photo" />
+          <img src={detail.familyProfile.photo} alt="profile photo" />
           <p>Name: {detail.familyProfile.name}</p>
           <p>Phone: {detail.familyProfile.phone}</p>
           <p>Home ZIP code: {detail.familyProfile.zip}</p>

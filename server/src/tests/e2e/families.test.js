@@ -20,6 +20,7 @@ describe('families routes', () => {
       phone: families[0].phone,
       email: families[0].email,
       description: families[0].description,
+      photo: expect.any(String),
       user: expect.any(String),
       _id: expect.any(String),
       __v: 0,

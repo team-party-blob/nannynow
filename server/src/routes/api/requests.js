@@ -4,7 +4,7 @@ import User from '../../models/User';
 
 export default Router()
   .post('/', (req, res, next) => {
-    const {
+    let {
       startDateTime,
       endDateTime,
       birthdays,
@@ -13,6 +13,8 @@ export default Router()
       agency,
       requestedNannies
     } = req.body;
+    startDateTime = new Date(startDateTime);
+    endDateTime = new Date(endDateTime);
 
     RequestedAppointment.create({
       startDateTime,

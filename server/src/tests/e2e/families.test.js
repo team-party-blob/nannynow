@@ -40,16 +40,6 @@ describe('families routes', () => {
       });
   });
 
-  it('gets a family by id', () => {
-    const createdFamilies = getFamilies();
-
-    return request(app)
-      .get(`/api/families/${createdFamilies[0]._id}`)
-      .then(res => {
-        expect(res.body).toEqual(createdFamilies[0]);
-      });
-  });
-
   it('deletes a family by id', () => {
     const createdFamilies = getFamilies();
 
@@ -73,6 +63,16 @@ describe('families routes', () => {
       })
       .then(res => {
         expect(res.body.name).toEqual('Jim');
+      });
+  });
+
+  it('gets a family by id', () => {
+    const createdFamilies = getFamilies();
+
+    return request(app)
+      .get(`/api/families/${createdFamilies[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdFamilies[0]);
       });
   });
 });

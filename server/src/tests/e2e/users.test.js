@@ -131,16 +131,6 @@ describe('users routes', () => {
       });
   });
 
-  it('gets a user by id', () => {
-    const createdUsers = getUsers();
-
-    return request(app)
-      .get(`/api/users/${createdUsers[1]._id}`)
-      .then(res => {
-        expect(res.body).toEqual(createdUsers[1]);
-      });
-  });
-
   it('deletes a user by id', () => {
     const createdUsers = getUsers();
 
@@ -166,6 +156,16 @@ describe('users routes', () => {
       })
       .then(res => {
         expect(res.body.role).toEqual('nanny');
+      });
+  });
+
+  it('gets a user by id', () => {
+    const createdUsers = getUsers();
+
+    return request(app)
+      .get(`/api/users/${createdUsers[1]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdUsers[1]);
       });
   });
 });

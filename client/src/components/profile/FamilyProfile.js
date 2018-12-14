@@ -11,7 +11,6 @@ export default class FamilyProfile extends PureComponent {
     updateProfile: PropTypes.func.isRequired
   };
 
-  //Why would email be a required field if we are getting it at login. should take out of Family Profile
   state = {
     name: '',
     streetAddress1: '',

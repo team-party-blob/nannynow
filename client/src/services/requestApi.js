@@ -7,6 +7,8 @@ export const createFamilyRequest = request => {
 
 export const fetchFilteredNannies = (start, end) => {
   const query = stringify({ start, end });
-  console.log('this', query);
-  return get(`/api/nannies/search?${query}`);
+  return get(`/api/nannies/search?${query}`)
+    .then(result => {
+      return result.nannyProfile;
+    });
 };

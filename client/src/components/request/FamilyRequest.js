@@ -58,7 +58,6 @@ export default class FamilyRequest extends PureComponent {
        appointmentComments
      };
     updateSearchQuery(query);
-    console.log(startDateTime, endDateTime);
     fetchFilteredNannies(startDateTime.toISOString(), endDateTime.toISOString());
   };
 

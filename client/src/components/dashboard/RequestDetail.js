@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { getLocalDateTime } from '../helpers/time';
+// import { getLocalDateTime } from '../helpers/time';
 import moment from 'moment';
 import { ROUTES } from '../../routes/routes';
 import { Link } from 'react-router-dom';
@@ -25,8 +25,6 @@ class AppointmentDetail extends PureComponent {
   render() {
     const { detail, session } = this.props;
     if(!detail) return null;
-    console.log(detail);
-    console.log(session);
 
     return (
       <Fragment>

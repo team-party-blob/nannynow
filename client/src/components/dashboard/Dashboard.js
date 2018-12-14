@@ -12,13 +12,6 @@ export default class Dashboard extends PureComponent {
     fetchRequests: PropTypes.func.isRequired
   };
 
-  // componentDidMount() {
-  //   console.log('mounted')
-  //   this.props.fetchRequests(this.props.user._id);
-  //   // this.props.fetchAppointments(this.props.user._id);
-  // }
-  
-
   render() {
     const { role } = this.props.user;
     if(this.props.loading) return <h1>LoadING</h1>;

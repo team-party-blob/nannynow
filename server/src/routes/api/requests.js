@@ -137,4 +137,11 @@ export default Router()
       .lean()
       .then(request => res.json(request))
       .catch(next);
+  })
+
+  .patch('/status/:requestId/:nannyId/:status', (req, res, next) => {
+    const { requestId, nannyId, status } = req.params;
+    RequestedAppointment.updateOne({ _id: requestId, 'requestedNannies.nanny': nannyId }, { $set: { 'requestedNannies.$.status': status } })
+      .then(response => res.json(response))
+      .catch(next);
   });

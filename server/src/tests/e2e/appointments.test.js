@@ -112,6 +112,32 @@ describe(' appointments routes', () => {
       });
   });
 
+  it('deletes a Appointment by id', () => {
+    const createdAppointments = getAppointments();
+
+    return request(app)
+      .delete(`/api/appointments/${createdAppointments[0]._id}`)
+      .then(() => {
+        return request(app).get('/api/appointments');
+      })
+      .then(res => {
+        expect(res.body).not.toContainEqual(createdAppointments[0]);
+      });
+  });
+
+  it('updates a Appointment by id', () => {
+    const createdAppointments = getAppointments();
+
+    return request(app)
+      .put(`/api/appointments/${createdAppointments[0]._id}`)
+      .send({
+        arrivalTime: '2018-12-20T02:00:00.000Z'
+      })
+      .then(res => {
+        expect(res.body.arrivalTime).toEqual('2018-12-20T02:00:00.000Z');
+      });
+  });
+
   it('gets a list of all appointments by for a admin user id', () => {
     const createdUsers = getUsers();
     const appointments = getAppointments();
@@ -141,32 +167,6 @@ describe(' appointments routes', () => {
             createdDate: expect.anything()
           }
         ]);
-      });
-  });
-
-  it('deletes a Appointment by id', () => {
-    const createdAppointments = getAppointments();
-
-    return request(app)
-      .delete(`/api/appointments/${createdAppointments[0]._id}`)
-      .then(() => {
-        return request(app).get('/api/appointments');
-      })
-      .then(res => {
-        expect(res.body).not.toContainEqual(createdAppointments[0]);
-      });
-  });
-
-  it('updates a Appointment by id', () => {
-    const createdAppointments = getAppointments();
-
-    return request(app)
-      .put(`/api/appointments/${createdAppointments[0]._id}`)
-      .send({
-        arrivalTime: '2018-12-20T02:00:00.000Z'
-      })
-      .then(res => {
-        expect(res.body.arrivalTime).toEqual('2018-12-20T02:00:00.000Z');
       });
   });
 });

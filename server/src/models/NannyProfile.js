@@ -17,7 +17,8 @@ const nannyProfileSchema = new mongoose.Schema({
     required: true
   },
   photo: {
-    type: String
+    type: String,
+    default: 'https://openclipart.org/download/307249/1538041396.svg'
   },
   streetAddress1: {
     type: String,

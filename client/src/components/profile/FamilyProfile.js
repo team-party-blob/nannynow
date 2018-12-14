@@ -112,12 +112,12 @@ export default class FamilyProfile extends PureComponent {
     const childList = birthdays.map((child, i) => {
       const slicedChild = child.slice(0, 10);
       return (
-        <div key={i}>
+        <div key={i} id={styles.addedChildren}>
           <li>
             Child #{i + 1}: Born {slicedChild}
           </li>
-          <button type='button' onClick={() => this.removeChild(i)}>
-            Remove Child
+          <button type='button' onClick={() => this.removeChild(i)} id={styles.removeChildButton}>
+            Remove
           </button>
         </div>
       );
@@ -135,7 +135,7 @@ export default class FamilyProfile extends PureComponent {
       <Fragment>
         <h1 id={styles.profileHeader}>Create Your Profile</h1>
         <div id={styles.profileBody}>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} id={styles.profileForm}>
             <label htmlFor='name'>Full Name:</label>
             <input
               type='text'
@@ -200,7 +200,7 @@ export default class FamilyProfile extends PureComponent {
               value={birthday}
               onChange={this.handleChange}
             />
-            <button type='button' onClick={this.addChild}>
+            <button type='button' id={styles.addChildButton} onClick={this.addChild}>
               Add Child
             </button>
 
@@ -214,20 +214,24 @@ export default class FamilyProfile extends PureComponent {
               onChange={this.handleChange}
               required
             />
-            <button>Submit Profile</button>
+            <button id={styles.submitButton}>Submit Profile</button>
           </form>
           <div id={styles.profileView}>
-            <h1>Name: {name}</h1>
-            <h3>Street Address:{streetAddress1}</h3>
-            <h3>Address (continued): {streetAddress2}</h3>
-            <h3>City: {city}</h3>
-            <h3>State: {state}</h3>
-            <h3>Zip Code: {zip}</h3>
-            <h3>Phone Number: {phone}</h3>
-            <h3>Number of Children: {numOfChildren}</h3>
-            <h3>Child Birthdays: </h3>
-            <ul>{childList}</ul>
-            <h3>Details: {description}</h3>
+            <div id={styles.doubleBorder1}>
+              <div id={styles.doubleBorder2}>
+                <h1>{name}</h1>
+                <h3>Street Address:{streetAddress1}</h3>
+                <h3>Address (continued): {streetAddress2}</h3>
+                <h3>City: {city}</h3>
+                <h3>State: {state}</h3>
+                <h3>Zip Code: {zip}</h3>
+                <h3>Phone Number: {phone}</h3>
+                <h3>Number of Children: {numOfChildren}</h3>
+                <h3>Child Birthdays: </h3>
+                <ul>{childList}</ul>
+                <h3>Details: {description}</h3>
+              </div>
+            </div>
           </div>
         </div>
       </Fragment>

@@ -1,6 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styles from './profile.css';
+import styles from './Profile.css';
+import nannyProfileStyles from './NannyProfile';
+import globalStyles from '../../main.css';
 import { ROUTES } from '../../routes/routes';
 import { statesArray } from './helpers/statesArray';
 
@@ -74,9 +76,9 @@ export default class NannyProfile extends PureComponent {
 
     return (
       <Fragment>
-        <h1 id={styles.profileHeader}>Create Your Profile</h1>
+        <h1 id={globalStyles.header}>Create Your Profile</h1>
         <div id={styles.profileBody}>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} id={styles.profileForm}>
             <label htmlFor='name'>Full Name:</label>
             <input
               type='text'
@@ -155,26 +157,32 @@ export default class NannyProfile extends PureComponent {
               onChange={this.handleChange}
             />
             <label htmlFor='description'>Tell Us About Yourself:</label>
-            <input
+            <textarea
               type='text'
               name='description'
               value={description}
               onChange={this.handleChange}
             />
-            <button>Submit Profile</button>
+            <button id={styles.submitButton}>Submit Profile</button>
           </form>
           <div id={styles.profileView}>
-            <img src={photo} />
-            <h1>Name: {name}</h1>
-            <h3>Age: {age}</h3>
-            <h3>Street Address:{streetAddress1}</h3>
-            <h3>Address (continued): {streetAddress2}</h3>
-            <h3>City: {city}</h3>
-            <h3>State: {state}</h3>
-            <h3>Zip Code: {zip}</h3>
-            <h3>Phone Number: {phone}</h3>
-            <h3>Hourly Rate: {pricePerHour}</h3>
-            <h3>Description: {description}</h3>
+            <div id={styles.doubleBorder1}>
+              <div id={styles.doubleBorder2}>
+                <div id={styles.profileHeader}>
+                  <img src={photo} />
+                  <h1>{name}</h1>
+                </div>
+                <h3>Age: {age}</h3>
+                <h3>Street Address: {streetAddress1}</h3>
+                <h3>{streetAddress2}</h3>
+                <h3>City: {city}</h3>
+                <h3>State: {state}</h3>
+                <h3>Zip Code: {zip}</h3>
+                <h3>Phone Number: {phone}</h3>
+                <h3>Hourly Rate: {pricePerHour}</h3>
+                <h3>Description: {description}</h3>
+              </div>
+            </div>
           </div>
         </div>
       </Fragment>

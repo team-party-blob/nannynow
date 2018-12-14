@@ -282,15 +282,15 @@ async function seedData() {
       endDateTime: endTime1,
       birthdays: [birthday1, birthday2],
       appointmentComments: 'Working from home during appointment',
-      family: families[0]._id,
+      family: families[0].user,
       agency: agencies[0]._id,
       requestedNannies: [
         {
-          nanny: nannies[0]._id,
+          nanny: nannies[0].user,
           status: 'no response'
         },
         {
-          nanny: nannies[1]._id,
+          nanny: nannies[1].user,
           status: 'no response'
         }
       ]
@@ -300,15 +300,15 @@ async function seedData() {
       endDateTime: endTime2,
       birthdays: [birthday3, birthday4],
       appointmentComments: 'Might be up to one hour late returning',
-      family: families[0]._id,
+      family: families[0].user,
       agency: agencies[0]._id,
       requestedNannies: [
         {
-          nanny: nannies[2]._id,
+          nanny: nannies[2].user,
           status: 'no response'
         },
         {
-          nanny: nannies[3]._id,
+          nanny: nannies[3].user,
           status: 'no response'
         }
       ],
@@ -319,15 +319,15 @@ async function seedData() {
       endDateTime: endTime3,
       birthdays: [birthday1, birthday4],
       appointmentComments: 'No sweets',
-      family: families[1]._id,
+      family: families[1].user,
       agency: agencies[0]._id,
       requestedNannies: [
         {
-          nanny: nannies[2]._id,
+          nanny: nannies[2].user,
           status: 'no response'
         },
         {
-          nanny: nannies[3]._id,
+          nanny: nannies[3].user,
           status: 'no response'
         }
       ],
@@ -338,15 +338,15 @@ async function seedData() {
       endDateTime: endTime5,
       birthdays: [birthday2, birthday3],
       appointmentComments: 'n/a',
-      family: families[1]._id,
+      family: families[1].user,
       agency: agencies[0]._id,
       requestedNannies: [
         {
-          nanny: nannies[3]._id,
+          nanny: nannies[3].user,
           status: 'no response'
         },
         {
-          nanny: nannies[4]._id,
+          nanny: nannies[4].user,
           status: 'no response'
         }
       ],
@@ -355,9 +355,9 @@ async function seedData() {
   ]);
   const appointments = await Appointment.create([
     {
-      family: families[0]._id,
+      family: families[0].user,
       agency: agencies[0]._id,
-      nanny: nannies[0]._id,
+      nanny: nannies[0].user,
       request: requestedAppointments[0]._id,
       arrivalTime: arrivalTime3,
       departureTime: departureTime3,
@@ -365,9 +365,9 @@ async function seedData() {
       nannyPricePerHour: 13
     },
     {
-      family: families[0]._id,
+      family: families[0].user,
       agency: agencies[0]._id,
-      nanny: nannies[0]._id,
+      nanny: nannies[0].user,
       request: requestedAppointments[1]._id,
       arrivalTime: arrivalTime3,
       departureTime: departureTime3,
@@ -375,9 +375,9 @@ async function seedData() {
       nannyPricePerHour: 15
     },
     {
-      family: families[0]._id,
+      family: families[0].user,
       agency: agencies[0]._id,
-      nanny: nannies[0]._id,
+      nanny: nannies[0].user,
       request: requestedAppointments[2]._id,
       arrivalTime: arrivalTime3,
       departureTime: departureTime3,
@@ -385,9 +385,9 @@ async function seedData() {
       nannyPricePerHour: 14
     },
     {
-      family: families[1]._id,
+      family: families[1].user,
       agency: agencies[0]._id,
-      nanny: nannies[1]._id,
+      nanny: nannies[1].user,
       request: requestedAppointments[0]._id,
       arrivalTime: arrivalTime3,
       departureTime: departureTime3,
@@ -395,9 +395,9 @@ async function seedData() {
       nannyPricePerHour: 12
     },
     {
-      family: families[1]._id,
+      family: families[1].user,
       agency: agencies[0]._id,
-      nanny: nannies[1]._id,
+      nanny: nannies[1].user,
       request: requestedAppointments[1]._id,
       arrivalTime: arrivalTime3,
       departureTime: departureTime3,
@@ -405,9 +405,9 @@ async function seedData() {
       nannyPricePerHour: 13
     },
     {
-      family: families[1]._id,
+      family: families[1].user,
       agency: agencies[0]._id,
-      nanny: nannies[1]._id,
+      nanny: nannies[1].user,
       request: requestedAppointments[2]._id,
       arrivalTime: arrivalTime3,
       departureTime: departureTime3,
@@ -415,9 +415,9 @@ async function seedData() {
       nannyPricePerHour: 15
     },
     {
-      family: families[1]._id,
+      family: families[1].user,
       agency: agencies[0]._id,
-      nanny: nannies[2]._id,
+      nanny: nannies[2].user,
       request: requestedAppointments[3]._id,
       arrivalTime: arrivalTime3,
       departureTime: departureTime3,
@@ -429,23 +429,23 @@ async function seedData() {
     {
       availableStartTime: startTime4,
       availableEndTime: endTime4,
-      nanny: nannies[0]._id,
+      nanny: nannies[0].user,
     },
     {
       availableStartTime: startTime4,
       availableEndTime: endTime4,
-      nanny: nannies[1]._id,
+      nanny: nannies[1].user,
 
     },
     {
       availableStartTime: startTime1,
       availableEndTime: endTime1,
-      nanny: nannies[2]._id,
+      nanny: nannies[2].user,
     },
     {
       availableStartTime: startTime2,
       availableEndTime: endTime2,
-      nanny: nannies[3]._id
+      nanny: nannies[3].user
     }
 
   ]);

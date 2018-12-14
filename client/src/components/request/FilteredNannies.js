@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './FilteredNannies.css';
+import styles from './FamilyRequest.css';
 
 export default function FilteredNannies({ filteredNannies, handleUpdateRequestedNannies }) {
   if(!filteredNannies) return;

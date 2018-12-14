@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Appointment from './Appointment';
-export default class Appointments extends Component {
+export default class Appointments extends PureComponent {
   static propTypes = {
     appointments: PropTypes.array.isRequired,
     fetchAppointments: PropTypes.func.isRequired,
@@ -30,7 +30,7 @@ export default class Appointments extends Component {
 
     return (
       <div>
-        <h1>I am an appointment list.</h1>
+        <h1>Appointment List</h1>
         {appointmentComponents}
       </div>
     );

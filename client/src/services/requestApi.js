@@ -14,3 +14,11 @@ export const fetchFilteredNannies = (start, end) => {
       return result.nannyProfile;
     });
 };
+
+export const getRequests = userId => {
+  return get(`/api/requests/user/${userId}`);
+};
+
+export const getRequest = requestId => {
+  return get(`/api/requests/detail/${requestId}`);
+};

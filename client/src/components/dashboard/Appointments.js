@@ -30,7 +30,7 @@ export default class Appointments extends Component {
 
     return (
       <div>
-        <h1>I am an appointment list.</h1>
+        <h1>Upcoming appointments</h1>
         {appointmentComponents}
       </div>
     );

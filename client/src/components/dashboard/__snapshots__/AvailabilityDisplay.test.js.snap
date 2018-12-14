@@ -27,6 +27,7 @@ exports[`AvailabilityDisplay matches snapshot 1`] = `
       <Component />
     </div>
     <button
+      id="removeButton"
       onClick={[Function]}
     >
       Remove
@@ -51,6 +52,7 @@ exports[`AvailabilityDisplay matches snapshot 1`] = `
       <Component />
     </div>
     <button
+      id="removeButton"
       onClick={[Function]}
     >
       Remove

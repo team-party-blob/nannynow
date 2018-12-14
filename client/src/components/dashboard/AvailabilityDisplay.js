@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AvailabilityDisplay.css';
 import Loading from '../loading/Loading';
+import { getLocalDateTime } from '../helpers/time';
 
 export default class AvailabilityDisplay extends PureComponent {
   static propTypes = {
@@ -30,8 +31,8 @@ export default class AvailabilityDisplay extends PureComponent {
       const { _id, availableStartTime, availableEndTime } = available;
       return (
         <div key={i} id={styles.availabilityList}>
-          <div><b>Start Time/Date:</b> {availableStartTime}</div>
-          <div><b>End Time Date:</b> {availableEndTime}</div>
+          <div><b>Start Time/Date:</b> {getLocalDateTime(availableStartTime)}</div>
+          <div><b>End Time Date:</b> {getLocalDateTime(availableEndTime)}</div>
           <button id={styles.removeButton} onClick={this.handleRemove(_id)}>Remove</button>
         </div>
       );

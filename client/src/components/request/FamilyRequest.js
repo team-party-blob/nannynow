@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import FilteredNannies from './FilteredNannies';
 import Range from '../dashboard/Range';
+import styles from './FamilyRequest.css';
 
 export default class FamilyRequest extends PureComponent {
   static propTypes = {
@@ -63,7 +64,6 @@ export default class FamilyRequest extends PureComponent {
 
   handleUpdateRequestedNannies = ({ target }) => {
     const { requestedNannies } = this.state;
-    console.log(requestedNannies);
     if(requestedNannies.filter(e => e.nanny === target.value).length > 0)  {
       const index = Object.values(requestedNannies.indexOf(target.value));
       return console.log(index);
@@ -94,34 +94,33 @@ export default class FamilyRequest extends PureComponent {
     const childBirthdays = birthdays.map((birthday, i) => {
       const slicedBirthday = birthday.slice(0, 10);
       return (
-        <p key={i}>
-          Child #{i + 1} <br />
-          <label>{slicedBirthday}</label>
-          <input type='checkbox' value={selectedChildren} />
-        </p>
+        <div key={i} id={styles.addChild}>
+          <input id={styles.checkBox}type='checkbox' value={selectedChildren} />
+
+          <label>Child #{i + 1} (born {slicedBirthday})</label>
+        </div>
       );
     });
     return (
-      <Fragment>
+      <div id={styles.requestBody}>
         <h1>Request an Appointment</h1>
         <div>
           <form onSubmit={this.handleUpdateSearchTerm}>
-            <label htmlFor='birthdays'>Children:</label>
-            {childBirthdays}
             <Range
               onStartChange={this.handleStartChange}
               onEndChange={this.handleEndChange}
               start={startDateTime}
               end={endDateTime}
             />
+            <h3 htmlFor='birthdays'>Children Needing Care:</h3>
+            {childBirthdays}
             <label htmlFor='comments'>Appointment Comments:</label>
-            <br />
             <textarea
+              type='text'
               name='comments'
               value={appointmentComments}
               onChange={this.handleChange}
             />
-            <br />
             <button type='submit'>Get List of Availabilities</button>
           </form>
           <FilteredNannies
@@ -131,7 +130,7 @@ export default class FamilyRequest extends PureComponent {
           />
           {filteredNannies && <button type="button" onClick={this.handleFinalRequest}>Request Nannies Now!</button>}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

@@ -3,7 +3,7 @@
 exports[`Profile component renders a component 1`] = `
 <Fragment>
   <h1
-    id="profileHeader"
+    id="header"
   >
     Create Your Profile
   </h1>
@@ -11,6 +11,7 @@ exports[`Profile component renders a component 1`] = `
     id="profileBody"
   >
     <form
+      id="profileForm"
       onSubmit={[Function]}
     >
       <label
@@ -488,54 +489,64 @@ exports[`Profile component renders a component 1`] = `
       >
         Tell Us About Yourself:
       </label>
-      <input
+      <textarea
         name="description"
         onChange={[Function]}
         type="text"
         value=""
       />
-      <button>
+      <button
+        id="submitButton"
+      >
         Submit Profile
       </button>
     </form>
     <div
       id="profileView"
     >
-      <img
-        src=""
-      />
-      <h1>
-        Name: 
-      </h1>
-      <h3>
-        Age: 
-        0
-      </h3>
-      <h3>
-        Street Address:
-      </h3>
-      <h3>
-        Address (continued): 
-      </h3>
-      <h3>
-        City: 
-      </h3>
-      <h3>
-        State: 
-      </h3>
-      <h3>
-        Zip Code: 
-      </h3>
-      <h3>
-        Phone Number: 
-      </h3>
-      <h3>
-        Hourly Rate: 
-        16
-      </h3>
-      <h3>
-        Description: 
-      </h3>
+      <div
+        id="doubleBorder1"
+      >
+        <div
+          id="doubleBorder2"
+        >
+          <div
+            id="profileHeader"
+          >
+            <img
+              src=""
+            />
+            <h1 />
+          </div>
+          <h3>
+            Age: 
+            0
+          </h3>
+          <h3>
+            Street Address: 
+          </h3>
+          <h3 />
+          <h3>
+            City: 
+          </h3>
+          <h3>
+            State: 
+          </h3>
+          <h3>
+            Zip Code: 
+          </h3>
+          <h3>
+            Phone Number: 
+          </h3>
+          <h3>
+            Hourly Rate: 
+            16
+          </h3>
+          <h3>
+            Description: 
+          </h3>
+        </div>
+      </div>
     </div>
   </div>
 </Fragment>

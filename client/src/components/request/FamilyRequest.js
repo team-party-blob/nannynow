@@ -74,7 +74,7 @@ export default class FamilyRequest extends PureComponent {
     const { searchQuery, requestedNannies } = this.state;
 
     this.props.createRequest(_id, agency, searchQuery, requestedNannies);
-  }
+  };
 
   render() {
     const { filteredNannies, searchQuery } = this.props;

@@ -3,7 +3,6 @@ import RequestedAppointment from '../../models/RequestedAppointment';
 
 export default Router()
   .post('/', (req, res, next) => {
-    console.log(req.body);
     let {
       startDateTime,
       endDateTime,
@@ -15,7 +14,6 @@ export default Router()
     } = req.body;
     startDateTime = new Date(startDateTime);
     endDateTime = new Date(endDateTime);
-    console.log(agency)
 
     RequestedAppointment.create({
       startDateTime,

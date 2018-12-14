@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 let birthday1 = new Date('2016-06-06');
 let birthday2 = new Date('2013-10-22');
 let birthday3 = new Date('2018-01-05');

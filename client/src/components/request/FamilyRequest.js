@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FilteredNannies from './FilteredNannies';
 import Range from '../dashboard/Range';
@@ -77,8 +77,8 @@ export default class FamilyRequest extends PureComponent {
   handleFinalRequest = event => {
     event.preventDefault();
     const { _id, agency } = this.props.user;
-    const { searchQuery, requestedNannies } = this.state;
-
+    const { searchQuery } = this.props;
+    const { requestedNannies } = this.state;
     this.props.createRequest(_id, agency, searchQuery, requestedNannies);
   };
 
@@ -96,7 +96,6 @@ export default class FamilyRequest extends PureComponent {
       return (
         <div key={i} id={styles.addChild}>
           <input id={styles.checkBox}type='checkbox' value={selectedChildren} />
-
           <label>Child #{i + 1} (born {slicedBirthday})</label>
         </div>
       );
@@ -114,21 +113,27 @@ export default class FamilyRequest extends PureComponent {
             />
             <h3 htmlFor='birthdays'>Children Needing Care:</h3>
             {childBirthdays}
-            <label htmlFor='comments'>Appointment Comments:</label>
+            <h3>Appointment Comments:</h3>
             <textarea
               type='text'
               name='comments'
               value={appointmentComments}
               onChange={this.handleChange}
             />
-            <button type='submit'>Get List of Availabilities</button>
+            <br />
+            <div id={styles.buttonContainer}>
+              <button id={styles.getNannies} type='submit'>Get List of Availabilities</button>
+            </div>
           </form>
           <FilteredNannies
             filteredNannies={filteredNannies}
             searchQuery={searchQuery}
             handleUpdateRequestedNannies={this.handleUpdateRequestedNannies}
           />
-          {filteredNannies && <button type="button" onClick={this.handleFinalRequest}>Request Nannies Now!</button>}
+
+          <div id={styles.buttonContainer}>
+            {filteredNannies.length > 0 && <button id={styles.submitButton} type="button" onClick={this.handleFinalRequest}>Request Nannies Now!</button>}
+          </div>
         </div>
       </div>
     );

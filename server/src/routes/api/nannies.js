@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import NannyProfile from '../../models/NannyProfile';
 import AvailableTime from '../../models/AvailableTime';
+import mongoose from 'mongoose';
 
 
 export default Router()
@@ -47,15 +48,26 @@ export default Router()
   })
   .get('/search', (req, res, next) => {
     const { start, end } = req.query;
-    // let startDate = new Date(start).toISOString();
+    let startDate = Date.parse(start);
+    let endDate = Date.parse(end);
     AvailableTime.find({
       availableStartTime: {
-        $gte: start
+        $lte: startDate
+      },
+      availableEndTime: {
+        $gte: endDate
       }
     })
-      .then(result => {
-        console.log(result);
-        res.json(result);
+      .populate('nanny')
+      .then(matches => {
+        return Promise.all([
+          Promise.resolve(matches),
+          Promise.all(matches.map(match => match.nanny.getProfile()))
+        ]);
+      })
+      .then(([matches, nannyProfile]) => {
+        console.log(matches, nannyProfile);
+        res.json({ matches, nannyProfile });
       })
       .catch(next);
   })

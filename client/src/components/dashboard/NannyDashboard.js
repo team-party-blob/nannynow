@@ -8,7 +8,6 @@ export default class NannyDashboard extends Component {
   render() {
     return (
       <Fragment>
-        <h1 id={globalStyles.header}>I am a Nanny Dashboard!</h1>
         <Appointments {...this.props} />
         <Requests {...this.props} />
         <NannySchedulerContainer {...this.props} />

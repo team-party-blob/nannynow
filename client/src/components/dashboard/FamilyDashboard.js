@@ -16,7 +16,6 @@ export default class FamilyDashboard extends PureComponent {
   render() {
     return (
       <div>
-        <h1>Family Dashboard</h1>
         <Appointments {...this.props} />
         <Requests {...this.props} />
         <FamilyRequestContainer {...this.props} />

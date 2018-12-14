@@ -24,7 +24,7 @@ export const ROUTES = {
   SIGNIN: {
     path: '/signin',
     Component: Signin,
-    linkTo: () => '/signin'
+    linkTo: path => path ? `/signin?redirectTo=${path}` : '/signin'
   },
   PROFILE: {
     path: '/profile/:id',

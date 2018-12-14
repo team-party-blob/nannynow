@@ -27,7 +27,7 @@ export default class Range extends PureComponent {
             // startDate={start}
             // endDate={end}
             minDate={new Date()}
-            maxDate={end}
+            // maxDate={end}
             timeFormat='HH:mm'
             timeIntervals={15}
             dateFormat='MMMM d, yyyy h:mm aa'

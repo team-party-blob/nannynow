@@ -32,7 +32,7 @@ export default class AvailabilityDisplay extends PureComponent {
         <div key={i} id={styles.availabilityList}>
           <div><b>Start Time/Date:</b> {availableStartTime}</div>
           <div><b>End Time Date:</b> {availableEndTime}</div>
-          <button onClick={this.handleRemove(_id)}>Remove</button>
+          <button id={styles.removeButton} onClick={this.handleRemove(_id)}>Remove</button>
         </div>
       );
     });

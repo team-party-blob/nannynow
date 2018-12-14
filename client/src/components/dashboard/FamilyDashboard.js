@@ -14,7 +14,6 @@ export default class FamilyDashboard extends Component {
   render() {
     return (
       <div>
-        <h1>I am a family dashboard</h1>
         <Appointments  {...this.props }/>
         <FamilyRequestContainer {...this.props} />
       </div>

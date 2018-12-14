@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Request from './Request';
+import styles from './Requests.css';
 
 export default class Requests extends PureComponent {
   static propTypes = {
@@ -24,9 +25,12 @@ export default class Requests extends PureComponent {
     });
 
     return (
-      <div>
-        <h4>Request List</h4>
-        {requestComponents}
+      <div id={styles.requestListBody}>
+        {user.role === 'nanny' && <h1>Appointment Requests</h1>}
+        {user.role === 'family' && <h1>Outstanding Requests</h1>}
+        <ul>
+          {requestComponents}
+        </ul>
       </div>
     );
   }

@@ -17,6 +17,8 @@ jest.mock('../../routes/routes.js', () => ({
   }
 }));
 
+jest.mock('../helpers/hand_logo.png');
+
 describe('Auth component', () => {
 
   const onSubmit = jest.fn();

@@ -3,7 +3,7 @@ import {
   signIn as signInService,
   verifySession
 } from '../services/authApi';
-import { LOAD_START, LOAD_END } from '../middleware/promise';
+import { LOAD_START, LOAD_END } from '../actions/fixtures/loadingActions';
 
 export const SESSION_CREATE = 'SESSION_CREATE';  //This will be the only action needed to get
 export const SESSION_ERROR = 'SESSION_ERROR';

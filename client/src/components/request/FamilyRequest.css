@@ -1,0 +1,92 @@
+#requestBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  border: 4px solid grey;
+  margin: 3em;
+  padding: 1em;
+  border-radius: 8px;
+  h1 {
+    text-align: center;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  #addChild {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
+  label {
+    font-family: 'Noto Serif TC', serif;
+    margin: 15px;
+  }
+
+
+  textarea {
+      height: 100px;
+      border: 2px solid grey;
+      border-radius: 8px;
+      font-size: 18px;
+      width: 100%;
+  }
+
+}
+li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+#buttonContainer {
+  display: flex;
+  justify-content: center;
+
+}
+#getNannies {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: center;
+  padding: 0.5em;
+  border-radius: 8px;
+  border: 2px solid grey;
+  font-size: 18px;
+  font-family: 'Noto Serif TC', serif;
+  background-color: #7fbbe0;
+  font-weight: 900;
+  &:hover {
+    background-color: #f96a54;
+    cursor: pointer;
+  }
+}
+
+#submitButton {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: center;
+  padding: 0.5em;
+  border-radius: 8px;
+  border: 2px solid grey;
+  font-size: 18px;
+  font-family: 'Noto Serif TC', serif;
+  background-color: #f96a54;
+  font-weight: 900;
+  &:hover {
+    background-color: #7fbbe0;
+    cursor: pointer;
+  }
+}
+
+#checkBox  {
+  height: 25px;
+  width: 25px;
+  background: white;
+  border-radius: 8px;
+}

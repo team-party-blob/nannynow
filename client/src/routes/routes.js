@@ -47,6 +47,11 @@ export const ROUTES = {
     path: '/dashboard/:id',
     Component: withSession(DashBoardContainer),
     linkTo: id => `/dashboard/${id}`
+  },
+  HOME: {
+    path: '/',
+    Component: Signin,
+    linkTo: () => '/'
   }
 };
 

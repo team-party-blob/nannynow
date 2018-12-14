@@ -20,7 +20,7 @@ export default class FamilyRequest extends PureComponent {
     closed: false,
     startDateTime: new Date(),
     endDateTime: new Date(),
-    appointmentComments: '',
+    appointmentComments: null,
     requestedNannies: []
   };
 

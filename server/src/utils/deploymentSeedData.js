@@ -2,15 +2,15 @@ import { config } from 'dotenv';
 config();
 
 import mongoose from 'mongoose';
-import { connect } from '../utils/connect';
+import connect  from './connect';
 
-import User from '../../../models/User';
-import Agency from '../../../models/Agency';
-import NannyProfile from '../../../models/NannyProfile';
-import FamilyProfile from '../../../models/FamilyProfile';
-import RequestedAppointment from '../../../models/RequestedAppointment';
-import Appointment from '../../../models/Appointment';
-import AvailableTime from '../../../models/AvailableTime';
+import User from '../models/User';
+import Agency from '../models/Agency';
+import NannyProfile from '../models/NannyProfile';
+import FamilyProfile from '../models/FamilyProfile';
+import RequestedAppointment from '../models/RequestedAppointment';
+import Appointment from '../models/Appointment';
+import AvailableTime from '../models/AvailableTime';
 
 connect();
 seedData();
@@ -128,6 +128,7 @@ async function seedData() {
   const nannies = await NannyProfile.create([
     {
       user: users[2]._id,
+      agency: agencies[0]._id,
       name: 'Mrs. Doubtfire',
       streetAddress1: '3 Monroe Parkway Suite P#129',
       city: 'Lake Oswego',
@@ -144,6 +145,7 @@ async function seedData() {
     },
     {
       user: users[3]._id,
+      agency: agencies[0]._id,
       name: 'Mary Poppins',
       streetAddress1: '0 SW 1st St',
       city: 'Portland',
@@ -159,6 +161,7 @@ async function seedData() {
     },
     {
       user: users[4]._id,
+      agency: agencies[0]._id,
       name: 'Fran Fine',
       streetAddress1: '10 Fine St',
       city: 'Portland',
@@ -172,6 +175,7 @@ async function seedData() {
     },
     {
       user: users[5]._id,
+      agency: agencies[0]._id,
       name: 'Charles in Charge',
       streetAddress1: '109 Charge St',
       city: 'Portland',
@@ -185,6 +189,7 @@ async function seedData() {
     },
     {
       user: users[6]._id,
+      agency: agencies[0]._id,
       name: 'Nana Darling',
       streetAddress1: '34 Pan St',
       city: 'Portland',
@@ -199,6 +204,7 @@ async function seedData() {
     },
     {
       user: users[7]._id,
+      agency: agencies[0]._id,
       name: 'Lassie',
       streetAddress1: '888 Collie St',
       city: 'Portland',
@@ -212,6 +218,7 @@ async function seedData() {
     },
     {
       user: users[8]._id,
+      agency: agencies[0]._id,
       name: 'Nanny McPhee',
       streetAddress1: '888 Mysterious St',
       city: 'Portland',
@@ -225,6 +232,7 @@ async function seedData() {
     },
     {
       user: users[9]._id,
+      agency: agencies[0]._id,
       name: 'Maria',
       streetAddress1: '999 Music St',
       city: 'Portland',

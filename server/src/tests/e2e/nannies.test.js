@@ -27,16 +27,6 @@ describe('nanny routes', () => {
       });
   });
 
-  it('gets a nanny by id', () => {
-    const createdNannies = getNannies();
-
-    return request(app)
-      .get(`/api/nannies/${createdNannies[0]._id}`)
-      .then(res => {
-        expect(res.body).toEqual({ ...createdNannies[0] });
-      });
-  });
-
   it('deletes a nanny by id', () => {
     const createdNannies = getNannies();
 
@@ -55,6 +45,16 @@ describe('nanny routes', () => {
       })
       .then(res => {
         expect(res.body.pricePerHour).toEqual(7.77);
+      });
+  });
+
+  it('gets a nanny by id', () => {
+    const createdNannies = getNannies();
+
+    return request(app)
+      .get(`/api/nannies/${createdNannies[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual({ ...createdNannies[0] });
       });
   });
 });

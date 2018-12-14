@@ -6,6 +6,7 @@ import { ROUTES } from '../../routes/routes';
 import { getSession, getSessionLoading } from '../../selectors/session';
 import { refreshSession } from '../../actions/session';
 import { withRouter } from 'react-router-dom';
+import Loading from '../loading/Loading';
 
 export const withSession = Component => {
 
@@ -20,7 +21,7 @@ export const withSession = Component => {
     }
 
     render() {
-      if(this.props.loading) return <h1>LOADING SESSION</h1>;
+      if(this.props.loading) return <Loading />;
       if(!this.props.session) {
         return <Redirect to={ROUTES.SIGNIN.linkTo(this.props.location.pathname)} />;
       }

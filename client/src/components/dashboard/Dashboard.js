@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import NannyDashboard from './NannyDashboard';
 import FamilyDashboard from './FamilyDashboard';
 import PropTypes from 'prop-types';
+import AdminDashBoard from './AdminDashBoard';
 
 export default class Dashboard extends PureComponent {
   static propTypes = {
@@ -15,6 +16,7 @@ export default class Dashboard extends PureComponent {
     if(this.props.loading) return <h1>LoadING</h1>;
     return (
       <div>
+        {role === 'admin' && <AdminDashBoard {...this.props} />}
         {role === 'nanny' && <NannyDashboard { ...this.props } />}
         {role === 'family' && <FamilyDashboard { ...this.props } />}
       </div>

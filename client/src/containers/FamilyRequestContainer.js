@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createRequest: request => dispatch(createRequest(request)),
+  createRequest: (family, agency, searchQuery, requestedNannies) => dispatch(createRequest(family, agency, searchQuery, requestedNannies)),
   updateSearchQuery: (query) => dispatch(updateFamilySearchQuery(query)),
   fetchFilteredNannies: (start, end) => dispatch(getFilteredNannies(start, end))
 });

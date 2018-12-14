@@ -43,16 +43,6 @@ describe('requested available times routes', () => {
       });
   });
 
-  it('gets an AvailableTime by available time id', () => {
-    const createdAvailableTimes = getAvailableTimes();
-
-    return request(app)
-      .get(`/api/availability/${createdAvailableTimes[0]._id}`)
-      .then(res => {
-        expect(res.body).toEqual(createdAvailableTimes[0]);
-      });
-  });
-
   it('deletes a AvailableTime by id', () => {
     const createdAvailableTimes = getAvailableTimes();
 
@@ -76,6 +66,16 @@ describe('requested available times routes', () => {
       })
       .then(res => {
         expect(res.body.availableEndTime).toEqual('2018-12-20T02:00:00.000Z');
+      });
+  });
+
+  it('gets an AvailableTime by available time id', () => {
+    const createdAvailableTimes = getAvailableTimes();
+
+    return request(app)
+      .get(`/api/availability/${createdAvailableTimes[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdAvailableTimes[0]);
       });
   });
 });

@@ -20,6 +20,7 @@ describe('families routes', () => {
       phone: families[0].phone,
       email: families[0].email,
       description: families[0].description,
+      photo: expect.any(String),
       user: expect.any(String),
       _id: expect.any(String),
       __v: 0,
@@ -36,16 +37,6 @@ describe('families routes', () => {
         expect(res.body.length).toEqual(2);
         expect(res.body).toContainEqual(createdFamilies[0]);
         expect(res.body).toContainEqual(createdFamilies[1]);
-      });
-  });
-
-  it('gets a family by id', () => {
-    const createdFamilies = getFamilies();
-
-    return request(app)
-      .get(`/api/families/${createdFamilies[0]._id}`)
-      .then(res => {
-        expect(res.body).toEqual(createdFamilies[0]);
       });
   });
 
@@ -72,6 +63,16 @@ describe('families routes', () => {
       })
       .then(res => {
         expect(res.body.name).toEqual('Jim');
+      });
+  });
+
+  it('gets a family by id', () => {
+    const createdFamilies = getFamilies();
+
+    return request(app)
+      .get(`/api/families/${createdFamilies[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdFamilies[0]);
       });
   });
 });

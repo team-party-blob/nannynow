@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 config();
 
 import mongoose from 'mongoose';
-import connect  from './connect';
+import connect from './connect';
 
 import User from '../models/User';
 import Agency from '../models/Agency';
@@ -39,7 +39,6 @@ let startTime5 = new Date('2018-12-19T04:00:00.000Z');
 let endTime5 = new Date('2018-12-20T02:00:00.000Z');
 
 async function seedData() {
-
   await mongoose.connection.dropDatabase();
 
   const agencies = await Agency.create([
@@ -274,7 +273,7 @@ async function seedData() {
       description: 'A very special family',
       numOfChildren: 2,
       birthdays: [birthday3, birthday4]
-    },
+    }
   ]);
   const requestedAppointments = await RequestedAppointment.create([
     {
@@ -353,6 +352,8 @@ async function seedData() {
       closed: false
     }
   ]);
+
+  /* eslint-disable-next-line */
   const appointments = await Appointment.create([
     {
       family: families[0].user,
@@ -423,39 +424,31 @@ async function seedData() {
       departureTime: departureTime3,
       agencyFeePerHour: 3.5,
       nannyPricePerHour: 14
-    },
+    }
   ]);
+
+  /* eslint-disable-next-line */
   const availableTimes = await AvailableTime.create([
     {
       availableStartTime: startTime4,
       availableEndTime: endTime4,
-      nanny: nannies[0].user,
+      nanny: nannies[0].user
     },
     {
       availableStartTime: startTime4,
       availableEndTime: endTime4,
-      nanny: nannies[1].user,
-
+      nanny: nannies[1].user
     },
     {
       availableStartTime: startTime1,
       availableEndTime: endTime1,
-      nanny: nannies[2].user,
+      nanny: nannies[2].user
     },
     {
       availableStartTime: startTime2,
       availableEndTime: endTime2,
       nanny: nannies[3].user
     }
-
   ]);
   return await mongoose.disconnect();
 }
-
-
-
-
-
-
-
-

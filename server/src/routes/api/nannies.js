@@ -66,7 +66,6 @@ export default Router()
         ]);
       })
       .then(([matches, nannyProfile]) => {
-        console.log(matches, nannyProfile);
         res.json({ matches, nannyProfile });
       })
       .catch(next);

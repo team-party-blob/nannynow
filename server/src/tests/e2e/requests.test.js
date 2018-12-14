@@ -51,16 +51,6 @@ describe('requested appointments routes', () => {
       });
   });
 
-  it('gets a requestedAppointment by id', () => {
-    const createdRequestedAppointments = getRequestedAppointments();
-
-    return request(app)
-      .get(`/api/requests/${createdRequestedAppointments[0]._id}`)
-      .then(res => {
-        expect(res.body).toEqual(createdRequestedAppointments[0]);
-      });
-  });
-
   it('deletes a requestedAppointment by id', () => {
     const createdRequestedAppointments = getRequestedAppointments();
 
@@ -84,6 +74,16 @@ describe('requested appointments routes', () => {
       })
       .then(res => {
         expect(res.body.appointmentComments).toEqual('Test');
+      });
+  });
+
+  it('gets a requestedAppointment by id', () => {
+    const createdRequestedAppointments = getRequestedAppointments();
+
+    return request(app)
+      .get(`/api/requests/${createdRequestedAppointments[0]._id}`)
+      .then(res => {
+        expect(res.body).toEqual(createdRequestedAppointments[0]);
       });
   });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ROUTES } from '../../routes/routes';
+import { ROUTES } from '../../../routes/routes';
 import { Link } from 'react-router-dom';
-import { getLocalDateTime } from '../helpers/time';
+import { getLocalDateTime } from '../../helpers/time';
 import styles from './Appointments.css';
 import moment from 'moment';
 moment().format();

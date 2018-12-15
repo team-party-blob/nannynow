@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AppointmentDetail from '../components/dashboard/AppointmentDetail';
+import AppointmentDetail from '../components/dashboard/appointments/AppointmentDetail';
 import { getAppointment } from '../selectors/appointment';
 import { fetchAppointment } from '../actions/appointment';
 import { getSession } from '../selectors/session';

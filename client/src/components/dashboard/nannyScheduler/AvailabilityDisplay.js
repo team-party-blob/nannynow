@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AvailabilityDisplay.css';
-import Loading from '../loading/Loading';
-import { getLocalDateTime } from '../helpers/time';
+import Loading from '../../loading/Loading';
+import { getLocalDateTime } from '../../helpers/time';
 
 export default class AvailabilityDisplay extends PureComponent {
   static propTypes = {

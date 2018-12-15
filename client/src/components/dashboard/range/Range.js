@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import PropTypes from 'prop-types';
-import globalStyles from '../../main.css';
+import globalStyles from '../../../main.css';
 import styles from './Range.css';
 
 export default class Range extends PureComponent {

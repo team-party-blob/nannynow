@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { getLocalDateTime } from '../helpers/time';
+import { getLocalDateTime } from '../../helpers/time';
 import moment from 'moment';
-import { ROUTES } from '../../routes/routes';
+import { ROUTES } from '../../../routes/routes';
 import { Link } from 'react-router-dom';
 import styles from './AppointmentDetail.css';
 moment().format();

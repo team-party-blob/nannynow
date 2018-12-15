@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FilteredNannies from './FilteredNannies';
-import Range from '../dashboard/Range';
+import Range from '../range/Range';
 import styles from './FamilyRequest.css';
 
 export default class FamilyRequest extends PureComponent {

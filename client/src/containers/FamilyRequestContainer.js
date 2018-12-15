@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import FamilyRequest from '../components/request/FamilyRequest';
+import FamilyRequest from '../components/dashboard/requests/FamilyRequest';
 import { getFamilyQuery, getFilteredNanniesRequest } from '../selectors/requests/request';
 import { createRequest, updateFamilySearchQuery, getFilteredNannies } from '../actions/requests/request';
 

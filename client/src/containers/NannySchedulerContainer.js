@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import NannyScheduler from '../components/dashboard/NannyScheduler';
+import NannyScheduler from '../components/dashboard/nannyScheduler/NannyScheduler';
 import { updateAvailability, getAvailability } from '../actions/availability';
 
 

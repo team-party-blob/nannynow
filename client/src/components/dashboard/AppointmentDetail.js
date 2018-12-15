@@ -25,7 +25,7 @@ class AppointmentDetail extends PureComponent {
 
   render() {
     const { detail, session } = this.props;
-    if (!detail) return null;
+    if(!detail) return null;
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
       const age = moment([birthday]).fromNow(true);
       return (

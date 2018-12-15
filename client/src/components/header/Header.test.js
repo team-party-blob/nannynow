@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header from './Header';
 
+jest.mock('../../assets/imageUrl.js');
+
 describe('Header component', () => {
 
   it('renders a Header component', () => {

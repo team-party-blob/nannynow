@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvailabilityDisplay matches snapshot 1`] = `
+<div>
+  <div>
+    Available From:
+  </div>
+  <div>
+    Available Until:
+  </div>
+  <div
+    id="availabilityList"
+    key="0"
+  >
+    <div>
+      <b>
+        Start Time/Date:
+      </b>
+       
+      Saturday, December 15th 2018, 8:00:00 am
+    </div>
+    <div>
+      <b>
+        End Time Date:
+      </b>
+       
+      Saturday, December 15th 2018, 1:00:00 pm
+    </div>
+    <button
+      id="removeButton"
+      onClick={[Function]}
+    >
+      Remove
+    </button>
+  </div>
+  <div
+    id="availabilityList"
+    key="1"
+  >
+    <div>
+      <b>
+        Start Time/Date:
+      </b>
+       
+      Sunday, December 16th 2018, 12:00:00 pm
+    </div>
+    <div>
+      <b>
+        End Time Date:
+      </b>
+       
+      Sunday, December 16th 2018, 6:00:00 pm
+    </div>
+    <button
+      id="removeButton"
+      onClick={[Function]}
+    >
+      Remove
+    </button>
+  </div>
+</div>
+`;

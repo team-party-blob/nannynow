@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import PropTypes from 'prop-types';
-import globalStyles from '../../main.css';
+import globalStyles from '../../../main.css';
 import styles from './Range.css';
 
 export default class Range extends PureComponent {
@@ -14,20 +14,17 @@ export default class Range extends PureComponent {
   };
 
   render() {
-    const { start, end } = this.props;
+    const { start, end, onStartChange, onEndChange } = this.props;
     return (
       <div id={styles.container}>
         <div id={styles.selectLine}>
           <label id={globalStyles.inputLabel}>Start Time & Date:</label>
           <DatePicker
-            selected={this.props.start}
-            onChange={this.props.onStartChange}
+            selected={start}
+            onChange={onStartChange}
             showTimeSelect
             selectsStart
-            // startDate={start}
-            // endDate={end}
             minDate={new Date()}
-            // maxDate={end}
             timeFormat='HH:mm'
             timeIntervals={15}
             dateFormat='MMMM d, yyyy h:mm aa'
@@ -40,13 +37,10 @@ export default class Range extends PureComponent {
         <div id={styles.selectLine}>
           <label id={globalStyles.inputLabel}>End Time & Date:</label>
           <DatePicker
-            selected={this.props.end}
-            onChange={this.props.onEndChange}
+            selected={end}
+            onChange={onEndChange}
             showTimeSelect
             selectsEnd
-            minDate={start}
-            // startDate={start}
-            // endDate={end}
             timeFormat='HH:mm'
             timeIntervals={15}
             dateFormat='MMMM d, yyyy h:mm aa'

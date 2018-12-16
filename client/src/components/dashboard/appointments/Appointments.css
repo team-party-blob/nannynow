@@ -1,5 +1,5 @@
 #appointmentListBody {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -14,18 +14,10 @@
     font-family: 'Noto Serif TC', serif;
   }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  li {
+  th {
+    font-size: 25px;
     font-family: 'Noto Serif TC', serif;
-    text-align: center;
+    text-align: left;
+    border: 15px solid white;
   }
-
-  p {
-    font-family: 'Noto Serif TC', serif;
-  }
-
 }

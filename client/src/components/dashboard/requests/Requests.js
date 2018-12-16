@@ -20,6 +20,12 @@ export default class Requests extends PureComponent {
   render() {
     const { requests, user } = this.props;
 
+    if(requests) {
+      requests.sort((a, b) => {
+        return new Date(a.startDateTime) - new Date(b.startDateTime);
+      });
+    }
+
     const requestComponents = requests.map(request => {
       return <Request key={request._id} request={request} user={user} />;
     });
@@ -28,9 +34,15 @@ export default class Requests extends PureComponent {
       <div id={styles.requestListBody}>
         {user.role === 'nanny' && <h1>Appointment Requests</h1>}
         {user.role === 'family' && <h1>Outstanding Requests</h1>}
-        <ul>
-          {requestComponents}
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th>Start Time</th>
+              <th>End Time</th>
+            </tr>
+            {requestComponents}
+          </tbody>
+        </table>
       </div>
     );
   }

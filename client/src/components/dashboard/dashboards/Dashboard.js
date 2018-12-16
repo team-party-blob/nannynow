@@ -3,7 +3,7 @@ import NannyDashboard from './NannyDashboard';
 import FamilyDashboard from './FamilyDashboard';
 import PropTypes from 'prop-types';
 import AdminDashBoard from './AdminDashBoard';
-import { ROUTES } from '../../routes/routes';
+import { ROUTES } from '../../../routes/routes';
 import { Redirect } from 'react-router-dom';
 
 export default class Dashboard extends PureComponent {

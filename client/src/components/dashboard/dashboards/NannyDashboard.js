@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import NannySchedulerContainer from '../../containers/NannySchedulerContainer';
-import globalStyles from '../../main.css';
-import Appointments from './Appointments';
-import Requests from './Requests';
+import NannySchedulerContainer from '../../../containers/NannySchedulerContainer';
+import Appointments from '../appointments/Appointments';
+import Requests from '../requests/Requests';
 
 export default class NannyDashboard extends Component {
   render() {

@@ -18,22 +18,29 @@ export default class Appointments extends PureComponent {
 
   render() {
     const { appointments, user } = this.props;
-
+    if(appointments) {
+      appointments.sort((a, b) => {
+        return new Date(a.arrivalTime) - new Date(b.arrivalTime);
+      });
+    }
     const appointmentComponents = appointments.map(appointment => {
       return (
-        <ul key={appointment._id}>
-          <Appointment
-            appointment={appointment}
-            user={user}
-          />
-        </ul>
+        <table key={appointment._id}>
+          <tbody>
+            <tr>
+              <th>Start Time</th>
+              <th>End Time</th>
+            </tr>
+            <Appointment appointment={appointment} user={user} />
+          </tbody>
+        </table>
       );
     });
 
     return (
       <div id={styles.appointmentListBody}>
         {user.role === 'family' && <h1>Nannies Scheduled</h1>}
-        {user.role === 'nanny' && <h1>Upcoming Jobs</h1>}
+        {user.role === 'nanny' && <h1>Booked Appointments</h1>}
         {appointmentComponents}
       </div>
     );

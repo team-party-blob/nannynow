@@ -4,7 +4,6 @@ import User from '../../models/User';
 
 export default Router()
   .post('/', (req, res, next) => {
-    console.log(req.body)
     const {
       arrivalTime,
       departureTime,

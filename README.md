@@ -8,8 +8,8 @@
 
 _Nanny Now is an application designed to assist 3rd-party childcare placement agencies compete in a digital world. It connects families and nannies to assist with scheduling of short-term childcare/babysitting appointments._
 
-![screen-shot]('./client/src/assets/screen_shot1')
-![screen-shot2]('./client/src/assets/screen_shot1')
+![screen-shot](./client/src/assets/screen_shot1.png)
+![screen-shot2](./client/src/assets/screen_shot2.png)
 
 ## Setup/Installation Requirements
 

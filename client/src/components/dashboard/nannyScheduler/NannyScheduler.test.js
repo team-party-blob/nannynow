@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import NannyScheduler from './NannyScheduler';
 
-jest.mock('../../assets/imageUrl.js');
+jest.mock('../../helpers/hand_logo.png');
 
 describe('NannyScheduler component', () => {
   it('renders a component', () => {

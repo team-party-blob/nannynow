@@ -1,37 +1,48 @@
-# _{Application Name}_
+# _Nanny Now!_
 
-#### An , {Da_te of current version}_
+#### A Childcare Scheduling Application, December 2018
 
-#### By _**{List of contributors}**_
+#### By _**Mackenzie Berliner-Glasser, Sarah Flynn, and Mike Lambert**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_Nanny Now is an application designed to assist 3rd-party childcare placement agencies compete in a digital world. It connects families and nannies to assist with scheduling of short-term childcare/babysitting appointments._
+
+![screen-shot]('./client/src/assets/screen_shot1')
+![screen-shot2]('./client/src/assets/screen_shot1')
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
-
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
-
-## Known Bugs
-
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+* _Clone Repository from Github_
+* _Install dependencies from root folder using NPM install command._
+* _Seed, start, test and build scripts can all be found in package.json files in both client and server-side repositories._
+* _See .envexample file in server folder for an example of how to set up .env file for database connection._
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+_Please feel free to reach out to any of the Nanny Now! team for anything at all_
+* Mackenzie Berliner-Glasser - [GitHub Profile](https://github.com/MackenzieBerliner-Glasser)
+* Sarah Flynn - [GitHub Profile](https://github.com/sarahflynn)
+* Mike Lambert - [GitHub Profile](https://github.com/MikeBLambert)
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+* **Front End:**
+  * React
+  * Redux
+  * MomentJS
+
+* **Back End:**
+  * Node
+  * Express
+  * MongoDB
+  * Mongoose
+
+* **Testing:**
+  * Jest
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+*MIT*
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Copyright (c) 2018 **_Mackenzie Berliner-Glasser, Sarah Flynn, and Michael Lambert_**

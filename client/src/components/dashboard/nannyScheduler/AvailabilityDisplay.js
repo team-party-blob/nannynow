@@ -38,8 +38,7 @@ export default class AvailabilityDisplay extends PureComponent {
     });
     return (
       <div>
-        {availability.length > 0 && <div>Available From:</div>}
-        {availability.length > 0 && <div>Available Until:</div>}
+        <h3>Your Upcoming Availability</h3>
         {availabilityList}
       </div>
     );

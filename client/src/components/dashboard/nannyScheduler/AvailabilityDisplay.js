@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AvailabilityDisplay.css';
-import Loading from '../loading/Loading';
-import { getLocalDateTime } from '../helpers/time';
+import Loading from '../../loading/Loading';
+import { getLocalDateTime } from '../../helpers/time';
 
 export default class AvailabilityDisplay extends PureComponent {
   static propTypes = {
@@ -13,7 +13,6 @@ export default class AvailabilityDisplay extends PureComponent {
 
   componentDidMount() {
     const { _id } = this.props.user;
-    // add in error guard clause
     if(!this.props.availability) return this.props.getAvailability(_id);
   }
 
@@ -39,8 +38,7 @@ export default class AvailabilityDisplay extends PureComponent {
     });
     return (
       <div>
-        {availability.length > 0 && <div>Available From:</div>}
-        {availability.length > 0 && <div>Available Until:</div>}
+        <h3>Your Upcoming Availability</h3>
         {availabilityList}
       </div>
     );

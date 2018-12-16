@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FilteredNannies from './FilteredNannies';
-import Range from '../dashboard/Range';
+import Range from '../range/Range';
 import styles from './FamilyRequest.css';
 
 export default class FamilyRequest extends PureComponent {
@@ -64,13 +64,7 @@ export default class FamilyRequest extends PureComponent {
 
   handleUpdateRequestedNannies = ({ target }) => {
     const { requestedNannies } = this.state;
-    if(requestedNannies.filter(e => e.nanny === target.value).length > 0)  {
-      const index = Object.values(requestedNannies.indexOf(target.value));
-      return console.log(index);
-    }
-    // const nannyAlreadyChecked = (requestedNannies.filter(e => e.nanny === target.value).length > 0);
-    const newRequestedNannies = this.state.requestedNannies.concat({ nanny: target.value });
-    // const removeNanny = requestedNannies.indexOf()
+    const newRequestedNannies = requestedNannies.concat({ nanny: target.value });
     this.setState({ requestedNannies: newRequestedNannies });
   };
 

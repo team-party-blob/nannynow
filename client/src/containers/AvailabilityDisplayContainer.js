@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AvailabilityDisplay from '../components/dashboard/AvailabilityDisplay';
+import AvailabilityDisplay from '../components/dashboard/nannyScheduler/AvailabilityDisplay';
 import { removeAvailability, getAvailability } from '../actions/availability';
 import { getSession } from '../selectors/session';
 import { getStateAvailability } from '../selectors/availability';

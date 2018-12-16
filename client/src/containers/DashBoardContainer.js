@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Dashboard from '../components/dashboard/Dashboard';
+import Dashboard from '../components/dashboard/dashboards/Dashboard';
 import { getSession, getSessionProfile, getSessionLoading } from '../selectors/session';
 import { getAppointments } from '../selectors/appointment';
 import { getRequests } from '../selectors/requests/requestList';

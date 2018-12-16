@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Appointments from './Appointments';
-import Requests from './Requests';
-import FamilyRequestContainer from '../../containers/FamilyRequestContainer';
+import Appointments from '../appointments/Appointments';
+import Requests from '../requests/Requests';
+import FamilyRequestContainer from '../../../containers/FamilyRequestContainer';
 
 export default class FamilyDashboard extends PureComponent {
   static propTypes = {

@@ -1,10 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import PropTypes from 'prop-types';
-import Range from './Range';
+import Range from '../range/Range';
 import styles from './NannyScheduler.css';
-import globalStyles from '../../main.css';
-import AvailabilityDisplayContainer from '../../containers/AvailabilityDisplayContainer';
+import globalStyles from '../../../main.css';
+import AvailabilityDisplayContainer from '../../../containers/AvailabilityDisplayContainer';
 
 export default class NannyScheduler extends PureComponent {
   static propTypes = {

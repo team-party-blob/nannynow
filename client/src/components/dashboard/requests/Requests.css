@@ -1,0 +1,22 @@
+#requestListBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  border: 4px solid grey;
+  margin: 3em;
+  padding: 1em;
+  border-radius: 8px;
+
+  h1 {
+    text-align: center;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  th {
+    font-size: 25px;
+    font-family: 'Noto Serif TC', serif;
+    text-align: left;
+    border: 15px solid white;
+  }
+}

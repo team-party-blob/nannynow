@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import logo from '../helpers/hand_logo.png';
 
 export default function Loading() {
   return (

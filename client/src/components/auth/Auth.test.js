@@ -17,7 +17,7 @@ jest.mock('../../routes/routes.js', () => ({
   }
 }));
 
-jest.mock('../helpers/hand_logo.png');
+jest.mock('../../assets/imageUrl.js');
 
 describe('Auth component', () => {
 

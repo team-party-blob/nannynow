@@ -9,7 +9,8 @@ export default function Request({ user, request }) {
   return (
     <li>
       <Link to={ROUTES.REQUEST_DETAIL.linkTo(user._id, request._id)}>
-          {getLocalDateTime(request.startDateTime)} - UNTIL - {getLocalDateTime(request.endDateTime)}
+        {getLocalDateTime(request.startDateTime)} - UNTIL -{' '}
+        {getLocalDateTime(request.endDateTime)}
       </Link>
     </li>
   );

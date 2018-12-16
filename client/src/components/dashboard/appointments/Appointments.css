@@ -9,23 +9,21 @@
   padding: 1em;
   border-radius: 8px;
 
+  #appointmentHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
   h1 {
     text-align: center;
     font-family: 'Noto Serif TC', serif;
   }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  li {
+  th {
+    font-size: 25px;
     font-family: 'Noto Serif TC', serif;
-    text-align: center;
+    text-align: left;
+    border: 15px solid white;
   }
-
-  p {
-    font-family: 'Noto Serif TC', serif;
-  }
-
 }

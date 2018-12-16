@@ -20,6 +20,12 @@ export default class Requests extends PureComponent {
   render() {
     const { requests, user } = this.props;
 
+    if(requests) {
+      requests.sort((a, b) => {
+        return new Date(a.startDateTime) - new Date(b.startDateTime);
+      });
+    }
+
     const requestComponents = requests.map(request => {
       return <Request key={request._id} request={request} user={user} />;
     });

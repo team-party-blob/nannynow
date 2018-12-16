@@ -1,5 +1,5 @@
 #appointmentListBody {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -8,12 +8,6 @@
   margin: 3em;
   padding: 1em;
   border-radius: 8px;
-
-  #appointmentHeader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
 
   h1 {
     text-align: center;

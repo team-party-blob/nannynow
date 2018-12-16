@@ -19,18 +19,6 @@ export default class Appointments extends PureComponent {
   render() {
     const { appointments, user } = this.props;
 
-    // const appointmentComponents = appointments.map(appointment => {
-    //   return (
-    //     <div key={appointment._id}>
-    //       <div id={styles.appointmentHeader}>
-    //         <h3>Start Time</h3>
-    //         <h3>End Time</h3>
-    //       </div>
-    //       <Appointment appointment={appointment} user={user} />
-    //     </div>
-    //   );
-    // });
-
     const appointmentComponents = appointments.map(appointment => {
       return (
         <table key={appointment._id}>

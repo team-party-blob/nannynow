@@ -28,9 +28,15 @@ export default class Requests extends PureComponent {
       <div id={styles.requestListBody}>
         {user.role === 'nanny' && <h1>Appointment Requests</h1>}
         {user.role === 'family' && <h1>Outstanding Requests</h1>}
-        <ul>
-          {requestComponents}
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th>Start Time</th>
+              <th>End Time</th>
+            </tr>
+            {requestComponents}
+          </tbody>
+        </table>
       </div>
     );
   }

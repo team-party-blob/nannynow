@@ -37,10 +37,6 @@ beforeEach(() => {
   return AvailableTime.deleteMany({});
 });
 
-beforeEach(() => {
-  return dropCollection('requestedappointments');
-});
-
 let createdAgencies;
 let createdUsers;
 let createdNannies;

@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 import styles from './Header.css';
-import logo from '../../assets/imageUrl';
+// import logo from '../../assets/imageUrl';
+import logo from '../helpers/hand_logo.png';
 
 export default function Header({ session, signOut }) {
   return (

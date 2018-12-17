@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FilteredNannies from './FilteredNannies';
-import Range from '../range/Range';
+import Range from '../dashboard/Range';
 import styles from './FamilyRequest.css';
 
 export default class FamilyRequest extends PureComponent {
@@ -20,7 +20,7 @@ export default class FamilyRequest extends PureComponent {
     closed: false,
     startDateTime: new Date(),
     endDateTime: new Date(),
-    appointmentComments: '',
+    appointmentComments: null,
     requestedNannies: []
   };
 
@@ -63,8 +63,8 @@ export default class FamilyRequest extends PureComponent {
   };
 
   handleUpdateRequestedNannies = ({ target }) => {
-    const { requestedNannies } = this.state;
-    const newRequestedNannies = requestedNannies.concat({ nanny: target.value });
+
+    const newRequestedNannies = this.state.requestedNannies.concat({ nanny: target.value });
     this.setState({ requestedNannies: newRequestedNannies });
   };
 
@@ -82,9 +82,9 @@ export default class FamilyRequest extends PureComponent {
       birthdays,
       startDateTime,
       endDateTime,
+      appointmentComments,
       selectedChildren
     } = this.state;
-
     const childBirthdays = birthdays.map((birthday, i) => {
       const slicedBirthday = birthday.slice(0, 10);
       return (
@@ -110,7 +110,8 @@ export default class FamilyRequest extends PureComponent {
             <h3>Appointment Comments:</h3>
             <textarea
               type='text'
-              name='appointmentComments'
+              name='comments'
+              value={appointmentComments}
               onChange={this.handleChange}
             />
             <br />
@@ -118,7 +119,6 @@ export default class FamilyRequest extends PureComponent {
               <button id={styles.getNannies} type='submit'>Get List of Availabilities</button>
             </div>
           </form>
-          
           <FilteredNannies
             filteredNannies={filteredNannies}
             searchQuery={searchQuery}

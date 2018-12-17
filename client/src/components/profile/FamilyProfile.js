@@ -8,7 +8,8 @@ export default class FamilyProfile extends PureComponent {
     session: PropTypes.object.isRequired,
     profile: PropTypes.object,
     createProfile: PropTypes.func.isRequired,
-    updateProfile: PropTypes.func.isRequired
+    updateProfile: PropTypes.func.isRequired,
+    handleRedirect: PropTypes.func.isRequired
   };
 
   state = {
@@ -38,7 +39,7 @@ export default class FamilyProfile extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { session, profile, updateProfile, createProfile } = this.props;
+    const { session, profile, updateProfile, createProfile, handleRedirect } = this.props;
     const { _id, agency } = session;
     const {
       name,
@@ -75,6 +76,7 @@ export default class FamilyProfile extends PureComponent {
     {
       !profile && createProfile(profileInfo);
     }
+    handleRedirect(_id);
   };
 
   addChild = event => {

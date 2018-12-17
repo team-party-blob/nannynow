@@ -3,13 +3,19 @@ import { Route } from 'react-router-dom';
 import React from 'react';
 import { Signup, Signin } from '../containers/AuthContainer';
 import { withSession } from '../components/auth/withSession';
-import Profile from '../components/profile/Profile';
+import ProfileContainer from '../containers/ProfileContainer';
+import DashBoardContainer from '../containers/DashBoardContainer';
+import AppointmentDetail from '../containers/AppointmentDetail';
+import RequestDetail from '../containers/RequestDetail';
+import About from '../components/about/About';
+
+
 
 export const ROUTES = {
-  HOME: {
-    path: '/',
-    Component: Home,
-    linkTo: () => '/'
+  ABOUT: {
+    path: '/about',
+    Component: About,
+    linkTo: () => '/about'
   },
   SIGNUP: {
     path: '/signup',
@@ -19,12 +25,33 @@ export const ROUTES = {
   SIGNIN: {
     path: '/signin',
     Component: Signin,
-    linkTo: () => '/signin'
+    linkTo: path => path ? `/signin?redirectTo=${path}` : '/signin'
   },
   PROFILE: {
-    path: '/profile',
-    Component: Profile,
-    linkTo: () => '/profile'
+    path: '/profile/:id',
+    Component: withSession(ProfileContainer),
+    linkTo: id => `/profile/${id}`
+
+  },
+  REQUEST_DETAIL: {
+    path: '/dashboard/request/:userId/:requestId',
+    Component: withSession(RequestDetail),
+    linkTo: (userId, requestId) => `/dashboard/request/${userId}/${requestId}`
+  },
+  APPOINTMENT_DETAIL: {
+    path: '/dashboard/:userId/:appointmentId',
+    Component: withSession(AppointmentDetail),
+    linkTo: (userId, appointmentId) => `/dashboard/${userId}/${appointmentId}`
+  },
+  DASHBOARD: {
+    path: '/dashboard/:id',
+    Component: withSession(DashBoardContainer),
+    linkTo: id => `/dashboard/${id}`
+  },
+  HOME: {
+    path: '/',
+    Component: Signin,
+    linkTo: () => '/'
   }
 };
 

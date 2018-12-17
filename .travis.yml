@@ -1,0 +1,13 @@
+language: node_js
+node_js: '10'
+services: mongodb
+env:
+  matrix:
+  - MONGODB_URI=mongodb://localhost:27017/test
+deploy:
+  provider: heroku
+  app:
+    master: nanny-now-production
+    dev: nanny-now-staging
+  api_key:
+    secure: ENdAR3Rp53xjlS9jvcrU9mXzMZIAuscs8Me7KlJDm3g0N8d74i+HhYpYJ7Y0CIeodkrxN1x4kO3AbINHMKTkRrG7RPD0Narq9Dd+QWdTzEKQGsm87ofMDjMT5PdEA8wVqNAkUiehKNZ5W73imCyYPEpyBf6updTlaneQkGlQmi7ZlLepteSXtBUshwOPzUE2juA5IxrEiOZmNZgsM/eyTfljXUjlZduAiEi5w8xBCvFm8EoJPz8he4HZz1BP7DYoQY/3MuFOLXVZAcWgnDHad+HwdAZJ1O0w13+vCJr1wuC3/syOxl5XutHSe+/zs034kAFfBf4bJUhp6VT2ro8HHRv8KvxH7Tqei8RcZQe426DKia2yLpSX7XVKKhVIoQRhtQHgu/7bBVPgPhe2RXdPmuERauNMXujV3lHK0GkeA8iZr34bnhqFkU+EWp3fnBFfEXJTZd7ZTnXDunc4dmk+HVADiXlexP72z6xP91OpoQ/e/i+lnL3Sc3O7KHeELeme7XrN34CQfDKjHJ19kAb06hkXUZesYdAJXXLdk9sKA33nrm2BYm5P+gKfx/h/NsrWZAj+rqbSAFDdwQKOnzRAskpxbkmm7Hhi0c9reTG0sn6PmA3F+SG/C9qbZtRGqB6yi/NdzrAkzRDRYFe/Pasr9pqFXWX701QVNJ+7jkvehXo=

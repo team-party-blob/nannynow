@@ -10,9 +10,14 @@ jest.mock('../../routes/routes.js', () => ({
     },
     SIGNIN: {
       linkTo: () => '/'
+    },
+    DASHBOARD: {
+      linkTo: id => `/dashboard/${id}`
     }
   }
 }));
+
+jest.mock('../../assets/imageUrl.js');
 
 describe('Auth component', () => {
 
@@ -36,4 +41,14 @@ describe('Auth component', () => {
     expect(wrapper.html()).not.toContain('Are You a Nanny or a Family?');
     expect(wrapper.html()).toContain('New to Nanny Now?');
   });
+
+  // it('redirects if session is not null true', () => {
+  //   const session = {
+  //     user: {
+  //       _id: '1234'
+  //     }
+  //   };
+  //   const wrapper = shallow(<Auth session={session} />);
+  //   expect(wrapper.html()).toEqual('lskdjf');
+  // })
 });

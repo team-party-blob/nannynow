@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 import { tokenize, untokenize, hash, compare } from '../utils/auth';
+import  NannyProfile  from '../models/NannyProfile';
+import  FamilyProfile  from '../models/FamilyProfile';
 
 const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: [true, 'Email is required'],
+      required: [true, 'Unique email is required'],
       unique: true
     },
     role: {
@@ -27,6 +29,7 @@ const userSchema = new mongoose.Schema(
     toJSON: {
       transform: function(doc, ret) {
         delete ret.__v;
+        delete ret.passwordHash;
       }
     }
   }
@@ -47,6 +50,18 @@ userSchema.methods.compare = function(password) {
 
 userSchema.methods.authToken = function() {
   return tokenize(this);
+};
+
+userSchema.methods.getProfile = function() {
+  if(this.role === 'family') {
+    return FamilyProfile.findOne({ user: this });
+
+  } else if(this.role === 'nanny') {
+    return NannyProfile.findOne({ user: this });
+
+  } else {
+    return Promise.resolve(null);
+  }
 };
 
 userSchema.statics.findByToken = function(token) {

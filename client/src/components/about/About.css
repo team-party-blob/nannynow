@@ -1,0 +1,39 @@
+h1 {
+
+}
+
+#aboutBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border: 4px solid grey;
+  margin: 3em;
+  padding: 1em;
+  border-radius: 8px;
+  width: 50%;
+}
+
+#allTeam {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  border-radius: 8px;
+}
+
+#tallImage {
+  width: 10em;
+}
+
+#longImage {
+  width: 10em;
+}
+
+p {
+  text-align: center;
+}

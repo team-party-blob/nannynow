@@ -20,13 +20,18 @@ const familyProfileSchema = new mongoose.Schema({
     required: [true, 'State is required.'],
     enum: getStates()
   },
+  photo: {
+    type: String,
+    default:
+      'http://www.freepngclipart.com/download/elephant/11440-mommy-and-baby-elephant-kid-free-download-png.png'
+  },
   zip: {
     type: String,
     required: [true, 'ZIP code is required.']
   },
   phone: {
     type: String,
-    required: [true, 'State is required.']
+    required: [true, 'Phone is required.']
   },
   email: {
     type: String,

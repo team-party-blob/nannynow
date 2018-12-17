@@ -15,7 +15,8 @@ export default Router()
       phone,
       businessEmail,
       website,
-      hourlyFee
+      hourlyFee,
+      agencyAlias
     } = req.body;
 
     Agency.create({
@@ -29,14 +30,14 @@ export default Router()
       phone,
       businessEmail,
       website,
-      hourlyFee
+      hourlyFee,
+      agencyAlias
     })
       .then(agency => res.json(agency))
       .catch(next);
   })
 
   .get('/', requireAuth(['admin']), (req, res, next) => {
-    console.log('get', res.body);
     Agency.find()
       .lean()
       .then(agencys => res.json(agencys))
@@ -96,3 +97,5 @@ export default Router()
       .then(agency => res.json(agency))
       .catch(next);
   });
+
+

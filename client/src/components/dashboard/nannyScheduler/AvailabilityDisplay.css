@@ -1,0 +1,25 @@
+#availabilityList {
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  #removeButton {
+    background-color: #f96a54;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    margin-left: 0.5em;
+    padding-top: 0.10em;
+    padding-bottom: 0.10em;
+    border-radius: 8px;
+    border: 2px solid grey;
+    font-size: 12px;
+    font-family: 'Noto Serif TC', serif;
+    background-color: #f96a54;
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', serif;
+  
+  }
+}

@@ -2,12 +2,16 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
 import styles from './Auth.css';
-import { logo } from '../../assets/imageUrl';
+import globalStyles from '../../main.css';
+import Loading from '../loading/Loading';
+import { parse } from 'querystring';
 
 export default class Login extends PureComponent {
   static propTypes = {
     loginType: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    user: PropTypes.object,
+    loading: PropTypes.bool
   };
 
   state = {
@@ -16,6 +20,15 @@ export default class Login extends PureComponent {
     role: '',
     agency: 'nwnannies'
   };
+
+  componentDidUpdate() {
+    const { redirectTo } = parse(this.props.location.search.slice(1));
+    const { user } = this.props;
+    if(user && redirectTo) {
+      return this.props.history.push(redirectTo);
+    }
+    if(user) return this.props.history.push(`/dashboard/${user._id}`);
+  }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
@@ -27,9 +40,9 @@ export default class Login extends PureComponent {
 
   changeLoginType = () => {
     const { loginType } = this.props;
-    if (loginType === 'Sign Up')
+    if(loginType === 'Sign Up')
       this.props.history.push(ROUTES.SIGNIN.linkTo());
-    if (loginType === 'Sign In')
+    if(loginType === 'Sign In')
       this.props.history.push(ROUTES.SIGNUP.linkTo());
   };
 
@@ -41,8 +54,7 @@ export default class Login extends PureComponent {
 
   render() {
     const { email, password, role } = this.state;
-    const { loginType } = this.props;
-
+    const { loginType, error } = this.props;
     const nannyOrFamilyInput = () => {
       return (
         <Fragment>
@@ -76,13 +88,17 @@ export default class Login extends PureComponent {
         </div>
       );
     };
+    const { loading } = this.props;
+
+    if(loading) return <Loading />;
 
     return (
       <div id={styles.auth}>
 
-        <h1>Nanny Now!</h1>
 
+        <h1>Nanny Now!</h1>
         <form id={styles.authForm} onSubmit={this.handleSubmit}>
+          {error && <h4 id={globalStyles.error}>{error}</h4>}
           <label htmlFor='email'>Email</label>
           <input
             type='email'

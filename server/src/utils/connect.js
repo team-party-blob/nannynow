@@ -16,7 +16,7 @@ const redactURLAuth = url => {
   }${parsedUrl.path}`;
 };
 
-module.exports = (dbUrl = 'mongodb://localhost:27017/nanny-now') => {
+module.exports = (dbUrl = process.env.MONGODB_URI) => {
   mongoose.connect(
     dbUrl,
     { useNewUrlParser: true }

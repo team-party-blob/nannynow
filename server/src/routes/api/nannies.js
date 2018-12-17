@@ -1,5 +1,8 @@
 import { Router } from 'express';
 import NannyProfile from '../../models/NannyProfile';
+import AvailableTime from '../../models/AvailableTime';
+
+
 
 export default Router()
   .post('/', (req, res, next) => {
@@ -43,12 +46,37 @@ export default Router()
       .then(nannies => res.json(nannies))
       .catch(next);
   })
+  .get('/search', (req, res, next) => {
+    const { start, end } = req.query;
+    let startDate = Date.parse(start);
+    let endDate = Date.parse(end);
+    AvailableTime.find({
+      availableStartTime: {
+        $lte: startDate
+      },
+      availableEndTime: {
+        $gte: endDate
+      }
+    })
+      .populate('nanny')
+      .then(matches => {
+        return Promise.all([
+          Promise.resolve(matches),
+          Promise.all(matches.map(match => match.nanny.getProfile()))
+        ]);
+      })
+      .then(([matches, nannyProfile]) => {
+        res.json({ matches, nannyProfile });
+      })
+      .catch(next);
+  })
   .get('/:id', (req, res, next) => {
     const { id } = req.params;
     NannyProfile.findById(id)
       .then(nannies => res.json(nannies))
       .catch(next);
   })
+
   .delete('/:id', (req, res, next) => {
     const { id } = req.params;
 

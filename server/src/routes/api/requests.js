@@ -13,6 +13,7 @@ export default Router()
       agency,
       requestedNannies
     } = req.body;
+  
     startDateTime = new Date(startDateTime);
     endDateTime = new Date(endDateTime);
 
@@ -131,6 +132,7 @@ export default Router()
         family,
         agency,
         requestedNannies
+
       },
       { new: true }
     )

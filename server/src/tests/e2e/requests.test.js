@@ -56,6 +56,7 @@ describe('requested appointments routes', () => {
 
     return request(app)
       .delete(`/api/requests/${createdRequestedAppointments[0]._id}`)
+
       .then(() => {
         return request(app).get('/api/requests');
       })

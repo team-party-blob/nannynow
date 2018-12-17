@@ -19,12 +19,12 @@ class AppointmentDetail extends PureComponent {
   componentDidMount() {
     const { fetchAppointment } = this.props;
     const { appointmentId } = this.props.match.params;
-
     fetchAppointment(appointmentId);
   }
 
   render() {
     const { detail, session } = this.props;
+    const { role } = session;
     if(!detail) return null;
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
       const age = moment([birthday]).fromNow(true);
@@ -38,34 +38,69 @@ class AppointmentDetail extends PureComponent {
     return (
       <div id={styles.appointmentDetailBody}>
         <h1>Appointment Detail</h1>
-        <p><b>Start Time:</b> {getLocalDateTime(detail.request.startDateTime)}</p>
-        <p><b>End Time:</b> {getLocalDateTime(detail.request.endDateTime)}</p>
-        <p><b>Number of Children:</b> {detail.request.birthdays.length}</p>
+        <p>
+          <b>Start Time:</b> {getLocalDateTime(detail.request.startDateTime)}
+        </p>
+        <p>
+          <b>End Time:</b> {getLocalDateTime(detail.request.endDateTime)}
+        </p>
+        <p>
+          <b>Number of Children:</b> {detail.request.birthdays.length}
+        </p>
         <div id={styles.agesOfChildren}>
-          <p><b>Ages of Children:</b></p>
+          <p>
+            <b>Ages of Children:</b>
+          </p>
           <ul>{ageComponents}</ul>
         </div>
-        <p><b>Appointment Comments:</b> {detail.request.appointmentComments}</p>
-        <div>
-          <h2>Nanny Profile:</h2>
-          <p><b>Name:</b> {detail.nannyProfile.name}</p>
-          <img src={detail.nannyProfile.photo} alt='profile photo' />
-          <p><b>Price per hour:</b> {detail.nannyProfile.pricePerHour + 3.5}</p>
-          <p><b>Phone:</b> {detail.nannyProfile.phone}</p>
-          <p><b>Home ZIP code:</b> {detail.nannyProfile.zip}</p>
-          <p><b>Description:</b>{detail.nannyProfile.description}</p>
-        </div>
-        <div>
-          <h2>Family Profile:</h2>
-          <p><b>Name:</b> {detail.familyProfile.name}</p>
-          <p><b>Phone:</b> {detail.familyProfile.phone}</p>
-          <p><b>Home ZIP code:</b> {detail.familyProfile.zip}</p>
-          <p><b>Number of Children:</b> {detail.familyProfile.birthdays.length}</p>
-          <p><b>Description:</b> {detail.familyProfile.description}</p>
-          <Link to={ROUTES.DASHBOARD.linkTo(session._id)}>
-            Return to Appointments List
-          </Link>
-        </div>
+        <p>
+          <b>Appointment Comments:</b> {detail.request.appointmentComments}
+        </p>
+        {role === 'family' && (
+          <div>
+            <h2>Nanny Profile:</h2>
+            <p>
+              <b>Name:</b> {detail.nannyProfile.name}
+            </p>
+            <img src={detail.nannyProfile.photo} alt='profile photo' />
+            <p>
+              <b>Price per hour:</b> {detail.nannyProfile.pricePerHour + 3.5}
+            </p>
+            <p>
+              <b>Phone:</b> {detail.nannyProfile.phone}
+            </p>
+            <p>
+              <b>Home ZIP code:</b> {detail.nannyProfile.zip}
+            </p>
+            <p>
+              <b>Description:</b>
+              {detail.nannyProfile.description}
+            </p>
+          </div>
+        )}
+        {role === 'nanny' && (
+          <div>
+            <h2>Family Profile:</h2>
+            <p>
+              <b>Name:</b> {detail.familyProfile.name}
+            </p>
+            <p>
+              <b>Phone:</b> {detail.familyProfile.phone}
+            </p>
+            <p>
+              <b>Home ZIP code:</b> {detail.familyProfile.zip}
+            </p>
+            <p>
+              <b>Number of Children:</b> {detail.familyProfile.birthdays.length}
+            </p>
+            <p>
+              <b>Description:</b> {detail.familyProfile.description}
+            </p>
+          </div>
+        )}
+        <Link to={ROUTES.DASHBOARD.linkTo(session._id)}>
+          <button id={styles.returnButton}>Return to Dashboard</button>
+        </Link>
       </div>
     );
   }

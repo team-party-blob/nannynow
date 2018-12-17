@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NannyProfile from './NannyProfile';
+import FamilyProfile from './FamilyProfile';
 import { fakeUser } from '../../reducers/fixtures/fakeUser';
 
 
@@ -9,7 +9,7 @@ describe('Profile component', () => {
     const createProfile = jest.fn();
     const updateProfile = jest.fn();
     const handleRedirect = jest.fn();
-    const wrapper = shallow(<NannyProfile createProfile={createProfile} updateProfile={updateProfile} session={fakeUser} handleRedirect={handleRedirect} />);
+    const wrapper = shallow(<FamilyProfile createProfile={createProfile} updateProfile={updateProfile} session={fakeUser} handleRedirect={handleRedirect} />);
     expect(wrapper).toMatchSnapshot();
   });
 

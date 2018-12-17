@@ -25,6 +25,7 @@ class RequestDetail extends PureComponent {
 
   render() {
     const { detail, session } = this.props;
+    const { role } = session;
     if(!detail) return null;
 
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
@@ -67,7 +68,7 @@ class RequestDetail extends PureComponent {
           </div>
           <p><b>Appointment Comments:</b>{detail.request.appointmentComments}</p>
         </div>
-        <div>
+        {role === 'nanny' && <div>
           <h1>Family Profile:</h1>
           <img src={detail.familyProfile.photo} alt='profile photo' />
           <p><b>Name:</b> {detail.familyProfile.name}</p>
@@ -75,8 +76,8 @@ class RequestDetail extends PureComponent {
           <p><b>Home ZIP code:</b> {detail.familyProfile.zip}</p>
           <p><b>Number of Children: </b>{detail.familyProfile.birthdays.length}</p>
           <p><b>Description:</b> {detail.familyProfile.description}</p>
-        </div>
-        {nannyComponents}
+        </div>}
+        {role === 'family' && nannyComponents}
         <Link to={ROUTES.DASHBOARD.linkTo(session._id)}>
           Return to Requests List
         </Link>

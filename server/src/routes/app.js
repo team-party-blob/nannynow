@@ -25,6 +25,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/nannies', nanniesRoutes);
 app.use('/api/families', familiesRoutes);
 app.use('/api/requests', requestedAppointmentRoutes);
+
 app.use('/api/appointments', appointmentsRoutes);
 app.use('/api/availability', availabilityRoutes);
 

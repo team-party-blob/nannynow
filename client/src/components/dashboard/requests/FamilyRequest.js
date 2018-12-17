@@ -20,7 +20,7 @@ export default class FamilyRequest extends PureComponent {
     closed: false,
     startDateTime: new Date(),
     endDateTime: new Date(),
-    appointmentComments: null,
+    appointmentComments: '',
     requestedNannies: []
   };
 
@@ -85,6 +85,7 @@ export default class FamilyRequest extends PureComponent {
       appointmentComments,
       selectedChildren
     } = this.state;
+    console.log(appointmentComments);
     const childBirthdays = birthdays.map((birthday, i) => {
       const slicedBirthday = birthday.slice(0, 10);
       return (
@@ -110,8 +111,7 @@ export default class FamilyRequest extends PureComponent {
             <h3>Appointment Comments:</h3>
             <textarea
               type='text'
-              name='comments'
-              value={appointmentComments}
+              name='appointmentComments'
               onChange={this.handleChange}
             />
             <br />

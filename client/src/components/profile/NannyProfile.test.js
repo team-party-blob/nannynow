@@ -8,7 +8,8 @@ describe('Profile component', () => {
   it('renders a component', () => {
     const createProfile = jest.fn();
     const updateProfile = jest.fn();
-    const wrapper = shallow(<NannyProfile createProfile={createProfile} updateProfile={updateProfile} session={fakeUser} />);
+    const handleRedirect = jest.fn();
+    const wrapper = shallow(<NannyProfile createProfile={createProfile} updateProfile={updateProfile} session={fakeUser} handleRedirect={handleRedirect} />);
     expect(wrapper).toMatchSnapshot();
   });
 

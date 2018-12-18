@@ -3,6 +3,7 @@ import FamilyProfile from '../../models/FamilyProfile';
 
 export default Router()
   .post('/', (req, res, next) => {
+    // only families and admins should be able to create this profile
     const {
       name,
       streetAddress1,
@@ -41,6 +42,7 @@ export default Router()
   })
 
   .get('/', (req, res, next) => {
+    // this is an admin only action
     FamilyProfile.find()
       .lean()
       .then(families => res.json(families))
@@ -48,6 +50,7 @@ export default Router()
   })
 
   .get('/:id', (req, res, next) => {
+    // only admins and the owning user should be able to do this
     const { id } = req.params;
     FamilyProfile.findById(id)
       .lean()
@@ -56,6 +59,7 @@ export default Router()
   })
 
   .delete('/:id', (req, res, next) => {
+    // only admins and the owning user
     const { id } = req.params;
     FamilyProfile.findByIdAndDelete(id)
       .then(family => res.json({ removed: !!family }))
@@ -63,6 +67,7 @@ export default Router()
   })
 
   .put('/:id', (req, res, next) => {
+    // only admin and owning user
     const { id } = req.params;
     const {
       name,

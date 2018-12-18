@@ -6,13 +6,13 @@ export default class Appointments extends PureComponent {
   static propTypes = {
     appointments: PropTypes.array.isRequired,
     fetchAppointments: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired
   };
 
   componentDidMount() {
     const { fetchAppointments } = this.props;
-    const userId = this.props.match.params.id;
+    // Fetch appointments for the session user
+    const userId = user._id;
     fetchAppointments(userId);
   }
 

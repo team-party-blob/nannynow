@@ -4,6 +4,10 @@ import User from '../../models/User';
 
 export default Router()
   .post('/', (req, res, next) => {
+    // only admins and families
+    // don't trust request object.
+    // Get agency from user object
+    // get family from user object
     let {
       startDateTime,
       endDateTime,
@@ -13,7 +17,7 @@ export default Router()
       agency,
       requestedNannies
     } = req.body;
-  
+
     startDateTime = new Date(startDateTime);
     endDateTime = new Date(endDateTime);
 
@@ -31,6 +35,9 @@ export default Router()
   })
 
   .get('/', (req, res, next) => {
+    // only admins, families, and nannies.
+    // only return RequestedAppointments that the user
+    // is allowed to see
     RequestedAppointment.find()
       .lean()
       .then(request => res.json(request))
@@ -38,6 +45,9 @@ export default Router()
   })
 
   .get('/:id', (req, res, next) => {
+    // only admins, families, and nannies.
+    // only return RequestedAppointments that the user
+    // is allowed to see
     const { id } = req.params;
     RequestedAppointment.findById(id)
       .lean()
@@ -45,39 +55,10 @@ export default Router()
       .catch(next);
   })
 
-  .get('/user/:userId', (req, res, next) => {
-    const { userId } = req.params;
-
-    User.findById(userId)
-      .then(user => {
-        if(user.role === 'family') {
-          RequestedAppointment.find({ family: user._id, closed: false })
-            .lean()
-            .sort()
-            .then(response => res.json(response))
-            .catch(next);
-        } else if(user.role === 'nanny') {
-          RequestedAppointment.find({
-            'requestedNannies.nanny': user._id,
-            closed: false
-          })
-            .lean()
-            .sort()
-            .then(response => res.json(response))
-            .catch(next);
-        } else if(user.role === 'admin' || user.role === 'developer') {
-          RequestedAppointment.find({})
-            .lean()
-            .sort()
-            .then(response => res.json(response))
-            .catch(next);
-        }
-      })
-      .catch(next);
-  })
-
   .get('/detail/:requestId', (req, res, next) => {
-    /* eslint-disable-next-line */
+    // only admins, families, and nannies.
+    // only return RequestedAppointments that the user
+    // is allowed to see
     const { requestId } = req.params;
     RequestedAppointment.findById(requestId)
       .populate('family')
@@ -104,6 +85,7 @@ export default Router()
   })
 
   .delete('/:id', (req, res, next) => {
+    // only admins
     const { id } = req.params;
     RequestedAppointment.findByIdAndDelete(id)
       .then(request => res.json({ removed: !!request }))
@@ -111,6 +93,7 @@ export default Router()
   })
 
   .put('/:id', (req, res, next) => {
+    // only admins
     const { id } = req.params;
     const {
       startDateTime,
@@ -142,6 +125,7 @@ export default Router()
   })
 
   .patch('/status/:requestId/:nannyId/:status', (req, res, next) => {
+    // only admins and nannies.
     const { requestId, nannyId, status } = req.params;
     RequestedAppointment.updateOne({ _id: requestId, 'requestedNannies.nanny': nannyId }, { $set: { 'requestedNannies.$.status': status } })
       .then(response => res.json(response))

@@ -11,9 +11,9 @@ export const handler = (err, req, res, next) => {
     error = err.message;
   } else if(process.env.NODE_ENV !== 'production') {
     error = err.message;
-    console.log('handler error 1', err);
+    console.log(err);
   } else {
-    console.log('handler error 2', err);
+    console.log(err);
   }
 
   res.status(code).send({ error });

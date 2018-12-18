@@ -41,6 +41,7 @@ export default Router()
   })
 
   .get('/', (req, res, next) => {
+    // require admin. only return users in agency
     User.find()
       .select({ __v: false })
       .then(users => res.json(users))
@@ -61,14 +62,17 @@ export default Router()
       .catch(next);
   })
 
-  .delete('/:id', (req, res, next) => {
+  .delete('/', (req, res, next) => {
+    // require auth and get the user id from there
     const { id } = req.params;
     User.findByIdAndDelete(id)
       .then(user => res.json({ removed: !!user }))
       .catch(next);
   })
 
-  .put('/:id', (req, res, next) => {
+  .put('/', (req, res, next) => {
+    // require auth and get the user id from there
+    // don't allow user to change their agency.
     const { id } = req.params;
     const { email, password, role, agency } = req.body;
 

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const AppointmentSchema = new mongoose.Schema({
+const appointmentSchema = new mongoose.Schema({
   arrivalTime: {
     type: Date,
   },
@@ -20,12 +20,12 @@ const AppointmentSchema = new mongoose.Schema({
   nanny: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, 'At least one nanny is required']
+    required: [true, 'Nanny is required']
   },
   request: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'RequestedAppointment',
-    required: [true, 'At least one nanny is required']
+    required: [true, 'Request is required']
   },
   createdDate: {
     type: Date,
@@ -45,4 +45,18 @@ const AppointmentSchema = new mongoose.Schema({
   finalAgencyPayment: Number
 });
 
-export default mongoose.model('Appointment', AppointmentSchema);
+appointmentSchema.statics.findForUser = function(user, query = {}) {
+  if(user.role === 'family') {
+    return Appointment.find({ ...query, family: user._id });
+  } else if(user.role === 'nanny') {
+    return Appointment.find({ ...query, nanny: user._id });
+  } else if(user.role === 'admin') {
+    return Appointment.find(query);
+  } else {
+    return Promise.resolve([]);
+  }
+};
+
+const Appointment = mongoose.model('Appointment', appointmentSchema);
+
+export default Appointment;

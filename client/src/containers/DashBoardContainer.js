@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
-import Dashboard from '../components/dashboard/dashboards/Dashboard';
 import { getSession, getSessionProfile, getSessionLoading } from '../selectors/session';
 import { getAppointments } from '../selectors/appointment';
 import { getRequests } from '../selectors/requests/requestList';
 import { fetchAppointments } from '../actions/appointment';
 import { fetchRequests } from '../actions/requests/requestList';
+import roleSwitch from '../components/roleSwitch';
+import AdminDashBoard from '../components/dashboard/dashboards/AdminDashBoard';
+import NannyDashboard from '../components/dashboard/dashboards/NannyDashboard';
+import FamilyDashboard from '../components/dashboard/dashboards/FamilyDashboard';
 
 
 const mapStateToProps = state => ({
@@ -25,4 +28,8 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(roleSwitch({
+  Admin: AdminDashBoard,
+  Nanny: NannyDashboard,
+  Family: FamilyDashboard
+}));

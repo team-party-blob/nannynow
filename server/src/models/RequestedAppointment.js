@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { hourDiff } from '../utils/dateHelpers';
 
 const requestedAppointmentSchema = new mongoose.Schema({
   startDateTime: {
@@ -50,6 +51,10 @@ const requestedAppointmentSchema = new mongoose.Schema({
     default: Date.now()
   }
 });
+
+requestedAppointmentSchema.methods.requestedHours = function() {
+  return hourDiff(this.startDateTime, this.endDateTime);
+};
 
 export default mongoose.model(
   'RequestedAppointment',

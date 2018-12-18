@@ -1,30 +1,62 @@
 import { Router } from 'express';
+import { Types } from 'mongoose';
 import Appointment from '../../models/Appointment';
 import User from '../../models/User';
+import requireAuth from '../../middleware/requireAuth';
+import RequestedAppointment from '../../models/RequestedAppointment';
+import { HttpError } from '../../middleware/error';
+import { hourDiff } from '../../utils/dateHelpers';
 
 export default Router()
-  .post('/', (req, res, next) => {
+  .post('/', requireAuth(['admin', 'nanny']), async(req, res, next) => {
+    // You can't trust the values the request gives you. Make sure to check that the information makes sense
     const {
       arrivalTime,
       departureTime,
-      family,
-      agency,
-      nanny,
-      request,
-      agencyFeePerHour,
-      nannyPricePerHour,
-      projectedNannyPayment,
-      projectedAgencyPayment,
-      finalNannyPayment,
-      finalAgencyPayment
+      familyId,
+      nannyId,
+      requestId,
     } = req.body;
+
+    // What if the request if for the wrong agency?
+    // Let's make sure the request exists and is for our agency.
+    const request = await RequestedAppointment.findOne({ _id: Types.ObjectId(requestId), agency: req.user.agency });
+    if(!request) {
+      return next(new HttpError({ code: 400, message: 'Invalid RequestedAppointment' }));
+    }
+
+    // Let's make sure that the nanny that we are making an appointment for has accepted
+    // the request
+    const requestedNanny = request.requestedNannies.find(nannyStatus => nannyStatus.status === 'accepted');
+    if(!requestedNanny || requestedNanny.nanny !== Types.ObjectId(nannyId)) {
+      return next(new HttpError({ code: 400, message: 'Invalid nanny for Appointment' }));
+    }
+
+    let nannyProfile;
+    if(req.user.role === 'nanny') {
+      nannyProfile = await req.user.getProfile();
+    } else {
+      nannyProfile = await User.findById(nannyId).then(user => user.getProfile());
+    }
+
+    const agency = await req.user.getAgency();
+
+    const agencyFeePerHour = agency.hourlyFee;
+    const nannyPricePerHour = nannyProfile.pricePerHour;
+
+    // We should calculate the fees on the back-end
+    const projectedAgencyPayment = agencyFeePerHour * request.requestedHours();
+    const projectedNannyPayment = nannyPricePerHour * request.requestedHours();
+
+    const finalAgencyPayment = agencyFeePerHour * hourDiff(arrivalTime, departureTime);
+    const finalNannyPayment = nannyPricePerHour * hourDiff(arrivalTime, departureTime);
 
     Appointment.create({
       arrivalTime,
       departureTime,
-      family,
-      agency,
-      nanny,
+      family: familyId,
+      agency: req.user.getAgencyId(),
+      nanny: req.user.role === 'nanny' ? req.user._id : nannyId,
       request,
       agencyFeePerHour,
       nannyPricePerHour,
@@ -37,77 +69,26 @@ export default Router()
       .catch(next);
   })
 
-  .get('/', (req, res, next) => {
-    Appointment.find()
+  // make sure to use auth. Users should only be able to get their appointments
+  .get('/', requireAuth(['admin', 'family', 'nanny']), (req, res, next) => {
+    Appointment.findForUser(req.user)
       .lean()
-      .then(request => res.json(request))
+      .then(appointments => res.json(appointments))
       .catch(next);
   })
 
-  .get('/:id', (req, res, next) => {
+  // make sure to use auth. Users should only be able to get their appointments
+  .get('/:id', requireAuth(['admin', 'family', 'nanny']), (req, res, next) => {
     const { id } = req.params;
-    Appointment.findById(id)
+    Appointment.findForUser(req.user, { _id: Types.ObjectId(id) })
       .lean()
-      .then(request => res.json(request))
+      .then((request = []) => res.json(request[0] || null))
       .catch(next);
   })
 
-  .get('/user/:userId', (req, res, next) => {
-    const { userId } = req.params;
-
-    User.findById(userId).then(user => {
-      if(user.role === 'nanny') {
-        Appointment.find({ nanny: user._id })
-          .populate({
-            path: 'request',
-            select: {
-              startDateTime: true,
-              endDateTime: true,
-              appointmentComments: true,
-              birthdays: true,
-              closed: true
-            }
-          })
-          .lean()
-          .then(response => res.json(response))
-          .catch(next);
-      } else if(user.role === 'family') {
-        Appointment.find({ family: user._id })
-          .populate({
-            path: 'request',
-            select: {
-              startDateTime: true,
-              endDateTime: true,
-              appointmentComments: true,
-              birthdays: true,
-              closed: true
-            }
-          })
-          .lean()
-          .then(response => res.json(response))
-          .catch(next);
-      } else if(user.role === 'admin' || user.role === 'developer') {
-        Appointment.find()
-          .populate({
-            path: 'request',
-            select: {
-              startDateTime: true,
-              endDateTime: true,
-              appointmentComments: true,
-              birthdays: true,
-              closed: true
-            }
-          })
-          .then(response => res.json(response))
-          .catch(next);
-      }
-    });
-  })
-
-  .get('/detail/:appointmentId', (req, res, next) => {
-    /* eslint-disable-next-line */
+  .get('/detail/:appointmentId', requireAuth(['admin', 'family', 'nanny']), (req, res, next) => {
     const { appointmentId } = req.params;
-    Appointment.findById(appointmentId)
+    Appointment.findForUser(req.user, { _id: Types.ObjectId(appointmentId) })
       .populate({
         path: 'request',
         select: {
@@ -133,14 +114,15 @@ export default Router()
       .catch(next);
   })
 
-  .delete('/:id', (req, res, next) => {
+  .delete('/:id', requireAuth(['admin', 'family', 'nanny']), (req, res, next) => {
     const { id } = req.params;
-    Appointment.findByIdAndDelete(id)
-      .then(request => res.json({ removed: !!request }))
+    Appointment.findForUser(req.user, { _id: Types.ObjectId(id) })
+      .then(appointment => Appointment.findByIdAndDelete(appointment._id))
+      .then(appointment => res.json({ removed: !!appointment }))
       .catch(next);
   })
 
-  .put('/:id', (req, res, next) => {
+  .put('/:id', requireAuth(['admin']), (req, res, next) => {
     const { id } = req.params;
     const {
       arrivalTime,

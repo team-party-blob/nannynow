@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import { tokenize, untokenize, hash, compare } from '../utils/auth';
-import  NannyProfile  from '../models/NannyProfile';
-import  FamilyProfile  from '../models/FamilyProfile';
+import NannyProfile from '../models/NannyProfile';
+import FamilyProfile from '../models/FamilyProfile';
+import Agency from './Agency';
 
 const userSchema = new mongoose.Schema(
   {
@@ -12,7 +13,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      required: [true, 'Role must be admin, nanny, or family'],
+      required: [true, 'Role must be admin, nanny, family, or developer'],
       enum: ['admin', 'nanny', 'family', 'developer']
     },
     createdDate: {
@@ -64,10 +65,20 @@ userSchema.methods.getProfile = function() {
   }
 };
 
+userSchema.methods.getAgencyId = function(requestBody) {
+  if(this.role === 'developer') return mongoose.Types.ObjectId(requestBody.agency);
+
+  return this.agency;
+};
+
+userSchema.methods.getAgency = function() {
+  return Agency.findById(this.agency);
+};
+
 userSchema.statics.findByToken = function(token) {
   try {
     const user = untokenize(token);
-    return Promise.resolve(user);
+    return Promise.resolve(User.hydrate(user));
   } catch(e) {
     return Promise.resolve(null);
   }

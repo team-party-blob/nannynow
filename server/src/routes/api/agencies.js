@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import Agency from '../../models/Agency';
 import requireAuth from '../../middleware/requireAuth';
+import { HttpError } from '../../middleware/error';
 
 export default Router()
-  .post('/', requireAuth(['admin']), (req, res, next) => {
+  .post('/', requireAuth(['developer']), (req, res, next) => {
     const {
       businessName,
       contactName,
@@ -37,22 +38,26 @@ export default Router()
       .catch(next);
   })
 
-  .get('/', requireAuth(['admin']), (req, res, next) => {
+  .get('/', requireAuth(['developer']), (req, res, next) => {
     Agency.find()
       .lean()
-      .then(agencys => res.json(agencys))
+      .then(agencies => res.json(agencies))
       .catch(next);
   })
 
-  .get('/:id', requireAuth(['admin']), (req, res, next) => {
+  .get('/:id', requireAuth(['admin', 'developer']), (req, res, next) => {
     const { id } = req.params;
 
-    Agency.findById(id)
-      .then(agency => res.json(agency))
-      .catch(next);
+    if(req.user.role === 'developer' || req.user.agency.toString() === id) {
+      Agency.findById(id)
+        .then(agency => res.json(agency))
+        .catch(next);
+    } else {
+      next(new HttpError({ code: 403, message: 'User not apart of agency' }));
+    }
   })
 
-  .delete('/:id', requireAuth(['admin']), (req, res, next) => {
+  .delete('/:id', requireAuth(['developer']), (req, res, next) => {
     const { id } = req.params;
 
     Agency.findByIdAndDelete(id)
@@ -76,26 +81,28 @@ export default Router()
       hourlyFee
     } = req.body;
 
-    Agency.findByIdAndUpdate(
-      id,
-      {
-        businessName,
-        contactName,
-        streetAddress1,
-        streetAddress2,
-        city,
-        state,
-        zip,
-        phone,
-        businessEmail,
-        website,
-        hourlyFee
-      },
-      { new: true }
-    )
-      .lean()
-      .then(agency => res.json(agency))
-      .catch(next);
+    if(req.user.role === 'developer' || req.user.agency.toString() === id) {
+      Agency.findByIdAndUpdate(
+        id,
+        {
+          businessName,
+          contactName,
+          streetAddress1,
+          streetAddress2,
+          city,
+          state,
+          zip,
+          phone,
+          businessEmail,
+          website,
+          hourlyFee
+        },
+        { new: true }
+      )
+        .lean()
+        .then(agency => res.json(agency))
+        .catch(next);
+    } else {
+      next(new HttpError({ code: 403, message: 'User not apart of agency' }));
+    }
   });
-
-

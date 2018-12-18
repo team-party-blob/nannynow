@@ -9,8 +9,6 @@ import AppointmentDetail from '../containers/AppointmentDetail';
 import RequestDetail from '../containers/RequestDetail';
 import About from '../components/about/About';
 
-
-
 export const ROUTES = {
   ABOUT: {
     path: '/about',
@@ -28,25 +26,25 @@ export const ROUTES = {
     linkTo: path => path ? `/signin?redirectTo=${path}` : '/signin'
   },
   PROFILE: {
-    path: '/profile/:id',
+    path: '/profile', // don't need an ID here.
     Component: withSession(ProfileContainer),
-    linkTo: id => `/profile/${id}`
+    linkTo: () => `/profile`
 
   },
   REQUEST_DETAIL: {
-    path: '/dashboard/request/:userId/:requestId',
+    path: '/dashboard/request/:requestId', // don't need a userId here. The user is in session
     Component: withSession(RequestDetail),
-    linkTo: (userId, requestId) => `/dashboard/request/${userId}/${requestId}`
+    linkTo: requestId => `/dashboard/request/${requestId}`
   },
   APPOINTMENT_DETAIL: {
-    path: '/dashboard/:userId/:appointmentId',
+    path: '/dashboard/:appointmentId', // don't need a userId here. The user is in session
     Component: withSession(AppointmentDetail),
-    linkTo: (userId, appointmentId) => `/dashboard/${userId}/${appointmentId}`
+    linkTo: appointmentId => `/dashboard/${appointmentId}`
   },
   DASHBOARD: {
-    path: '/dashboard/:id',
+    path: '/dashboard', // don't need a userId here. The user is in session
     Component: withSession(DashBoardContainer),
-    linkTo: id => `/dashboard/${id}`
+    linkTo: () => `/dashboard`
   },
   HOME: {
     path: '/',

@@ -30,7 +30,7 @@ const agencySchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: [true, 'State is required.']
+    required: [true, 'Phone is required.']
   },
   businessEmail: {
     type: String,

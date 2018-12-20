@@ -1,8 +1,6 @@
-import 'newrelic';
 import { config } from 'dotenv';
 import connect from './utils/connect';
 import app from './routes/app';
-
 
 config();
 connect();

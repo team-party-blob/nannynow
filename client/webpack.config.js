@@ -1,16 +1,14 @@
 /* eslint-env node */
 // const CleanPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  // start here
   entry: './src/index.js',
-  // put the build output here (not dev server)
   output: {
     filename: 'bundle.[hash].js',
     publicPath: '/'
   },
-  // mode (will eventually be cmd line arg in package.json scripts)
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -21,9 +19,12 @@ module.exports = {
     }
   },
   plugins: [
-    // add plugins
     //new CleanPlugin('./dist/bundle.*.js'),
-    new HtmlPlugin({ template: './src/index.html' })
+    new HtmlPlugin({ template: './src/index.html' }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    })
   ],
   module: {
     rules: [
@@ -44,9 +45,15 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
-            options: { sourceMap: true }
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '/'
+            }
           },
+          // {
+          //   loader: 'style-loader',
+          //   options: { sourceMap: true }
+          // },
           {
             loader: 'css-loader',
             options: {
@@ -63,7 +70,7 @@ module.exports = {
                 require('autoprefixer')(),
                 require('postcss-import')(),
                 require('postcss-nested')(),
-                require('postcss-simple-vars')(),
+                require('postcss-simple-vars')()
               ]
             }
           }

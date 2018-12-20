@@ -1,10 +1,6 @@
 body {
-  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/8vV2rpe/pastel-blue-background-1080p_x1kgy93b__F0000.png');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+  background-color: #c6dcff;
   margin: 0;
-
 }
 
 #error {

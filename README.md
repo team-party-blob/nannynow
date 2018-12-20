@@ -1,8 +1,8 @@
 # _Nanny Now!_
 
-#### A Childcare Scheduling Application, December 2018
+## A Childcare Scheduling Application, December 2018
 
-#### By _**Mackenzie Berliner-Glasser, Sarah Flynn, and Mike Lambert**_
+### By _**Mackenzie Berliner-Glasser, Sarah Flynn, and Mike Lambert**_
 
 ## Description
 

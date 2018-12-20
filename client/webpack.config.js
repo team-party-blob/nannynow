@@ -4,14 +4,11 @@ const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  // start here
   entry: './src/index.js',
-  // put the build output here (not dev server)
   output: {
     filename: 'bundle.[hash].js',
     publicPath: '/'
   },
-  // mode (will eventually be cmd line arg in package.json scripts)
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -22,7 +19,6 @@ module.exports = {
     }
   },
   plugins: [
-    // add plugins
     //new CleanPlugin('./dist/bundle.*.js'),
     new HtmlPlugin({ template: './src/index.html' }),
     new MiniCssExtractPlugin({

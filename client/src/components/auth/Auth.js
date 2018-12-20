@@ -5,6 +5,7 @@ import styles from './Auth.css';
 import globalStyles from '../../main.css';
 import Loading from '../loading/Loading';
 import { parse } from 'querystring';
+import logo from '../../assets/nannyNowLogo.png';
 
 export default class Login extends PureComponent {
   static propTypes = {
@@ -94,9 +95,7 @@ export default class Login extends PureComponent {
 
     return (
       <div id={styles.auth}>
-
-
-        <h1>Nanny Now!</h1>
+        <img src={logo} id={styles.logo}/>
         <form id={styles.authForm} onSubmit={this.handleSubmit}>
           {error && <h4 id={globalStyles.error}>{error}</h4>}
           <label htmlFor='email'>Email</label>

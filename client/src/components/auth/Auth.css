@@ -1,5 +1,12 @@
 #auth {
   padding-top: 5vh;
+  display: flex;
+  flex-direction: column;
+
+  #logo {
+    align-self: center;
+    width: 20%;
+  }
 
   h1 {
     font-family: 'Noto Serif TC', serif;

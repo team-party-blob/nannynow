@@ -70,7 +70,7 @@ module.exports = {
                 require('autoprefixer')(),
                 require('postcss-import')(),
                 require('postcss-nested')(),
-                require('postcss-simple-vars')()
+                require('postcss-simple-vars')(),
               ]
             }
           }

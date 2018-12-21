@@ -77,10 +77,10 @@
   #doubleBorder1 {
     border: 4px solid black;
     padding: 2px;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     background-color: #7fbbe0;
     #doubleBorder2 {
-      background-color: #edf9ff;
+      background-color: #cee1ff;
       border: 4px solid black;
       padding: 10px;
       border-radius: 8px;

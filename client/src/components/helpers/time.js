@@ -4,5 +4,5 @@ moment().format();
 export const getLocalDateTime = time => {
   return moment(time)
     .local()
-    .format('dddd, MMMM Do YYYY, h:mm:ss a');
+    .format('dddd, MMMM Do YYYY, h:mm a');
 };

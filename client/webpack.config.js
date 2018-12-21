@@ -1,5 +1,4 @@
 /* eslint-env node */
-// const CleanPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -19,7 +18,6 @@ module.exports = {
     }
   },
   plugins: [
-    //new CleanPlugin('./dist/bundle.*.js'),
     new HtmlPlugin({ template: './src/index.html' }),
     new MiniCssExtractPlugin({
       filename: '[name].css',

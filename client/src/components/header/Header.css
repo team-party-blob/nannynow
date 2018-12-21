@@ -99,10 +99,8 @@ img {
         text-align: center;
         padding: 10px;
         margin: 5px;
-        background-color: white;
+        background-color: #f96a54;
         color: black;
-        border-radius: 15px;
-        border: 2px solid #f96a54;
         text-decoration: none;
       }
     }
@@ -136,10 +134,10 @@ img {
       .link {
         padding: 10px;
         margin: 20px;
-        background-color: white;
+        background-color: #f96a54;
         opacity: 0.8;
-        color: red;
-        border-radius: 15px;
+        color: white;
+        /* border-radius: 15px; */
         text-decoration: none;
         &:hover {
           opacity: 1;

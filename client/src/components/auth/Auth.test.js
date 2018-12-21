@@ -17,7 +17,7 @@ jest.mock('../../routes/routes.js', () => ({
   }
 }));
 
-jest.mock('../../assets/imageUrl.js');
+jest.mock('../../assets/nannyNowLogo.png');
 
 describe('Auth component', () => {
 

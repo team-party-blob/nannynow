@@ -1,7 +1,7 @@
 button {
   background-color: #f96a54;
   border: 1px solid gray;
-  border-radius: 8px;
+  border-radius: 8px; 
   font-family: 'Noto Serif TC', serif;
   font-size: 12px;
   &:hover {

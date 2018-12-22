@@ -87,4 +87,22 @@ describe('requested appointments routes', () => {
         expect(res.body).toEqual(createdRequestedAppointments[0]);
       });
   });
+
+  it('updates the status of a requested nanny', () => {
+    const createdRequestedAppointments = getRequestedAppointments();
+    const requestId = createdRequestedAppointments[0]._id;
+    const { requestedNannies } = createdRequestedAppointments[0];
+    const statusUpdate = {
+      nannyId: requestedNannies[0].nanny,
+      status: 'accepted'
+    };
+
+    return request(app)
+      .patch(`/api/requests/status/${requestId}`)
+      .send(statusUpdate)
+      .then(res => {
+        expect(res.body).toEqual('skjdlfj');
+      });
+
+  });
 });

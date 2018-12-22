@@ -1,4 +1,5 @@
-import { getRequests, getRequest } from '../../services/requestApi';
+import { getRequests, getRequest, updateNannyRequestStatus } from '../../services/requestApi';
+import { LOAD_START, LOAD_END } from '../fixtures/loadingActions';
 
 export const FETCH_REQUESTS = 'FETCH_REQUESTS';
 export const FETCH_REQUESTS_LOAD_START = 'FETCH_REQUESTS_LOAD_START';
@@ -22,4 +23,12 @@ export const fetchRequest = requestId => ({
   loadEnd: FETCH_REQUEST_LOAD_END,
   errorType: FETCH_REQUEST_ERROR,
   payload: getRequest(requestId)
+});
+
+export const NANNY_UPDATE_REQUEST_STATUS = 'NANNY_UPDATE_REQUEST_STATUS';
+export const updateRequestStatus = (requestId, nannyId, status) => ({
+  type: NANNY_UPDATE_REQUEST_STATUS,
+  loadStart: LOAD_START,
+  loadEnd: LOAD_END,
+  payload: updateNannyRequestStatus(requestId, nannyId, status)
 });

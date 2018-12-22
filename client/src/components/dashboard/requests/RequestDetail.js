@@ -12,21 +12,27 @@ class RequestDetail extends PureComponent {
   static propTypes = {
     detail: PropTypes.object,
     fetchRequest: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
+    updateNannyStatus: PropTypes.func.isRequired,
     session: PropTypes.object.isRequired
   };
 
   componentDidMount() {
     const { fetchRequest } = this.props;
     const { requestId } = this.props.match.params;
-
     fetchRequest(requestId);
+  }
+
+  handleStatusUpdate({ target }) {
+    const { requestId } = this.props.match.params;
+    const nannyId = this.props.session._id;
+    this.props.updateNannyStatus(requestId, nannyId, target.value);
   }
 
   render() {
     const { detail, session } = this.props;
     const { role } = session;
-    if (!detail) return null;
+    if(!detail) return null;
+    const { requestedNannies } = detail.request;
 
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
       const age = moment([birthday]).fromNow(true);
@@ -57,6 +63,9 @@ class RequestDetail extends PureComponent {
             </p>
             <p>
               <b>Description:</b> {requestedNanny.description}
+            </p>
+            <p>
+              <b>Status: </b> {requestedNannies[i].status}
             </p>
           </div>
         );
@@ -108,6 +117,8 @@ class RequestDetail extends PureComponent {
             <p>
               <b>Description:</b> {detail.familyProfile.description}
             </p>
+            <button value="accept" type="button" onClick={this.handleStatusUpdate.bind(this)}>Accept Request</button>
+            <button value="reject" type="button" onClick={this.handleStatusUpdate.bind(this)}>Reject Request</button>
           </div>
         )}
         {role === 'family' && nannyComponents}

@@ -1,5 +1,5 @@
 import { stringify } from 'querystring';
-import { post, get } from './request';
+import { post, get, patch } from './request';
 
 export const createFamilyRequest = (family, agency, searchQuery, requestedNannies) => {
   const { startDateTime, endDateTime, birthdays, appointmentComments } = searchQuery;
@@ -21,4 +21,11 @@ export const getRequests = userId => {
 
 export const getRequest = requestId => {
   return get(`/api/requests/detail/${requestId}`);
+};
+
+export const updateNannyRequestStatus = (requestId, nannyId, status) => {
+  return patch(`/api/requests/status/${requestId}`, { nannyId, status })
+    .then(result => {
+      console.log(result);
+    });
 };

@@ -4,14 +4,14 @@ td {
   border: 15px solid white;
 }
 
-button {
+#detailButton {
   background-color: #f96a54;
-  border: 1px solid gray;
-  border-radius: 8px;
   font-family: 'Noto Serif TC', serif;
-
-  font-size: 12px;
+  color: white;
+  font-size: 15px;
+  opacity: 0.8;
   &:hover {
     cursor: pointer;
+    opacity: 1;
   }
 }

@@ -26,7 +26,7 @@ class RequestDetail extends PureComponent {
   render() {
     const { detail, session } = this.props;
     const { role } = session;
-    if(!detail) return null;
+    if (!detail) return null;
 
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
       const age = moment([birthday]).fromNow(true);
@@ -42,12 +42,22 @@ class RequestDetail extends PureComponent {
         return (
           <div key={i}>
             <h1>Nanny Profile {i + 1}:</h1>
-            <p><b>Name:</b> {requestedNanny.name}</p>
+            <p>
+              <b>Name:</b> {requestedNanny.name}
+            </p>
             <img src={requestedNanny.photo} alt='profile photo' />
-            <p><b>Price per hour:</b> {requestedNanny.pricePerHour + 3.5}</p>
-            <p><b>Phone:</b> {requestedNanny.phone}</p>
-            <p><b>Home ZIP Code:</b> {requestedNanny.zip}</p>
-            <p><b>Description:</b> {requestedNanny.description}</p>
+            <p>
+              <b>Price per hour:</b> {requestedNanny.pricePerHour + 3.5}
+            </p>
+            <p>
+              <b>Phone:</b> {requestedNanny.phone}
+            </p>
+            <p>
+              <b>Home ZIP Code:</b> {requestedNanny.zip}
+            </p>
+            <p>
+              <b>Description:</b> {requestedNanny.description}
+            </p>
           </div>
         );
       }
@@ -57,29 +67,52 @@ class RequestDetail extends PureComponent {
       <div id={styles.requestDetailBody}>
         <div>
           <h1>Request Detail</h1>
-          <p><b>Start Time:</b> {getLocalDateTime(detail.request.startDateTime)}</p>
-          <p><b>End Time:</b> {getLocalDateTime(detail.request.endDateTime)}</p>
-          <p><b>Number of Children:</b>{detail.request.birthdays.length}</p>
+          <p>
+            <b>Start Time:</b> {getLocalDateTime(detail.request.startDateTime)}
+          </p>
+          <p>
+            <b>End Time:</b> {getLocalDateTime(detail.request.endDateTime)}
+          </p>
+          <p>
+            <b>Number of Children:</b>
+            {detail.request.birthdays.length}
+          </p>
           <div id={styles.agesOfChildren}>
             <p>
               <b>Ages of Children: </b>
             </p>
             {ageComponents}
           </div>
-          <p><b>Appointment Comments:</b>{detail.request.appointmentComments}</p>
+          <p>
+            <b>Appointment Comments:</b>
+            {detail.request.appointmentComments}
+          </p>
         </div>
-        {role === 'nanny' && <div>
-          <h1>Family Profile:</h1>
-          <img src={detail.familyProfile.photo} alt='profile photo' />
-          <p><b>Name:</b> {detail.familyProfile.name}</p>
-          <p><b>Phone:</b> {detail.familyProfile.phone}</p>
-          <p><b>Home ZIP code:</b> {detail.familyProfile.zip}</p>
-          <p><b>Number of Children: </b>{detail.familyProfile.birthdays.length}</p>
-          <p><b>Description:</b> {detail.familyProfile.description}</p>
-        </div>}
+        {role === 'nanny' && (
+          <div>
+            <h1>Family Profile:</h1>
+            <img src={detail.familyProfile.photo} alt='profile photo' />
+            <p>
+              <b>Name:</b> {detail.familyProfile.name}
+            </p>
+            <p>
+              <b>Phone:</b> {detail.familyProfile.phone}
+            </p>
+            <p>
+              <b>Home ZIP code:</b> {detail.familyProfile.zip}
+            </p>
+            <p>
+              <b>Number of Children: </b>
+              {detail.familyProfile.birthdays.length}
+            </p>
+            <p>
+              <b>Description:</b> {detail.familyProfile.description}
+            </p>
+          </div>
+        )}
         {role === 'family' && nannyComponents}
         <Link to={ROUTES.DASHBOARD.linkTo(session._id)}>
-          Return to Requests List
+          <button id={styles.returnButton}>Return to Requests List</button>
         </Link>
       </div>
     );

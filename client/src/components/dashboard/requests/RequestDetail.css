@@ -15,3 +15,13 @@
   flex-direction: row;
   justify-content: center;
 }
+
+#returnButton {
+  background-color: #7fbbe0;
+  height: 35px;
+  font-size: 20px;
+  font-family: 'Noto Serif TC', serif;
+  &:hover {
+    cursor: pointer;
+  }
+}

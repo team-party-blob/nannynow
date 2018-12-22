@@ -17,7 +17,6 @@
   #authForm {
     background-color: white;
     border: 3px solid grey;
-    border-radius: 8px;
     display: flex;
     flex-direction: column;
     margin: 2em;
@@ -52,7 +51,6 @@
       margin-top: 2em;
       margin-bottom: 2em;
       padding: 1em;
-      border-radius: 8px;
       border: 2px solid grey;
       font-size: 18px;
       font-family: 'Noto Serif TC', serif;
@@ -78,7 +76,6 @@
       font-size: 18px;
       border: 2px solid grey;
       background-color: #7fbbe0;
-      border-radius: 8px;
       font-family: 'Noto Serif TC', serif;
       font-weight: 900;
       &:hover {

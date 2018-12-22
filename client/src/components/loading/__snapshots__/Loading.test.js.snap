@@ -2,8 +2,10 @@
 
 exports[`Loading component renders a snapshot component 1`] = `
 <Fragment>
-  <img
-    src="../../assets/nannyNowLogo.png"
-  />
+  <h1
+    id="loadingText"
+  >
+    Loading
+  </h1>
 </Fragment>
 `;

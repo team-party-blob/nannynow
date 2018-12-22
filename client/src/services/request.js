@@ -37,3 +37,5 @@ export const post = (url, body) => request(url, 'POST', body);
 export const put = (url, body) => request(url, 'PUT', body);
 
 export const remove = (url, body) => request(url, 'DELETE', body);
+
+export const patch = (url, body) => request(url, 'PATCH', body);

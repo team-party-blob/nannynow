@@ -13,7 +13,7 @@ export default Router()
       agency,
       requestedNannies
     } = req.body;
-  
+
     startDateTime = new Date(startDateTime);
     endDateTime = new Date(endDateTime);
 
@@ -141,8 +141,9 @@ export default Router()
       .catch(next);
   })
 
-  .patch('/status/:requestId/:nannyId/:status', (req, res, next) => {
-    const { requestId, nannyId, status } = req.params;
+  .patch('/status/:requestId', (req, res, next) => {
+    const { requestId } = req.params;
+    const { nannyId, status } = req.body;
     RequestedAppointment.updateOne({ _id: requestId, 'requestedNannies.nanny': nannyId }, { $set: { 'requestedNannies.$.status': status } })
       .then(response => res.json(response))
       .catch(next);

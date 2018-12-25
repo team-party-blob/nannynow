@@ -23,8 +23,8 @@ export const getRequest = requestId => {
   return get(`/api/requests/detail/${requestId}`);
 };
 
-export const updateNannyRequestStatus = (requestId, nannyId, status) => {
-  return patch(`/api/requests/status/${requestId}`, { nannyId, status })
+export const updateNannyRequestStatus = (requestId, nannyId, status, closed) => {
+  return patch(`/api/requests/status/${requestId}`, { nannyId, status, closed })
     .then(result => {
       console.log(result);
     });

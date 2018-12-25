@@ -50,13 +50,13 @@ export default Router()
 
     User.findById(userId)
       .then(user => {
-        if(user.role === 'family') {
+        if (user.role === 'family') {
           RequestedAppointment.find({ family: user._id, closed: false })
             .lean()
             .sort()
             .then(response => res.json(response))
             .catch(next);
-        } else if(user.role === 'nanny') {
+        } else if (user.role === 'nanny') {
           RequestedAppointment.find({
             'requestedNannies.nanny': user._id,
             closed: false
@@ -65,7 +65,7 @@ export default Router()
             .sort()
             .then(response => res.json(response))
             .catch(next);
-        } else if(user.role === 'admin' || user.role === 'developer') {
+        } else if (user.role === 'admin' || user.role === 'developer') {
           RequestedAppointment.find({})
             .lean()
             .sort()
@@ -132,7 +132,6 @@ export default Router()
         family,
         agency,
         requestedNannies
-
       },
       { new: true }
     )
@@ -143,8 +142,11 @@ export default Router()
 
   .patch('/status/:requestId', (req, res, next) => {
     const { requestId } = req.params;
-    const { nannyId, status } = req.body;
-    RequestedAppointment.updateOne({ _id: requestId, 'requestedNannies.nanny': nannyId }, { $set: { 'requestedNannies.$.status': status } })
+    const { nannyId, status, closed } = req.body;
+    RequestedAppointment.updateOne(
+      { _id: requestId, 'requestedNannies.nanny': nannyId },
+      { $set: { closed, 'requestedNannies.$.status': status } }
+    )
       .then(response => res.json(response))
       .catch(next);
   });

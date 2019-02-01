@@ -7,6 +7,8 @@ import { ROUTES } from '../../../routes/routes';
 import { Link } from 'react-router-dom';
 import styles from './RequestDetail.css';
 import { updateNannyRequestStatus } from '../../../services/requestApi';
+import { createAppointment } from '../../../services/appointmentApi';
+
 moment().format();
 
 class RequestDetail extends PureComponent {
@@ -28,6 +30,17 @@ class RequestDetail extends PureComponent {
     const nannyId = this.props.session._id;
     const { requestedNannies } = this.props.detail.request;
 
+
+    const { requestedNannyProfiles } = this.props.detail;
+    const requestedNannyProfile = requestedNannyProfiles.filter(nanny => nanny.user === nannyId);
+
+
+    const family = this.props.detail.familyProfile.user;
+    const agency = this.props.detail.familyProfile.agency;
+    const request = this.props.detail.request._id;
+    const nannyPricePerHour = requestedNannyProfile[0].pricePerHour;
+    const { startDateTime, endDateTime, _id } = this.props.detail.request;
+
     //need to check if there are other nannies who haven't yet responded so as to know whether or not to close out the request.
     const otherNoResponseNannies = requestedNannies.filter(
       nanny => nanny.status === 'no response' && nanny.nanny._id !== nannyId
@@ -44,6 +57,8 @@ class RequestDetail extends PureComponent {
     //if this nanny is accepting, the request closes and creates a new appointment.
     } else {
       updateNannyRequestStatus(requestId, nannyId, target.value, true);
+      createAppointment(startDateTime, endDateTime, family, agency, nannyId, request, nannyPricePerHour);
+
     }
   }
 

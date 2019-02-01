@@ -18,7 +18,6 @@ export default class Appointments extends PureComponent {
 
   render() {
     const { appointments, user } = this.props;
-    console.log(appointments);
     if(appointments) {
       appointments.sort((a, b) => {
         return new Date(a.arrivalTime) - new Date(b.arrivalTime);

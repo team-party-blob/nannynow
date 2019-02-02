@@ -7,7 +7,7 @@ export default class Appointments extends PureComponent {
     appointments: PropTypes.array.isRequired,
     fetchAppointments: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -18,22 +18,18 @@ export default class Appointments extends PureComponent {
 
   render() {
     const { appointments, user } = this.props;
-    if(appointments) {
+    if (appointments) {
       appointments.sort((a, b) => {
         return new Date(a.arrivalTime) - new Date(b.arrivalTime);
       });
     }
     const appointmentComponents = appointments.map(appointment => {
       return (
-        <table key={appointment._id}>
-          <tbody>
-            <tr>
-              <th>Start Time</th>
-              <th>End Time</th>
-            </tr>
-            <Appointment appointment={appointment} user={user} />
-          </tbody>
-        </table>
+        <Appointment
+          key={appointment._id}
+          appointment={appointment}
+          user={user}
+        />
       );
     });
 
@@ -41,7 +37,15 @@ export default class Appointments extends PureComponent {
       <div id={styles.appointmentListBody}>
         {user.role === 'family' && <h1>Nannies Scheduled</h1>}
         {user.role === 'nanny' && <h1>Booked Appointments</h1>}
-        {appointmentComponents}
+        <table>
+          <tbody>
+            <tr>
+              <th>Start Time</th>
+              <th>End Time</th>
+            </tr>
+            {appointmentComponents}
+          </tbody>
+        </table>
       </div>
     );
   }

@@ -16,7 +16,7 @@ class RequestDetail extends PureComponent {
     detail: PropTypes.object,
     fetchRequest: PropTypes.func.isRequired,
     updateNannyStatus: PropTypes.func.isRequired,
-    session: PropTypes.object.isRequired
+    session: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -30,10 +30,10 @@ class RequestDetail extends PureComponent {
     const nannyId = this.props.session._id;
     const { requestedNannies } = this.props.detail.request;
 
-
     const { requestedNannyProfiles } = this.props.detail;
-    const requestedNannyProfile = requestedNannyProfiles.filter(nanny => nanny.user === nannyId);
-
+    const requestedNannyProfile = requestedNannyProfiles.filter(
+      nanny => nanny.user === nannyId,
+    );
 
     const family = this.props.detail.familyProfile.user;
     const agency = this.props.detail.familyProfile.agency;
@@ -43,22 +43,32 @@ class RequestDetail extends PureComponent {
 
     //need to check if there are other nannies who haven't yet responded so as to know whether or not to close out the request.
     const otherNoResponseNannies = requestedNannies.filter(
-      nanny => nanny.status === 'no response' && nanny.nanny._id !== nannyId
+      nanny => nanny.status === 'no response' && nanny.nanny._id !== nannyId,
     );
 
-    //if there are still other nannies who need to respond to the request and this nanny is rejecting, the request stays open.
-    if(otherNoResponseNannies.length > 0 && target.value === 'reject') {
+    //if there are still other nannies who need to respond to the request and this nanny is declining, the request stays open.
+    if (otherNoResponseNannies.length > 0 && target.value === 'declined') {
       updateNannyRequestStatus(requestId, nannyId, target.value, false);
 
-    //if there are no other nannies who need to respond to the request and this nanny is rejecting, the request closes.
-    } else if(otherNoResponseNannies.length === 0 && target.value === 'reject') {
+      //if there are no other nannies who need to respond to the request and this nanny is declining, the request closes.
+    } else if (
+      otherNoResponseNannies.length === 0 &&
+      target.value === 'declined'
+    ) {
       updateNannyRequestStatus(requestId, nannyId, target.value, true);
 
-    //if this nanny is accepting, the request closes and creates a new appointment.
+      //if this nanny is accepting, the request closes and creates a new appointment.
     } else {
       updateNannyRequestStatus(requestId, nannyId, target.value, true);
-      createAppointment(startDateTime, endDateTime, family, agency, nannyId, request, nannyPricePerHour);
-
+      createAppointment(
+        startDateTime,
+        endDateTime,
+        family,
+        agency,
+        nannyId,
+        request,
+        nannyPricePerHour,
+      );
     }
   }
 
@@ -85,7 +95,7 @@ class RequestDetail extends PureComponent {
             <p>
               <b>Name:</b> {requestedNanny.name}
             </p>
-            <img src={requestedNanny.photo} alt='profile photo' />
+            <img src={requestedNanny.photo} alt="profile photo" />
             <p>
               <b>Price per hour:</b> {requestedNanny.pricePerHour + 3.5}
             </p>
@@ -103,7 +113,7 @@ class RequestDetail extends PureComponent {
             </p>
           </div>
         );
-      }
+      },
     );
 
     return (
@@ -134,7 +144,7 @@ class RequestDetail extends PureComponent {
         {role === 'nanny' && (
           <div>
             <h1>Family Profile:</h1>
-            <img src={detail.familyProfile.photo} alt='profile photo' />
+            <img src={detail.familyProfile.photo} alt="profile photo" />
             <p>
               <b>Name:</b> {detail.familyProfile.name}
             </p>
@@ -151,20 +161,24 @@ class RequestDetail extends PureComponent {
             <p>
               <b>Description:</b> {detail.familyProfile.description}
             </p>
-            <button
-              value='accept'
-              type='button'
-              onClick={this.handleStatusUpdate.bind(this)}
-            >
-              Accept Request
-            </button>
-            <button
-              value='reject'
-              type='button'
-              onClick={this.handleStatusUpdate.bind(this)}
-            >
-              Reject Request
-            </button>
+            <Link to={ROUTES.DASHBOARD.linkTo(session._id)}>
+              <button
+                value="accepted"
+                type="button"
+                onClick={this.handleStatusUpdate.bind(this)}
+              >
+                Accept Request
+              </button>
+            </Link>
+            <Link to={ROUTES.DASHBOARD.linkTo(session._id)}>
+              <button
+                value="declined"
+                type="button"
+                onClick={this.handleStatusUpdate.bind(this)}
+              >
+                Reject Request
+              </button>
+            </Link>
           </div>
         )}
         {role === 'family' && nannyComponents}

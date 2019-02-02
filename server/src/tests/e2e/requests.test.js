@@ -101,7 +101,7 @@ describe('requested appointments routes', () => {
       .patch(`/api/requests/status/${requestId}`)
       .send(statusUpdate)
       .then(res => {
-        expect(res.body).toEqual('skjdlfj');
+        expect(res.body.nModified).toEqual(1);
       });
 
   });

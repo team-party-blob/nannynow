@@ -39,7 +39,7 @@ class RequestDetail extends PureComponent {
     const agency = this.props.detail.familyProfile.agency;
     const request = this.props.detail.request._id;
     const nannyPricePerHour = requestedNannyProfile[0].pricePerHour;
-    const { startDateTime, endDateTime, _id } = this.props.detail.request;
+    const { startDateTime, endDateTime } = this.props.detail.request;
 
     //need to check if there are other nannies who haven't yet responded so as to know whether or not to close out the request.
     const otherNoResponseNannies = requestedNannies.filter(

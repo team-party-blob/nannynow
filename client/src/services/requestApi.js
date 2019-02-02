@@ -24,8 +24,5 @@ export const getRequest = requestId => {
 };
 
 export const updateNannyRequestStatus = (requestId, nannyId, status, closed) => {
-  return patch(`/api/requests/status/${requestId}`, { nannyId, status, closed })
-    .then(result => {
-      console.log(result);
-    });
+  return patch(`/api/requests/status/${requestId}`, { nannyId, status, closed });
 };

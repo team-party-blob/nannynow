@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component renders a snapshot component 1`] = `
+<Fragment>
+  <h1
+    id="loadingText"
+  >
+    Loading
+  </h1>
+</Fragment>
+`;

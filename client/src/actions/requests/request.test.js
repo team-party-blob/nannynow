@@ -1,8 +1,8 @@
 import {
   FAMILY_REQUEST_CREATE,
-  FAMILY_REQUEST_LOAD_START,
+  createRequest,
   FAMILY_REQUEST_LOAD_END,
-  createRequest
+  FAMILY_REQUEST_LOAD_START,
 } from './request';
 import { fakeFamilyRequest } from '../fixtures/fakeFamilyRequest';
 

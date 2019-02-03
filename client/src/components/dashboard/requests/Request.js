@@ -14,7 +14,7 @@ export default function Request({ user, request }) {
         <td>{getLocalDateTime(request.endDateTime)}</td>
         <td>
           <Link to={ROUTES.REQUEST_DETAIL.linkTo(user._id, request._id)}>
-            <button>Details</button>
+            <button id={styles.detailButton}>Details</button>
           </Link>
         </td>
       </tr>

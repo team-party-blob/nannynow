@@ -6,7 +6,7 @@ import { withSession } from '../components/auth/withSession';
 import ProfileContainer from '../containers/ProfileContainer';
 import DashBoardContainer from '../containers/DashBoardContainer';
 import AppointmentDetail from '../containers/AppointmentDetail';
-import RequestDetail from '../containers/RequestDetail';
+import RequestDetailContainer from '../containers/RequestDetailContainer';
 import About from '../components/about/About';
 
 
@@ -35,7 +35,7 @@ export const ROUTES = {
   },
   REQUEST_DETAIL: {
     path: '/dashboard/request/:userId/:requestId',
-    Component: withSession(RequestDetail),
+    Component: withSession(RequestDetailContainer),
     linkTo: (userId, requestId) => `/dashboard/request/${userId}/${requestId}`
   },
   APPOINTMENT_DETAIL: {

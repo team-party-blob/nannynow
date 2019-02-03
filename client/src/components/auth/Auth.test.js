@@ -17,7 +17,7 @@ jest.mock('../../routes/routes.js', () => ({
   }
 }));
 
-jest.mock('../../assets/imageUrl.js');
+jest.mock('../../assets/nannyNowLogo.png');
 
 describe('Auth component', () => {
 
@@ -42,13 +42,5 @@ describe('Auth component', () => {
     expect(wrapper.html()).toContain('New to Nanny Now?');
   });
 
-  // it('redirects if session is not null true', () => {
-  //   const session = {
-  //     user: {
-  //       _id: '1234'
-  //     }
-  //   };
-  //   const wrapper = shallow(<Auth session={session} />);
-  //   expect(wrapper.html()).toEqual('lskdjf');
-  // })
+
 });

@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth component matches snapshot 1`] = `
+<div
+  id="auth"
+>
+  <img
+    id="logo"
+    src=""
+  />
+  <form
+    id="authForm"
+    onSubmit={[Function]}
+  >
+    <label
+      htmlFor="email"
+    >
+      Email
+    </label>
+    <input
+      name="email"
+      onChange={[Function]}
+      type="email"
+      value=""
+    />
+    <label>
+      Password
+    </label>
+    <input
+      name="password"
+      onChange={[Function]}
+      type="password"
+      value=""
+    />
+    <label
+      id="role"
+    >
+      Are You a Nanny or a Family?
+    </label>
+    <select
+      name=""
+      onChange={[Function]}
+    >
+      <option
+        value=""
+      >
+        Select
+      </option>
+      <option
+        key="nanny"
+        name=""
+        value="nanny"
+      >
+        Nanny
+      </option>
+      <option
+        key="family"
+        name=""
+        value="family"
+      >
+        Family
+      </option>
+    </select>
+    <button>
+      Sign Up
+    </button>
+  </form>
+  <div
+    id="switchUserType"
+  >
+    <h3>
+      Already Have an Account?
+    </h3>
+    <button
+      onClick={[Function]}
+    >
+      Click Here to Sign In
+    </button>
+  </div>
+</div>
+`;

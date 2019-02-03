@@ -8,7 +8,7 @@ export default class Requests extends PureComponent {
     requests: PropTypes.array.isRequired,
     fetchRequests: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -20,7 +20,7 @@ export default class Requests extends PureComponent {
   render() {
     const { requests, user } = this.props;
 
-    if(requests) {
+    if (requests) {
       requests.sort((a, b) => {
         return new Date(a.startDateTime) - new Date(b.startDateTime);
       });

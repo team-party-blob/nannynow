@@ -33,7 +33,7 @@ const AppointmentSchema = new mongoose.Schema({
   },
   agencyFeePerHour: {
     type: Number,
-    required: [true, 'An hourly agency fee is required']
+    default: 3.5
   },
   nannyPricePerHour: {
     type: Number,

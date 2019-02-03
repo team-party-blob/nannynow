@@ -11,9 +11,9 @@ export default Router()
       appointmentComments,
       family,
       agency,
-      requestedNannies
+      requestedNannies,
     } = req.body;
-  
+
     startDateTime = new Date(startDateTime);
     endDateTime = new Date(endDateTime);
 
@@ -24,7 +24,7 @@ export default Router()
       appointmentComments,
       family,
       agency,
-      requestedNannies
+      requestedNannies,
     })
       .then(request => res.json(request))
       .catch(next);
@@ -50,22 +50,24 @@ export default Router()
 
     User.findById(userId)
       .then(user => {
-        if(user.role === 'family') {
+        if (user.role === 'family') {
           RequestedAppointment.find({ family: user._id, closed: false })
             .lean()
             .sort()
             .then(response => res.json(response))
             .catch(next);
-        } else if(user.role === 'nanny') {
+        } else if (user.role === 'nanny') {
           RequestedAppointment.find({
-            'requestedNannies.nanny': user._id,
-            closed: false
+            requestedNannies: {
+              $elemMatch: { nanny: user._id, status: 'no response' },
+            },
+            closed: false,
           })
             .lean()
             .sort()
             .then(response => res.json(response))
             .catch(next);
-        } else if(user.role === 'admin' || user.role === 'developer') {
+        } else if (user.role === 'admin' || user.role === 'developer') {
           RequestedAppointment.find({})
             .lean()
             .sort()
@@ -88,16 +90,16 @@ export default Router()
           request.family.getProfile(),
           Promise.all(
             request.requestedNannies.map(requestedNanny =>
-              requestedNanny.nanny.getProfile()
-            )
-          )
+              requestedNanny.nanny.getProfile(),
+            ),
+          ),
         ]);
       })
       .then(([request, familyProfile, requestedNannyProfiles]) => {
         res.json({
           request,
           familyProfile,
-          requestedNannyProfiles
+          requestedNannyProfiles,
         });
       })
       .catch(next);
@@ -119,7 +121,7 @@ export default Router()
       appointmentComments,
       family,
       agency,
-      requestedNannies
+      requestedNannies,
     } = req.body;
 
     RequestedAppointment.findByIdAndUpdate(
@@ -131,19 +133,22 @@ export default Router()
         appointmentComments,
         family,
         agency,
-        requestedNannies
-
+        requestedNannies,
       },
-      { new: true }
+      { new: true },
     )
       .lean()
       .then(request => res.json(request))
       .catch(next);
   })
 
-  .patch('/status/:requestId/:nannyId/:status', (req, res, next) => {
-    const { requestId, nannyId, status } = req.params;
-    RequestedAppointment.updateOne({ _id: requestId, 'requestedNannies.nanny': nannyId }, { $set: { 'requestedNannies.$.status': status } })
+  .patch('/status/:requestId', (req, res, next) => {
+    const { requestId } = req.params;
+    const { nannyId, status, closed } = req.body;
+    RequestedAppointment.updateOne(
+      { _id: requestId, 'requestedNannies.nanny': nannyId },
+      { $set: { closed, 'requestedNannies.$.status': status } },
+    )
       .then(response => res.json(response))
       .catch(next);
   });

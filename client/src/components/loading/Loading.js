@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
+import styles from './Loading.css';
 
 export default function Loading() {
   return (
     <Fragment>
-      <h1 style={{ color: 'blue', fontSize: '75px', textAlign: 'center' }}>If You Can Read This You Are a Really Fast Reader High Five!</h1>
+      <h1 id={styles.loadingText}>Loading</h1>
     </Fragment>
   );
 }

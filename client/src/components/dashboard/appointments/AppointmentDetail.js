@@ -13,7 +13,7 @@ class AppointmentDetail extends PureComponent {
     detail: PropTypes.object,
     fetchAppointment: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
-    session: PropTypes.object.isRequired
+    session: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class AppointmentDetail extends PureComponent {
   render() {
     const { detail, session } = this.props;
     const { role } = session;
-    if(!detail) return null;
+    if (!detail) return null;
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
       const age = moment([birthday]).fromNow(true);
       return (
@@ -62,7 +62,7 @@ class AppointmentDetail extends PureComponent {
             <p>
               <b>Name:</b> {detail.nannyProfile.name}
             </p>
-            <img src={detail.nannyProfile.photo} alt='profile photo' />
+            <img src={detail.nannyProfile.photo} alt="profile photo" />
             <p>
               <b>Price per hour:</b> {detail.nannyProfile.pricePerHour + 3.5}
             </p>

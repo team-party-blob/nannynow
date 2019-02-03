@@ -27,10 +27,10 @@ class AppointmentDetail extends PureComponent {
     const { role } = session;
     if (!detail) return null;
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
-      const age = moment([birthday]).fromNow(true);
+      const age = moment(birthday).fromNow(true);
       return (
         <li key={i}>
-          Child {i + 1}: {age}
+          Child {i + 1}: {age} old
         </li>
       );
     });

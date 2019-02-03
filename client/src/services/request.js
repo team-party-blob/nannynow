@@ -14,18 +14,18 @@ const request = (url, method, body) => {
     method,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   })
     .then(res => [res.ok, res.headers, res.json()])
     .then(([ok, headers, json]) => {
-      if(!ok) throw json;
+      if (!ok) throw json;
       return [headers, json];
     })
     .then(([headers, json]) => {
       const headerToken = headers.get('X-AUTH-TOKEN');
-      if(headerToken && headerToken !== token) setToken(headerToken);
+      if (headerToken && headerToken !== token) setToken(headerToken);
       return json;
     });
 };

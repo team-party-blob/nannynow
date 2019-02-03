@@ -160,8 +160,5 @@ describe('requested appointments routes', () => {
             );
           });
       });
-    // createdRequestedAppointments[0].requestedNannies[0].status = 'reject';
-    // const rejectedRequest = createdRequestedAppointments[0];
-    // const rejectingNanny = rejectedRequest.requestedNannies[0].nanny;
   });
 });

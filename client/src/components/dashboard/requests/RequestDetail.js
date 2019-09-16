@@ -79,10 +79,10 @@ class RequestDetail extends PureComponent {
     const { requestedNannies } = detail.request;
 
     const ageComponents = detail.request.birthdays.map((birthday, i) => {
-      const age = moment([birthday]).fromNow(true);
+      const age = moment(birthday).fromNow(true);
       return (
         <li key={i}>
-          Child {i + 1}: {age}
+          Child {i + 1}: {age} old
         </li>
       );
     });
@@ -134,7 +134,9 @@ class RequestDetail extends PureComponent {
             <p>
               <b>Ages of Children: </b>
             </p>
-            {ageComponents}
+            <ul>
+              {ageComponents}
+            </ul>
           </div>
           <p>
             <b>Appointment Comments:</b>
